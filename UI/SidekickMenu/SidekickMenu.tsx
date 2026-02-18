@@ -182,6 +182,7 @@ const SidekickMenu: React.FC<SidekickMenuProps> = ({
           chevronIcon={chevronIcon}
           closeMenu={closeMenu}
           alwaysShowUnsearchableItems={alwaysShowUnsearchableItems}
+          parentIsOpened={actualIsOpen} // Pass actualIsOpen for the top-level MenuList
         />
         {footerContent && (
           <div className={styles.footerSection}>{footerContent}</div>

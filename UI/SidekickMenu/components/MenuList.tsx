@@ -16,6 +16,7 @@ interface MenuListProps {
   chevronIcon?: React.ReactNode;
   closeMenu: () => void;
   alwaysShowUnsearchableItems: boolean;
+  parentIsOpened: boolean; // New prop
 }
 
 const MenuList: React.FC<MenuListProps> = ({
@@ -30,6 +31,7 @@ const MenuList: React.FC<MenuListProps> = ({
   chevronIcon,
   closeMenu,
   alwaysShowUnsearchableItems,
+  parentIsOpened, // Destructure new prop
 }) => {
   const processedItems = getFilteredItems(
     items,
@@ -43,7 +45,7 @@ const MenuList: React.FC<MenuListProps> = ({
   let globalItemIndex = -1;
 
   return (
-    <ul className={`${styles.menuList} ${level > 0 ? styles.subMenu : ""}`}>
+    <ul className={`${styles.menuList} ${level > 0 ? styles.subMenu : ""} ${parentIsOpened ? styles.open : ""}`}>
       {processedItems.map((item) => {
         const isSubMenuOpen = openSubMenus[item.id];
         // Only increment globalItemIndex for actual MenuItem components rendered.
@@ -72,7 +74,7 @@ const MenuList: React.FC<MenuListProps> = ({
                 items={item.children}
                 level={level + 1}
                 itemVisibility={itemVisibility}
-                openSubMenus={openSubMenus} // Pass down full openSubMenus for deeper levels
+                openSubMenus={openSubMenus}
                 toggleSubMenu={toggleSubMenu}
                 currentSearchTerm={currentSearchTerm}
                 highlightedIndex={highlightedIndex}
@@ -80,6 +82,7 @@ const MenuList: React.FC<MenuListProps> = ({
                 chevronIcon={chevronIcon}
                 closeMenu={closeMenu}
                 alwaysShowUnsearchableItems={alwaysShowUnsearchableItems}
+                parentIsOpened={isSubMenuOpen} // Pass down isSubMenuOpen for recursive calls
               />
             )}
           </React.Fragment>
