@@ -7,14 +7,12 @@ export const getFilteredItems = (
   itemsToFilter: ISidekickMenuItem[],
   currentSearchTerm: string,
   alwaysShowUnsearchableItems: boolean,
-  itemVisibility: ItemVisibilityMap
+  itemVisibility: ItemVisibilityMap // Keep for signature consistency, though not used for filtering here.
 ): ISidekickMenuItem[] => {
-  const visibleItems = itemsToFilter.filter(
-    (item) => itemVisibility[item.id] === "VISIBLE"
-  );
 
   if (!currentSearchTerm) {
-    return visibleItems;
+    // If no search term, return all items. Visibility will be handled by MenuItem.
+    return itemsToFilter;
   }
 
   const searchTokens = currentSearchTerm
@@ -64,5 +62,6 @@ export const getFilteredItems = (
     }, []);
   };
 
-  return filterRecursive(visibleItems);
+  // Now filterRecursive operates on the original itemsToFilter
+  return filterRecursive(itemsToFilter);
 };
