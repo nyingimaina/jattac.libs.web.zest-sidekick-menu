@@ -1,10 +1,10 @@
-# 🤝 Contributor's Guide
+# Contributor's Guide
 
 **[< Previous: Configuration Guide](configuration.md) | [Next: Breaking Changes & Migration >](breaking-changes.md)**
 
 This guide is for developers interested in contributing to the React Sidekick Menu, understanding its internal workings, or extending its functionality.
 
-## 📚 Table of Contents
+## Table of Contents
 
 1.  [Internal Architecture Overview](#1-internal-architecture-overview)
 2.  [Local Development Setup](#2-local-development-setup)
@@ -63,42 +63,42 @@ To set up your local development environment for the React Sidekick Menu:
 
 ### 3. Available Development Scripts
 
-The project uses `rollup` for building. Here are the commonly used scripts:
+The project utilizes `rollup` for its build process. The following are commonly used scripts:
 
-*   `npm run build`: Compiles the TypeScript source code and bundles the component for production. This generates output files in the `dist/` directory, including CommonJS, ES Module, and TypeScript declaration files.
-*   `npm run prepublishOnly`: This script runs `npm run build` automatically before publishing the package to npm, ensuring that the latest compiled code is always published.
+*   `npm run build`: Compiles the TypeScript source code and bundles the component for production. This operation generates output files in the `dist/` directory, encompassing CommonJS, ES Module, and TypeScript declaration files.
+*   `npm run prepublishOnly`: This script automatically executes `npm run build` prior to publishing the package to npm, thereby ensuring that the latest compiled code is always distributed.
 
 ---
 
 ### 4. Styling and Theming
 
-The component's styling is handled internally using CSS Modules (`SidekickMenu.module.css`). These styles are bundled directly with the JavaScript output, meaning you do not need to import any separate CSS files into your application.
+The component's styling is managed internally using CSS Modules (`SidekickMenu.module.css`). These styles are bundled directly with the JavaScript output, eliminating the need to import any separate CSS files into your application.
 
 For extensive styling customization:
-*   Currently, there are no exposed props or theming contexts for direct style overrides.
-*   The recommended approach for deep visual modifications is to fork the repository and adjust the `.css` module files directly.
+*   Currently, no exposed props or theming contexts are provided for direct style overrides.
+*   The recommended approach for in-depth visual modifications involves forking the repository and directly adjusting the `.css` module files.
 
-For more general styling advice, including mobile safe areas, refer to the [API Reference](api.md#styling).
+For more general styling guidance, including considerations for mobile safe areas, refer to the [API Reference](api.md#styling).
 
 ---
 
 ### 5. Testing Guidelines
 
-Currently, the project does not include dedicated unit or integration tests within the repository.
+Presently, the project does not incorporate dedicated unit or integration tests within the repository.
 
-*   **When contributing new features or fixing bugs**, please consider adding corresponding tests to ensure the reliability and correctness of your changes.
-*   Tests should ideally cover edge cases and ensure that the component behaves as expected under various conditions.
-*   Future enhancements will include setting up a testing framework (e.g., Jest, React Testing Library).
+*   **When contributing new features or fixing bugs**, it is recommended to include corresponding tests to ensure the reliability and correctness of your modifications.
+*   Tests should ideally cover edge cases and validate that the component functions as expected under various conditions.
+*   Future enhancements will involve the establishment of a testing framework (e.g., Jest, React Testing Library).
 
 ---
 
 ### 6. Contributing Guidelines
 
-We welcome contributions! If you're interested in improving the React Sidekick Menu:
+Contributions are welcome! If you are interested in enhancing the React Sidekick Menu:
 
-*   **Report Bugs:** If you find a bug, please open an issue on the [GitHub repository](https://github.com/your-username/jattac.libs.web.react-sidekick-menu) (link to be added).
-*   **Suggest Features:** Have an idea for a new feature or enhancement? Open an issue to discuss it.
-*   **Submit Pull Requests:** If you've implemented a fix or a new feature, please submit a pull request. Ensure your code adheres to the existing style, includes appropriate tests (if applicable), and updates documentation where necessary.
+*   **Report Bugs:** Should you identify a bug, please open an issue on the [GitHub repository](https://github.com/your-username/jattac.libs.web.react-sidekick-menu) (link to be added).
+*   **Suggest Features:** If you have an idea for a new feature or enhancement, please open an issue to initiate a discussion.
+*   **Submit Pull Requests:** If you have implemented a fix or a new feature, please submit a pull request. Ensure your code adheres to the existing style, includes appropriate tests (if applicable), and updates documentation where necessary.
 
 ---
 **[< Previous: Configuration Guide](configuration.md) | [Next: Breaking Changes & Migration >](breaking-changes.md)**

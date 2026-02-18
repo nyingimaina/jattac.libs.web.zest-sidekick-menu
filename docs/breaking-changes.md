@@ -1,10 +1,10 @@
-# ⚠️ Breaking Changes & Migration
+# Breaking Changes & Migration
 
 **[< Previous: Contributor's Guide](development.md) | [Next: README.md >](../README.md)**
 
 This document outlines any breaking changes introduced in new versions of the React Sidekick Menu and provides instructions on how to migrate your existing codebase. Our goal is to minimize disruptions, but sometimes changes are necessary to improve the component.
 
-## 📚 Table of Contents
+## Table of Contents
 
 1.  [v1.0.5](#v105)
 

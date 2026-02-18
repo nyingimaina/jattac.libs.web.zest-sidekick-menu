@@ -1,10 +1,10 @@
-# ⚙️ Configuration Guide
+# Configuration Guide
 
 **[< Previous: API Reference](api.md) | [Next: Contributor's Guide >](development.md)**
 
 This guide provides a deep dive into configuring the React Sidekick Menu, covering how to adjust its behavior and appearance to fit your application's specific needs.
 
-## 📚 Table of Contents
+## Table of Contents
 
 1.  [Understanding Default Props](#1-understanding-default-props)
 2.  [Controlling Cache Lifetime](#2-controlling-cache-lifetime)
@@ -36,10 +36,10 @@ static defaultProps = {
 ### 2. Controlling Cache Lifetime
 
 #### Problem:
-Menu item visibility, especially for `isCachable: true` items, is stored in `localStorage` to avoid repeatedly calling `isVisibleResolver`. You need to control how long this cached data remains valid.
+Menu item visibility, particularly for `isCachable: true` items, is stored in `localStorage` to avoid repeatedly invoking `isVisibleResolver`. It is necessary to control the duration for which this cached data remains valid.
 
 #### Solution:
-Use the `cacheLifetime` prop (in hours) on the `<SidekickMenu>` component.
+Utilize the `cacheLifetime` prop (specified in hours) on the `<SidekickMenu>` component.
 
 ```jsx
 import React from 'react';
@@ -58,14 +58,14 @@ const App = () => {
   );
 };
 ```
-A `cacheLifetime` of `0` or a negative number would effectively disable caching by always expiring immediately, forcing re-evaluation. A very large number would cache indefinitely. The default is `24` hours.
+A `cacheLifetime` of `0` or a negative number will effectively disable caching by always expiring immediately, thereby forcing re-evaluation. A very large number will cache indefinitely. The default value is `24` hours.
 
 ---
 
 ### 3. Desktop Open Behavior
 
 #### Problem:
-On larger screens, you might prefer the side menu to be open by default, providing immediate access to navigation without requiring user interaction to open it.
+On larger screens, it may be preferable for the side menu to be open by default, providing immediate access to navigation without requiring user interaction to open it.
 
 #### Solution:
 Set the `openOnDesktop` prop to `true`.
@@ -87,23 +87,23 @@ const App = () => {
   );
 };
 ```
-The menu will automatically detect screen width and apply this behavior. On smaller screens, it will remain closed by default, requiring the user to toggle it open.
+The menu will automatically detect screen width and apply this behavior. On smaller screens, it will remain closed by default, necessitating user interaction to toggle it open.
 
 ---
 
 ### 4. Fine-tuning Search Behavior
 
-The menu's integrated search can be configured to best suit your application's needs.
+The menu's integrated search functionality can be configured to best suit the requirements of your application.
 
 #### `searchEnabled: boolean`
-Controls whether the search input field is rendered at all.
+Controls whether the search input field is rendered.
 
 ```jsx
 <SidekickMenu items={/* ... */} searchEnabled={false} /> // Hide the search bar
 ```
 
 #### `searchAutoFocus: boolean`
-Determines if the search input should automatically receive focus when the menu is opened. This can improve user flow if search is a primary interaction.
+Determines if the search input should automatically receive focus when the menu is opened. This can optimize user flow if search is a primary interaction.
 
 ```jsx
 <SidekickMenu items={/* ... */} searchAutoFocus={false} /> // Prevent auto-focus
@@ -117,8 +117,8 @@ Customizes the hint text displayed in the search input field before the user typ
 ```
 
 #### `alwaysShowUnsearchableItems: boolean`
-This prop affects how items without `searchTerms` are handled when a search is active.
-*   If `true` (default), items that do not have `searchTerms` defined will always be displayed, regardless of the active search query.
+This prop influences how items without `searchTerms` are managed when a search is active.
+*   If `true` (default), items that do not have `searchTerms` defined will always be displayed, irrespective of the active search query.
 *   If `false`, such items will only be displayed if they are part of a sub-menu whose parent matches the search, or if the `label` itself matches the search (if `searchTerms` is not provided).
 
 ```jsx
@@ -129,10 +129,10 @@ This prop affects how items without `searchTerms` are handled when a search is a
 
 ### 5. Global Styling Considerations
 
-While the component is styled using CSS Modules internally, you might have global styling rules that could indirectly affect its appearance. The component's classes are designed to be specific to minimize conflicts.
+While the component employs CSS Modules internally, global styling rules within your application might indirectly influence its appearance. The component's class names are designed to be specific to minimize potential conflicts.
 
-Remember to correctly configure the `viewport` meta tag for mobile safe areas if you are experiencing unexpected layout issues on mobile devices.
-Refer to the [API Reference](api.md#styling) for more details on styling.
+Ensure the `viewport` meta tag is correctly configured for mobile safe areas if unexpected layout issues are observed on mobile devices.
+Refer to the [API Reference](api.md#styling) for further details on styling.
 
 ---
 **[< Previous: API Reference](api.md) | [Next: Contributor's Guide >](development.md)**
