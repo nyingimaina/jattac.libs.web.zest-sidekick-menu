@@ -50,12 +50,12 @@ export default App;
 
 Dive deeper into the features and capabilities of the React Sidekick Menu:
 
-*   **[The Cookbook: Practical Examples](docs/examples.md)**: Start here for step-by-step guides and recipes to implement various menu functionalities.
-*   [Features Showcase](docs/features.md)
-*   [API Reference](docs/api.md)
-*   [Configuration Guide](docs/configuration.md)
-*   [Contributor's Guide](docs/development.md)
-*   [Breaking Changes & Migration](docs/breaking-changes.md)
+*   **[The Cookbook: Practical Examples](https://github.com/nyingimaina/jattac.libs.web.zest-sidekick-menu/blob/master/docs/examples.md)**: Start here for step-by-step guides and recipes to implement various menu functionalities.
+*   [Features Showcase](https://github.com/nyingimaina/jattac.libs.web.zest-sidekick-menu/blob/master/docs/features.md)
+*   [API Reference](https://github.com/nyingimaina/jattac.libs.web.zest-sidekick-menu/blob/master/docs/api.md)
+*   [Configuration Guide](https://github.com/nyingimaina/jattac.libs.web.zest-sidekick-menu/blob/master/docs/configuration.md)
+*   [Contributor's Guide](https://github.com/nyingimaina/jattac.libs.web.zest-sidekick-menu/blob/master/docs/development.md)
+*   [Breaking Changes & Migration](https://github.com/nyingimaina/jattac.libs.web.zest-sidekick-menu/blob/master/docs/breaking-changes.md)
 
 ---
-[Next: The Cookbook: Practical Examples >](docs/examples.md)
+[Next: The Cookbook: Practical Examples >](https://github.com/nyingimaina/jattac.libs.web.zest-sidekick-menu/blob/master/docs/examples.md)

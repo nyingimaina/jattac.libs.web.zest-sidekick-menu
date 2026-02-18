@@ -1,6 +1,6 @@
 {
   "name": "jattac.libs.web.zest-sidekick-menu",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "A flexible and reusable side menu component for React.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
