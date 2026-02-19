@@ -3,30 +3,27 @@ import styles from "../../../Styles/SidekickMenu.module.css";
 import { ISidekickMenuItem } from "../types";
 import MenuItemSkeleton from "./MenuItemSkeleton";
 import { highlightReactNode } from "../../../utils/reactNodeUtils";
+import { useMenuContext } from "../context/MenuContext";
 
 interface MenuItemProps {
   item: ISidekickMenuItem;
   level: number;
-  itemVisibility: { [key: string]: "VISIBLE" | "HIDDEN" | "PENDING" };
   isSubMenuOpen: boolean;
-  toggleSubMenu: (id: string) => void;
-  currentSearchTerm: string;
   highlighted: boolean;
-  chevronIcon?: React.ReactNode;
-  closeMenu: () => void;
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({
   item,
   level,
-  itemVisibility,
   isSubMenuOpen,
-  toggleSubMenu,
-  currentSearchTerm,
   highlighted,
-  chevronIcon,
-  closeMenu,
 }) => {
+  const {
+    state: { itemVisibility, searchTerm },
+    dispatch,
+    chevronIcon,
+  } = useMenuContext();
+
   const visibility = itemVisibility[item.id];
 
   if (visibility === "HIDDEN") {
@@ -39,13 +36,14 @@ const MenuItem: React.FC<MenuItemProps> = ({
 
   const handleItemClick = () => {
     if (item.children) {
-      toggleSubMenu(item.id);
-    } else if (item.path) {
-      window.location.href = item.path;
-      closeMenu();
-    } else if (item.onClick) {
-      item.onClick();
-      closeMenu();
+      dispatch({ type: "TOGGLE_SUBMENU", payload: item.id });
+    } else {
+      if (item.path) {
+        window.location.href = item.path;
+      } else if (item.onClick) {
+        item.onClick();
+      }
+      dispatch({ type: "CLOSE_MENU" });
     }
   };
 
@@ -58,7 +56,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
     >
       <span className={styles.itemIcon}>{item.icon}</span>
       <span className={styles.itemLabel}>
-        {highlightReactNode(item.label, currentSearchTerm, styles.highlight)}
+        {highlightReactNode(item.label, searchTerm, styles.highlight)}
       </span>
       {item.children && (
         <span

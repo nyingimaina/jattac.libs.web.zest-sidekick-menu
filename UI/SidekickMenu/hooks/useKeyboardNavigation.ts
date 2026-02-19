@@ -1,5 +1,6 @@
-import { useState, useCallback, useEffect } from "react";
+import { useCallback, useEffect, Dispatch } from "react";
 import { ISidekickMenuItem } from "../types";
+import { MenuAction } from "../context/MenuContext";
 
 type ItemVisibilityMap = { [key: string]: "VISIBLE" | "HIDDEN" | "PENDING" };
 
@@ -8,23 +9,16 @@ export const useKeyboardNavigation = (
   items: ISidekickMenuItem[],
   itemVisibility: ItemVisibilityMap,
   openSubMenus: { [key: string]: boolean },
-  toggleSubMenu: (id: string) => void,
   searchTerm: string,
-  setSearchTerm: (term: string) => void,
-  closeMenu: () => void
+  highlightedIndex: number,
+  dispatch: Dispatch<MenuAction>
 ) => {
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
-
-  // Helper function to get all currently visible (not hidden or pending) items in a flat list
-  // This is used for keyboard navigation to properly step through visible items.
   const getFlattenedVisibleItems = useCallback(
     (
       currentItems: ISidekickMenuItem[],
       acc: ISidekickMenuItem[] = []
     ): ISidekickMenuItem[] => {
       for (const item of currentItems) {
-        // Only consider items that are explicitly VISIBLE for keyboard navigation
-        // PENDING items are represented by skeletons and are not navigable in this context
         if (itemVisibility[item.id] === "VISIBLE") {
           acc.push(item);
           if (item.children && openSubMenus[item.id]) {
@@ -47,7 +41,6 @@ export const useKeyboardNavigation = (
   }, [menuRef]);
 
   useEffect(() => {
-    // Scroll into view whenever the highlighted index changes
     scrollHighlightedItemIntoView();
   }, [highlightedIndex, scrollHighlightedItemIntoView]);
 
@@ -57,46 +50,38 @@ export const useKeyboardNavigation = (
 
       if (event.key === "ArrowUp") {
         event.preventDefault();
-        setHighlightedIndex((prev) => Math.max(prev - 1, 0));
+        dispatch({ type: 'SET_HIGHLIGHTED_INDEX', payload: Math.max(highlightedIndex - 1, 0) });
       } else if (event.key === "ArrowDown") {
         event.preventDefault();
-        setHighlightedIndex((prev) =>
-          Math.min(prev + 1, flattenedVisibleItems.length - 1)
-        );
+        dispatch({
+          type: 'SET_HIGHLIGHTED_INDEX',
+          payload: Math.min(highlightedIndex + 1, flattenedVisibleItems.length - 1),
+        });
       } else if (event.key === "Enter" && highlightedIndex > -1) {
         const item = flattenedVisibleItems[highlightedIndex];
         if (item) {
           if (item.children) {
-            toggleSubMenu(item.id);
-          } else if (item.path) {
-            window.location.href = item.path;
-            closeMenu();
-          } else if (item.onClick) {
-            item.onClick();
-            closeMenu();
+            dispatch({ type: 'TOGGLE_SUBMENU', payload: item.id });
+          } else {
+            if (item.path) {
+              window.location.href = item.path;
+            } else if (item.onClick) {
+              item.onClick();
+            }
+            dispatch({ type: 'CLOSE_MENU' });
           }
         }
       } else if (event.key === "Escape") {
         if (searchTerm) {
-          setSearchTerm("");
-          setHighlightedIndex(-1);
+          dispatch({ type: 'SET_SEARCH_TERM', payload: '' });
+          dispatch({ type: 'SET_HIGHLIGHTED_INDEX', payload: -1 });
         } else {
-          closeMenu();
+          dispatch({ type: 'CLOSE_MENU' });
         }
       }
     },
-    [
-      highlightedIndex,
-      items,
-      itemVisibility, // Dependency for getFlattenedVisibleItems
-      openSubMenus, // Dependency for getFlattenedVisibleItems
-      toggleSubMenu,
-      searchTerm,
-      setSearchTerm,
-      closeMenu,
-      getFlattenedVisibleItems,
-    ]
+    [highlightedIndex, items, itemVisibility, openSubMenus, searchTerm, dispatch, getFlattenedVisibleItems]
   );
 
-  return { highlightedIndex, setHighlightedIndex, handleKeyDown };
+  return { handleKeyDown };
 };

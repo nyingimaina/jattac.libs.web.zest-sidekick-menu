@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 import styles from "../../Styles/SidekickMenu.module.css";
-import { SidekickMenuProps, ISidekickMenuItem } from "./types";
+import { SidekickMenuProps } from "./types";
 import { extractTextFromReactNode } from "../../utils/reactNodeUtils";
+
+// Context and Reducer
+import { MenuContext, menuReducer, MenuState } from "./context/MenuContext";
 
 // Hooks
 import { useItemVisibility } from "./hooks/useItemVisibility";
@@ -14,65 +17,58 @@ import { validateItemIds } from "./utils/validation";
 // Components
 import MenuList from "./components/MenuList";
 
-const SidekickMenu: React.FC<SidekickMenuProps> = ({
-  items,
-  searchEnabled = true,
-  searchAutoFocus = true,
-  searchPlaceholder = "Search menu...",
-  alwaysShowUnsearchableItems = true,
-  openOnDesktop = false,
-  searchIcon,
-  chevronIcon,
-  headerContent,
-  footerContent,
-  cacheLifetime = 24,
-}) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [openSubMenus, setOpenSubMenus] = useState<{ [key: string]: boolean }>({});
+const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
+  const {
+    items,
+    searchEnabled = true,
+    searchAutoFocus = true,
+    searchPlaceholder = "Search menu...",
+    alwaysShowUnsearchableItems = true,
+    openOnDesktop = false,
+    searchIcon,
+    chevronIcon,
+    headerContent,
+    footerContent,
+    cacheLifetime = 24,
+  } = props;
+
+  const initialState: MenuState = {
+    isOpen: false,
+    searchTerm: "",
+    highlightedIndex: -1,
+    openSubMenus: {},
+    itemVisibility: {},
+  };
+
+  const [state, dispatch] = useReducer(menuReducer, initialState);
+  const { isOpen, searchTerm, openSubMenus, highlightedIndex, itemVisibility } = state;
 
   const menuRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Validate item IDs in development
   useEffect(() => {
     if (process.env.NODE_ENV !== "production") {
       validateItemIds(items);
     }
   }, [items]);
 
-  // Handle item visibility
-  const itemVisibility = useItemVisibility(items, cacheLifetime);
+  const visibility = useItemVisibility(items, cacheLifetime);
+  useEffect(() => {
+    dispatch({ type: "SET_ITEM_VISIBILITY", payload: visibility });
+  }, [visibility]);
 
-  // Handle focus trap
   useFocusTrap(menuRef, isOpen);
 
-  // Handle keyboard navigation
-  const toggleSubMenu = (id: string) => {
-    setOpenSubMenus((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-    setSearchTerm(""); // Reset search term when menu closes
-    setHighlightedIndex(-1); // Reset highlight when menu closes
-  };
-
-  const { highlightedIndex, setHighlightedIndex, handleKeyDown } = useKeyboardNavigation(
+  const { handleKeyDown } = useKeyboardNavigation(
     menuRef,
-    items, // Pass raw items to navigation for flattening and finding
+    items,
     itemVisibility,
     openSubMenus,
-    toggleSubMenu,
     searchTerm,
-    setSearchTerm,
-    closeMenu
+    highlightedIndex,
+    dispatch
   );
 
-  // Auto focus search input when menu opens
   useEffect(() => {
     if (isOpen && searchAutoFocus && searchInputRef.current) {
       searchInputRef.current.focus();
@@ -80,115 +76,113 @@ const SidekickMenu: React.FC<SidekickMenuProps> = ({
   }, [isOpen, searchAutoFocus]);
 
   const toggleMenu = () => {
-    setIsOpen((prev) => !prev);
-    setHighlightedIndex(-1); // Reset highlight when menu is toggled
+    dispatch({ type: "SET_IS_OPEN", payload: !isOpen });
+    dispatch({ type: "SET_HIGHLIGHTED_INDEX", payload: -1 });
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newSearchTerm = event.target.value;
-    setSearchTerm(newSearchTerm);
-    setHighlightedIndex(-1); // Reset highlight on search change
+    dispatch({ type: 'SET_SEARCH_TERM', payload: newSearchTerm });
+    dispatch({ type: 'SET_HIGHLIGHTED_INDEX', payload: -1 });
 
-    // Auto-open parent sub-menus if children match search
-    const idsToOpen: string[] = [];
-    const searchTokens = newSearchTerm.toLowerCase().split(" ").filter(Boolean);
-
+    const openSubMenus: { [key: string]: boolean } = {};
     if (newSearchTerm) {
-      const collectParentIds = (currentItems: ISidekickMenuItem[]) => {
-        currentItems.forEach((item) => {
+      const searchTokens = newSearchTerm.toLowerCase().split(" ").filter(Boolean);
+
+      const findMatchingParents = (currentItems: typeof items): boolean => {
+        let hasMatchingChild = false;
+        for (const item of currentItems) {
           const itemText = extractTextFromReactNode(item.label).toLowerCase();
           const directMatch = searchTokens.some(
             (token) =>
-              item.searchTerms
+              (item.searchTerms || "")
                 .toLowerCase()
                 .split(" ")
                 .some((t) => t.includes(token)) || itemText.includes(token)
           );
 
           if (item.children) {
-            const childrenMatchResult = collectParentIds(item.children); // Recursive call
-            if (childrenMatchResult.length > 0 || directMatch) {
-              idsToOpen.push(item.id);
+            const childrenMatch = findMatchingParents(item.children);
+            if (childrenMatch || directMatch) {
+              openSubMenus[item.id] = true;
+              hasMatchingChild = true;
             }
           } else if (directMatch) {
-            idsToOpen.push(item.id);
+            hasMatchingChild = true;
           }
-        });
-        return idsToOpen; // Return collected IDs
+        }
+        return hasMatchingChild;
       };
-      collectParentIds(items);
-    }
 
-    setOpenSubMenus(
-      newSearchTerm === ""
-        ? {}
-        : idsToOpen.reduce((acc, id) => ({ ...acc, [id]: true }), {})
-    );
+      findMatchingParents(items);
+    }
+    dispatch({ type: 'SET_OPEN_SUBMENUS', payload: openSubMenus });
   };
 
   const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768 && openOnDesktop;
   const actualIsOpen = isOpen || isDesktop;
 
-  return (
-    <div
-      ref={menuRef}
-      className={`${styles.container} ${actualIsOpen ? styles.open : ""} ${
-        isDesktop ? styles.desktopOpen : ""
-      }`}
-      onKeyDown={handleKeyDown}
-    >
-      <button
-        className={`${styles.hamburger} ${actualIsOpen ? styles.open : ""}`}
-        onClick={toggleMenu}
-        aria-expanded={actualIsOpen}
-        aria-controls="sidekick-menu-panel"
-      >
-        <span />
-        <span />
-        <span />
-      </button>
+  const contextValue = {
+    state,
+    dispatch,
+    items,
+    closeMenu: () => dispatch({ type: 'CLOSE_MENU' }),
+    toggleSubMenu: (id: string) => dispatch({ type: 'TOGGLE_SUBMENU', payload: id }),
+    setHighlightedIndex: (index: number) => dispatch({ type: 'SET_HIGHLIGHTED_INDEX', payload: index }),
+    searchIcon,
+    chevronIcon,
+    alwaysShowUnsearchableItems,
+  };
 
-      <nav
-        id="sidekick-menu-panel"
-        className={`${styles.panel} ${actualIsOpen ? styles.open : ""}`}
+  return (
+    <MenuContext.Provider value={contextValue}>
+      <div
+        ref={menuRef}
+        className={`${styles.container} ${actualIsOpen ? styles.open : ""} ${
+          isDesktop ? styles.desktopOpen : ""
+        }`}
+        onKeyDown={handleKeyDown}
       >
-        {headerContent && (
-          <div className={styles.headerSection}>{headerContent}</div>
-        )}
-        {searchEnabled && (
-          <div className={styles.searchContainer}>
-            <div className={styles.searchInputWrapper}>
-              <input
-                ref={searchInputRef}
-                type="text"
-                placeholder={searchPlaceholder}
-                value={searchTerm}
-                onChange={handleSearchChange}
-                className={styles.searchInput}
-              />
-              <span className={styles.searchIcon}>{searchIcon ?? "🔍"}</span>
+        <button
+          className={`${styles.hamburger} ${actualIsOpen ? styles.open : ""}`}
+          onClick={toggleMenu}
+          aria-expanded={actualIsOpen}
+          aria-controls="sidekick-menu-panel"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <nav
+          id="sidekick-menu-panel"
+          className={`${styles.panel} ${actualIsOpen ? styles.open : ""}`}
+        >
+          {headerContent && (
+            <div className={styles.headerSection}>{headerContent}</div>
+          )}
+          {searchEnabled && (
+            <div className={styles.searchContainer}>
+              <div className={styles.searchInputWrapper}>
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  placeholder={searchPlaceholder}
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  className={styles.searchInput}
+                />
+                <span className={styles.searchIcon}>{searchIcon ?? "🔍"}</span>
+              </div>
             </div>
-          </div>
-        )}
-        <MenuList
-          items={items}
-          level={0}
-          itemVisibility={itemVisibility}
-          openSubMenus={openSubMenus}
-          toggleSubMenu={toggleSubMenu}
-          currentSearchTerm={searchTerm}
-          highlightedIndex={highlightedIndex}
-          setHighlightedIndex={setHighlightedIndex}
-          chevronIcon={chevronIcon}
-          closeMenu={closeMenu}
-          alwaysShowUnsearchableItems={alwaysShowUnsearchableItems}
-          parentIsOpened={actualIsOpen} // Pass actualIsOpen for the top-level MenuList
-        />
-        {footerContent && (
-          <div className={styles.footerSection}>{footerContent}</div>
-        )}
-      </nav>
-    </div>
+          )}
+          <MenuList items={items} level={0} parentIsOpened={actualIsOpen} />
+          {footerContent && (
+            <div className={styles.footerSection}>{footerContent}</div>
+          )}
+        </nav>
+      </div>
+    </MenuContext.Provider>
   );
 };
 

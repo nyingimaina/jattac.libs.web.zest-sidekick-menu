@@ -26,11 +26,3 @@ export interface SidekickMenuProps {
   footerContent?: React.ReactNode;
   cacheLifetime?: number;
 }
-
-export interface ISidekickMenuState {
-  isOpen: boolean;
-  searchTerm: string;
-  highlightedIndex: number;
-  openSubMenus: { [key: string]: boolean };
-  itemVisibility: { [key: string]: "VISIBLE" | "HIDDEN" | "PENDING" };
-}

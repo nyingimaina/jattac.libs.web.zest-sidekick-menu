@@ -1,17 +1,13 @@
 import { ISidekickMenuItem } from "../types";
-import { extractTextFromReactNode } from "../../../utils/reactNodeUtils"; // One level up from UI/SidekickMenu/utils
-
-type ItemVisibilityMap = { [key: string]: "VISIBLE" | "HIDDEN" | "PENDING" };
+import { extractTextFromReactNode } from "../../../utils/reactNodeUtils";
 
 export const getFilteredItems = (
   itemsToFilter: ISidekickMenuItem[],
   currentSearchTerm: string,
-  alwaysShowUnsearchableItems: boolean,
-  itemVisibility: ItemVisibilityMap // Keep for signature consistency, though not used for filtering here.
+  alwaysShowUnsearchableItems: boolean
 ): ISidekickMenuItem[] => {
 
   if (!currentSearchTerm) {
-    // If no search term, return all items. Visibility will be handled by MenuItem.
     return itemsToFilter;
   }
 
@@ -27,7 +23,7 @@ export const getFilteredItems = (
       const itemText = extractTextFromReactNode(item.label).toLowerCase();
       const directMatch = searchTokens.some(
         (token) =>
-          item.searchTerms
+          (item.searchTerms || "")
             .toLowerCase()
             .split(" ")
             .some((itemTerm) => itemTerm.includes(token)) ||
@@ -48,13 +44,13 @@ export const getFilteredItems = (
           });
         } else if (
           directMatch ||
-          (alwaysShowUnsearchableItems && !item.searchTerms)
+          (alwaysShowUnsearchableItems && !(item.searchTerms || ""))
         ) {
           acc.push(item);
         }
       } else if (
         directMatch ||
-        (alwaysShowUnsearchableItems && !item.searchTerms)
+        (alwaysShowUnsearchableItems && !(item.searchTerms || ""))
       ) {
         acc.push(item);
       }
@@ -63,6 +59,5 @@ export const getFilteredItems = (
     }, []);
   };
 
-  // Now filterRecursive operates on the original itemsToFilter
   return filterRecursive(itemsToFilter);
 };
