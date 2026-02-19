@@ -30,22 +30,22 @@ export const useItemVisibility = (
 
     const processItems = (itemsToProcess: ISidekickMenuItem[]) => {
       itemsToProcess.forEach((item) => {
-        if (item.isVisible === undefined) {
+        if (!item.visibilityControl?.isVisibleResolver) {
           initialVisibility[item.id] = "VISIBLE";
-        } else if (item.isCachable && cache[item.id] && cache[item.id].expires > now) {
+        } else if (item.visibilityControl?.isCachable && cache[item.id] && cache[item.id].expires > now) {
           initialVisibility[item.id] = cache[item.id].visible ? "VISIBLE" : "HIDDEN";
-        } else if (typeof item.isVisible === "function") {
+        } else if (typeof item.visibilityControl.isVisibleResolver === "function") {
           initialVisibility[item.id] = "PENDING";
-          const visibilityFn = item.isVisible;
+          const visibilityFn = item.visibilityControl.isVisibleResolver;
           visibilityPromises.push(
             (async () => {
               const result = visibilityFn();
               const isVisible = result instanceof Promise ? await result : result;
-              return { id: item.id, isVisible: !!isVisible, isCachable: item.isCachable };
+              return { id: item.id, isVisible: !!isVisible, isCachable: item.visibilityControl?.isCachable };
             })()
           );
         } else {
-          initialVisibility[item.id] = item.isVisible ? "VISIBLE" : "HIDDEN";
+          initialVisibility[item.id] = item.visibilityControl.isVisibleResolver ? "VISIBLE" : "HIDDEN";
         }
 
         if (item.children) {

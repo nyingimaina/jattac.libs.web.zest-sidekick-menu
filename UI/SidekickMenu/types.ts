@@ -5,8 +5,10 @@ export type ISidekickMenuItem = {
   label: React.ReactNode;
   icon: React.ReactNode;
   searchTerms: string;
-  isVisible?: (() => Promise<boolean> | boolean) | boolean;
-  isCachable?: boolean;
+  visibilityControl?: { // Restored visibilityControl object
+    isVisibleResolver?: (() => Promise<boolean>) | (() => boolean) | boolean; // Updated signature as per user request
+    isCachable?: boolean;
+  };
 } & (
   | { path: string; onClick?: never; children?: never }
   | { path?: never; onClick: () => void; children?: never }

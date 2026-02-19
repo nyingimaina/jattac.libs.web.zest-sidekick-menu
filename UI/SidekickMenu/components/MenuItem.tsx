@@ -30,7 +30,13 @@ const MenuItem: React.FC<MenuItemProps> = ({
     return null;
   }
 
-  if (visibility === "PENDING") {
+  // Restore the check for visibilityControl?.isVisibleResolver
+  // when itemVisibility[item.id] is not yet determined (undefined)
+  // This handles the initial render before useItemVisibility populates state
+  if (
+    visibility === "PENDING" ||
+    (visibility === undefined && item.visibilityControl?.isVisibleResolver)
+  ) {
     return <MenuItemSkeleton key={`${item.id}-skeleton`} level={level} />;
   }
 

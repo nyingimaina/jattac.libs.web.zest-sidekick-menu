@@ -103,12 +103,16 @@ const App = () => (
 Menu items may need to be displayed or hidden based on user permissions, application state, or other dynamic criteria. Performance can be impacted if visibility checks are resource-intensive, especially if they are asynchronous.
 
 #### Solution:
-The `isVisible` property allows you to control item visibility with a boolean, a synchronous function, or an asynchronous function. For performance, you can use the `isCachable` property to cache the results in `localStorage`.
+The `visibilityControl` property on an `ISidekickMenuItem` allows you to define how an item's visibility is determined. It contains:
+*   `isVisibleResolver`: A function that returns a `Promise<boolean>`, a `boolean`, or simply a `boolean` value.
+*   `isCachable`: A boolean to indicate if the `isVisibleResolver`'s result should be cached in `localStorage` for faster subsequent loads.
 
-Here are the different ways you can use `isVisible`:
+The menu will show a skeleton loader for items whose visibility is being resolved asynchronously.
+
+Here are the different ways you can use `isVisibleResolver`:
 
 **Asynchronous Function:**
-Ideal for checking permissions against an API or any other async operation. The menu will show a skeleton loader while the visibility is being resolved.
+Ideal for checking permissions against an API or any other async operation.
 
 ```jsx
 import React from 'react';
@@ -128,8 +132,10 @@ const App = () => (
         path: '/admin',
         searchTerms: 'admin',
         icon: '👑',
-        isVisible: checkAdmin,
-        isCachable: true, // Cache the result for 24 hours (default)
+        visibilityControl: {
+          isVisibleResolver: checkAdmin,
+          isCachable: true, // Cache the result for 24 hours (default)
+        },
       },
     ]}
   />
@@ -149,12 +155,14 @@ const menuItems = [
     path: '/analytics',
     searchTerms: 'analytics',
     icon: '📊',
-    isVisible: isAnalyticsEnabled,
+    visibilityControl: {
+      isVisibleResolver: isAnalyticsEnabled,
+    },
   },
 ];
 ```
 
-**Boolean:**
+**Boolean Value:**
 For static visibility or when the visibility is already known.
 
 ```jsx
@@ -165,7 +173,9 @@ const menuItems = [
     path: '/',
     searchTerms: 'home',
     icon: '🏠',
-    isVisible: true,
+    visibilityControl: {
+      isVisibleResolver: true,
+    },
   },
 ];
 ```
