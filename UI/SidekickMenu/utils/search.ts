@@ -42,7 +42,8 @@ export const getFilteredItems = (
             label: item.label,
             icon: item.icon,
             searchTerms: item.searchTerms,
-            visibilityControl: item.visibilityControl,
+            isVisible: item.isVisible,
+            isCachable: item.isCachable,
             children: matchingChildren,
           });
         } else if (

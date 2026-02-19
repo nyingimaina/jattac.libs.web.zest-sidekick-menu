@@ -100,16 +100,24 @@ const App = () => (
 ### 4. Conditional Item Visibility and Caching
 
 #### Problem:
-Menu items may need to be displayed or hidden based on user permissions, application state, or other dynamic criteria. Performance can be impacted if visibility checks are resource-intensive.
+Menu items may need to be displayed or hidden based on user permissions, application state, or other dynamic criteria. Performance can be impacted if visibility checks are resource-intensive, especially if they are asynchronous.
 
 #### Solution:
-The `visibilityControl` property enables definition of asynchronous resolvers for item visibility, with an option to cache results in `localStorage` for enhanced performance.
+The `isVisible` property allows you to control item visibility with a boolean, a synchronous function, or an asynchronous function. For performance, you can use the `isCachable` property to cache the results in `localStorage`.
+
+Here are the different ways you can use `isVisible`:
+
+**Asynchronous Function:**
+Ideal for checking permissions against an API or any other async operation. The menu will show a skeleton loader while the visibility is being resolved.
 
 ```jsx
 import React from 'react';
 import SidekickMenu, { ISidekickMenuItem } from 'jattac.libs.web.react-sidekick-menu';
 
-const checkAdmin = async () => /* ... async logic ... */ true;
+const checkAdmin = async () => {
+  // Replace with your actual async logic, e.g., an API call
+  return new Promise(resolve => setTimeout(() => resolve(true), 1000));
+};
 
 const App = () => (
   <SidekickMenu
@@ -118,14 +126,48 @@ const App = () => (
         id: 'admin-dashboard',
         label: 'Admin Dashboard',
         path: '/admin',
-        visibilityControl: {
-          isVisibleResolver: checkAdmin,
-          isCachable: true, // Cache result for faster loads
-        },
+        searchTerms: 'admin',
+        icon: '👑',
+        isVisible: checkAdmin,
+        isCachable: true, // Cache the result for 24 hours (default)
       },
     ]}
   />
 );
+```
+
+**Synchronous Function:**
+Useful for checking feature flags or other synchronous conditions.
+
+```jsx
+const isAnalyticsEnabled = () => store.getState().features.analytics;
+
+const menuItems = [
+  {
+    id: 'analytics',
+    label: 'Analytics',
+    path: '/analytics',
+    searchTerms: 'analytics',
+    icon: '📊',
+    isVisible: isAnalyticsEnabled,
+  },
+];
+```
+
+**Boolean:**
+For static visibility or when the visibility is already known.
+
+```jsx
+const menuItems = [
+  {
+    id: 'home',
+    label: 'Home',
+    path: '/',
+    searchTerms: 'home',
+    icon: '🏠',
+    isVisible: true,
+  },
+];
 ```
 
 [Discover advanced conditional visibility in the Cookbook](examples.md#4-implementing-conditional-item-visibility-async--cached)

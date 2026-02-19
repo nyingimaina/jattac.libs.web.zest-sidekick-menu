@@ -33,10 +33,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
     return null;
   }
 
-  if (
-    visibility === "PENDING" ||
-    (visibility === undefined && item.visibilityControl?.isVisibleResolver)
-  ) {
+  if (visibility === "PENDING") {
     return <MenuItemSkeleton key={`${item.id}-skeleton`} level={level} />;
   }
 

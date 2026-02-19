@@ -5,10 +5,8 @@ export type ISidekickMenuItem = {
   label: React.ReactNode;
   icon: React.ReactNode;
   searchTerms: string;
-  visibilityControl?: {
-    isVisibleResolver?: () => boolean | Promise<boolean>;
-    isCachable?: boolean;
-  };
+  isVisible?: (() => Promise<boolean> | boolean) | boolean;
+  isCachable?: boolean;
 } & (
   | { path: string; onClick?: never; children?: never }
   | { path?: never; onClick: () => void; children?: never }
