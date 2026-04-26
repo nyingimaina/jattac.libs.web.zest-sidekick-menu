@@ -1,0 +1,8 @@
+{
+  "track_id": "infinite_nesting_20260426",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-26T12:02:00Z",
+  "updated_at": "2026-04-26T12:02:00Z",
+  "description": "Implement infinite sub-menu nesting support"
+}
