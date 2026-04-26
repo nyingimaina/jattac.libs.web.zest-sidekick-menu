@@ -4,5 +4,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Implement infinite sub-menu nesting support**
+- [~] **Track: Implement infinite sub-menu nesting support**
   *Link: [./tracks/infinite_nesting_20260426/](./tracks/infinite_nesting_20260426/)*

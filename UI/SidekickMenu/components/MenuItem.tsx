@@ -30,9 +30,6 @@ const MenuItem: React.FC<MenuItemProps> = ({
     return null;
   }
 
-  // Restore the check for visibilityControl?.isVisibleResolver
-  // when itemVisibility[item.id] is not yet determined (undefined)
-  // This handles the initial render before useItemVisibility populates state
   if (
     visibility === "PENDING" ||
     (visibility === undefined && item.visibilityControl?.isVisibleResolver)
@@ -45,7 +42,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
       dispatch({ type: "TOGGLE_SUBMENU", payload: item.id });
     } else {
       if (item.path) {
-        window.location.href = item.path;
+        window.location.assign(item.path);
       } else if (item.onClick) {
         item.onClick();
       }

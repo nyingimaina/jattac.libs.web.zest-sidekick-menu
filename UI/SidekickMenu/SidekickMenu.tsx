@@ -176,7 +176,7 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
               </div>
             </div>
           )}
-          <MenuList items={items} level={0} parentIsOpened={actualIsOpen} />
+          <MenuList items={items} level={0} parentIsOpened={actualIsOpen} startIndex={0} />
           {footerContent && (
             <div className={styles.footerSection}>{footerContent}</div>
           )}

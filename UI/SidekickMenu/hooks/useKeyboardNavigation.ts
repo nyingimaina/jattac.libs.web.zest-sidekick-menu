@@ -64,7 +64,7 @@ export const useKeyboardNavigation = (
             dispatch({ type: 'TOGGLE_SUBMENU', payload: item.id });
           } else {
             if (item.path) {
-              window.location.href = item.path;
+              window.location.assign(item.path);
             } else if (item.onClick) {
               item.onClick();
             }

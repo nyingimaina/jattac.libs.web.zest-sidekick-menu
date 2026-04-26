@@ -254,7 +254,7 @@
 }
 
 .subMenu.open {
-  max-height: 500px;
+  max-height: 5000px;
   opacity: 1;
   transform: translateY(0);
 }

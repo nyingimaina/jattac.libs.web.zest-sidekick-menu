@@ -5,8 +5,8 @@ export type ISidekickMenuItem = {
   label: React.ReactNode;
   icon: React.ReactNode;
   searchTerms: string;
-  visibilityControl?: { // Restored visibilityControl object
-    isVisibleResolver?: (() => Promise<boolean>) | (() => boolean) | boolean; // Updated signature as per user request
+  visibilityControl?: {
+    isVisibleResolver?: (() => Promise<boolean>) | (() => boolean) | boolean;
     isCachable?: boolean;
   };
 } & (

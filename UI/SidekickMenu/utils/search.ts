@@ -38,8 +38,7 @@ export const getFilteredItems = (
             label: item.label,
             icon: item.icon,
             searchTerms: item.searchTerms,
-            isVisible: item.isVisible,
-            isCachable: item.isCachable,
+            visibilityControl: item.visibilityControl,
             children: matchingChildren,
           });
         } else if (
