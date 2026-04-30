@@ -27,4 +27,5 @@ export interface SidekickMenuProps {
   headerContent?: React.ReactNode;
   footerContent?: React.ReactNode;
   cacheLifetime?: number;
+  side?: "left" | "right" | "auto";
 }

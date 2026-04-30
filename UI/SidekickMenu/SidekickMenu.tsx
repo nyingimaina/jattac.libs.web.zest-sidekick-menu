@@ -30,7 +30,11 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
     headerContent,
     footerContent,
     cacheLifetime = 24,
+    side = "left",
   } = props;
+
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const effectiveSide = side === "auto" ? (isMobile ? "right" : "left") : side;
 
   const initialState: MenuState = {
     isOpen: false,
@@ -140,7 +144,7 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
         ref={menuRef}
         className={`${styles.container} ${actualIsOpen ? styles.open : ""} ${
           isDesktop ? styles.desktopOpen : ""
-        }`}
+        } ${effectiveSide === "right" ? styles.right : ""}`}
         onKeyDown={handleKeyDown}
       >
         <button
