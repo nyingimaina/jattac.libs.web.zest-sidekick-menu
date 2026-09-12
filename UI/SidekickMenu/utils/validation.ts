@@ -1,4 +1,5 @@
 import { ISidekickMenuItem } from "../types";
+import { validateDescriptionLength } from "./description";
 
 export const validateItemIds = (items: ISidekickMenuItem[]) => {
   if (process.env.NODE_ENV === "production") return;
@@ -25,6 +26,20 @@ export const validateItemIds = (items: ISidekickMenuItem[]) => {
         );
       }
       ids.add(item.id);
+      if (item.children) {
+        traverse(item.children);
+      }
+    });
+  };
+  traverse(items);
+};
+
+export const validateDescriptions = (items: ISidekickMenuItem[]) => {
+  if (process.env.NODE_ENV === "production") return;
+
+  const traverse = (itemsToTraverse: ISidekickMenuItem[]) => {
+    itemsToTraverse.forEach((item) => {
+      validateDescriptionLength(item.id, item.description);
       if (item.children) {
         traverse(item.children);
       }

@@ -12,6 +12,7 @@ This cookbook provides practical, step-by-step examples to help you leverage the
 4.  [Implementing Conditional Item Visibility (Async & Cached)](#4-implementing-conditional-item-visibility-async--cached)
 5.  [Adding Custom Header, Footer, and Icons](#5-adding-custom-header-footer-and-icons)
 6.  [Manually Clearing the Visibility Cache](#6-manually-clearing-the-visibility-cache)
+7.  [Enabling Favourites](#7-enabling-favourites)
 
 ---
 
@@ -316,6 +317,51 @@ const LogoutButton = () => (
 
 export default LogoutButton;
 ```
+
+---
+
+### 7. Enabling Favourites
+
+#### Problem:
+Users repeatedly navigate to the same handful of items buried a few levels deep, and re-drilling to them every time is tedious.
+
+#### Solution:
+Turn on `favouritesEnabled`, and optionally add short `description`s so favourited items make sense once pulled out of their branch.
+
+```jsx
+import React from 'react';
+import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+
+const menuItems = [
+  {
+    id: 'settings',
+    label: 'Settings',
+    icon: 'SettingsIcon',
+    children: [
+      {
+        id: 'billing',
+        label: 'Billing',
+        icon: 'CardIcon',
+        path: '/settings/billing',
+        description: 'Manage your plan and invoices',
+      },
+      { id: 'profile', label: 'Profile', icon: 'ProfileIcon', path: '/settings/profile' },
+    ],
+  },
+];
+
+const AppWithFavourites = () => (
+  <SidekickMenu
+    items={menuItems}
+    favouritesEnabled
+    favouritesOptions={{ minToShowTab: 3 }}
+  />
+);
+
+export default AppWithFavourites;
+```
+
+Once a user has used 3 or more items, a "Favourites" tab appears (and the menu opens to it by default), ranking items by how often — and how recently — they've been used. See [Favourites](configuration.md#9-favourites) for the full set of options, including pinning.
 
 ---
 **[< Previous: README.md](README.md) | [Next: Features Showcase >](features.md)**

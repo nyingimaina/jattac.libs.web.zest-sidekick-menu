@@ -1,0 +1,67 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import React from 'react';
+import DrilldownMenuList from './DrilldownMenuList';
+import { ISidekickMenuItem } from '../types';
+
+const items: ISidekickMenuItem[] = [
+  { id: 'parent', label: 'Parent', icon: '', searchTerms: '', children: [] },
+  { id: 'leaf1', label: 'Leaf One', icon: '', searchTerms: '', path: '/1' },
+  { id: 'leaf2', label: 'Leaf Two', icon: '', searchTerms: '', path: '/2' },
+];
+
+const allVisible = { parent: 'VISIBLE', leaf1: 'VISIBLE', leaf2: 'VISIBLE' } as const;
+
+describe('DrilldownMenuList number badges', () => {
+  it('never assigns a number badge to a parent (non-leaf) item', () => {
+    render(
+      <DrilldownMenuList
+        items={items}
+        itemVisibility={allVisible}
+        searchTerm=""
+        alwaysShowUnsearchableItems
+        highlightedIndex={-1}
+        onDrillIn={jest.fn()}
+        onActivate={jest.fn()}
+        showNumberBadges
+      />
+    );
+    const parentRow = screen.getByText('Parent').closest('li')!;
+    expect(parentRow.textContent).not.toMatch(/[0-9]/);
+  });
+
+  it('numbers leaf items sequentially among themselves, skipping the parent (matching keyboard-eligible order)', () => {
+    render(
+      <DrilldownMenuList
+        items={items}
+        itemVisibility={allVisible}
+        searchTerm=""
+        alwaysShowUnsearchableItems
+        highlightedIndex={-1}
+        onDrillIn={jest.fn()}
+        onActivate={jest.fn()}
+        showNumberBadges
+      />
+    );
+    const leaf1Row = screen.getByText('Leaf One').closest('li')!;
+    const leaf2Row = screen.getByText('Leaf Two').closest('li')!;
+    expect(leaf1Row).toHaveTextContent('1');
+    expect(leaf2Row).toHaveTextContent('2');
+  });
+
+  it('shows no badges at all when showNumberBadges is false', () => {
+    render(
+      <DrilldownMenuList
+        items={items}
+        itemVisibility={allVisible}
+        searchTerm=""
+        alwaysShowUnsearchableItems
+        highlightedIndex={-1}
+        onDrillIn={jest.fn()}
+        onActivate={jest.fn()}
+        showNumberBadges={false}
+      />
+    );
+    expect(screen.getByText('Leaf One').closest('li')).not.toHaveTextContent('1');
+  });
+});

@@ -5,6 +5,8 @@ export type ISidekickMenuItem = {
   label: React.ReactNode;
   icon: React.ReactNode;
   searchTerms: string;
+  /** Short context shown in the Favourites list and as a tooltip (recommended max 40 characters). */
+  description?: string;
   visibilityControl?: {
     isVisibleResolver?: (() => Promise<boolean>) | (() => boolean) | boolean;
     isCachable?: boolean;
@@ -14,6 +16,33 @@ export type ISidekickMenuItem = {
   | { path?: never; onClick: () => void; children?: never }
   | { path?: never; onClick?: never; children: ISidekickMenuItem[] }
 );
+
+export type NavigationStyle = "drilldown" | "accordion";
+
+export interface FavouritesOptions {
+  maxItems?: number;
+  minToShowTab?: number;
+  windowDays?: number;
+}
+
+export type ZestSidekickTheme = "light" | "dark" | "system";
+
+export interface ZestSidekickVisualOptions {
+  size?: "sm" | "md" | "lg";
+  radius?: "sm" | "md" | "lg";
+  surface?: "solid" | "translucent";
+}
+
+export interface ZestSidekickMotionOptions {
+  intensity?: "subtle" | "standard" | "playful";
+  reducedMotion?: "auto" | "always" | "never";
+}
+
+export interface ZestSidekickCustomProps {
+  theme?: ZestSidekickTheme;
+  visualOptions?: ZestSidekickVisualOptions;
+  motionOptions?: ZestSidekickMotionOptions;
+}
 
 export interface SidekickMenuProps {
   items: ISidekickMenuItem[];
@@ -28,4 +57,12 @@ export interface SidekickMenuProps {
   footerContent?: React.ReactNode;
   cacheLifetime?: number;
   side?: "left" | "right" | "auto";
+  zest?: ZestSidekickCustomProps;
+  navigationStyle?: NavigationStyle;
+  favouritesEnabled?: boolean;
+  favouritesOptions?: FavouritesOptions;
+  storageNamespace?: string;
+  railCollapsible?: boolean;
+  swipeEnabled?: boolean;
+  numberedShortcutsEnabled?: boolean;
 }

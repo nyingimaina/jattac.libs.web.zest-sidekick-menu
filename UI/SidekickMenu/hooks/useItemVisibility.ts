@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { ISidekickMenuItem } from "../types";
-import { CACHE_KEY } from "../utils/cache";
+import { getStorageKey } from "../utils/namespace";
 
 type ItemVisibilityMap = { [key: string]: "VISIBLE" | "HIDDEN" | "PENDING" };
 
 export const useItemVisibility = (
   items: ISidekickMenuItem[],
-  cacheLifetime: number = 24
+  cacheLifetime: number = 24,
+  storageNamespace?: string
 ): ItemVisibilityMap => {
   const [itemVisibility, setItemVisibility] = useState<ItemVisibilityMap>({});
+  const cacheKey = getStorageKey("visibilityCache", storageNamespace);
 
   useEffect(() => {
     const now = new Date().getTime();
@@ -18,7 +20,7 @@ export const useItemVisibility = (
 
     if (typeof window !== "undefined") {
       try {
-        cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}");
+        cache = JSON.parse(localStorage.getItem(cacheKey) || "{}");
       } catch (error) {
         console.error("Error reading SidekickMenu cache:", error);
         cache = {};
@@ -77,16 +79,16 @@ export const useItemVisibility = (
 
         if (Object.keys(cacheUpdates).length > 0 && typeof window !== 'undefined') {
           try {
-            const currentCache = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
+            const currentCache = JSON.parse(localStorage.getItem(cacheKey) || '{}');
             const newCache = { ...currentCache, ...cacheUpdates };
-            localStorage.setItem(CACHE_KEY, JSON.stringify(newCache));
+            localStorage.setItem(cacheKey, JSON.stringify(newCache));
           } catch(e) {
             console.error("Error updating cache", e)
           }
         }
       });
     }
-  }, [items, cacheLifetime]);
+  }, [items, cacheLifetime, cacheKey]);
 
   return itemVisibility;
 };

@@ -10,6 +10,7 @@ interface MenuItemProps {
   level: number;
   isSubMenuOpen: boolean;
   highlighted: boolean;
+  staggerIndex?: number;
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({
@@ -17,6 +18,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
   level,
   isSubMenuOpen,
   highlighted,
+  staggerIndex,
 }) => {
   const {
     state: { itemVisibility, searchTerm },
@@ -53,7 +55,12 @@ const MenuItem: React.FC<MenuItemProps> = ({
   return (
     <li
       className={`${styles.menuItem} ${highlighted ? styles.highlighted : ""}`}
-      style={{ paddingLeft: `${20 + level * 20}px` }}
+      style={{
+        paddingLeft: `${20 + level * 20}px`,
+        ...(staggerIndex !== undefined && staggerIndex >= 0
+          ? ({ "--zest-stagger-index": staggerIndex } as React.CSSProperties)
+          : {}),
+      }}
       onClick={handleItemClick}
       data-highlighted={highlighted}
     >

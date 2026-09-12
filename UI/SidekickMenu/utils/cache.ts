@@ -1,9 +1,11 @@
-export const CACHE_KEY = "sidekickMenuVisibilityCache";
+import { getStorageKey } from "./namespace";
 
-export const clearSidekickMenuCache = () => {
+export const CACHE_KEY = getStorageKey("visibilityCache");
+
+export const clearSidekickMenuCache = (storageNamespace?: string) => {
   if (typeof window !== "undefined") {
     try {
-      localStorage.removeItem(CACHE_KEY);
+      localStorage.removeItem(getStorageKey("visibilityCache", storageNamespace));
     } catch (error) {
       console.error("Error clearing SidekickMenu cache:", error);
     }

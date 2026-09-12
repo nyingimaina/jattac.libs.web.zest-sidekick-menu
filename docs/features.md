@@ -13,6 +13,9 @@ This document provides a high-level overview of the powerful features offered by
 5.  [Customizable Header, Footer, and Icons](#5-customizable-header-footer-and-icons)
 6.  [Accessibility Built-in](#6-accessibility-built-in)
 7.  [Zero-Dependency Styling](#7-zero-dependency-styling)
+8.  [Look & Feel Update: Theming and Motion (v1.3.0)](#8-look--feel-update-theming-and-motion-v130)
+9.  [Drilldown Navigation & Favourites (v1.4.0)](#9-drilldown-navigation--favourites-v140)
+10. [Power-user & Premium Polish (v1.5.0)](#10-power-user--premium-polish-v150)
 
 ---
 
@@ -253,6 +256,44 @@ const App = () => (
 ```
 
 [For more details on styling considerations, refer to the Styling section in the API Reference.](api.md#styling)
+
+---
+
+### 8. Look & Feel Update: Theming and Motion (v1.3.0)
+
+As of `1.3.0`, `SidekickMenu` ships with first-class dark/light/system theming and a more expressive default motion style (spring-eased panel open/close, a flat rounded highlight on hover/keyboard focus, and a stagger-in effect as items appear) — aligned with the look and feel of the other Zest component libraries.
+
+This is a **behavior** change, not an API break: existing installs get the new default motion automatically (no props required), while the visual *colors* are unchanged unless you opt into `theme`. If you'd prefer less motion, dial it back:
+
+```jsx
+<SidekickMenu items={menuItems} zest={{ motionOptions: { intensity: 'standard' } }} />
+```
+
+See [Theme Configuration](configuration.md#6-theme-configuration) for the full set of options, and [Global Configuration](configuration.md#7-global-configuration-with-zestsidekickconfigprovider) for setting a default across your whole app.
+
+---
+
+### 9. Drilldown Navigation & Favourites (v1.4.0)
+
+#### Problem:
+Users report that as menus grow deeply nested, expanding branches in place forces them to remember which of several branches are open, and long expanded lists bury the item they want.
+
+#### Solution:
+As of `1.4.0`, `SidekickMenu` defaults to **drilldown navigation** — one level at a time, with a breadcrumb trail — instead of expanding in place. The previous behavior is still available via `navigationStyle="accordion"` (now deprecated, see [Breaking Changes & Migration](breaking-changes.md)).
+
+An optional **Favourites tab** (`favouritesEnabled`) surfaces your most-used items in one flat list, ranked by recent frequency, bypassing the hierarchy entirely. A new `description` field on `ISidekickMenuItem` gives favourited items context once they've been pulled out of their original branch.
+
+```jsx
+<SidekickMenu items={menuItems} favouritesEnabled />
+```
+
+See [Navigation Style](configuration.md#8-navigation-style) and [Favourites](configuration.md#9-favourites) for full configuration options.
+
+---
+
+### 10. Power-user & Premium Polish (v1.5.0)
+
+As of `1.5.0`: manual pin/unpin for Favourites, a desktop icon-only rail-collapse mode, edge-swipe gestures on touch, an optional translucent panel surface, and focus-scoped `1`–`9` keyboard shortcuts. All are either opt-in or self-gating — see [Power-user & Premium Polish](configuration.md#10-power-user--premium-polish) for details.
 
 ---
 **[< Previous: The Cookbook: Practical Examples](examples.md) | [Next: API Reference >](api.md)**

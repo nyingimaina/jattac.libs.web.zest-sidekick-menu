@@ -33,6 +33,15 @@ The `SidekickMenu` component accepts the following props:
 | `chevronIcon`             | `React.ReactNode`                       | `(down arrow icon)`         | A custom React Node to use as the chevron icon for sub-menu toggles.                                                                                     |
 | `headerContent`           | `React.ReactNode`                       | `null`                      | Custom content to display at the very top of the menu, above the search bar.                                                                             |
 | `footerContent`           | `React.ReactNode`                       | `null`                      | Custom content to display at the very bottom of the menu.                                                                                                |
+| `side`                    | `"left" \| "right" \| "auto"`           | `"left"`                    | Which edge the panel opens from. `"auto"` opens from the right on mobile widths and RTL (`dir="rtl"`) pages, left otherwise.                              |
+| `zest`                    | `ZestSidekickCustomProps`               | `undefined`                 | Look-and-feel overrides (theme, motion). See [Theme Configuration](configuration.md#6-theme-configuration).                                              |
+| `navigationStyle`         | `"drilldown" \| "accordion"`            | `"drilldown"`               | `"drilldown"` shows one level at a time with a breadcrumb trail. `"accordion"` is the legacy in-place-expand behavior — **deprecated**, see [Navigation Style](configuration.md#8-navigation-style). |
+| `favouritesEnabled`       | `boolean`                               | `false`                     | Enables a frequency-ranked "Favourites" tab. See [Favourites](configuration.md#9-favourites).                                                            |
+| `favouritesOptions`       | `FavouritesOptions`                     | `{}`                        | `{ maxItems?: number (8), minToShowTab?: number (3), windowDays?: number (30) }` — tuning for the Favourites ranking and cold-start threshold.            |
+| `storageNamespace`        | `string`                                | `undefined`                 | Only needed if you mount more than one `SidekickMenu` on the same origin — keeps their visibility cache/favourites data isolated. See [Favourites](configuration.md#9-favourites). |
+| `railCollapsible`         | `boolean`                               | `false`                     | Shows a collapse toggle on desktop that shrinks the panel to an icon-only rail.                                                                          |
+| `swipeEnabled`            | `boolean`                               | `false`                     | Enables edge-swipe-to-open and swipe-to-dismiss gestures on touch devices.                                                                                |
+| `numberedShortcutsEnabled`| `boolean`                               | `true`                      | Enables `1`–`9` keyboard shortcuts for the first nine items, active only while the menu panel has focus. Number badges only appear once real keyboard use is detected. |
 
 ---
 
@@ -67,6 +76,7 @@ All menu item variants share these core properties:
 | `label`             | `React.ReactNode`                                   | The primary content to display for the menu item. This can be a simple string, a custom React component, or any valid `React.ReactNode`.                                                                                                                                                                                                                        |
 | `icon`              | `React.ReactNode`                                   | An optional icon to display next to the `label`. Can be a string (e.g., a text representation), an SVG, an image, or an icon from a library.                                                                                                                                                                                                                                       |
 | `searchTerms`       | `string`                                            | An optional string of keywords that will be used when searching the menu. If omitted, the `label`'s text content will be used for search. Provides an explicit way to define searchable terms that might not be in the visible label.                                                                                                                                      |
+| `description`       | `string`                                            | Optional short context (recommended max 40 characters; longer values are truncated with an ellipsis). Shown as a `title` tooltip everywhere, and as secondary text in the Favourites tab (falling back to a breadcrumb path like "Settings › Billing" when omitted).                                                                                                       |
 | `visibilityControl` | `{ isVisibleResolver: () => boolean \| Promise<boolean>; isCachable?: boolean; }` | An optional object to control the visibility of the menu item dynamically. <br/> - `isVisibleResolver`: A function that returns a `boolean` or a `Promise<boolean>`. If it resolves to `false`, the item is hidden. <br/> - `isCachable`: If `true`, the result of `isVisibleResolver` is stored in `localStorage` for `cacheLifetime` hours to avoid repeated calls. |
 
 #### Item Variants
@@ -126,6 +136,20 @@ import { clearSidekickMenuCache } from 'jattac.libs.web.react-sidekick-menu';
 
 // Call this function when a user logs out or permissions change
 clearSidekickMenuCache();
+```
+
+Pass a `storageNamespace` if you set one on the corresponding `<SidekickMenu>` instance: `clearSidekickMenuCache('admin-nav')`.
+
+#### clearSidekickMenuUsageStats
+
+`clearSidekickMenuUsageStats(storageNamespace?: string): void`
+
+Clears the Favourites usage-history and pin data stored in `localStorage`. Useful alongside `clearSidekickMenuCache` when a user logs out, so the next user doesn't see the previous user's favourites.
+
+```javascript
+import { clearSidekickMenuUsageStats } from 'jattac.libs.web.react-sidekick-menu';
+
+clearSidekickMenuUsageStats();
 ```
 
 ---

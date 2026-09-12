@@ -1,6 +1,6 @@
 # Contributor's Guide
 
-**[< Previous: Configuration Guide](configuration.md) | [Next: Breaking Changes & Migration >](breaking-changes.md)**
+**[< Previous: Configuration Guide](configuration.md) | [Next: Best Practices >](best-practices.md)**
 
 This guide is for developers interested in contributing to the React Sidekick Menu, understanding its internal workings, or extending its functionality.
 
@@ -101,4 +101,4 @@ Contributions are welcome! If you are interested in enhancing the React Sidekick
 *   **Submit Pull Requests:** If you have implemented a fix or a new feature, please submit a pull request. Ensure your code adheres to the existing style, includes appropriate tests (if applicable), and updates documentation where necessary.
 
 ---
-**[< Previous: Configuration Guide](configuration.md) | [Next: Breaking Changes & Migration >](breaking-changes.md)**
+**[< Previous: Configuration Guide](configuration.md) | [Next: Best Practices >](best-practices.md)**

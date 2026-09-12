@@ -82,6 +82,7 @@ const MenuList: React.FC<MenuListProps> = ({
               level={level}
               isSubMenuOpen={isSubMenuOpen}
               highlighted={highlightedIndex === myIndex}
+              staggerIndex={myIndex}
             />
             {item.children && isSubMenuOpen && (
               <MenuList

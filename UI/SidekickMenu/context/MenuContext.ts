@@ -8,6 +8,12 @@ export interface MenuState {
   highlightedIndex: number;
   openSubMenus: { [key: string]: boolean };
   itemVisibility: { [key: string]: "VISIBLE" | "HIDDEN" | "PENDING" };
+  /** Drilldown navigation only: item-id breadcrumb trail from the root. */
+  currentPath: string[];
+  /** Favourites only: which tab is currently shown. */
+  activeTab: "favourites" | "all";
+  /** Desktop rail-collapse only. */
+  railCollapsed: boolean;
 }
 
 // The actions that the reducer will handle
@@ -18,7 +24,12 @@ export type MenuAction =
   | { type: 'TOGGLE_SUBMENU'; payload: string }
   | { type: 'SET_OPEN_SUBMENUS'; payload: { [key: string]: boolean } }
   | { type: 'SET_ITEM_VISIBILITY'; payload: { [key: string]: "VISIBLE" | "HIDDEN" | "PENDING" } }
-  | { type: 'CLOSE_MENU' };
+  | { type: 'CLOSE_MENU' }
+  | { type: 'DRILL_IN'; payload: string }
+  | { type: 'DRILL_BACK' }
+  | { type: 'DRILL_TO_INDEX'; payload: number }
+  | { type: 'SET_ACTIVE_TAB'; payload: 'favourites' | 'all' }
+  | { type: 'TOGGLE_RAIL' };
 
 // The reducer function
 export const menuReducer = (state: MenuState, action: MenuAction): MenuState => {
@@ -42,7 +53,17 @@ export const menuReducer = (state: MenuState, action: MenuAction): MenuState => 
     case 'SET_ITEM_VISIBILITY':
         return { ...state, itemVisibility: { ...state.itemVisibility, ...action.payload } };
     case 'CLOSE_MENU':
-      return { ...state, isOpen: false, searchTerm: '', highlightedIndex: -1 };
+      return { ...state, isOpen: false, searchTerm: '', highlightedIndex: -1, currentPath: [] };
+    case 'DRILL_IN':
+      return { ...state, currentPath: [...state.currentPath, action.payload], highlightedIndex: -1 };
+    case 'DRILL_BACK':
+      return { ...state, currentPath: state.currentPath.slice(0, -1), highlightedIndex: -1 };
+    case 'DRILL_TO_INDEX':
+      return { ...state, currentPath: state.currentPath.slice(0, action.payload + 1), highlightedIndex: -1 };
+    case 'SET_ACTIVE_TAB':
+      return { ...state, activeTab: action.payload };
+    case 'TOGGLE_RAIL':
+      return { ...state, railCollapsed: !state.railCollapsed };
     default:
       return state;
   }
