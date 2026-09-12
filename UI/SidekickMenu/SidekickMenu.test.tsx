@@ -5,6 +5,12 @@ import SidekickMenu from './SidekickMenu';
 import { ISidekickMenuItem } from './types';
 import ZestSidekickConfigProvider from '../context/ZestSidekickConfigProvider';
 
+// The hamburger toggle has no accessible name, and once pin toggles (or other buttons) are
+// present in the panel, plain `getByRole('button')` becomes ambiguous - so identify it by its
+// stable aria-controls relationship to the panel instead.
+const getHamburger = (): HTMLElement =>
+  screen.getAllByRole('button').find((b) => b.getAttribute('aria-controls') === 'sidekick-menu-panel')!;
+
 const simpleItems: ISidekickMenuItem[] = [
   { id: 'home', label: 'Home', icon: 'H', searchTerms: '', path: '/home' },
 ];
@@ -417,9 +423,13 @@ describe('SidekickMenu accordion deprecation warning', () => {
 });
 
 describe('SidekickMenu Favourites', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
   it('does not show a Favourites tab when favouritesEnabled is false (default)', () => {
     render(<SidekickMenu items={nestedItems} />);
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(getHamburger());
     expect(screen.queryByRole('tab', { name: 'Favourites' })).not.toBeInTheDocument();
   });
 
@@ -432,19 +442,47 @@ describe('SidekickMenu Favourites', () => {
     ];
     render(<SidekickMenu items={items} favouritesEnabled favouritesOptions={{ minToShowTab: 3 }} />);
 
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(getHamburger());
     fireEvent.click(screen.getByText('Alpha'));
 
     // Re-open and use two more items to cross the cold-start threshold.
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(getHamburger());
     fireEvent.click(screen.getByText('Beta'));
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(getHamburger());
     fireEvent.click(screen.getByText('Gamma'));
 
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(getHamburger());
     expect(screen.getByRole('tab', { name: 'Favourites' })).toHaveAttribute('aria-selected', 'true');
 
     fireEvent.click(screen.getByText('Alpha'));
     expect(onClick).toHaveBeenCalled();
+  });
+
+  it('lets you pin an item directly from the main browsing view, with zero usage history', () => {
+    const items: ISidekickMenuItem[] = [
+      { id: 'never-used', label: 'Never Used', icon: '', searchTerms: '', path: '/never-used' },
+      { id: 'other', label: 'Other', icon: '', searchTerms: '', path: '/other' },
+    ];
+    render(<SidekickMenu items={items} favouritesEnabled favouritesOptions={{ minToShowTab: 1 }} />);
+    fireEvent.click(getHamburger());
+
+    // No Favourites tab yet - nothing pinned or used.
+    expect(screen.queryByRole('tab', { name: 'Favourites' })).not.toBeInTheDocument();
+
+    const row = screen.getByText('Never Used').closest('li')!;
+    fireEvent.click(row.querySelector('button[aria-label*="Pin"]')!);
+
+    // Pinning alone (no usage at all) is enough to make the tab appear and become default.
+    fireEvent.click(getHamburger()); // close
+    fireEvent.click(getHamburger()); // reopen
+    expect(screen.getByRole('tab', { name: 'Favourites' })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByText('Never Used')).toBeInTheDocument();
+  });
+
+  it('never shows a pin toggle on an item that has children', () => {
+    render(<SidekickMenu items={nestedItems} favouritesEnabled />);
+    fireEvent.click(getHamburger());
+    const settingsRow = screen.getByText('Settings').closest('li')!;
+    expect(settingsRow.querySelector('button[aria-label*="Pin"]')).toBeNull();
   });
 });

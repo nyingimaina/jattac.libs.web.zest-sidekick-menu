@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import React from 'react';
 import DrilldownMenuList from './DrilldownMenuList';
@@ -63,5 +63,80 @@ describe('DrilldownMenuList number badges', () => {
       />
     );
     expect(screen.getByText('Leaf One').closest('li')).not.toHaveTextContent('1');
+  });
+});
+
+describe('DrilldownMenuList pinning from the main browsing view', () => {
+  it('shows a pin toggle on a leaf item when isPinned/onTogglePin are provided, even with no usage history', () => {
+    render(
+      <DrilldownMenuList
+        items={items}
+        itemVisibility={allVisible}
+        searchTerm=""
+        alwaysShowUnsearchableItems
+        highlightedIndex={-1}
+        onDrillIn={jest.fn()}
+        onActivate={jest.fn()}
+        isPinned={() => false}
+        onTogglePin={jest.fn()}
+      />
+    );
+    const leaf1Row = screen.getByText('Leaf One').closest('li')!;
+    expect(leaf1Row.querySelector('button[aria-label*="Pin"]')).not.toBeNull();
+  });
+
+  it('never shows a pin toggle on a parent (non-leaf) item', () => {
+    render(
+      <DrilldownMenuList
+        items={items}
+        itemVisibility={allVisible}
+        searchTerm=""
+        alwaysShowUnsearchableItems
+        highlightedIndex={-1}
+        onDrillIn={jest.fn()}
+        onActivate={jest.fn()}
+        isPinned={() => false}
+        onTogglePin={jest.fn()}
+      />
+    );
+    const parentRow = screen.getByText('Parent').closest('li')!;
+    expect(parentRow.querySelector('button')).toBeNull();
+  });
+
+  it('clicking the pin toggle calls onTogglePin without also drilling in or activating', () => {
+    const onTogglePin = jest.fn();
+    const onActivate = jest.fn();
+    render(
+      <DrilldownMenuList
+        items={items}
+        itemVisibility={allVisible}
+        searchTerm=""
+        alwaysShowUnsearchableItems
+        highlightedIndex={-1}
+        onDrillIn={jest.fn()}
+        onActivate={onActivate}
+        isPinned={() => false}
+        onTogglePin={onTogglePin}
+      />
+    );
+    const leaf1Row = screen.getByText('Leaf One').closest('li')!;
+    fireEvent.click(leaf1Row.querySelector('button[aria-label*="Pin"]')!);
+    expect(onTogglePin).toHaveBeenCalledWith('leaf1');
+    expect(onActivate).not.toHaveBeenCalled();
+  });
+
+  it('does not show a pin toggle at all when isPinned/onTogglePin are not provided (favouritesEnabled off)', () => {
+    render(
+      <DrilldownMenuList
+        items={items}
+        itemVisibility={allVisible}
+        searchTerm=""
+        alwaysShowUnsearchableItems
+        highlightedIndex={-1}
+        onDrillIn={jest.fn()}
+        onActivate={jest.fn()}
+      />
+    );
+    expect(screen.getByText('Leaf One').closest('li')!.querySelector('button')).toBeNull();
   });
 });

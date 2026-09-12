@@ -153,6 +153,9 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
 
   const handleDrillIn = (id: string) => dispatch({ type: "DRILL_IN", payload: id });
 
+  const handleTogglePin = (id: string) =>
+    favourites.isPinned(id) ? favourites.unpinItem(id) : favourites.pinItem(id);
+
   const currentLevelItems = useMemo(() => {
     if (currentPath.length === 0) return items;
     const currentItem = findItemById(items, currentPath[currentPath.length - 1]);
@@ -434,7 +437,7 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
                   highlightedIndex={highlightedIndex}
                   onActivate={handleActivateItem}
                   isPinned={favourites.isPinned}
-                  onTogglePin={(id) => (favourites.isPinned(id) ? favourites.unpinItem(id) : favourites.pinItem(id))}
+                  onTogglePin={handleTogglePin}
                   showNumberBadges={showNumberBadges}
                 />
               ) : (
@@ -448,6 +451,8 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
                   onDrillIn={handleDrillIn}
                   onActivate={handleActivateItem}
                   showNumberBadges={showNumberBadges}
+                  isPinned={favouritesEnabled ? favourites.isPinned : undefined}
+                  onTogglePin={favouritesEnabled ? handleTogglePin : undefined}
                 />
               )}
             </>

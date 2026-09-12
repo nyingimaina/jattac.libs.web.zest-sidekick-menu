@@ -266,6 +266,8 @@ Only leaf items (those with `path`/`onClick`) accrue usage — clicking into a s
 
 Each favourite shows its `description` as secondary text if one is set, otherwise a breadcrumb path (e.g. "Settings › Billing") so you still know where it lives.
 
+**Pinning from the main menu, not just the Favourites tab.** Once `favouritesEnabled` is on, every leaf item in the normal browsing view also gets a pin toggle (☆/★) — you don't have to use an item 3+ times before you can pin it. Pinning even a single item is enough on its own to satisfy `minToShowTab` and make the Favourites tab appear, since pinned items don't need usage history. Pinned items always sort first in the Favourites tab (in the order pinned), ahead of anything auto-ranked by usage. Items with `children` never show a pin toggle, since Favourites only ever holds leaf destinations.
+
 **Multiple menu instances:** if you mount more than one `SidekickMenu` on the same page/origin, pass a distinct `storageNamespace` to each so their visibility cache and favourites don't collide:
 
 ```jsx
@@ -287,7 +289,7 @@ A few opt-in features for teams that want to go further:
 - **`swipeEnabled`** — enables edge-swipe-to-open and swipe-to-dismiss on touch devices. Off by default; the gesture-recognition thresholds are still being validated against real-world use.
 - **`numberedShortcutsEnabled`** (default `true`) — lets users press `1`–`9` to jump straight to an item while the menu panel has focus. Only root-level items and *pinned* Favourites get a number (an auto-ranked favourite's position can shift, so it's never numbered). Number badges only appear once the session has seen real keyboard use, so touch-only users never see them.
 - **`zest.visualOptions.surface: 'translucent'`** — an optional frosted-glass panel background (extends the existing hamburger blur treatment). Off by default: `backdrop-filter` has a real performance cost and can reduce contrast against unpredictable page content behind the panel.
-- **Pinning** — once `favouritesEnabled` is on, each Favourites row has a pin toggle. Pinned items always appear first (in the order pinned), ahead of auto-ranked ones, giving you a manual override alongside the automatic ranking.
+- **Pinning** — once `favouritesEnabled` is on, every leaf item gets a pin toggle, both in the Favourites tab and in the normal browsing view (see [Favourites](#9-favourites)). Pinned items always appear first (in the order pinned), ahead of auto-ranked ones, giving you a manual override alongside the automatic ranking.
 
 ---
 **[< Previous: API Reference](api.md) | [Next: Contributor's Guide >](development.md)**

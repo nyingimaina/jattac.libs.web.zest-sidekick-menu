@@ -17,6 +17,10 @@ interface DrilldownMenuListProps {
   onDrillIn: (id: string) => void;
   onActivate: (item: ISidekickMenuItem) => void;
   showNumberBadges?: boolean;
+  /** Present only when favouritesEnabled, so any leaf item can be pinned pre-emptively,
+   * without first having to earn its way into Favourites through usage. */
+  isPinned?: (id: string) => boolean;
+  onTogglePin?: (id: string) => void;
 }
 
 const DrilldownMenuList: React.FC<DrilldownMenuListProps> = ({
@@ -29,6 +33,8 @@ const DrilldownMenuList: React.FC<DrilldownMenuListProps> = ({
   onDrillIn,
   onActivate,
   showNumberBadges,
+  isPinned,
+  onTogglePin,
 }) => {
   const processedItems = getFilteredItems(items, searchTerm, alwaysShowUnsearchableItems);
 
@@ -61,6 +67,8 @@ const DrilldownMenuList: React.FC<DrilldownMenuListProps> = ({
           }
         }
 
+        const canPin = !item.children && !!onTogglePin;
+
         return (
           <DrilldownMenuItem
             key={item.id}
@@ -72,6 +80,8 @@ const DrilldownMenuList: React.FC<DrilldownMenuListProps> = ({
             onDrillIn={onDrillIn}
             onActivate={onActivate}
             numberBadge={numberBadge}
+            isPinned={canPin ? isPinned?.(item.id) : undefined}
+            onTogglePin={canPin ? onTogglePin : undefined}
           />
         );
       })}
