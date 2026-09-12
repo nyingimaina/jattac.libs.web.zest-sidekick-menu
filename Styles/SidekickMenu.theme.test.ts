@@ -108,3 +108,31 @@ describe('SidekickMenu.module.css — Workstream 2/3 surfaces', () => {
     expect(css).toMatch(/@media \(prefers-contrast:\s*more\)\s*{/);
   });
 });
+
+describe('SidekickMenu.module.css — stacking order (regression: scrim must never cover the panel)', () => {
+  const getZIndex = (selectorPattern: RegExp): number => {
+    const block = css.match(selectorPattern);
+    expect(block).not.toBeNull();
+    const zIndexMatch = block![0].match(/z-index:\s*(-?\d+)/);
+    expect(zIndexMatch).not.toBeNull();
+    return parseInt(zIndexMatch![1], 10);
+  };
+
+  it("gives .panel its own explicit z-index higher than .scrim's, so scrim never intercepts clicks meant for menu content", () => {
+    const scrimZ = getZIndex(/\n\.scrim\s*{[^}]*}/);
+    const panelZ = getZIndex(/\n\.panel\s*{[^}]*}/);
+    expect(panelZ).toBeGreaterThan(scrimZ);
+  });
+
+  it("keeps .hamburger's z-index above .panel's, so the toggle button always stays clickable", () => {
+    const panelZ = getZIndex(/\n\.panel\s*{[^}]*}/);
+    const hamburgerZ = getZIndex(/\n\.hamburger\s*{[^}]*}/);
+    expect(hamburgerZ).toBeGreaterThan(panelZ);
+  });
+});
+
+describe('SidekickMenu.module.css — visible staggered hide on close', () => {
+  it('delays the closing panel slide so the staggered item hide finishes while the panel is still visible', () => {
+    expect(css).toMatch(/\.panel:not\(\.open\)\s*{[^}]*transition-delay:\s*calc\(var\(--zest-motion-stagger-step/);
+  });
+});

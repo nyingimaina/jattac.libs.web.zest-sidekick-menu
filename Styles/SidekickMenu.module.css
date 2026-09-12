@@ -209,6 +209,7 @@
   left: -300px;
   width: 300px;
   height: 100vh;
+  z-index: 1000;
   background: var(--zest-color-panel-bg, #ffffff);
   box-shadow: var(--zest-shadow-panel, 0 0 20px rgba(0, 0, 0, 0.1));
   transition: transform var(--zest-motion-panel, 0.3s) var(--zest-ease-spring, ease-in-out);
@@ -219,6 +220,14 @@
 .container[data-motion="standard"] .panel,
 .container[data-motion="subtle"] .panel {
   transition-timing-function: var(--zest-ease-standard, ease-in-out);
+}
+
+/* Hold the panel in place while it's closing, long enough for the staggered item
+   hide (see .menuItem's transition-delay) to play out somewhere still visible,
+   instead of the panel sliding the still-fading items off-screen with it.
+   Collapses to 0 automatically when --zest-motion-stagger-step is 0 (standard/subtle). */
+.panel:not(.open) {
+  transition-delay: calc(var(--zest-motion-stagger-step, 30ms) * 8);
 }
 
 :global(.dark) .panel {
