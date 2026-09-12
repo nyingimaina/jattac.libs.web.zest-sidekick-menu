@@ -13,6 +13,7 @@ This guide provides a deep dive into configuring the React Sidekick Menu, coveri
 5.  [Global Styling Considerations](#5-global-styling-considerations)
 6.  [Theme Configuration](#6-theme-configuration)
 7.  [Global Configuration with ZestSidekickConfigProvider](#7-global-configuration-with-zestsidekickconfigprovider)
+    *   [Syncing Sidekick's theme with your app's own theme](#syncing-sidekicks-theme-with-your-apps-own-theme)
 8.  [Navigation Style](#8-navigation-style)
 9.  [Favourites](#9-favourites)
 10. [Power-user & Premium Polish](#10-power-user--premium-polish)
@@ -165,6 +166,8 @@ When `theme` is `'system'` (the default), the menu automatically follows the OS 
 
 The resolved theme is applied as a `data-theme` attribute on the menu's own root element, and the resolved motion intensity as `data-motion`. Both drive a set of CSS custom properties (`--zest-color-*`, `--zest-radius-*`, `--zest-shadow-*`, `--zest-ease-*`, `--zest-motion-*`) defined in the component's stylesheet, which you can override in your own CSS if you need finer control than the `zest` prop provides. Regardless of `motionOptions.intensity`, a user's OS-level "reduce motion" accessibility setting is always respected.
 
+> ⚠️ **"system" means the OS/browser setting, not your app's theme.** If your application already has its own light/dark mode — a manual toggle, a fixed default, anything that isn't itself driven by `prefers-color-scheme` — the default `theme: 'system'` will **not** automatically match it. A common surprise: a developer's OS is set to dark mode while their app defaults to light regardless of OS, and the menu renders dark while the rest of the app is light. Both are "correct" by their own separate rules; they just disagree. If your app manages its own theme, you must explicitly tell Sidekick what it is — see [Syncing Sidekick's theme with your app's own theme](#syncing-sidekicks-theme-with-your-apps-own-theme) below.
+
 ---
 
 ### 7. Global Configuration with `ZestSidekickConfigProvider`
@@ -187,6 +190,33 @@ const App = () => (
 ```
 
 A `zest` prop passed directly to a specific `<SidekickMenu>` instance always overrides the provider's default for that instance. Nesting multiple `ZestSidekickConfigProvider`s does not merge their configs — only the nearest provider is read.
+
+#### Syncing Sidekick's theme with your app's own theme
+
+#### Problem:
+Your application has its own light/dark mode (a theme context, a manual toggle, a value in global state — anything that isn't itself just reading `prefers-color-scheme`), and you want Sidekick to always match it, rather than defaulting to the raw OS setting.
+
+#### Solution:
+Read your app's current theme wherever you already track it, and pass it into `ZestSidekickConfigProvider`'s `config` — mount the provider high enough in the tree that it re-renders whenever your app's theme changes:
+
+```jsx
+import { ZestSidekickConfigProvider } from 'jattac.libs.web.react-sidekick-menu';
+import { useMyAppTheme } from './theme'; // however your app tracks light/dark
+
+const App = () => {
+  const { theme } = useMyAppTheme(); // e.g. 'light' | 'dark', from your own toggle/context
+
+  return (
+    <ZestSidekickConfigProvider config={{ defaultProps: { theme } }}>
+      <MyLayout />
+    </ZestSidekickConfigProvider>
+  );
+};
+```
+
+Because `config` is a plain prop, this re-renders and updates every `<SidekickMenu>` under it automatically whenever `theme` changes — there's no separate "sync" step to wire up. Do **not** leave `theme` unset (or `'system'`) in this scenario, since that tells Sidekick to follow the OS setting instead of your app's value, which is the exact mismatch described in [Theme Configuration](#6-theme-configuration) above.
+
+If different parts of your app need different themes (rare), or you only have a single `<SidekickMenu>` and don't want a provider at all, pass `zest={{ theme }}` directly to that instance instead — it takes precedence over any provider default.
 
 ---
 

@@ -6,6 +6,12 @@ A collection of practical guidance and gotchas for getting the most out of `Side
 
 ---
 
+## `theme: 'system'` (the default) follows the OS, not your app
+
+This is the single most common source of "the menu is the wrong theme" reports. `system` reads `prefers-color-scheme` directly — it has no idea what your app's own light/dark state is. If your app's theme isn't itself driven by the OS setting (a manual toggle, a fixed default, anything custom), the menu can end up visibly disagreeing with the rest of your UI: app in light mode, OS set to dark, menu renders dark. Nothing is broken — `system` did exactly what it says — but it's rarely what you want in that setup.
+
+If your app manages its own theme, feed it in explicitly rather than relying on `system`. See [Syncing Sidekick's theme with your app's own theme](configuration.md#syncing-sidekicks-theme-with-your-apps-own-theme) for the pattern (wire your app's current theme into `ZestSidekickConfigProvider`'s `config`, or pass `zest={{ theme }}` per-instance).
+
 ## `ZestSidekickConfigProvider` nesting does not merge
 
 Only the **nearest** `ZestSidekickConfigProvider` above a `<SidekickMenu>` in the tree is read. If you nest providers expecting their `config` objects to merge (e.g. an outer provider setting `theme` and an inner one setting `motionOptions`), the inner provider's config is used in full and the outer one is ignored for that subtree.
