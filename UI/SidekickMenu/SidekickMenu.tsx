@@ -266,6 +266,19 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
   const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768 && openOnDesktop;
   const actualIsOpen = isOpen || isDesktop;
 
+  // Lock body scroll while the mobile overlay is open, so the page behind the scrim can't be
+  // scrolled underneath it. Not needed in desktop push mode, where the panel is part of the
+  // layout rather than an overlay covering content.
+  useEffect(() => {
+    if (typeof document === "undefined" || !isOpen || isDesktop) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen, isDesktop]);
+
   const toggleMenu = () => {
     dispatch({ type: "SET_IS_OPEN", payload: !isOpen });
     dispatch({ type: "SET_HIGHLIGHTED_INDEX", payload: -1 });

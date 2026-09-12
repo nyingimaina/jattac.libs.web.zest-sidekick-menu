@@ -136,3 +136,91 @@ describe('SidekickMenu.module.css — visible staggered hide on close', () => {
     expect(css).toMatch(/\.panel:not\(\.open\)\s*{[^}]*transition-delay:\s*calc\(var\(--zest-motion-stagger-step/);
   });
 });
+
+describe('SidekickMenu.module.css — mobile-first touch targets, desktop-refined', () => {
+  const MOBILE_MIN_PX = 44;
+
+  const getBaseBlock = (selectorPattern: RegExp): string => {
+    const block = css.match(selectorPattern);
+    expect(block).not.toBeNull();
+    return block![0];
+  };
+
+  const getMinDimension = (block: string): number => {
+    const minWidth = block.match(/min-width:\s*(\d+)px/);
+    const minHeight = block.match(/min-height:\s*(\d+)px/);
+    expect(minWidth || minHeight).not.toBeNull();
+    return Math.min(
+      minWidth ? parseInt(minWidth[1], 10) : Infinity,
+      minHeight ? parseInt(minHeight[1], 10) : Infinity
+    );
+  };
+
+  it('gives the breadcrumb back/crumb buttons a 44px minimum tap target by default (mobile-first)', () => {
+    const block = getBaseBlock(/\n\.breadcrumbBack,\s*\n\.breadcrumbCrumb\s*{[^}]*}/);
+    expect(getMinDimension(block)).toBeGreaterThanOrEqual(MOBILE_MIN_PX);
+  });
+
+  it('gives the pin toggle a 44px minimum tap target by default (mobile-first)', () => {
+    const block = getBaseBlock(/\n\.pinToggle\s*{[^}]*}/);
+    expect(getMinDimension(block)).toBeGreaterThanOrEqual(MOBILE_MIN_PX);
+  });
+
+  it('gives each tab button a comfortable minimum height by default (mobile-first)', () => {
+    const block = getBaseBlock(/\n\.tabButton\s*{[^}]*}/);
+    expect(getMinDimension(block)).toBeGreaterThanOrEqual(MOBILE_MIN_PX);
+  });
+
+  it('tightens the breadcrumb/tab/pin controls back down for desktop pointer precision', () => {
+    // There may be multiple @media (min-width: 768px) blocks; find the one covering these selectors.
+    const allDesktopBlocks = css.match(/@media \(min-width:\s*768px\)\s*{[\s\S]*?\n}\n/g) || [];
+    const covering = allDesktopBlocks.find(
+      (b) => b.includes('.breadcrumbCrumb') || b.includes('.tabButton') || b.includes('.pinToggle')
+    );
+    expect(covering).toBeDefined();
+    expect(covering).toMatch(/min-height:\s*0/);
+  });
+
+  it('gives the hamburger button a full 44px+ tap target', () => {
+    const block = getBaseBlock(/\n\.hamburger\s*{[^}]*}/);
+    const width = block.match(/width:\s*(\d+)px/);
+    const height = block.match(/height:\s*(\d+)px/);
+    const padding = block.match(/padding:\s*(\d+)px\s+(\d+)px/);
+    expect(width && height && padding).toBeTruthy();
+    const totalHeight = parseInt(height![1], 10) + 2 * parseInt(padding![1], 10);
+    const totalWidth = parseInt(width![1], 10) + 2 * parseInt(padding![2], 10);
+    expect(Math.min(totalHeight, totalWidth)).toBeGreaterThanOrEqual(MOBILE_MIN_PX);
+  });
+});
+
+describe('SidekickMenu.module.css — other mobile-first robustness fixes', () => {
+  it('positions the hamburger with safe-area-aware top/left, not just a fixed offset', () => {
+    const block = css.match(/\n\.hamburger\s*{[^}]*}/)![0];
+    expect(block).toMatch(/top:\s*calc\([^)]*env\(safe-area-inset-top/);
+    expect(block).toMatch(/left:\s*calc\([^)]*env\(safe-area-inset-left/);
+  });
+
+  it('uses dynamic viewport height (100dvh) as a progressive enhancement over 100vh, to avoid the iOS toolbar cutting off content', () => {
+    const block = css.match(/\n\.panel\s*{[^}]*}/)![0];
+    expect(block).toMatch(/height:\s*100vh/);
+    expect(block).toMatch(/height:\s*100dvh/);
+  });
+
+  it('caps the panel width to the viewport on mobile instead of a fixed 300px that can overflow very narrow screens', () => {
+    const block = css.match(/\n\.panel\s*{[^}]*}/)![0];
+    expect(block).toMatch(/width:\s*min\(\s*300px\s*,\s*\d+vw\s*\)/);
+  });
+
+  it('restores the panel to a fixed 300px width on desktop, independent of openOnDesktop', () => {
+    const allDesktopBlocks = css.match(/@media \(min-width:\s*768px\)\s*{[\s\S]*?\n}\n/g) || [];
+    const generalPanelWidthBlock = allDesktopBlocks.find(
+      (b) => /\n\s*\.panel\s*{[^}]*width:\s*300px/.test(b)
+    );
+    expect(generalPanelWidthBlock).toBeDefined();
+  });
+
+  it('prevents the menu list from chaining scroll into the page behind it', () => {
+    const block = css.match(/\n\.menuList\s*{[^}]*}/)![0];
+    expect(block).toMatch(/overscroll-behavior:\s*contain/);
+  });
+});

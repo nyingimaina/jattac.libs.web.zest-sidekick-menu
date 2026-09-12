@@ -314,6 +314,41 @@ describe('SidekickMenu drilldown navigation (new default)', () => {
   });
 });
 
+describe('SidekickMenu body scroll lock (mobile overlay only)', () => {
+  const originalOverflow = document.body.style.overflow;
+
+  afterEach(() => {
+    document.body.style.overflow = originalOverflow;
+  });
+
+  it('locks body scroll while the mobile overlay menu is open', () => {
+    render(<SidekickMenu items={simpleItems} />);
+    fireEvent.click(screen.getByRole('button'));
+    expect(document.body.style.overflow).toBe('hidden');
+  });
+
+  it('restores body scroll when the menu closes', () => {
+    render(<SidekickMenu items={simpleItems} />);
+    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(screen.getByRole('button'));
+    expect(document.body.style.overflow).not.toBe('hidden');
+  });
+
+  it('restores body scroll on unmount while still open', () => {
+    const { unmount } = render(<SidekickMenu items={simpleItems} />);
+    fireEvent.click(screen.getByRole('button'));
+    expect(document.body.style.overflow).toBe('hidden');
+    unmount();
+    expect(document.body.style.overflow).not.toBe('hidden');
+  });
+
+  it('does not lock body scroll in desktop push mode (openOnDesktop)', () => {
+    Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1024 });
+    render(<SidekickMenu items={simpleItems} openOnDesktop />);
+    expect(document.body.style.overflow).not.toBe('hidden');
+  });
+});
+
 describe('SidekickMenu scrim and click-outside', () => {
   it('clicking outside the open panel closes the menu', () => {
     const { container } = render(
