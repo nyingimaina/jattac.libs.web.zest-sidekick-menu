@@ -9,7 +9,74 @@ export interface LastPosition {
   path: string[];
   /** The item that was activated, highlighted again on reopen. */
   itemId: string;
+  /** Location key (see `locationKey`) of the page the user ended up on, so a later open can tell
+   * whether they've since moved to another page by some other route (link, bookmark, back button). */
+  url?: string;
 }
+
+const stripTrailingSlash = (pathname: string) =>
+  pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+
+/** Pathname plus hash route (when it looks like one, e.g. "#/settings"), ignoring query string. */
+export const locationKey = (href: string, base?: string): string | null => {
+  try {
+    const url = new URL(href, base ?? (typeof window !== "undefined" ? window.location.href : undefined));
+    if (typeof window !== "undefined" && url.origin !== window.location.origin) return null;
+    const hashRoute = url.hash.startsWith("#/") ? stripTrailingSlash(url.hash) : "";
+    return stripTrailingSlash(url.pathname) + hashRoute;
+  } catch {
+    return null;
+  }
+};
+
+/**
+ * Finds the leaf item whose `path` best matches the given location key: an exact match wins,
+ * otherwise the longest item path that is a whole-segment prefix of it (so "/orders/42" matches
+ * an "/orders" item, but "/ordersx" does not). "/" only ever matches exactly. Hidden items, and
+ * items inside hidden sections, are skipped.
+ */
+export const findItemForLocation = (
+  items: ISidekickMenuItem[],
+  currentKey: string,
+  itemVisibility: ItemVisibilityMap
+): ISidekickMenuItem | null => {
+  let best: { item: ISidekickMenuItem; score: number } | null = null;
+  const walk = (level: ISidekickMenuItem[]) => {
+    for (const item of level) {
+      if (itemVisibility[item.id] === "HIDDEN") continue;
+      if (item.children) {
+        walk(item.children);
+        continue;
+      }
+      if (!item.path) continue;
+      const key = locationKey(item.path);
+      if (!key) continue;
+      let score = 0;
+      if (key === currentKey) score = key.length * 2 + 1;
+      else if (key !== "/" && currentKey.startsWith(key + "/")) score = key.length;
+      if (score > 0 && (!best || score > best.score)) best = { item, score };
+    }
+  };
+  walk(items);
+  return best ? (best as { item: ISidekickMenuItem }).item : null;
+};
+
+/**
+ * Decides where the menu should open. The stored position wins while the user is still on the
+ * page they reached through it; once they've moved (via a link, bookmark, back button or router
+ * call), the item matching the current URL wins; failing that, the stored position is the best guess.
+ */
+export const resolveOpenPosition = (
+  items: ISidekickMenuItem[],
+  stored: LastPosition | null,
+  currentKey: string | null,
+  itemVisibility: ItemVisibilityMap
+): { path: string[]; itemId: string } | null => {
+  if (stored && (!currentKey || !stored.url || stored.url === currentKey)) return stored;
+  const match = currentKey ? findItemForLocation(items, currentKey, itemVisibility) : null;
+  if (match) return { path: getBreadcrumbPath(items, match.id).map((i) => i.id), itemId: match.id };
+  return stored;
+};
 
 // sessionStorage, not localStorage: within one working session reopening where you were is
 // helpful, but a fresh visit should start from the top of the menu.
@@ -35,11 +102,13 @@ export const readLastPosition = (storageNamespace?: string): LastPosition | null
 
 export const writeLastPosition = (
   items: ISidekickMenuItem[],
-  itemId: string,
+  item: ISidekickMenuItem,
   storageNamespace?: string
 ): void => {
   if (typeof window === "undefined") return;
-  const position: LastPosition = { path: getBreadcrumbPath(items, itemId).map((i) => i.id), itemId };
+  // A path item is about to navigate there; an onClick item leaves the user on the current page.
+  const url = locationKey(item.path ?? window.location.href) ?? undefined;
+  const position: LastPosition = { path: getBreadcrumbPath(items, item.id).map((i) => i.id), itemId: item.id, url };
   try {
     sessionStorage.setItem(getStorageKey("lastPosition", storageNamespace), JSON.stringify(position));
   } catch {

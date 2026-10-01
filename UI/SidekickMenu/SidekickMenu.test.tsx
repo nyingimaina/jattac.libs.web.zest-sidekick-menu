@@ -641,3 +641,56 @@ describe('SidekickMenu remembered position', () => {
     expect(screen.getByText('Profile')).toBeInTheDocument();
   });
 });
+
+describe('SidekickMenu opens at the current URL', () => {
+  const items: ISidekickMenuItem[] = [
+    {
+      id: 'sales',
+      label: 'Sales',
+      icon: '',
+      searchTerms: '',
+      children: [
+        { id: 'orders', label: 'Orders', icon: '', searchTerms: '', path: '/orders' },
+        { id: 'quotes', label: 'Quotes', icon: '', searchTerms: '', path: '/quotes' },
+      ],
+    },
+    { id: 'about', label: 'About', icon: '', searchTerms: '', path: '/about' },
+  ];
+
+  afterEach(() => {
+    window.history.pushState({}, '', '/');
+  });
+
+  it('opens in the section of the item matching the current page, with it highlighted', () => {
+    window.history.pushState({}, '', '/orders/42');
+    render(<SidekickMenu items={items} />);
+    fireEvent.click(getHamburger());
+    expect(screen.queryByText('About')).not.toBeInTheDocument();
+    expect(screen.getByText('Orders').closest('li')).toHaveAttribute('data-highlighted', 'true');
+  });
+
+  it('prefers the current page over a stored position the user has since navigated away from', () => {
+    sessionStorage.setItem(
+      'sidekickMenuLastPosition',
+      JSON.stringify({ path: [], itemId: 'about', url: '/about' })
+    );
+    window.history.pushState({}, '', '/quotes');
+    render(<SidekickMenu items={items} />);
+    fireEvent.click(getHamburger());
+    expect(screen.getByText('Quotes').closest('li')).toHaveAttribute('data-highlighted', 'true');
+  });
+
+  it('opens at the top on a page the menu has no item for', () => {
+    window.history.pushState({}, '', '/unknown');
+    render(<SidekickMenu items={items} />);
+    fireEvent.click(getHamburger());
+    expect(screen.getByText('About')).toBeInTheDocument();
+  });
+
+  it('is skipped with rememberPosition={false}', () => {
+    window.history.pushState({}, '', '/orders');
+    render(<SidekickMenu items={items} rememberPosition={false} />);
+    fireEvent.click(getHamburger());
+    expect(screen.getByText('About')).toBeInTheDocument();
+  });
+});

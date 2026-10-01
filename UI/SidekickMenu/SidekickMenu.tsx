@@ -20,7 +20,13 @@ import { validateItemIds, validateDescriptions } from "./utils/validation";
 import { findItemById, getBreadcrumbPath } from "./utils/breadcrumb";
 import { getStorageKey, registerNamespaceUsage } from "./utils/namespace";
 import { getFilteredItems } from "./utils/search";
-import { getValidPathPrefix, readLastPosition, writeLastPosition } from "./utils/lastPosition";
+import {
+  getValidPathPrefix,
+  locationKey,
+  readLastPosition,
+  resolveOpenPosition,
+  writeLastPosition,
+} from "./utils/lastPosition";
 
 // Components
 import MenuList from "./components/MenuList";
@@ -166,7 +172,7 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
     // Only browsing the "All" tree sets the remembered position; picking from Favourites says
     // nothing about where in the tree the user is working.
     if (rememberPosition && navigationStyle === "drilldown" && !showingFavourites) {
-      writeLastPosition(items, item.id, storageNamespace);
+      writeLastPosition(items, item, storageNamespace);
     }
     if (item.path) {
       window.location.assign(item.path);
@@ -329,14 +335,20 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
   const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768 && openOnDesktop;
   const actualIsOpen = isOpen || isDesktop;
 
-  // Reopen in the section holding the item last activated from the menu.
+  // Reopen in the section for the page the user is on: the item they last activated if they're
+  // still on the page it led to, otherwise the item matching the current URL.
   useEffect(() => {
     if (!actualIsOpen || !rememberPosition || navigationStyle !== "drilldown") return;
-    const stored = readLastPosition(storageNamespace);
-    if (!stored) return;
-    const path = getValidPathPrefix(items, stored.path, itemVisibility, true);
+    const position = resolveOpenPosition(
+      items,
+      readLastPosition(storageNamespace),
+      locationKey(window.location.href),
+      itemVisibility
+    );
+    if (!position) return;
+    const path = getValidPathPrefix(items, position.path, itemVisibility, true);
     dispatch({ type: "SET_PATH", payload: path });
-    pendingHighlightRef.current = { path: path.join("/"), itemId: stored.itemId };
+    pendingHighlightRef.current = { path: path.join("/"), itemId: position.itemId };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [actualIsOpen]);
 
