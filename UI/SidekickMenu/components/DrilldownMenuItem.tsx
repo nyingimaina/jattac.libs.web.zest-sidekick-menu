@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../../../Styles/SidekickMenu.module.css";
+import { StarIcon } from "./icons";
 import { ISidekickMenuItem } from "../types";
 import { truncateDescription } from "../utils/description";
 import { highlightReactNode } from "../../../utils/reactNodeUtils";
@@ -70,7 +71,7 @@ const DrilldownMenuItem: React.FC<DrilldownMenuItemProps> = ({
           aria-label={isPinned ? "Unpin from favourites" : "Pin to favourites"}
           aria-pressed={!!isPinned}
         >
-          {isPinned ? "★" : "☆"}
+          <StarIcon filled={!!isPinned} />
         </button>
       )}
       {item.children && <span className={styles.chevron}>{chevronIcon ?? "▶"}</span>}
