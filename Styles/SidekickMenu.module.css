@@ -32,7 +32,6 @@
   --zest-motion-panel: 0.3s;
   --zest-motion-stagger-step: 30ms;
   --zest-rail-width: 64px;
-  --zest-color-favourite: #f5b301;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -682,7 +681,8 @@
   background-color: var(--zest-color-item-hover-bg, #f5f5f5);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), inset 0 0 0 1px var(--zest-color-item-border, #f0f0f0);
   transform: translateX(0);
-  transition: transform calc(var(--zest-motion-panel, 0.3s) * 1.2) var(--zest-ease-spring, ease);
+  transition: transform calc(var(--zest-motion-panel, 0.3s) * 1.2) var(--zest-ease-spring, ease),
+    box-shadow var(--zest-motion-base, 0.2s) var(--zest-ease-standard, ease);
   pointer-events: none;
 }
 
@@ -731,11 +731,32 @@
   border-radius: var(--zest-radius-sm, 5px);
   color: var(--zest-color-text-secondary, #999);
   font-size: 0.85rem;
-  transition: color var(--zest-motion-base, 0.2s) var(--zest-ease-standard, ease);
+  transition: color var(--zest-motion-base, 0.2s) var(--zest-ease-standard, ease),
+    background-color var(--zest-motion-base, 0.2s) var(--zest-ease-standard, ease),
+    box-shadow var(--zest-motion-base, 0.2s) var(--zest-ease-standard, ease),
+    transform var(--zest-motion-base, 0.2s) var(--zest-ease-spring, ease);
 }
 
-.tabButton:hover:not(.tabButtonActive) {
-  color: var(--zest-color-text-primary, #333);
+/* Hover (pointer devices only, so taps don't leave a stuck hover state):
+   - an inactive tab lifts slightly and gets a faint surface with a soft shadow;
+   - the active tab's pill picks up an accent-tinted glow. */
+@media (hover: hover) {
+  .tabButton:hover:not(.tabButtonActive) {
+    color: var(--zest-color-text-primary, #333);
+    background-color: color-mix(in srgb, var(--zest-color-item-hover-bg, #f5f5f5) 70%, transparent);
+    box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.14), 0 1px 2px rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+  }
+
+  .tabSwitcher:has(.tabButtonActive:hover) .tabIndicator {
+    box-shadow: 0 6px 18px -6px color-mix(in srgb, var(--zest-color-item-hover-text, #007bff) 55%, transparent),
+      inset 0 0 0 1px color-mix(in srgb, var(--zest-color-item-hover-text, #007bff) 28%, transparent);
+  }
+}
+
+.tabButton:active:not(.tabButtonActive) {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
 }
 
 .tabButton:focus-visible {
@@ -758,9 +779,10 @@
   transform: scale(1.12);
 }
 
-/* The Favourites star fills in gold when active - the same star the pin toggle uses. */
+/* The Favourites star fills in when active (same star as the pin toggle), with a soft halo. */
 .tabButtonActive .tabIconStar {
-  color: var(--zest-color-favourite, #f5b301);
+  color: var(--zest-color-favourite, var(--zest-color-item-hover-text, #007bff));
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--zest-color-favourite, var(--zest-color-item-hover-text, #007bff)) 45%, transparent));
 }
 
 .tabIconGrid rect {
@@ -818,8 +840,10 @@
   .tabIcon rect {
     animation: none !important;
   }
-  .tabButton:hover .tabIcon {
-    transform: none;
+  .tabButton:hover .tabIcon,
+  .tabButton:hover,
+  .tabButton:active {
+    transform: none !important;
   }
 }
 
@@ -866,7 +890,7 @@
 }
 
 .pinToggle.pinned {
-  color: var(--zest-color-favourite, #f5b301);
+  color: var(--zest-color-favourite, var(--zest-color-item-hover-text, #007bff));
 }
 
 .pinToggle:focus-visible {

@@ -5,6 +5,7 @@ interface IconProps {
 }
 
 // Shared by the pin toggle and the Favourites tab, so "star = favourite" is one metaphor everywhere.
+// The thick round-joined stroke softens the points into a rounded, modern star.
 export const StarIcon: React.FC<IconProps & { filled?: boolean }> = ({ filled = false, className }) => (
   <svg
     className={className}
@@ -15,8 +16,9 @@ export const StarIcon: React.FC<IconProps & { filled?: boolean }> = ({ filled = 
     focusable="false"
     fill={filled ? "currentColor" : "none"}
     stroke="currentColor"
-    strokeWidth={1.8}
+    strokeWidth={2}
     strokeLinejoin="round"
+    strokeLinecap="round"
   >
     <path d="M12 3.2l2.63 5.33 5.88.86-4.25 4.15 1 5.86L12 16.63 6.74 19.4l1-5.86L3.49 9.39l5.88-.86L12 3.2z" />
   </svg>
