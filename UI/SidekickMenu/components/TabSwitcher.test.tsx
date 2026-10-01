@@ -16,4 +16,28 @@ describe('TabSwitcher', () => {
     fireEvent.click(screen.getByRole('tab', { name: 'All' }));
     expect(onChange).toHaveBeenCalledWith('all');
   });
+
+  it('shows a star icon (filled when active) on Favourites and a grid icon on All', () => {
+    const { rerender } = render(<TabSwitcher activeTab="favourites" onChange={jest.fn()} />);
+    const starPath = () => screen.getByRole('tab', { name: 'Favourites' }).querySelector('svg')!;
+    expect(starPath()).toHaveAttribute('fill', 'currentColor');
+    expect(screen.getByRole('tab', { name: 'All' }).querySelectorAll('svg rect')).toHaveLength(4);
+
+    rerender(<TabSwitcher activeTab="all" onChange={jest.fn()} />);
+    expect(starPath()).toHaveAttribute('fill', 'none');
+  });
+
+  it('exposes the active tab for the sliding indicator, and only enables icon animation after a switch', () => {
+    const { container } = render(<TabSwitcher activeTab="all" onChange={jest.fn()} />);
+    const tablist = screen.getByRole('tablist');
+    expect(tablist).toHaveAttribute('data-active-tab', 'all');
+    expect(tablist).not.toHaveAttribute('data-animate');
+
+    fireEvent.click(screen.getByRole('tab', { name: 'All' })); // already active: no animation
+    expect(tablist).not.toHaveAttribute('data-animate');
+
+    fireEvent.click(screen.getByRole('tab', { name: 'Favourites' }));
+    expect(tablist).toHaveAttribute('data-animate', 'true');
+    expect(container.querySelector('[aria-hidden="true"]')).not.toBeNull();
+  });
 });
