@@ -131,13 +131,31 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
 
   const favourites = useFavourites(items, itemVisibility, favouritesOptions, storageNamespace);
 
-  // Default to the Favourites tab whenever the menu is freshly opened and there's enough history.
+  // Restore the tab the user was last on (defaults to "All"). Read after mount, like the rail state,
+  // so server and first client render agree.
   useEffect(() => {
-    if (isOpen && favouritesEnabled && favourites.isEligibleForTab) {
-      dispatch({ type: "SET_ACTIVE_TAB", payload: "favourites" });
+    if (typeof window === "undefined") return;
+    try {
+      const stored = localStorage.getItem(getStorageKey("activeTab", storageNamespace));
+      if (stored === "favourites" || stored === "all") {
+        dispatch({ type: "SET_ACTIVE_TAB", payload: stored });
+      }
+    } catch {
+      // ignore read errors, fall back to default ("all")
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
+  }, []);
+
+  const changeTab = (tab: "favourites" | "all") => {
+    dispatch({ type: "SET_ACTIVE_TAB", payload: tab });
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem(getStorageKey("activeTab", storageNamespace), tab);
+      } catch {
+        // ignore write errors
+      }
+    }
+  };
 
   const closeMenu = () => dispatch({ type: "CLOSE_MENU" });
 
@@ -420,7 +438,7 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
               {favouritesEnabled && favourites.isEligibleForTab && !effectiveRailCollapsed && (
                 <TabSwitcher
                   activeTab={activeTab}
-                  onChange={(tab) => dispatch({ type: "SET_ACTIVE_TAB", payload: tab })}
+                  onChange={changeTab}
                 />
               )}
               {!showingFavourites && (

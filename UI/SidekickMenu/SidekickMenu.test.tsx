@@ -452,10 +452,41 @@ describe('SidekickMenu Favourites', () => {
     fireEvent.click(screen.getByText('Gamma'));
 
     fireEvent.click(getHamburger());
+    // The tab appears, but the menu still defaults to "All" until the user picks Favourites.
+    expect(screen.getByRole('tab', { name: 'All' })).toHaveAttribute('aria-selected', 'true');
+    fireEvent.click(screen.getByRole('tab', { name: 'Favourites' }));
     expect(screen.getByRole('tab', { name: 'Favourites' })).toHaveAttribute('aria-selected', 'true');
 
     fireEvent.click(screen.getByText('Alpha'));
     expect(onClick).toHaveBeenCalled();
+  });
+
+  it('remembers the last selected tab across reopen and remount, defaulting to All', () => {
+    const items: ISidekickMenuItem[] = [
+      { id: 'a', label: 'Alpha', icon: '', searchTerms: '', path: '/a' },
+      { id: 'b', label: 'Beta', icon: '', searchTerms: '', path: '/b' },
+    ];
+    const { unmount } = render(
+      <SidekickMenu items={items} favouritesEnabled favouritesOptions={{ minToShowTab: 1 }} />
+    );
+    fireEvent.click(getHamburger());
+    fireEvent.click(screen.getByText('Alpha').closest('li')!.querySelector('button[aria-label*="Pin"]')!);
+    expect(screen.getByRole('tab', { name: 'All' })).toHaveAttribute('aria-selected', 'true');
+
+    fireEvent.click(screen.getByRole('tab', { name: 'Favourites' }));
+    fireEvent.click(getHamburger()); // close
+    fireEvent.click(getHamburger()); // reopen
+    expect(screen.getByRole('tab', { name: 'Favourites' })).toHaveAttribute('aria-selected', 'true');
+
+    unmount();
+    render(<SidekickMenu items={items} favouritesEnabled favouritesOptions={{ minToShowTab: 1 }} />);
+    fireEvent.click(getHamburger());
+    expect(screen.getByRole('tab', { name: 'Favourites' })).toHaveAttribute('aria-selected', 'true');
+
+    fireEvent.click(screen.getByRole('tab', { name: 'All' }));
+    fireEvent.click(getHamburger()); // close
+    fireEvent.click(getHamburger()); // reopen
+    expect(screen.getByRole('tab', { name: 'All' })).toHaveAttribute('aria-selected', 'true');
   });
 
   it('lets you pin an item directly from the main browsing view, with zero usage history', () => {
@@ -472,9 +503,10 @@ describe('SidekickMenu Favourites', () => {
     const row = screen.getByText('Never Used').closest('li')!;
     fireEvent.click(row.querySelector('button[aria-label*="Pin"]')!);
 
-    // Pinning alone (no usage at all) is enough to make the tab appear and become default.
+    // Pinning alone (no usage at all) is enough to make the tab appear.
     fireEvent.click(getHamburger()); // close
     fireEvent.click(getHamburger()); // reopen
+    fireEvent.click(screen.getByRole('tab', { name: 'Favourites' }));
     expect(screen.getByRole('tab', { name: 'Favourites' })).toHaveAttribute('aria-selected', 'true');
     expect(screen.getByText('Never Used')).toBeInTheDocument();
   });
