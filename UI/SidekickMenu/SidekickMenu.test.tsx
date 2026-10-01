@@ -518,3 +518,126 @@ describe('SidekickMenu Favourites', () => {
     expect(settingsRow.querySelector('button[aria-label*="Pin"]')).toBeNull();
   });
 });
+
+describe('SidekickMenu remembered position', () => {
+  const makeItems = (onClick = jest.fn()): ISidekickMenuItem[] => [
+    {
+      id: 'settings',
+      label: 'Settings',
+      icon: '',
+      searchTerms: '',
+      children: [
+        { id: 'profile', label: 'Profile', icon: '', searchTerms: '', onClick },
+        { id: 'billing', label: 'Billing', icon: '', searchTerms: '', onClick },
+      ],
+    },
+    { id: 'about', label: 'About', icon: '', searchTerms: 'about', onClick },
+  ];
+
+  const openAndClick = (label: string) => {
+    fireEvent.click(getHamburger());
+    fireEvent.click(screen.getByText('Settings'));
+    fireEvent.click(screen.getByText(label));
+  };
+
+  it('reopens in the section of the last activated item, with that item highlighted', () => {
+    render(<SidekickMenu items={makeItems()} />);
+    openAndClick('Billing');
+
+    fireEvent.click(getHamburger());
+    expect(screen.getByRole('navigation', { name: /breadcrumb/i })).toBeInTheDocument();
+    expect(screen.queryByText('About')).not.toBeInTheDocument();
+    expect(screen.getByText('Billing').closest('li')).toHaveAttribute('data-highlighted', 'true');
+  });
+
+  it('survives a remount (e.g. a full page load after navigating) within the session', () => {
+    const { unmount } = render(<SidekickMenu items={makeItems()} />);
+    openAndClick('Profile');
+    unmount();
+
+    render(<SidekickMenu items={makeItems()} />);
+    fireEvent.click(getHamburger());
+    expect(screen.getByText('Profile')).toBeInTheDocument();
+    expect(screen.queryByText('About')).not.toBeInTheDocument();
+  });
+
+  it('does not remember a section the user only browsed without activating anything', () => {
+    render(<SidekickMenu items={makeItems()} />);
+    fireEvent.click(getHamburger());
+    fireEvent.click(screen.getByText('Settings'));
+    fireEvent.click(getHamburger()); // close without choosing anything
+
+    fireEvent.click(getHamburger());
+    expect(screen.getByText('About')).toBeInTheDocument();
+  });
+
+  it('the Home crumb returns to the top level', () => {
+    render(<SidekickMenu items={makeItems()} />);
+    openAndClick('Billing');
+    fireEvent.click(getHamburger());
+
+    fireEvent.click(screen.getByRole('button', { name: 'Home' }));
+    expect(screen.getByText('About')).toBeInTheDocument();
+    expect(screen.queryByRole('navigation', { name: /breadcrumb/i })).not.toBeInTheDocument();
+  });
+
+  it('the Home key and Alt+ArrowUp jump to the top level', () => {
+    render(<SidekickMenu items={makeItems()} />);
+    openAndClick('Billing');
+
+    fireEvent.click(getHamburger());
+    fireEvent.keyDown(screen.getByText('Billing'), { key: 'Home' });
+    expect(screen.getByText('About')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText('Settings'));
+    fireEvent.keyDown(screen.getByText('Billing'), { key: 'ArrowUp', altKey: true });
+    expect(screen.getByText('About')).toBeInTheDocument();
+  });
+
+  it('falls back to the top level when the remembered section no longer exists', () => {
+    const { unmount } = render(<SidekickMenu items={makeItems()} />);
+    openAndClick('Billing');
+    unmount();
+
+    render(
+      <SidekickMenu items={[{ id: 'about', label: 'About', icon: '', searchTerms: '', onClick: jest.fn() }]} />
+    );
+    fireEvent.click(getHamburger());
+    expect(screen.getByText('About')).toBeInTheDocument();
+    expect(screen.queryByRole('navigation', { name: /breadcrumb/i })).not.toBeInTheDocument();
+  });
+
+  it('searches the whole menu from inside a section, and returns to the section when cleared', () => {
+    render(<SidekickMenu items={makeItems()} />);
+    openAndClick('Billing');
+    fireEvent.click(getHamburger());
+
+    const search = screen.getByPlaceholderText('Search menu...');
+    fireEvent.change(search, { target: { value: 'about' } });
+    expect(screen.getByText('About')).toBeInTheDocument();
+
+    fireEvent.change(search, { target: { value: '' } });
+    expect(screen.getByText('Billing')).toBeInTheDocument();
+    expect(screen.queryByText('About')).not.toBeInTheDocument();
+  });
+
+  it('is disabled by rememberPosition={false}', () => {
+    render(<SidekickMenu items={makeItems()} rememberPosition={false} />);
+    openAndClick('Billing');
+    fireEvent.click(getHamburger());
+    expect(screen.getByText('About')).toBeInTheDocument();
+  });
+
+  it('activating from the Favourites tab does not change the remembered section', () => {
+    render(<SidekickMenu items={makeItems()} favouritesEnabled favouritesOptions={{ minToShowTab: 1 }} />);
+    openAndClick('Billing');
+
+    fireEvent.click(getHamburger()); // reopens in Settings
+    fireEvent.click(screen.getByRole('tab', { name: 'Favourites' }));
+    fireEvent.click(screen.getByText('Billing'));
+
+    fireEvent.click(getHamburger());
+    fireEvent.click(screen.getByRole('tab', { name: 'All' }));
+    expect(screen.getByText('Profile')).toBeInTheDocument();
+  });
+});

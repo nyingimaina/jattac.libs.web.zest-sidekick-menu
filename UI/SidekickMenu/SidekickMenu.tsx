@@ -20,6 +20,7 @@ import { validateItemIds, validateDescriptions } from "./utils/validation";
 import { findItemById, getBreadcrumbPath } from "./utils/breadcrumb";
 import { getStorageKey, registerNamespaceUsage } from "./utils/namespace";
 import { getFilteredItems } from "./utils/search";
+import { getValidPathPrefix, readLastPosition, writeLastPosition } from "./utils/lastPosition";
 
 // Components
 import MenuList from "./components/MenuList";
@@ -57,6 +58,7 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
     railCollapsible = false,
     swipeEnabled = false,
     numberedShortcutsEnabled = true,
+    rememberPosition = true,
   } = props;
 
   const {
@@ -161,6 +163,11 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
 
   const handleActivateItem = (item: ISidekickMenuItem) => {
     favourites.recordUsage(item.id);
+    // Only browsing the "All" tree sets the remembered position; picking from Favourites says
+    // nothing about where in the tree the user is working.
+    if (rememberPosition && navigationStyle === "drilldown" && !showingFavourites) {
+      writeLastPosition(items, item.id, storageNamespace);
+    }
     if (item.path) {
       window.location.assign(item.path);
     } else if (item.onClick) {
@@ -211,6 +218,33 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
     [searchFilteredCurrentLevelItems, itemVisibility]
   );
 
+  // If a section in the current path disappears (removed, or hidden by visibilityControl), fall back
+  // to the nearest level that still exists rather than showing a dead panel.
+  useEffect(() => {
+    if (navigationStyle !== "drilldown" || currentPath.length === 0) return;
+    const valid = getValidPathPrefix(items, currentPath, itemVisibility);
+    if (valid.length < currentPath.length) {
+      dispatch({ type: "SET_PATH", payload: valid });
+    }
+  }, [navigationStyle, items, currentPath, itemVisibility]);
+
+  // After restoring a remembered position, highlight the item that was last activated, once it's
+  // actually on screen (its visibility may still be resolving). Abandoned if the user moves first.
+  const pendingHighlightRef = useRef<{ path: string; itemId: string } | null>(null);
+  useEffect(() => {
+    const pending = pendingHighlightRef.current;
+    if (!pending) return;
+    if (pending.path !== currentPath.join("/") || searchTerm) {
+      pendingHighlightRef.current = null;
+      return;
+    }
+    const index = drilldownVisibleItems.findIndex((item) => item.id === pending.itemId);
+    if (index > -1) {
+      dispatch({ type: "SET_HIGHLIGHTED_INDEX", payload: index });
+      pendingHighlightRef.current = null;
+    }
+  }, [drilldownVisibleItems, currentPath, searchTerm]);
+
   const { handleKeyDown: handleDrilldownKeyDown } = useDrilldownKeyboardNavigation(
     menuRef,
     showingFavourites ? favourites.favouriteItems : searchFilteredCurrentLevelItems,
@@ -242,7 +276,15 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
     dispatch({ type: 'SET_SEARCH_TERM', payload: newSearchTerm });
     dispatch({ type: 'SET_HIGHLIGHTED_INDEX', payload: -1 });
 
-    if (navigationStyle !== "accordion") return;
+    if (navigationStyle !== "accordion") {
+      // Search always covers the whole menu, even from inside a section, so a user reopened deep
+      // in the tree is never stuck searching just that branch. Clearing the search returns them.
+      if (newSearchTerm && !searchTerm && currentPath.length > 0) {
+        preSearchPathRef.current = currentPath;
+        dispatch({ type: "SET_PATH", payload: [] });
+      }
+      return;
+    }
 
     const openSubMenusUpdate: { [key: string]: boolean } = {};
     if (newSearchTerm) {
@@ -287,6 +329,33 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
   const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768 && openOnDesktop;
   const actualIsOpen = isOpen || isDesktop;
 
+  // Reopen in the section holding the item last activated from the menu.
+  useEffect(() => {
+    if (!actualIsOpen || !rememberPosition || navigationStyle !== "drilldown") return;
+    const stored = readLastPosition(storageNamespace);
+    if (!stored) return;
+    const path = getValidPathPrefix(items, stored.path, itemVisibility, true);
+    dispatch({ type: "SET_PATH", payload: path });
+    pendingHighlightRef.current = { path: path.join("/"), itemId: stored.itemId };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [actualIsOpen]);
+
+  // Return to the pre-search section once the search is cleared (unless the user drilled
+  // somewhere else from the search results).
+  const preSearchPathRef = useRef<string[] | null>(null);
+  useEffect(() => {
+    if (!actualIsOpen) {
+      preSearchPathRef.current = null;
+      return;
+    }
+    if (searchTerm || !preSearchPathRef.current) return;
+    if (currentPath.length === 0) {
+      dispatch({ type: "SET_PATH", payload: preSearchPathRef.current });
+    }
+    preSearchPathRef.current = null;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm, actualIsOpen]);
+
   // Lock body scroll while the mobile overlay is open, so the page behind the scrim can't be
   // scrolled underneath it. Not needed in desktop push mode, where the panel is part of the
   // layout rather than an overlay covering content.
@@ -301,7 +370,13 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
   }, [isOpen, isDesktop]);
 
   const toggleMenu = () => {
-    dispatch({ type: "SET_IS_OPEN", payload: !isOpen });
+    // Closing goes through CLOSE_MENU like every other close path (scrim, Escape, activation), so
+    // the next open always starts from the remembered position (or the top), never a stale one.
+    if (isOpen) {
+      closeMenu();
+      return;
+    }
+    dispatch({ type: "SET_IS_OPEN", payload: true });
     dispatch({ type: "SET_HIGHLIGHTED_INDEX", payload: -1 });
   };
 

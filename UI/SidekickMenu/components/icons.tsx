@@ -41,3 +41,22 @@ export const GridIcon: React.FC<IconProps> = ({ className }) => (
     <rect x="13" y="13" width="7.5" height="7.5" rx="2" />
   </svg>
 );
+
+// Breadcrumb "home": jump back to the top level of the menu.
+export const HomeIcon: React.FC<IconProps> = ({ className }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    width="1em"
+    height="1em"
+    aria-hidden="true"
+    focusable="false"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinejoin="round"
+    strokeLinecap="round"
+  >
+    <path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5h-6v5.5H5.5A1.5 1.5 0 0 1 4 19v-8.5z" />
+  </svg>
+);

@@ -32,7 +32,7 @@ describe('MenuBreadcrumb', () => {
   it('clicking the root/home crumb calls onNavigate with -1', () => {
     const onNavigate = jest.fn();
     render(<MenuBreadcrumb path={path} onNavigate={onNavigate} onBack={jest.fn()} />);
-    fireEvent.click(screen.getByRole('button', { name: /menu/i }));
+    fireEvent.click(screen.getByRole('button', { name: 'Home' }));
     expect(onNavigate).toHaveBeenCalledWith(-1);
   });
 

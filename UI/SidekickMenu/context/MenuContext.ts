@@ -28,6 +28,7 @@ export type MenuAction =
   | { type: 'DRILL_IN'; payload: string }
   | { type: 'DRILL_BACK' }
   | { type: 'DRILL_TO_INDEX'; payload: number }
+  | { type: 'SET_PATH'; payload: string[] }
   | { type: 'SET_ACTIVE_TAB'; payload: 'favourites' | 'all' }
   | { type: 'TOGGLE_RAIL' };
 
@@ -60,6 +61,8 @@ export const menuReducer = (state: MenuState, action: MenuAction): MenuState => 
       return { ...state, currentPath: state.currentPath.slice(0, -1), highlightedIndex: -1 };
     case 'DRILL_TO_INDEX':
       return { ...state, currentPath: state.currentPath.slice(0, action.payload + 1), highlightedIndex: -1 };
+    case 'SET_PATH':
+      return { ...state, currentPath: action.payload, highlightedIndex: -1 };
     case 'SET_ACTIVE_TAB':
       return { ...state, activeTab: action.payload };
     case 'TOGGLE_RAIL':

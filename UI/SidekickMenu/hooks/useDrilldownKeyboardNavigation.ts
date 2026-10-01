@@ -29,7 +29,19 @@ export const useDrilldownKeyboardNavigation = (
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
-      if (event.key === "ArrowUp") {
+      const target = event.target as HTMLElement | null;
+      const typingInField = target?.tagName === "INPUT" && !!(target as HTMLInputElement).value;
+      const goHome = (event.key === "ArrowUp" && event.altKey) || (event.key === "Home" && !typingInField);
+
+      if (goHome) {
+        if (canDrillBack) {
+          event.preventDefault();
+          dispatch({ type: "SET_PATH", payload: [] });
+        } else if (event.key === "Home" && visibleItems.length > 0) {
+          event.preventDefault();
+          dispatch({ type: "SET_HIGHLIGHTED_INDEX", payload: 0 });
+        }
+      } else if (event.key === "ArrowUp") {
         event.preventDefault();
         dispatch({ type: "SET_HIGHLIGHTED_INDEX", payload: Math.max(highlightedIndex - 1, 0) });
       } else if (event.key === "ArrowDown") {

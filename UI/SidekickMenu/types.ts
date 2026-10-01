@@ -65,4 +65,7 @@ export interface SidekickMenuProps {
   railCollapsible?: boolean;
   swipeEnabled?: boolean;
   numberedShortcutsEnabled?: boolean;
+  /** Drilldown only: reopen the menu in the section holding the item last activated from it
+   * (per browser tab, via sessionStorage), with that item highlighted. Default true. */
+  rememberPosition?: boolean;
 }

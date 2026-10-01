@@ -1,10 +1,11 @@
-export type StorageKind = "visibilityCache" | "usageStats" | "railState" | "activeTab";
+export type StorageKind = "visibilityCache" | "usageStats" | "railState" | "activeTab" | "lastPosition";
 
 const LEGACY_DEFAULT_KEYS: Record<StorageKind, string> = {
   visibilityCache: "sidekickMenuVisibilityCache",
   usageStats: "sidekickMenuUsageStats",
   railState: "sidekickMenuRailState",
   activeTab: "sidekickMenuActiveTab",
+  lastPosition: "sidekickMenuLastPosition",
 };
 
 export const getStorageKey = (kind: StorageKind, storageNamespace?: string): string => {
