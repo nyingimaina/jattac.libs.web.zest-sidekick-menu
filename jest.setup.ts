@@ -16,3 +16,8 @@ if (typeof window.matchMedia !== 'function') {
     dispatchEvent: jest.fn(),
   }));
 }
+
+// The remembered drilldown position lives in sessionStorage; isolate it between tests.
+beforeEach(() => {
+  sessionStorage.clear();
+});

@@ -42,6 +42,7 @@ The `SidekickMenu` component accepts the following props:
 | `railCollapsible`         | `boolean`                               | `false`                     | Shows a collapse toggle on desktop that shrinks the panel to an icon-only rail.                                                                          |
 | `swipeEnabled`            | `boolean`                               | `false`                     | Enables edge-swipe-to-open and swipe-to-dismiss gestures on touch devices.                                                                                |
 | `numberedShortcutsEnabled`| `boolean`                               | `true`                      | Enables `1`–`9` keyboard shortcuts for the first nine items, active only while the menu panel has focus. Number badges only appear once real keyboard use is detected. |
+| `rememberPosition`        | `boolean`                               | `true`                      | Drilldown only: open the menu in the section of the item matching the current URL (or, failing that, the item last opened from the menu this session), with that item highlighted. See [Navigation Style](configuration.md#8-navigation-style). |
 
 ---
 

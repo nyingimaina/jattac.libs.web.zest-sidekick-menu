@@ -240,6 +240,25 @@ If your application has built UX or training around the previous in-place-expand
 
 **`navigationStyle="accordion"` is deprecated.** It will receive no new features going forward, and a development-mode console warning reminds you of this. It is scheduled for removal after 25 published releases — see [Breaking Changes & Migration](breaking-changes.md) for the running count and migration guidance when that happens. There is no rush to migrate; it will continue to work exactly as it does today until then.
 
+#### Remembered position and the Home button
+
+When a user opens an item from inside a section (say *Settings › Billing › Invoices*), the menu reopens in that section next time, with that item highlighted, instead of making them drill down again. Details:
+
+- **The current page comes first.** The menu matches the page's URL against item `path`s and opens in that item's section with the item highlighted. This works however the user got there: a link, a bookmark, the back button, or a router call. An exact match wins; otherwise the longest whole-segment prefix does, so `/orders/42/edit` matches an `/orders` item but `/ordersx` doesn't. `/` only matches exactly. The query string is ignored, hash routes like `#/settings` are supported, and items on other origins are skipped.
+- **The remembered position covers what URLs can't.** If the user is still on the page they reached through the menu, or on a page the menu has no item for, it uses the item they last opened. That's how `onClick` items and identical paths are told apart.
+- **It's set by opening an item, not by browsing.** If a user drills into a section and closes the menu without choosing anything, the menu doesn't remember that section; it still reopens where they last opened something, or at the top.
+- **Per browser tab, per session** (`sessionStorage`, namespaced by `storageNamespace`). A new visit starts at the top. `clearSidekickMenuUsageStats()` clears it too.
+- **Safe fallback.** If a remembered section has since been removed, or hidden by `visibilityControl`, the menu opens at the nearest level that still exists, never on a missing or empty panel.
+- **Favourites tab:** opening something from Favourites doesn't change the remembered section.
+- **Search always covers the whole menu**, even when you're inside a section. Clearing the search takes you back to the section you were in.
+- **Getting back to the top:** the breadcrumb's first crumb is a Home (house) button. On the keyboard, `Home` or `Alt+↑` jumps to the top level (at the top level, `Home` highlights the first item), and `Esc` with an empty search goes up one level.
+
+Opt out if you want the menu to always open at the top:
+
+```jsx
+<SidekickMenu items={menuItems} rememberPosition={false} />
+```
+
 ---
 
 ### 9. Favourites

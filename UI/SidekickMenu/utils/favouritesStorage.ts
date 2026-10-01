@@ -38,6 +38,7 @@ export const clearSidekickMenuUsageStats = (storageNamespace?: string): void => 
   try {
     localStorage.removeItem(getStorageKey("usageStats", storageNamespace));
     localStorage.removeItem(getStorageKey("activeTab", storageNamespace));
+    sessionStorage.removeItem(getStorageKey("lastPosition", storageNamespace));
   } catch (error) {
     console.error("Error clearing SidekickMenu usage stats:", error);
   }

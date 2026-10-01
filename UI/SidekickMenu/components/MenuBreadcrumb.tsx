@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../../../Styles/SidekickMenu.module.css";
 import { ISidekickMenuItem } from "../types";
 import { extractTextFromReactNode } from "../../../utils/reactNodeUtils";
+import { HomeIcon } from "./icons";
 
 interface MenuBreadcrumbProps {
   /** Resolved ancestor chain plus the current item, in order (root not included). */
@@ -21,8 +22,14 @@ const MenuBreadcrumb: React.FC<MenuBreadcrumbProps> = ({ path, onNavigate, onBac
       <button type="button" className={styles.breadcrumbBack} onClick={onBack} aria-label="Back">
         ‹
       </button>
-      <button type="button" className={styles.breadcrumbCrumb} onClick={() => onNavigate(-1)}>
-        Menu
+      <button
+        type="button"
+        className={`${styles.breadcrumbCrumb} ${styles.breadcrumbHome}`}
+        onClick={() => onNavigate(-1)}
+        aria-label="Home"
+        title="Home"
+      >
+        <HomeIcon />
       </button>
       {path.map((item, index) => {
         const isLast = index === path.length - 1;
