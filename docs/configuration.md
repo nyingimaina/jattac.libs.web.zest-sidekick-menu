@@ -262,7 +262,7 @@ Enable a frequency-ranked "Favourites" tab:
 />
 ```
 
-Only leaf items (those with `path`/`onClick`) accrue usage — clicking into a submenu doesn't count, since that's navigation, not a destination. The Favourites tab only appears (and the menu only defaults to opening on it) once `minToShowTab` is reached, so new users never land on an empty tab. An item that becomes hidden via `visibilityControl` is filtered out even if it has usage history.
+Only leaf items (those with `path`/`onClick`) accrue usage — clicking into a submenu doesn't count, since that's navigation, not a destination. The Favourites tab only appears once `minToShowTab` is reached, so new users never land on an empty tab. The menu opens on **All** by default and then remembers whichever tab the user last selected (persisted in `localStorage`, per `storageNamespace`), so someone who prefers Favourites lands there on every open — and someone who prefers All is never pulled away from it. An item that becomes hidden via `visibilityControl` is filtered out even if it has usage history.
 
 Each favourite shows its `description` as secondary text if one is set, otherwise a breadcrumb path (e.g. "Settings › Billing") so you still know where it lives.
 
