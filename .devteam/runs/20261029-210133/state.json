@@ -1,0 +1,525 @@
+{
+  "runId": "20261029-210133",
+  "options": {
+    "browser": "none",
+    "visible": false,
+    "document": false,
+    "referenceFolders": []
+  },
+  "browser": {
+    "ran": false,
+    "passed": false,
+    "visible": false,
+    "document": false,
+    "seconds": 0,
+    "treeHash": "A2ED1AE48587399D3D9F03558477E23C77174E265DD26BB97E930149C8F37ED9",
+    "reason": "you chose not to run them for this run",
+    "output": ""
+  },
+  "isVerification": true,
+  "stageSeconds": {},
+  "timeCapExtensions": {},
+  "stageClockStart": {},
+  "featureRequest": "Verification: the app as it is, nothing changed",
+  "packId": "react-component-library",
+  "status": "completed",
+  "currentStage": "define",
+  "stages": {
+    "define": "pending",
+    "design": "pending",
+    "build": "pending",
+    "challenge": "pending",
+    "prove": "pending"
+  },
+  "defineRound": 1,
+  "designRound": 1,
+  "buildRound": 1,
+  "slicesDone": 0,
+  "sliceReports": [],
+  "revisionsUsed": 0,
+  "requirementKickbacks": 0,
+  "planReviewRounds": 0,
+  "planConflictHashes": [],
+  "sizeApproved": false,
+  "lastPlanConflicts": [],
+  "planRounds": [],
+  "planCheck": "notChecked",
+  "planWaivedRules": [],
+  "setAsideRequirements": [],
+  "reusedChecks": {
+    "lib-typecheck": "20261029-204815|2026-10-29T20:49:33.4656726\u002B00:00",
+    "lib-build": "20261029-204815|2026-10-29T20:49:33.4656726\u002B00:00",
+    "lib-pack": "20261029-204815|2026-10-29T20:49:33.4656726\u002B00:00",
+    "lib-publish-dry-run": "20261029-204815|2026-10-29T20:49:33.4656726\u002B00:00",
+    "rule-USR-002-5": "20261029-204815|2026-10-29T20:49:33.4656726\u002B00:00",
+    "rule-USR-003-5": "20261029-204815|2026-10-29T20:49:33.4656726\u002B00:00",
+    "rule-USR-006-4": "20261029-204815|2026-10-29T20:49:33.4656726\u002B00:00"
+  },
+  "tensionPair": [],
+  "tensionDiagnoses": {},
+  "specialists": [],
+  "specialistsDone": [],
+  "specialistCallbacks": 0,
+  "specialistHashes": {},
+  "ran": [],
+  "accepted": {},
+  "extraRounds": 0,
+  "queueIds": [],
+  "itemShift": 0,
+  "passStamps": {},
+  "scopeRestored": [],
+  "scopePush": false,
+  "hostStamps": {},
+  "verifying": [],
+  "settled": 0,
+  "confirmedSettles": 0,
+  "falseSettles": 0,
+  "preflightCalls": 0,
+  "buildRanSincePass": false,
+  "fixFiles": {},
+  "acceptedByYou": [],
+  "appAcceptsLoaded": false,
+  "claimedBuilt": [],
+  "confirmedBuilt": 0,
+  "builtWrong": 0,
+  "canaryPasses": 0,
+  "parked": [],
+  "reviewPasses": 0,
+  "costUsd": 0,
+  "budgetUsd": 0,
+  "agentCalls": 0,
+  "modelCalls": {},
+  "startedAt": "2026-10-29T21:01:33.8496847+00:00",
+  "updatedAt": "2026-10-29T21:02:22.7647111+00:00",
+  "completedAt": "2026-10-29T21:02:22.2917523+00:00",
+  "findings": [],
+  "lastChecks": [
+    {
+      "id": "no-secrets",
+      "name": "No secrets in code",
+      "passed": true,
+      "seconds": 0.1265496,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "SEC-001"
+      ]
+    },
+    {
+      "id": "no-debug-leftovers",
+      "name": "No debugging leftovers",
+      "passed": true,
+      "seconds": 0.1264647,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "QUAL-001"
+      ]
+    },
+    {
+      "id": "lib-typecheck",
+      "name": "Type check (library and tests)",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not run: its files are exactly as they were when it passed in run 20261029-204815 (12 min ago).",
+      "rules": []
+    },
+    {
+      "id": "lib-tests",
+      "name": "Tests, with coverage",
+      "passed": false,
+      "seconds": 37.6523946,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "Failed twice in a row, so this is not a one-off.\n\u2026\n     \u001B[90m 124 |\u001B[39m           \u001B[32m\u0022count). Migrate to the default \\\u0022drilldown\\\u0022 navigation style when convenient.\u0022\u001B[39m\u001B[0m\r\n\r\n      at warn (UI/SidekickMenu/SidekickMenu.tsx:121:15)\r\n      at Object.react_stack_bottom_frame (node_modules/react-dom/cjs/react-dom-client.development.js:23953:20)\r\n      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1522:13)\r\n      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom-client.development.js:11905:29)\r\n      at commitHookPassiveMountEffects (node_modules/react-dom/cjs/react-dom-client.development.js:12028:11)\r\n      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13841:13)\r\n      at recursivelyTraversePassiveMountEffects (node_modules/react-dom/cjs/react-dom-client.development.js:13815:11)\r\n      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13853:11)\r\n      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15737:9)\r\n      at node_modules/react-dom/cjs/react-dom-client.development.js:15379:15\r\n      at flushActQueue (node_modules/react/cjs/react.development.js:566:34)\r\n      at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:860:10)\r\n      at node_modules/@testing-library/react/dist/act-compat.js:46:25\r\n      at renderRoot (node_modules/@testing-library/react/dist/pure.js:189:26)\r\n      at render (node_modules/@testing-library/react/dist/pure.js:291:10)\r\n      at Object.\u003Canonymous\u003E (UI/SidekickMenu/SidekickMenu.test.tsx:324:11)\r\n\r\n\r\nSummary of all failing tests\r\nFAIL Styles/SidekickMenu.theme.test.ts (7.628 s)\r\n  \u25CF SidekickMenu.module.css \u2014 mobile-first touch targets, desktop-refined \u203A tightens the breadcrumb/tab/pin controls back down for desktop pointer precision\r\n\r\n    expect(received).toBeDefined()\r\n\r\n    Received: undefined\r\n\r\n    \u001B[0m \u001B[90m 178 |\u001B[39m       (b) \u001B[33m=\u003E\u001B[39m b\u001B[33m.\u001B[39mincludes(\u001B[32m\u0027.breadcrumbCrumb\u0027\u001B[39m) \u001B[33m||\u001B[39m b\u001B[33m.\u001B[39mincludes(\u001B[32m\u0027.tabButton\u0027\u001B[39m) \u001B[33m||\u001B[39m b\u001B[33m.\u001B[39mincludes(\u001B[32m\u0027.pinToggle\u0027\u001B[39m)\r\n     \u001B[90m 179 |\u001B[39m     )\u001B[33m;\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 180 |\u001B[39m     expect(covering)\u001B[33m.\u001B[39mtoBeDefined()\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m                      \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 181 |\u001B[39m     expect(covering)\u001B[33m.\u001B[39mtoMatch(\u001B[35m/min-height:\\s*0/\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m 182 |\u001B[39m   })\u001B[33m;\u001B[39m\r\n     \u001B[90m 183 |\u001B[39m\u001B[0m\r\n\r\n      at Object.\u003Canonymous\u003E (Styles/SidekickMenu.theme.test.ts:180:22)\r\n\r\n  \u25CF SidekickMenu.module.css \u2014 other mobile-first robustness fixes \u203A restores the panel to a fixed 300px width on desktop, independent of openOnDesktop\r\n\r\n    expect(received).toBeDefined()\r\n\r\n    Received: undefined\r\n\r\n    \u001B[0m \u001B[90m 217 |\u001B[39m       (b) \u001B[33m=\u003E\u001B[39m \u001B[35m/\\n\\s*\\.panel\\s*{[^}]*width:\\s*300px/\u001B[39m\u001B[33m.\u001B[39mtest(b)\r\n     \u001B[90m 218 |\u001B[39m     )\u001B[33m;\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 219 |\u001B[39m     expect(generalPanelWidthBlock)\u001B[33m.\u001B[39mtoBeDefined()\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m                                    \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 220 |\u001B[39m   })\u001B[33m;\u001B[39m\r\n     \u001B[90m 221 |\u001B[39m\r\n     \u001B[90m 222 |\u001B[39m   it(\u001B[32m\u0027prevents the menu list from chaining scroll into the page behind it\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\u001B[0m\r\n\r\n      at Object.\u003Canonymous\u003E (Styles/SidekickMenu.theme.test.ts:219:36)\r\n\r\n\r\nTest Suites: 1 failed, 21 passed, 22 total\r\nTests:       2 failed, 215 passed, 217 total\r\nSnapshots:   0 total\r\nTime:        12.442 s, estimated 17 s\r\nRan all test suites.",
+      "rules": []
+    },
+    {
+      "id": "lib-build",
+      "name": "Build (CommonJS, ES modules, type definitions)",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "Not run: its files are exactly as they were when it passed in run 20261029-204815 (12 min ago).",
+      "rules": []
+    },
+    {
+      "id": "lib-validate-package",
+      "name": "Package check (attw and publint)",
+      "passed": false,
+      "seconds": 0.1746801,
+      "notRun": true,
+      "flaky": false,
+      "tier": "full",
+      "output": "Not set up in this project: attw and publint are not installed, so nothing checks that the package works for everyone who installs it.",
+      "rules": [
+        "LIB-002"
+      ]
+    },
+    {
+      "id": "lib-pack",
+      "name": "What would be published",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "Not run: its files are exactly as they were when it passed in run 20261029-204815 (12 min ago).",
+      "rules": []
+    },
+    {
+      "id": "lib-publish-dry-run",
+      "name": "Publish dry run (everything npm checks, nothing is uploaded)",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "Not run: its files are exactly as they were when it passed in run 20261029-204815 (12 min ago).",
+      "rules": [
+        "LIB-003"
+      ]
+    },
+    {
+      "id": "lib-size",
+      "name": "Size budget",
+      "passed": false,
+      "seconds": 0.1510644,
+      "notRun": true,
+      "flaky": false,
+      "tier": "full",
+      "output": "Not set up in this project: The project has no .size-limit.json, so this check has nothing to run.",
+      "rules": [
+        "EFF-001"
+      ]
+    },
+    {
+      "id": "lib-consumer-smoke",
+      "name": "Install and import the packed library",
+      "passed": false,
+      "seconds": 0.1588523,
+      "notRun": true,
+      "flaky": false,
+      "tier": "full",
+      "output": "Not set up in this project: Nothing installs the packed library into a scratch project and imports it  no scripts/consumer-smoke.mjs .",
+      "rules": [
+        "LIB-003",
+        "LIB-004",
+        "LIB-005"
+      ]
+    },
+    {
+      "id": "lib-docs",
+      "name": "Documentation is complete",
+      "passed": false,
+      "seconds": 0.165436,
+      "notRun": true,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not set up in this project: The project has no scripts/check-docs.mjs, so this check has nothing to run.",
+      "rules": [
+        "DOC-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-1",
+      "name": "No third-party component libraries",
+      "passed": true,
+      "seconds": 0.1161819,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-2",
+      "name": "No native buttons",
+      "passed": false,
+      "seconds": 0.108146,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "6 match(es):\nUI/SidekickMenu/components/DrilldownMenuItem.tsx:64: \u003Cbutton\r\nUI/SidekickMenu/components/MenuBreadcrumb.tsx:22: \u003Cbutton type=\u0022button\u0022 className={styles.breadcrumbBack} onClick={onBack} aria-label=\u0022Back\u0022\u003E\r\nUI/SidekickMenu/components/MenuBreadcrumb.tsx:25: \u003Cbutton\r\nUI/SidekickMenu/components/MenuBreadcrumb.tsx:46: \u003Cbutton type=\u0022button\u0022 className={styles.breadcrumbCrumb} onClick={() =\u003E onNavigate(index)}\u003E\r\nUI/SidekickMenu/components/TabSwitcher.tsx:33: \u003Cbutton\r\nUI/SidekickMenu/components/TabSwitcher.tsx:43: \u003Cbutton",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-3",
+      "name": "No native inputs",
+      "passed": true,
+      "seconds": 0.1130837,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-4",
+      "name": "No native tables",
+      "passed": true,
+      "seconds": 0.1039179,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-5",
+      "name": "No hand-rolled tab widgets",
+      "passed": false,
+      "seconds": 0.114509,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "3 match(es):\nUI/SidekickMenu/components/TabSwitcher.tsx:27: role=\u0022tablist\u0022\r\nUI/SidekickMenu/components/TabSwitcher.tsx:35: role=\u0022tab\u0022\r\nUI/SidekickMenu/components/TabSwitcher.tsx:45: role=\u0022tab\u0022",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-6",
+      "name": "Required Zest packages are declared",
+      "passed": false,
+      "seconds": 0.4755377,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "Failed twice in a row, so this is not a one-off.\nMissing required packages: jattac.libs.web.zest-responsive-layout, jattac.libs.web.zest-file-upload, jattac.libs.web.zest-tabs, jattac.libs.web.responsive-table, jattac.libs.web.zest-textbox, jattac.libs.web.zest-button, jattac.libs.web.overflow-menu, jattac-web-poller",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-002-1",
+      "name": "Mobile-first media queries only",
+      "passed": true,
+      "seconds": 0.1103879,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-002-2",
+      "name": "Font sizes scale with user settings",
+      "passed": true,
+      "seconds": 0.2994408,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-002-3",
+      "name": "Touch targets at least 44px",
+      "passed": true,
+      "seconds": 0.1355277,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-002-4",
+      "name": "No fixed numeric inline dimensions",
+      "passed": true,
+      "seconds": 0.1871183,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-002-5",
+      "name": "Tablet breakpoint exists",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "Not run: its files are exactly as they were when it passed in run 20261029-204815 (12 min ago).",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-003-1",
+      "name": "No unsafe HTML injection",
+      "passed": true,
+      "seconds": 0.2838406,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-003-2",
+      "name": "No dynamic code execution",
+      "passed": true,
+      "seconds": 0.2273634,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-003-3",
+      "name": "No blocking busy-wait loops",
+      "passed": true,
+      "seconds": 0.2306819,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-003-4",
+      "name": "No JSON stringify deep-clone",
+      "passed": true,
+      "seconds": 0.1953965,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-003-5",
+      "name": "Event listeners are cleaned up",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "Not run: its files are exactly as they were when it passed in run 20261029-204815 (12 min ago).",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-006-1",
+      "name": "Colours come from theme tokens",
+      "passed": true,
+      "seconds": 0.2688887,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-006"
+      ]
+    },
+    {
+      "id": "rule-USR-006-2",
+      "name": "No inline font families",
+      "passed": true,
+      "seconds": 0.279863,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-006"
+      ]
+    },
+    {
+      "id": "rule-USR-006-3",
+      "name": "No positive tabIndex",
+      "passed": true,
+      "seconds": 0.2354152,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-006"
+      ]
+    },
+    {
+      "id": "rule-USR-006-4",
+      "name": "Animation honours reduced-motion",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "Not run: its files are exactly as they were when it passed in run 20261029-204815 (12 min ago).",
+      "rules": [
+        "USR-006"
+      ]
+    }
+  ],
+  "checkPassedOn": {
+    "lib-typecheck": "01DEDFBC6BD04D680DC064CB2229071E62005C9569A08B1FF7B50FC28F5074EC",
+    "lib-build": "424D29C322DAEF14DCFE0DBA89E4F9B3AD574F9A7E7D8E177AE44CA1F1ABD3D7",
+    "lib-pack": "353D26A45D9D91899A47E8B292689CF8C5E6FD45C1D3641673AF0AB13A3A323F",
+    "lib-publish-dry-run": "B5C567184FA4F75A0359444EA73CE6C6D41F6B126B56F7112E8D2DC9164299B1",
+    "rule-USR-002-5": "54C5EBA8256B0EBD8AD5D8C1ACA052D8E32F2B03D2BA9F5573F1D05189B01819",
+    "rule-USR-003-5": "D7BC5E5F35E2CE5E559CC5D831C57A92DD88622648974647C8D01DD49B5DAB08",
+    "rule-USR-006-4": "0C2954E5B6FDD18702BCEDF9BE760D25E1CF1FB5999B7A1366CC86CB8E385B8B"
+  },
+  "checkFailedOn": {
+    "lib-tests": "7DDB1AE166F51611F8C57CA4BA750455DF8A7C99DEC4D09DB421390CF39724DC",
+    "rule-USR-001-6": "FAA0A2556DC1E89C718AB50B850F9FABE1E7511F65D0F3090EBB5FF625216FF8"
+  },
+  "generatedByChecks": [],
+  "ignoredPaths": [],
+  "acceptedGaps": [],
+  "scopeExtensions": [],
+  "rulings": [],
+  "shortcuts": 0,
+  "routeHistory": [],
+  "amendments": [],
+  "scopeSeen": {},
+  "scopeRequestsMade": 0,
+  "preflightAnswered": false,
+  "analystQuestions": 0,
+  "analysisClosed": false,
+  "youDecided": 0,
+  "requirementsApproved": false,
+  "signOffRounds": 0,
+  "changedFiles": []
+}
