@@ -1,0 +1,7 @@
+{
+  "checks": [],
+  "good": "// UI/SidekickMenu/components/MenuItem.tsx\nimport React from \"react\";\nimport { ZestButton } from \"jattac.libs.web.zest-button\";\nimport styles from \"../../../Styles/SidekickMenu.module.css\";\n\nexport const MenuItem = ({ label, onSelect }: { label: string; onSelect: () => void }) => (\n  <ZestButton variant=\"ghost\" className={styles.menuItem} onClick={onSelect}>\n    {label}\n  </ZestButton>\n);",
+  "bad": "// UI/SidekickMenu/components/RawMenuItem.tsx\nimport React from \"react\";\n\nexport const RawMenuItem = ({ label }: { label: string }) => (\n  <div\n    style={{ fontFamily: \"Comic Sans MS\", padding: 12, background: \"#ff00ff\" }}\n    onClick={() => undefined}\n  >\n    {label}\n  </div>\n);",
+  "cannotTest": "Rule USR-005 is recorded only as a heading, \"UI/UX, Form Intelligence, and Design System Standards\". No requirement, forbidden element, required component/token, measurable limit or standard is stated, so there is nothing an automatic check could enforce: any regex or command would encode rules the owner never gave, and no reviewer has an order to judge against either. The rule needs its actual text (what the design system requires, what form intelligence means here, which standards apply) before checks can be written.",
+  "facts": []
+}

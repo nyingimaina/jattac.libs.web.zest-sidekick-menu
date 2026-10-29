@@ -1,6 +1,12 @@
+---
+title: The Cookbook: Practical Examples
+covers: UI/SidekickMenu/SidekickMenu.tsx, UI/SidekickMenu/types.ts, UI/SidekickMenu/utils/cache.ts
+covers-hash: 5699846645987af582c8
+---
+
 # The Cookbook: Practical Examples
 
-**[< Previous: README.md](README.md) | [Next: Features Showcase >](features.md)**
+**[< Previous: README.md](../README.md) | [Next: Features Showcase >](features.md)**
 
 This cookbook provides practical, step-by-step examples to help you leverage the full power of the React Sidekick Menu. From basic setup to advanced features like dynamic visibility and custom content, you will find ready-to-use code snippets and explanations.
 
@@ -28,7 +34,7 @@ Provide an array of menu items, each with an `id`, `label`, `icon`, and `path`.
 
 ```jsx
 import React from 'react';
-import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu from 'jattac.libs.web.zest-sidekick-menu';
 
 const BasicApp = () => {
   const menuItems = [
@@ -64,7 +70,7 @@ Utilize the `children` property within an `ISidekickMenuItem` to define sub-item
 
 ```jsx
 import React from 'react';
-import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu from 'jattac.libs.web.zest-sidekick-menu';
 
 const NestedMenuApp = () => {
   const menuItems = [
@@ -113,11 +119,11 @@ Integrate and customize the robust built-in search functionality.
 Users require the ability to rapidly locate specific menu items without navigating through extensive hierarchies.
 
 #### Solution:
-The search feature is enabled by default. Its appearance and behavior can be tailored using `searchPlaceholder`, `searchIcon`, and `searchAutoFocus` props.
+Search is opt-in: pass `searchEnabled={true}` to show the search box (since v2.0.0 it is hidden by default). Its appearance and behavior can be tailored using `searchPlaceholder`, `searchIcon`, and `searchAutoFocus` props.
 
 ```jsx
 import React from 'react';
-import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu from 'jattac.libs.web.zest-sidekick-menu';
 // Assuming you have custom icons or use an icon library
 import { FaSearch } from 'react-icons/fa';
 
@@ -146,7 +152,7 @@ const SearchableMenuApp = () => {
 
 export default SearchableMenuApp;
 ```
-For more details on search-related props, refer to the [API Reference](api.md#search-props).
+For more details on search-related props, refer to the [API Reference](api.md) and the [Search (opt-in)](search.md) guide. In particular, the search only hides items that have a non-empty `searchTerms` unless you pass `alwaysShowUnsearchableItems={false}`.
 
 ---
 
@@ -162,7 +168,7 @@ Utilize the `visibilityControl` property of an `ISidekickMenuItem`. Provide an `
 
 ```jsx
 import React from 'react';
-import SidekickMenu, { ISidekickMenuItem } from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu, { ISidekickMenuItem } from 'jattac.libs.web.zest-sidekick-menu';
 
 // Mock API call to check user permissions
 const checkUserRole = async (role: string): Promise<boolean> => {
@@ -232,7 +238,7 @@ Pass any `React.ReactNode` directly to the `headerContent`, `footerContent`, `se
 
 ```jsx
 import React from 'react';
-import SidekickMenu, { ISidekickMenuItem } from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu, { ISidekickMenuItem } from 'jattac.libs.web.zest-sidekick-menu';
 // Assuming you have custom icons or use an icon library
 import { FaHome, FaInfoCircle, FaCog, FaChevronDown, FaSearch } from 'react-icons/fa';
 
@@ -296,7 +302,7 @@ Import and invoke the `clearSidekickMenuCache` utility function.
 
 ```jsx
 import React from 'react';
-import { clearSidekickMenuCache } from 'jattac.libs.web.react-sidekick-menu';
+import { clearSidekickMenuCache } from 'jattac.libs.web.zest-sidekick-menu';
 
 const handleLogout = () => {
   // Perform user logout logic (e.g., clear session, redirect)
@@ -330,7 +336,7 @@ Turn on `favouritesEnabled`, and optionally add short `description`s so favourit
 
 ```jsx
 import React from 'react';
-import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu from 'jattac.libs.web.zest-sidekick-menu';
 
 const menuItems = [
   {
@@ -363,5 +369,12 @@ export default AppWithFavourites;
 
 Once a user has used 3 or more items, a "Favourites" tab appears (and the menu opens to it by default), ranking items by how often — and how recently — they've been used. See [Favourites](configuration.md#9-favourites) for the full set of options, including pinning.
 
+## See also
+
+- [Search (opt-in)](search.md) — how to enable the search box and how matching works.
+- [Features Showcase](features.md) — what each feature does at a glance.
+- [API Reference](api.md) — every prop in one table.
+- [Configuration Guide](configuration.md) — theming, navigation and favourites options.
+
 ---
-**[< Previous: README.md](README.md) | [Next: Features Showcase >](features.md)**
+**[< Previous: README.md](../README.md) | [Next: Features Showcase >](features.md)**

@@ -1,0 +1,51 @@
+{
+  "findings": [
+    {
+      "cites": "PERF-001",
+      "severity": "advisory",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 911,
+      "evidence": "The test compares fs.statSync sizes of whatever files sit in dist/ with hardcoded 122706/122244; it never runs the build and never checks that dist is newer than the source. package.json's test script is plain `jest`, so `npm test` alone does not rebuild: a source change that grew the bundle would keep passing until someone ran `npm run build`.",
+      "description": "The bundle-size guard can pass against a stale dist, so on its own it does not prove the shipped bundle is no larger than v1.7.0's."
+    },
+    {
+      "cites": "R4",
+      "severity": "advisory",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 818,
+      "evidence": "The scan regex `/search(?: box)? (?:is )?(?:enabled|on) by default/i` does not match \"The search feature is enabled by default\" - the exact sentence this change removed from docs/examples.md - because an extra word sits between \"search\" and \"is\". A page that regressed to that phrasing would still pass the loop.",
+      "description": "R4's edge case that searching the docs for 'enabled by default' finds no contradiction is only partly proven; the most likely regression phrasing slips through the regex."
+    },
+    {
+      "cites": "R3",
+      "severity": "advisory",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 796,
+      "evidence": "The R3 test asserts version 2.0.0, 'searchEnabled', the migration snippet, the already-false sentence and the no-removal sentence, but it does not assert docs/breaking-changes.md:73 'Search itself is otherwise unchanged'; deleting that sentence leaves the test green.",
+      "description": "R3's edge case that the note says search is otherwise unchanged has no failing test behind it."
+    },
+    {
+      "cites": "R4",
+      "severity": "advisory",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 831,
+      "evidence": "Prev/next links are asserted only for docs/api.md (lines 831-832) and docs/configuration.md (lines 841-842). The other edited pages' links are not asserted anywhere: features.md:299, examples.md:367, breaking-changes.md:76.",
+      "description": "R4's acceptance line 'each edited docs page keeps its previous/next links' is proven for only two of the five edited pages."
+    },
+    {
+      "cites": "R1",
+      "severity": "advisory",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 346,
+      "evidence": "The hidden-default test only asserts no element with role textbox/placeholder and that document.activeElement is not an HTMLInputElement. No test presses Tab, Escape, ArrowDown or a numbered shortcut with default props to show keyboard traversal never lands on a hidden control.",
+      "description": "The keyboard half of the accessibility requirement (Tab/arrow/Escape/number traversal unchanged while search is hidden) is only indirectly covered."
+    }
+  ],
+  "verifications": [
+    {
+      "id": "QA-1",
+      "status": "fixed",
+      "evidence": "The built bundles are now smaller than v1.7.0's: dist/index.js 122639 vs 122706 bytes and dist/index.esm.js 122171 vs 122244 (measured on the working-tree dist; it contains the new 'Drop an active term' effect and no MenuButton, so it reflects current source). The limit is enforced by the new test at UI/SidekickMenu/SidekickMenu.test.tsx:911-922, which fails if either file exceeds the v1.7.0 size; it passes, and SidekickMenu.test.tsx is 59/59 green."
+    }
+  ]
+}

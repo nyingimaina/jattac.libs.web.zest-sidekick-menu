@@ -1,0 +1,97 @@
+{
+  "summary": "The change is a one-literal default flip plus a tiny cleanup effect inside the existing SidekickMenu orchestrator, not a new feature. In SidekickMenu.tsx change the destructured default from `searchEnabled = true` to `searchEnabled = false`; the existing render guard `searchEnabled && !effectiveRailCollapsed` then stops mounting the input, its ref stays null, and the existing autofocus effect already no-ops on a null ref, so no new focus code is needed and nothing invisible is focusable. If the prop changes from true to false while a term is still held, the list must not stay filtered by a term the user can no longer see: a second effect dispatches SET_SEARCH_TERM with an empty string when search is off and the term is non-empty. SET_SEARCH_TERM already exists in menuReducer, and the existing pre-search path effect restores the section once the term empties, so no reducer or context change is needed. Enabled search keeps the same lookup, placeholder, icon, autofocus, empty-state, arrow-key and numbered-shortcut code paths untouched, because only the default value and the off-state term reset change. Public surface is unchanged: no export, prop name or type is added, removed or renamed; SidekickMenuProps.searchEnabled stays `boolean | undefined` and only its documented default flips, so UI/index.ts is not touched. This is a behaviour-breaking change for consumers, so package.json goes to 2.0.0, docs/breaking-changes.md gets a v2.0.0 entry naming searchEnabled with the searchEnabled={true} migration, and README.md, docs/api.md, docs/configuration.md, docs/examples.md and docs/features.md stop presenting search as on by default while keeping their prev/next links. Scale: nothing new scales with menu size; with search off the component mounts no input and getFilteredItems returns the array untouched for an empty term, while with search on the existing memoized per-level filtering is unchanged, so a hundred times more items behaves exactly as 1.7.0. Cost: one boolean comparison per render and one guarded effect check, no new state, listeners, timers, storage keys, network calls, dependencies, CSS, exports or files; removing the mounted input when search is off can only shrink or leave equal the built bundle, so the dist size stays within today's budget. Accessibility: with default props the DOM and tab order are exactly the pre-search control set (focus trap still only intercepts Tab at the first/last focusable child and never focuses anything on open), and with searchEnabled the input remains keyboard-reachable and behaves as today.",
+  "impact": {
+    "touches": [
+      "UI/SidekickMenu/SidekickMenu.tsx",
+      "UI/SidekickMenu/types.ts",
+      "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "README.md",
+      "docs/features.md",
+      "docs/examples.md",
+      "docs/api.md",
+      "docs/configuration.md",
+      "docs/breaking-changes.md",
+      "package.json"
+    ],
+    "reuses": [
+      "The existing `searchEnabled && !effectiveRailCollapsed` render guard in SidekickMenu.tsx (line 505) to unmount the input entirely, so no hidden input exists",
+      "The existing null-guarded autofocus effect in SidekickMenu.tsx (lines 329-333), which does nothing when searchInputRef is null",
+      "menuReducer's existing SET_SEARCH_TERM action, CLOSE_MENU's existing term/path reset, and the existing pre-search path restore effect",
+      "getFilteredItems' existing empty-term fast path in UI/SidekickMenu/utils/search.ts, so search-off filtering is free",
+      "The existing search props searchPlaceholder, searchIcon, searchAutoFocus and alwaysShowUnsearchableItems and their propagation to DrilldownMenuList, arrow-key navigation and numbered shortcuts, all unchanged",
+      "The existing search input markup, aria-free label text and CSS Module classes, untouched",
+      "The existing test setup, helpers (getHamburger, makeItems) and test file layout next to the source",
+      "The existing docs prev/next navigation and the breaking-changes entry format (entries oldest-first, v2.0.0 appended last)"
+    ],
+    "adds": [
+      "One small useEffect in SidekickMenu.tsx that dispatches SET_SEARCH_TERM with \"\" when searchEnabled is false and searchTerm is non-empty",
+      "New tests in SidekickMenu.test.tsx for the hidden default, opt-in rendering, no invisible/focusable input when hidden, and dropping an active term when search is turned off",
+      "A v2.0.0 entry in docs/breaking-changes.md naming searchEnabled, stating the new default and showing the searchEnabled={true} migration, plus its table-of-contents item",
+      "No new files, no new exports, no new props, no new dependencies, no new components, and no CSS, storage or build-output changes"
+    ]
+  },
+  "scope": [
+    "UI/SidekickMenu/SidekickMenu.tsx",
+    "UI/SidekickMenu/types.ts",
+    "UI/SidekickMenu/SidekickMenu.test.tsx",
+    "README.md",
+    "docs/api.md",
+    "docs/configuration.md",
+    "docs/examples.md",
+    "docs/features.md",
+    "docs/breaking-changes.md",
+    "package.json"
+  ],
+  "components": [
+    {
+      "name": "SidekickMenu search opt-in default and off-state term reset",
+      "path": "UI/SidekickMenu/SidekickMenu.tsx",
+      "requirements": ["R1", "R2", "R5"]
+    },
+    {
+      "name": "SidekickMenuProps.searchEnabled contract documentation (default false, opt-in description)",
+      "path": "UI/SidekickMenu/types.ts",
+      "requirements": ["R1", "R2"]
+    },
+    {
+      "name": "SidekickMenu search default-off and opt-in tests (existing search tests opt in, no test deleted or skipped)",
+      "path": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R1", "R2", "R5"]
+    },
+    {
+      "name": "Package version bump to 2.0.0 for the breaking default",
+      "path": "package.json",
+      "requirements": ["R3"]
+    },
+    {
+      "name": "Breaking changes v2.0.0 migration note and table-of-contents item",
+      "path": "docs/breaking-changes.md",
+      "requirements": ["R3", "R4"]
+    },
+    {
+      "name": "README feature list and first working example present search as opt-in",
+      "path": "README.md",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "Features showcase search section keeps a working searchEnabled example",
+      "path": "docs/features.md",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "Cookbook search recipe stops claiming search is on by default",
+      "path": "docs/examples.md",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "API reference searchEnabled row shows default false and opt-in semantics",
+      "path": "docs/api.md",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "Configuration guide defaults snippet and search section show searchEnabled false",
+      "path": "docs/configuration.md",
+      "requirements": ["R4"]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "checks": [
+    {
+      "name": "Mobile-first media queries only",
+      "kind": "pattern",
+      "files": ["Styles/**/*.css", "UI/**/*.css"],
+      "forbid": "@media[^{]*\\(\\s*max-width"
+    },
+    {
+      "name": "Font sizes scale with user settings",
+      "kind": "pattern",
+      "files": ["Styles/**/*.css", "UI/**/*.css"],
+      "forbid": "font-size:\\s*[\\d.]+px"
+    },
+    {
+      "name": "Touch targets at least 44px",
+      "kind": "pattern",
+      "files": ["Styles/**/*.css", "UI/**/*.css"],
+      "forbid": "min-(?:width|height):\\s*(?:[0-9]|[1-3][0-9]|4[0-3])px\\b"
+    },
+    {
+      "name": "No fixed numeric inline dimensions",
+      "kind": "pattern",
+      "files": ["UI/**/*.tsx"],
+      "forbid": "style=\\{\\{[^}]*(?:width|height):\\s*[0-9]"
+    },
+    {
+      "name": "Tablet breakpoint exists",
+      "kind": "command",
+      "workingDir": ".",
+      "command": "node -e \"const fs=require('fs');const path=require('path');let css='';for(const d of ['Styles','UI']){if(!fs.existsSync(d))continue;for(const f of fs.readdirSync(d,{recursive:true})){if(f.endsWith('.css'))css+=fs.readFileSync(path.join(d,f),'utf8')}}const m=[...css.matchAll(/@media[^{]*min-width:\\s*(\\d+)px/g)].map(x=>+x[1]);if(!m.some(n=>n>=600&&n<=1024)){console.error('No tablet-range (600-1024px) min-width breakpoint found');process.exit(1)}console.log('Tablet breakpoint present')\""
+    }
+  ],
+  "good": "/* Styles/SidekickMenu.module.css */\n.panel {\n  width: min(300px, 85vw);\n  font-size: 1rem;\n}\n.tabButton {\n  min-height: 44px;\n  min-width: 44px;\n  padding: 8px 10px;\n}\n\n@media (min-width: 768px) {\n  .panel { width: 300px; }\n  .tabButton { min-height: 0; }\n}\n\n// UI/SidekickMenu/components/DrilldownMenuItem.tsx\n<li style={{ \"--zest-stagger-index\": index }} onClick={handleClick} />",
+  "bad": "/* Styles/SidekickMenu.module.css */\n@media (max-width: 768px) {\n  .tabButton { font-size: 13px; min-height: 32px; }\n}\n\n// UI/SidekickMenu/components/Panel.tsx\n<div style={{ width: 320 }}>Menu</div>",
+  "cannotTest": "Whether the UI is genuinely DRY or custom-made for each screen, whether visibility/states adapt meaningfully per device, and whether tablet layouts are actually optimised (rather than merely having a 600-1024px breakpoint) cannot be decided by regexes or commands and needs reviewer judgement. Touch-target checks only cover min-width/min-height declarations, not effective rendered size after transforms or padding.",
+  "facts": [
+    {
+      "subject": "touch target",
+      "attribute": "min-height",
+      "op": "at-least",
+      "value": "44",
+      "unit": "px"
+    }
+  ]
+}

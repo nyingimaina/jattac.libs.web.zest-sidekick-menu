@@ -5,7 +5,7 @@ A flexible, searchable, and accessible side menu component for React, designed t
 ## Features
 
 *   **Effortless Navigation:** Provides a clean and intuitive interface for users to navigate through your application.
-*   **Built-in Search:** Quickly filter menu items with integrated search functionality, improving user efficiency.
+*   **Built-in Search (opt-in):** Quickly filter menu items with integrated search functionality. Search is off by default — enable it per menu with `<SidekickMenu items={items} searchEnabled={true} />`.
 *   **Nested Sub-menus:** Easily create hierarchical menu structures for organizing complex application sections.
 *   **Dynamic Item Visibility:** Conditionally show or hide menu items based on custom logic (e.g., user permissions, feature flags), with optional caching.
 *   **Highly Customizable:** Supports custom headers, footers, and icons, allowing seamless integration with your application's design.
@@ -15,7 +15,7 @@ A flexible, searchable, and accessible side menu component for React, designed t
 Install the package via npm:
 
 ```bash
-npm install jattac.libs.web.react-sidekick-menu
+npm install jattac.libs.web.zest-sidekick-menu
 ```
 
 ## Basic Usage (Hello World)
@@ -24,7 +24,7 @@ Here's the minimal code to get a `SidekickMenu` up and running:
 
 ```jsx
 import React from 'react';
-import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu from 'jattac.libs.web.zest-sidekick-menu';
 
 const App = () => {
   const menuItems = [
@@ -46,11 +46,14 @@ const App = () => {
 export default App;
 ```
 
+The example renders no search box: search is opt-in since v2.0.0. Pass `searchEnabled={true}` to show it.
+
 ## Next Steps
 
 Dive deeper into the features and capabilities of the React Sidekick Menu:
 
 *   **[The Cookbook: Practical Examples](https://github.com/nyingimaina/jattac.libs.web.zest-sidekick-menu/blob/master/docs/examples.md)**: Start here for step-by-step guides and recipes to implement various menu functionalities.
+*   **[Search (opt-in)](docs/search.md)**: How to show the search box, what it matches, and how to restore it after upgrading from 1.x.
 *   [Features Showcase](https://github.com/nyingimaina/jattac.libs.web.zest-sidekick-menu/blob/master/docs/features.md)
 *   [API Reference](https://github.com/nyingimaina/jattac.libs.web.zest-sidekick-menu/blob/master/docs/api.md)
 *   [Configuration Guide](https://github.com/nyingimaina/jattac.libs.web.zest-sidekick-menu/blob/master/docs/configuration.md)

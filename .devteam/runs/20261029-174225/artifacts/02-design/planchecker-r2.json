@@ -1,0 +1,4 @@
+{
+  "summary": "The design satisfies R1-R5, the off-state term reset, the tests and the docs updates, and raises no conflict with the blocking rules or checks.",
+  "conflicts": []
+}

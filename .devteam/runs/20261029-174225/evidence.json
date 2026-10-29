@@ -1,0 +1,222 @@
+{
+  "checks": [
+    {
+      "id": "no-secrets",
+      "name": "No secrets in code",
+      "status": "passed",
+      "seconds": 0.053812,
+      "output": ""
+    },
+    {
+      "id": "no-debug-leftovers",
+      "name": "No debugging leftovers",
+      "status": "passed",
+      "seconds": 0.0322537,
+      "output": ""
+    },
+    {
+      "id": "lib-typecheck",
+      "name": "Type check (library and tests)",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    },
+    {
+      "id": "lib-build",
+      "name": "Build (CommonJS, ES modules, type definitions)",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    },
+    {
+      "id": "lib-validate-package",
+      "name": "Package check (attw and publint)",
+      "status": "notrun",
+      "seconds": 0.087945,
+      "output": "Not set up in this project: attw and publint are not installed, so nothing checks that the package works for everyone who installs it."
+    },
+    {
+      "id": "lib-pack",
+      "name": "What would be published",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    },
+    {
+      "id": "lib-publish-dry-run",
+      "name": "Publish dry run (everything npm checks, nothing is uploaded)",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    },
+    {
+      "id": "lib-size",
+      "name": "Size budget",
+      "status": "notrun",
+      "seconds": 0.1095467,
+      "output": "Not set up in this project: The project has no .size-limit.json, so this check has nothing to run."
+    },
+    {
+      "id": "lib-consumer-smoke",
+      "name": "Install and import the packed library",
+      "status": "notrun",
+      "seconds": 0.110382,
+      "output": "Not set up in this project: Nothing installs the packed library into a scratch project and imports it  no scripts/consumer-smoke.mjs ."
+    },
+    {
+      "id": "lib-docs",
+      "name": "Documentation is complete",
+      "status": "notrun",
+      "seconds": 0.1096904,
+      "output": "Not set up in this project: The project has no scripts/check-docs.mjs, so this check has nothing to run."
+    },
+    {
+      "id": "rule-USR-001-1",
+      "name": "No third-party component libraries",
+      "status": "passed",
+      "seconds": 0.039548,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-001-2",
+      "name": "No native buttons",
+      "status": "passed",
+      "seconds": 0.05262,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-001-3",
+      "name": "No native inputs",
+      "status": "passed",
+      "seconds": 0.0380374,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-001-4",
+      "name": "No native tables",
+      "status": "passed",
+      "seconds": 0.0538486,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-001-5",
+      "name": "No hand-rolled tab widgets",
+      "status": "passed",
+      "seconds": 0.0300035,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-001-6",
+      "name": "Required Zest packages are declared",
+      "status": "failed",
+      "seconds": 0.2186186,
+      "output": "Missing required packages: jattac.libs.web.zest-responsive-layout, jattac.libs.web.zest-file-upload, jattac.libs.web.zest-tabs, jattac.libs.web.responsive-table, jattac.libs.web.zest-textbox, jattac.libs.web.zest-button, jattac.libs.web.overflow-menu, jattac-web-poller"
+    },
+    {
+      "id": "rule-USR-002-1",
+      "name": "Mobile-first media queries only",
+      "status": "passed",
+      "seconds": 0.0264921,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-002-2",
+      "name": "Font sizes scale with user settings",
+      "status": "passed",
+      "seconds": 0.0283767,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-002-3",
+      "name": "Touch targets at least 44px",
+      "status": "passed",
+      "seconds": 0.0286659,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-002-4",
+      "name": "No fixed numeric inline dimensions",
+      "status": "passed",
+      "seconds": 0.0286284,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-002-5",
+      "name": "Tablet breakpoint exists",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-003-1",
+      "name": "No unsafe HTML injection",
+      "status": "passed",
+      "seconds": 0.0346181,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-003-2",
+      "name": "No dynamic code execution",
+      "status": "passed",
+      "seconds": 0.0385527,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-003-3",
+      "name": "No blocking busy-wait loops",
+      "status": "passed",
+      "seconds": 0.0320643,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-003-4",
+      "name": "No JSON stringify deep-clone",
+      "status": "passed",
+      "seconds": 0.0292876,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-003-5",
+      "name": "Event listeners are cleaned up",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-006-1",
+      "name": "Colours come from theme tokens",
+      "status": "passed",
+      "seconds": 0.035681,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-006-2",
+      "name": "No inline font families",
+      "status": "passed",
+      "seconds": 0.0311675,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-006-3",
+      "name": "No positive tabIndex",
+      "status": "passed",
+      "seconds": 0.0282155,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-006-4",
+      "name": "Animation honours reduced-motion",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    },
+    {
+      "id": "lib-tests",
+      "name": "Tests, with coverage",
+      "status": "failed",
+      "seconds": 36.853359,
+      "output": "\u2026\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 794 |\u001B[39m     fs\u001B[33m.\u001B[39mreadFileSync(path\u001B[33m.\u001B[39mjoin(__dirname\u001B[33m,\u001B[39m relativePath)\u001B[33m,\u001B[39m \u001B[32m\u0027utf8\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m        \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 795 |\u001B[39m\r\n     \u001B[90m 796 |\u001B[39m   it(\u001B[32m\u0027R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\r\n     \u001B[90m 797 |\u001B[39m     expect(\u001B[33mJSON\u001B[39m\u001B[33m.\u001B[39mparse(read(\u001B[32m\u0027../../package.json\u0027\u001B[39m))\u001B[33m.\u001B[39mversion)\u001B[33m.\u001B[39mtoBe(\u001B[32m\u00272.0.0\u0027\u001B[39m)\u001B[33m;\u001B[39m\u001B[0m\r\n\r\n      at read (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:794:8)\r\n      at Object.\u003Canonymous\u003E (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:809:7)\r\n\r\n  \u25CF SidekickMenu v2.0.0 release metadata \u203A R4: the API reference row shows searchEnabled default false and opt-in semantics\r\n\r\n    ENOENT: no such file or directory, open \u0027D:\\work\\nyingi\\code\\systems\\Sidekick\\.devteam\\runs\\20261029-174225\\scratch\\arbiter\\perfcheck\\docs\\api.md\u0027\r\n\r\n    \u001B[0m \u001B[90m 792 |\u001B[39m   \u001B[36mconst\u001B[39m path \u001B[33m=\u001B[39m require(\u001B[32m\u0027path\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m 793 |\u001B[39m   \u001B[36mconst\u001B[39m read \u001B[33m=\u001B[39m (relativePath\u001B[33m:\u001B[39m string) \u001B[33m=\u003E\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 794 |\u001B[39m     fs\u001B[33m.\u001B[39mreadFileSync(path\u001B[33m.\u001B[39mjoin(__dirname\u001B[33m,\u001B[39m relativePath)\u001B[33m,\u001B[39m \u001B[32m\u0027utf8\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m        \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 795 |\u001B[39m\r\n     \u001B[90m 796 |\u001B[39m   it(\u001B[32m\u0027R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\r\n     \u001B[90m 797 |\u001B[39m     expect(\u001B[33mJSON\u001B[39m\u001B[33m.\u001B[39mparse(read(\u001B[32m\u0027../../package.json\u0027\u001B[39m))\u001B[33m.\u001B[39mversion)\u001B[33m.\u001B[39mtoBe(\u001B[32m\u00272.0.0\u0027\u001B[39m)\u001B[33m;\u001B[39m\u001B[0m\r\n\r\n      at read (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:794:8)\r\n      at Object.\u003Canonymous\u003E (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:827:17)\r\n\r\n  \u25CF SidekickMenu v2.0.0 release metadata \u203A R4: the configuration guide defaults and search section show search off unless enabled\r\n\r\n    ENOENT: no such file or directory, open \u0027D:\\work\\nyingi\\code\\systems\\Sidekick\\.devteam\\runs\\20261029-174225\\scratch\\arbiter\\perfcheck\\docs\\configuration.md\u0027\r\n\r\n    \u001B[0m \u001B[90m 792 |\u001B[39m   \u001B[36mconst\u001B[39m path \u001B[33m=\u001B[39m require(\u001B[32m\u0027path\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m 793 |\u001B[39m   \u001B[36mconst\u001B[39m read \u001B[33m=\u001B[39m (relativePath\u001B[33m:\u001B[39m string) \u001B[33m=\u003E\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 794 |\u001B[39m     fs\u001B[33m.\u001B[39mreadFileSync(path\u001B[33m.\u001B[39mjoin(__dirname\u001B[33m,\u001B[39m relativePath)\u001B[33m,\u001B[39m \u001B[32m\u0027utf8\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m        \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 795 |\u001B[39m\r\n     \u001B[90m 796 |\u001B[39m   it(\u001B[32m\u0027R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\r\n     \u001B[90m 797 |\u001B[39m     expect(\u001B[33mJSON\u001B[39m\u001B[33m.\u001B[39mparse(read(\u001B[32m\u0027../../package.json\u0027\u001B[39m))\u001B[33m.\u001B[39mversion)\u001B[33m.\u001B[39mtoBe(\u001B[32m\u00272.0.0\u0027\u001B[39m)\u001B[33m;\u001B[39m\u001B[0m\r\n\r\n      at read (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:794:8)\r\n      at Object.\u003Canonymous\u003E (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:836:27)\r\n\r\n  \u25CF SidekickMenu v2.0.0 release metadata \u203A R4: the README first working example renders a menu with no search box\r\n\r\n    ENOENT: no such file or directory, open \u0027D:\\work\\nyingi\\code\\systems\\Sidekick\\.devteam\\runs\\20261029-174225\\scratch\\arbiter\\perfcheck\\README.md\u0027\r\n\r\n    \u001B[0m \u001B[90m 792 |\u001B[39m   \u001B[36mconst\u001B[39m path \u001B[33m=\u001B[39m require(\u001B[32m\u0027path\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m 793 |\u001B[39m   \u001B[36mconst\u001B[39m read \u001B[33m=\u001B[39m (relativePath\u001B[33m:\u001B[39m string) \u001B[33m=\u003E\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 794 |\u001B[39m     fs\u001B[33m.\u001B[39mreadFileSync(path\u001B[33m.\u001B[39mjoin(__dirname\u001B[33m,\u001B[39m relativePath)\u001B[33m,\u001B[39m \u001B[32m\u0027utf8\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m        \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 795 |\u001B[39m\r\n     \u001B[90m 796 |\u001B[39m   it(\u001B[32m\u0027R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\r\n     \u001B[90m 797 |\u001B[39m     expect(\u001B[33mJSON\u001B[39m\u001B[33m.\u001B[39mparse(read(\u001B[32m\u0027../../package.json\u0027\u001B[39m))\u001B[33m.\u001B[39mversion)\u001B[33m.\u001B[39mtoBe(\u001B[32m\u00272.0.0\u0027\u001B[39m)\u001B[33m;\u001B[39m\u001B[0m\r\n\r\n      at read (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:794:8)\r\n      at Object.\u003Canonymous\u003E (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:846:20)\r\n\r\n\r\nTest Suites: 9 failed, 145 passed, 154 total\r\nTests:       24 failed, 1462 passed, 1486 total\r\nSnapshots:   0 total\r\nTime:        34.861 s\r\nRan all test suites."
+    }
+  ],
+  "tests": []
+}

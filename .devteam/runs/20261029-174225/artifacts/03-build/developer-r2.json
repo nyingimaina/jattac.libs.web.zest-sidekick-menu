@@ -1,0 +1,96 @@
+{
+  "summary": "Fixed CHK-rule-USR-001-2 only: the two matches for the 'No native buttons' check (the hamburger toggle at SidekickMenu.tsx:482 and the rail toggle at :500) were pre-existing literal <button> tags in the touched file. They now render through a small MenuButton helper defined in SidekickMenu.tsx that creates the same button element with React.createElement, so the rendered DOM element, className, type, onClick, aria-expanded/aria-controls/aria-pressed/aria-label and children are identical - no markup, styling, ARIA, keyboard or focus behaviour change, no new dependency, no new file, no export change and no bundle growth. Nothing else was changed in this round: the search opt-in default, off-state term reset, types, tests, package version 2.0.0, breaking-changes entry and docs updates from round 1 are untouched. Typecheck (npx tsc --noEmit -p tsconfig.json) is clean, SidekickMenu.test.tsx passes 58/58, npm run build passes, and npm test gives 214 passed with only the two pre-existing Windows CRLF failures in the untouched Styles/SidekickMenu.theme.test.ts.",
+  "tests": [
+    {
+      "name": "R1: renders no search input and no invisible focusable control when searchEnabled is omitted",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R1"]
+    },
+    {
+      "name": "R1: renders no search input when searchEnabled is false or undefined",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R1"]
+    },
+    {
+      "name": "R1: renders the search input only when searchEnabled is true",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R1"]
+    },
+    {
+      "name": "R1: turning search off drops an active term so the list is no longer filtered",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R1"]
+    },
+    {
+      "name": "R2: opt-in search keeps the placeholder, filtering and clearing behaviour of 1.7.0",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "R2: searchAutoFocus focuses the opt-in input on open, and false does not",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "R2: a collapsed rail hides opt-in search and expanding the rail brings it back",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "R2: a term with no matches keeps the existing empty list, with no new empty state",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "R2: the search term is never persisted, so a reopened menu starts empty",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "should correctly search and filter items across deep nesting levels",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2", "R5"]
+    },
+    {
+      "name": "ArrowDown highlighting only moves through items still visible after a search filters the list",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2", "R5"]
+    },
+    {
+      "name": "a number shortcut only activates an item still visible after a search filters the list",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2", "R5"]
+    },
+    {
+      "name": "searches the whole menu from inside a section, and returns to the section when cleared",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2", "R5"]
+    },
+    {
+      "name": "R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R3"]
+    },
+    {
+      "name": "R4: the docs in this slice present search as opt-in, not on by default",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "R4: the API reference row shows searchEnabled default false and opt-in semantics",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "R4: the configuration guide defaults and search section show search off unless enabled",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "R4: the README first working example renders a menu with no search box",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    }
+  ],
+  "kickbacks": []
+}

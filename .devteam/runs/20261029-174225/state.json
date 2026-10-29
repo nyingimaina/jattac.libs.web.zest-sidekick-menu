@@ -1,0 +1,1501 @@
+{
+  "runId": "20261029-174225",
+  "options": {
+    "browser": "end",
+    "visible": false,
+    "document": true,
+    "referenceFolders": []
+  },
+  "browser": {
+    "ran": false,
+    "passed": false,
+    "visible": false,
+    "document": false,
+    "seconds": 0,
+    "treeHash": "21E23C027B9AED8FAAEA637C494C676A87E06ABC46CB6B9A579F4FD212993FBB",
+    "reason": "this stack has no browser journeys",
+    "output": ""
+  },
+  "isVerification": false,
+  "stageSeconds": {
+    "define": 198.9452725,
+    "design": 308.4097926,
+    "build": 2655.1597467,
+    "challenge": 1345.2713774,
+    "prove": 980.7708599
+  },
+  "timeCapExtensions": {},
+  "stageClockStart": {
+    "design": 0,
+    "build": 2179.7085594,
+    "challenge": 1107.2175006,
+    "prove": 0
+  },
+  "featureRequest": "hide the searchbox by default, have it possible to enable by prop. Even existing installations should have it hidden by default",
+  "packId": "react-component-library",
+  "status": "completed",
+  "currentStage": "prove",
+  "stages": {
+    "define": "done",
+    "design": "done",
+    "build": "done",
+    "challenge": "done",
+    "prove": "done"
+  },
+  "defineRound": 2,
+  "designRound": 2,
+  "buildRound": 5,
+  "sliceHash": "99A65F75F5575AFF",
+  "slicesDone": 2,
+  "sliceReports": [
+    {
+      "summary": "Made SidekickMenu search opt-in for v2.0.0. UI/SidekickMenu/SidekickMenu.tsx: searchEnabled now defaults to false (the existing \u0060searchEnabled \u0026\u0026 !effectiveRailCollapsed\u0060 guard unmounts the input entirely, so nothing invisible is focusable, and the null-guarded autofocus effect no-ops). Added a small effect that dispatches SET_SEARCH_TERM \u0022\u0022 when search is turned off while a term is active, so the menu is never left filtered by an invisible query. Search enabled keeps every 1.7.0 path unchanged (placeholder, autofocus, icon, matching, ordering, numbered shortcuts, empty list). types.ts documents searchEnabled as opt-in with default false. Updated every existing search test to pass searchEnabled (none deleted or skipped) and added tests for the hidden default, false/undefined, opt-in rendering, prop-flip term reset, autofocus, rail collapse, no-match empty state, non-persistence, plus release metadata. Bumped package.json to 2.0.0, added the v2.0.0 breaking-changes entry with the searchEnabled={true} migration and ToC item, and updated README/docs/features/docs/examples to present search as opt-in. docs/api.md and docs/configuration.md were intentionally left to the other build slice (out of this step\u0027s declared parts) and remain in the repo\u0027s pre-existing state for that step. Build passes. Focused suite: 55/55. Full suite: 211 passed, 2 failed in Styles/SidekickMenu.theme.test.ts only - both are pre-existing Windows/CRLF regex failures in an untouched file (the working-tree Styles/SidekickMenu.module.css is CRLF while those tests read it expecting LF), unrelated to this change.",
+      "tests": [
+        {
+          "name": "R1: renders no search input and no invisible focusable control when searchEnabled is omitted",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R1"
+          ]
+        },
+        {
+          "name": "R1: renders no search input when searchEnabled is false or undefined",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R1"
+          ]
+        },
+        {
+          "name": "R1: renders the search input only when searchEnabled is true",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R1"
+          ]
+        },
+        {
+          "name": "R1: turning search off drops an active term so the list is no longer filtered",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R1"
+          ]
+        },
+        {
+          "name": "R2: opt-in search keeps the placeholder, filtering and clearing behaviour of 1.7.0",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R2"
+          ]
+        },
+        {
+          "name": "R2: searchAutoFocus focuses the opt-in input on open, and false does not",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R2"
+          ]
+        },
+        {
+          "name": "R2: a collapsed rail hides opt-in search and expanding the rail brings it back",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R2"
+          ]
+        },
+        {
+          "name": "R2: a term with no matches keeps the existing empty list, with no new empty state",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R2"
+          ]
+        },
+        {
+          "name": "R2: the search term is never persisted, so a reopened menu starts empty",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R2"
+          ]
+        },
+        {
+          "name": "should correctly search and filter items across deep nesting levels",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R2",
+            "R5"
+          ]
+        },
+        {
+          "name": "ArrowDown highlighting only moves through items still visible after a search filters the list",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R2",
+            "R5"
+          ]
+        },
+        {
+          "name": "a number shortcut only activates an item still visible after a search filters the list",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R2",
+            "R5"
+          ]
+        },
+        {
+          "name": "searches the whole menu from inside a section, and returns to the section when cleared",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R2",
+            "R5"
+          ]
+        },
+        {
+          "name": "R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R3"
+          ]
+        },
+        {
+          "name": "R4: the docs in this slice present search as opt-in, not on by default",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R4"
+          ]
+        }
+      ],
+      "kickbacks": []
+    },
+    {
+      "summary": "Finished the documentation slice of the search opt-in change. docs/api.md now lists searchEnabled with default false and describes it as opt-in (pass true to render the input). docs/configuration.md now shows searchEnabled: false in its defaults snippet and its search section says search is off unless enabled, with a searchEnabled={true} example; both pages keep their previous/next links. Extended the R4 tests in SidekickMenu.test.tsx to cover api.md and configuration.md (default false, opt-in wording, defaults snippet, prev/next navigation) and to assert the README\u0027s first working example contains no searchEnabled. Build and targeted tests pass; the full suite has only the two pre-existing Windows CRLF failures in the untouched Styles/SidekickMenu.theme.test.ts.",
+      "tests": [
+        {
+          "name": "SidekickMenu v2.0.0 release metadata \u003E R4: the docs in this slice present search as opt-in, not on by default",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R4"
+          ]
+        },
+        {
+          "name": "SidekickMenu v2.0.0 release metadata \u003E R4: the API reference row shows searchEnabled default false and opt-in semantics",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R4"
+          ]
+        },
+        {
+          "name": "SidekickMenu v2.0.0 release metadata \u003E R4: the configuration guide defaults and search section show search off unless enabled",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R4"
+          ]
+        },
+        {
+          "name": "SidekickMenu v2.0.0 release metadata \u003E R4: the README first working example renders a menu with no search box",
+          "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+          "requirements": [
+            "R4"
+          ]
+        }
+      ],
+      "kickbacks": []
+    }
+  ],
+  "documentedRound": 5,
+  "revisionsUsed": 4,
+  "requirementKickbacks": 0,
+  "planReviewRounds": 1,
+  "planConflictHashes": [
+    "031DE6A8FFE7E031"
+  ],
+  "sizeApproved": false,
+  "lastPlanConflicts": [],
+  "planRounds": [
+    {
+      "number": 1,
+      "at": "2026-10-29T19:01:19.2079187+00:00",
+      "outcome": "conflicts",
+      "conflicts": [
+        {
+          "requirement": "R1",
+          "against": "design",
+          "kind": "scope",
+          "owner": "design",
+          "why": "The design says it touches UI/SidekickMenu/SidekickMenu.tsx:, which its own scope does not allow.",
+          "evidence": "its impact (touches) names UI/SidekickMenu/SidekickMenu.tsx:; the scope is UI/SidekickMenu/SidekickMenu.tsx, UI/SidekickMenu/types.ts, UI/SidekickMenu/SidekickMenu.test.tsx, README.md, docs/api.md, docs/configuration.md, docs/examples.md, docs/features.md, docs/breaking-changes.md, package.json."
+        },
+        {
+          "requirement": "R1",
+          "against": "design",
+          "kind": "scope",
+          "owner": "design",
+          "why": "The design says it touches UI/SidekickMenu/types.ts:, which its own scope does not allow.",
+          "evidence": "its impact (touches) names UI/SidekickMenu/types.ts:; the scope is UI/SidekickMenu/SidekickMenu.tsx, UI/SidekickMenu/types.ts, UI/SidekickMenu/SidekickMenu.test.tsx, README.md, docs/api.md, docs/configuration.md, docs/examples.md, docs/features.md, docs/breaking-changes.md, package.json."
+        },
+        {
+          "requirement": "R1",
+          "against": "design",
+          "kind": "scope",
+          "owner": "design",
+          "why": "The design says it touches UI/SidekickMenu/SidekickMenu.test.tsx:, which its own scope does not allow.",
+          "evidence": "its impact (touches) names UI/SidekickMenu/SidekickMenu.test.tsx:; the scope is UI/SidekickMenu/SidekickMenu.tsx, UI/SidekickMenu/types.ts, UI/SidekickMenu/SidekickMenu.test.tsx, README.md, docs/api.md, docs/configuration.md, docs/examples.md, docs/features.md, docs/breaking-changes.md, package.json."
+        },
+        {
+          "requirement": "R1",
+          "against": "design",
+          "kind": "scope",
+          "owner": "design",
+          "why": "The design says it touches docs/breaking-changes.md:, which its own scope does not allow.",
+          "evidence": "its impact (touches) names docs/breaking-changes.md:; the scope is UI/SidekickMenu/SidekickMenu.tsx, UI/SidekickMenu/types.ts, UI/SidekickMenu/SidekickMenu.test.tsx, README.md, docs/api.md, docs/configuration.md, docs/examples.md, docs/features.md, docs/breaking-changes.md, package.json."
+        },
+        {
+          "requirement": "R1",
+          "against": "design",
+          "kind": "scope",
+          "owner": "design",
+          "why": "The design says it touches package.json:, which its own scope does not allow.",
+          "evidence": "its impact (touches) names package.json:; the scope is UI/SidekickMenu/SidekickMenu.tsx, UI/SidekickMenu/types.ts, UI/SidekickMenu/SidekickMenu.test.tsx, README.md, docs/api.md, docs/configuration.md, docs/examples.md, docs/features.md, docs/breaking-changes.md, package.json."
+        }
+      ],
+      "resolution": "Sent back to the architect, who revised the design to settle it. The next check found the plan consistent."
+    },
+    {
+      "number": 2,
+      "at": "2026-10-29T19:04:37.3799451+00:00",
+      "outcome": "consistent",
+      "conflicts": [],
+      "resolution": ""
+    }
+  ],
+  "planCheck": "consistent",
+  "planWaivedRules": [],
+  "setAsideRequirements": [],
+  "reusedChecks": {},
+  "tensionPair": [],
+  "tensionDiagnoses": {},
+  "specialists": [],
+  "specialistsDone": [],
+  "specialistCallbacks": 0,
+  "specialistHashes": {},
+  "ran": [
+    "define",
+    "design",
+    "build",
+    "challenge",
+    "prove"
+  ],
+  "accepted": {
+    "define/analyst": "artifacts/01-define/analyst-r1.json",
+    "design/architect": "artifacts/02-design/architect-r2.json",
+    "design/planchecker": "artifacts/02-design/planchecker-r2.json",
+    "build/developer": "artifacts/03-build/developer-r4.json",
+    "challenge/security": "artifacts/04-challenge/security-r5.json",
+    "challenge/qa": "artifacts/04-challenge/qa-r4.json",
+    "challenge/reviewer": "artifacts/04-challenge/reviewer-r5.json",
+    "build/arbiter": "artifacts/03-build/arbiter-r5.json",
+    "prove/documenter": "artifacts/05-prove/documenter-r5.json"
+  },
+  "extraRounds": 3,
+  "queueIds": [
+    "CHK-rule-USR-001-2",
+    "CHK-rule-USR-001-3",
+    "QA-1",
+    "REV-1"
+  ],
+  "focusFindingId": "REV-1",
+  "itemShift": 3,
+  "passStamps": {
+    "docs/api.md": "14350:639288980472907195",
+    "docs/breaking-changes.md": "6284:639288977611091390",
+    "docs/configuration.md": "18563:639288980518500607",
+    "docs/examples.md": "11964:639288977365744619",
+    "docs/features.md": "11078:639288977409509028",
+    "package.json": "1327:639288977207854327",
+    "README.md": "2952:639288977499084120",
+    "UI/SidekickMenu/SidekickMenu.test.tsx": "39504:639289000850149702",
+    "UI/SidekickMenu/SidekickMenu.tsx": "21469:639289000352720745",
+    "UI/SidekickMenu/types.ts": "2419:639288977169833758"
+  },
+  "scopeRestored": [],
+  "configStamp": "639288916147072804",
+  "scopePush": false,
+  "hostStamps": {
+    "REV-1": "22322:639288986087982438",
+    "QA-1": "22322:639288986087982438"
+  },
+  "verifying": [],
+  "settled": 0,
+  "confirmedSettles": 0,
+  "falseSettles": 0,
+  "preflightCalls": 1,
+  "buildRanSincePass": false,
+  "fixFiles": {
+    "CHK-rule-USR-001-2": [
+      "UI/SidekickMenu/SidekickMenu.tsx"
+    ],
+    "CHK-rule-USR-001-3": [
+      "UI/SidekickMenu/SidekickMenu.tsx"
+    ],
+    "QA-1": [
+      "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "UI/SidekickMenu/SidekickMenu.tsx"
+    ]
+  },
+  "acceptedByYou": [],
+  "appAcceptsLoaded": true,
+  "claimedBuilt": [],
+  "confirmedBuilt": 0,
+  "builtWrong": 0,
+  "canaryPasses": 1,
+  "parked": [],
+  "reviewPasses": 3,
+  "costUsd": 0.39225883800000005,
+  "budgetUsd": 10,
+  "agentCalls": 20,
+  "modelCalls": {
+    "opencode-go/deepseek-v4.1-flash": 20
+  },
+  "startedAt": "2026-10-29T17:42:25.9901708+00:00",
+  "updatedAt": "2026-10-29T20:27:48.9978655+00:00",
+  "completedAt": "2026-10-29T20:27:41.3098243+00:00",
+  "findings": [
+    {
+      "id": "CHK-lib-validate-package",
+      "source": "check:lib-validate-package",
+      "cites": "LIB-002",
+      "severity": "advisory",
+      "description": "Check \u0027Package check (attw and publint)\u0027 is failing.",
+      "file": "",
+      "evidence": "Not set up in this project: attw and publint are not installed, so nothing checks that the package works for everyone who installs it.",
+      "status": "advisory",
+      "raisedRound": 1,
+      "note": "It could not be run, so nothing was checked here; it does not block this feature.",
+      "repeats": 0
+    },
+    {
+      "id": "CHK-lib-size",
+      "source": "check:lib-size",
+      "cites": "EFF-001",
+      "severity": "advisory",
+      "description": "Check \u0027Size budget\u0027 is failing.",
+      "file": "",
+      "evidence": "Not set up in this project: The project has no .size-limit.json, so this check has nothing to run.",
+      "status": "advisory",
+      "raisedRound": 1,
+      "note": "It could not be run, so nothing was checked here; it does not block this feature.",
+      "repeats": 0
+    },
+    {
+      "id": "CHK-lib-consumer-smoke",
+      "source": "check:lib-consumer-smoke",
+      "cites": "LIB-003",
+      "severity": "advisory",
+      "description": "Check \u0027Install and import the packed library\u0027 is failing.",
+      "file": "",
+      "evidence": "Not set up in this project: Nothing installs the packed library into a scratch project and imports it  no scripts/consumer-smoke.mjs .",
+      "status": "advisory",
+      "raisedRound": 1,
+      "note": "It could not be run, so nothing was checked here; it does not block this feature.",
+      "repeats": 0
+    },
+    {
+      "id": "CHK-lib-docs",
+      "source": "check:lib-docs",
+      "cites": "DOC-001",
+      "severity": "advisory",
+      "description": "Check \u0027Documentation is complete\u0027 is failing.",
+      "file": "",
+      "evidence": "Not set up in this project: The project has no scripts/check-docs.mjs, so this check has nothing to run.",
+      "status": "advisory",
+      "raisedRound": 1,
+      "note": "It could not be run, so nothing was checked here; it does not block this feature.",
+      "repeats": 0
+    },
+    {
+      "id": "CHK-rule-USR-001-6",
+      "source": "check:rule-USR-001-6",
+      "cites": "USR-001",
+      "severity": "advisory",
+      "description": "Check \u0027Required Zest packages are declared\u0027 is failing.",
+      "file": "",
+      "evidence": "Missing required packages: jattac.libs.web.zest-responsive-layout, jattac.libs.web.zest-file-upload, jattac.libs.web.zest-tabs, jattac.libs.web.responsive-table, jattac.libs.web.zest-textbox, jattac.libs.web.zest-button, jattac.libs.web.overflow-menu, jattac-web-poller",
+      "status": "advisory",
+      "raisedRound": 1,
+      "note": "It was already failing before this run started, so it does not block this feature.",
+      "repeats": 0
+    },
+    {
+      "id": "CHK-rule-USR-001-2",
+      "source": "check:rule-USR-001-2",
+      "cites": "USR-001",
+      "severity": "blocking",
+      "description": "Automated check \u0027No native buttons\u0027 failed.",
+      "file": "",
+      "evidence": "2 match(es):\nUI/SidekickMenu/SidekickMenu.tsx:482: \u003Cbutton\r\nUI/SidekickMenu/SidekickMenu.tsx:500: \u003Cbutton\r\n\r\nAlso found in 3 file(s) this change did not touch (not counted against it): UI/SidekickMenu/components/DrilldownMenuItem.tsx, UI/SidekickMenu/components/MenuBreadcrumb.tsx, UI/SidekickMenu/components/TabSwitcher.tsx.",
+      "status": "fixed",
+      "raisedRound": 1,
+      "fixedRound": 2,
+      "note": "check now passes",
+      "repeats": 0
+    },
+    {
+      "id": "CHK-rule-USR-001-3",
+      "source": "check:rule-USR-001-3",
+      "cites": "USR-001",
+      "severity": "blocking",
+      "description": "Automated check \u0027No native inputs\u0027 failed.",
+      "file": "",
+      "evidence": "1 match(es):\nUI/SidekickMenu/SidekickMenu.tsx:519: \u003Cinput",
+      "status": "fixed",
+      "raisedRound": 1,
+      "fixedRound": 3,
+      "note": "check now passes",
+      "repeats": 1
+    },
+    {
+      "id": "REV-1",
+      "source": "reviewer",
+      "cites": "PERF-001",
+      "severity": "blocking",
+      "description": "The performance non-functional requirement is unmet and unproven: both bundles are measurably larger than v1.7.0\u0027s, and the MenuButton helper added at lines 42-43 (used by the hamburger and rail toggle, unrelated to this feature) is pure avoidable payload. The developer\u0027s report claims \u0027no bundle growth\u0027, which the measurement contradicts.",
+      "file": "UI/SidekickMenu/SidekickMenu.tsx",
+      "line": 340,
+      "evidence": "I rebuilt both revisions in scratch copies with the project\u0027s own rollup.config.js and a junction to the same node_modules. v1.7.0 (git archive HEAD): dist/index.js = 122706 bytes, dist/index.esm.js = 122244. Working tree: 123360 and 122892 (\u002B654 and \u002B648 bytes). A third build with only the MenuButton helper (lines 42-43) and its three call sites reverted still measured 123075 and 122607 (\u002B369 and \u002B363), so the growth comes from the new off-state reset effect (lines 338-344) plus the MenuButton indirection. Nothing measures it: no .size-limit.json and no test reads dist sizes. Requirement (performance): \u0027npm run build output for dist/index.js and dist/index.esm.js is no larger than v1.7.0\u0027s (measure both before and after)\u0027.",
+      "status": "fixed",
+      "raisedRound": 3,
+      "fixedRound": 5,
+      "note": "Ruled by the arbiter: PERF-001 only requires that the built bundle not grow: I rebuilt the current tree in a scratch copy with the project\u0027s own rollup config and measured dist/index.js 122639 and dist/index.esm.js 122171 bytes, both below v1.7.0\u0027s 122706/122244, and the PERF-001 test at SidekickMenu.test.tsx:911 already enforces exactly that ceiling. The finding\u0027s premise is stale: SidekickMenu.tsx:42 is \u0060const h = React.createElement;\u0060 and no MenuButton helper exists (bundle risk also removed), so both its size claim and its \u0027unproven\u0027 claim are contradicted by the code and the measurement.",
+      "repeats": 0
+    },
+    {
+      "id": "REV-2",
+      "source": "reviewer",
+      "cites": "UI-001",
+      "severity": "advisory",
+      "description": "Turning search off clears the query but leaves the stale highlight, so the keyboard highlight silently moves to a different item than the one the user had selected. Dispatch SET_HIGHLIGHTED_INDEX -1 with the term reset so the off-state matches every other term-clearing path.",
+      "file": "UI/SidekickMenu/SidekickMenu.tsx",
+      "line": 342,
+      "evidence": "The new effect dispatches only SET_SEARCH_TERM. handleSearchChange (lines 283-287) always follows a term change with SET_HIGHLIGHTED_INDEX -1. Scenario: searchEnabled flips true-\u003Efalse while a term is active and an item was arrow-highlighted; the term is dropped but highlightedIndex (e.g. 1) is kept, so after the list unfilters a different item (Banana) is highlighted and Enter activates it, not the item the user had highlighted.",
+      "status": "advisory",
+      "raisedRound": 3,
+      "repeats": 0
+    },
+    {
+      "id": "REV-3",
+      "source": "reviewer",
+      "cites": "R5",
+      "severity": "advisory",
+      "description": "R5\u0027s acceptance \u0027npm test passes\u0027 is literally unmet because of two pre-existing, unrelated environment failures; the search-specific part of R5 is satisfied.",
+      "file": "Styles/SidekickMenu.theme.test.ts",
+      "line": 180,
+      "evidence": "npx jest: 214 passed, 2 failed. Both failures are the existing CRLF-vs-LF regexes at lines 180 and 219 of the untouched Styles/SidekickMenu.theme.test.ts, so they also fail on HEAD in this Windows checkout. Every search test passes and none is deleted or skipped (no .skip/.only/xit in the suite).",
+      "status": "advisory",
+      "raisedRound": 3,
+      "repeats": 0
+    },
+    {
+      "id": "QA-1",
+      "source": "qa",
+      "cites": "PERF-001",
+      "severity": "blocking",
+      "description": "The performance non-functional requirement (\u0022npm run build output for dist/index.js and dist/index.esm.js is no larger than v1.7.0\u0027s (measure both before and after)\u0022) is both unmet and unproven: both bundles are measurably larger than v1.7.0\u0027s and no test/measurement enforces the limit (TEST-001 is also unmet for this requirement).",
+      "file": "UI/SidekickMenu/SidekickMenu.tsx",
+      "line": 340,
+      "evidence": "Measured both builds in a scratch copy with identical rollup/plugins: HEAD (v1.7.0) dist/index.js = 122706 bytes, dist/index.esm.js = 122244; working tree = 123360 and 122892 (\u002B654 and \u002B648 bytes). The growth comes from the added off-state reset effect/comment (lines 338-344) and the MenuButton helper (lines 42-43). No test measures build output: searching all *.test.* for dist/index, bundle, gzip or size-limit finds nothing and there is no .size-limit.json, so nothing would fail if the bundle grew further.",
+      "status": "fixed",
+      "raisedRound": 3,
+      "fixedRound": 4,
+      "note": "The built bundles are now smaller than v1.7.0\u0027s: dist/index.js 122639 vs 122706 bytes and dist/index.esm.js 122171 vs 122244 (measured on the working-tree dist; it contains the new \u0027Drop an active term\u0027 effect and no MenuButton, so it reflects current source). The limit is enforced by the new test at UI/SidekickMenu/SidekickMenu.test.tsx:911-922, which fails if either file exceeds the v1.7.0 size; it passes, and SidekickMenu.test.tsx is 59/59 green.",
+      "repeats": 0
+    },
+    {
+      "id": "QA-2",
+      "source": "qa",
+      "cites": "R2",
+      "severity": "advisory",
+      "description": "R2 names searchIcon among the 1.7.0 behaviours that must keep working; no test would fail if the searchIcon prop stopped being honoured.",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 393,
+      "evidence": "The R2 tests cover placeholder, filtering, clearing, autofocus, rail, empty state and numbered shortcuts, but no test passes searchIcon or asserts a custom icon renders (grep for searchIcon in every *.test.* file returns no matches).",
+      "status": "advisory",
+      "raisedRound": 3,
+      "repeats": 0
+    },
+    {
+      "id": "QA-3",
+      "source": "qa",
+      "cites": "UI-001",
+      "severity": "advisory",
+      "description": "The accessibility non-functional requirement\u0027s keyboard-traversal acceptance is only partly proven; the unmounted input makes the hidden case structurally safe, but the claim is not asserted.",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 346,
+      "evidence": "The default-props accessibility test asserts only that there is no textbox and that document.activeElement is not an HTMLInputElement; no test drives Tab, ArrowDown, Escape or Digit keys with default props to show focus never lands on a hidden control, and no test reaches the opt-in input by keyboard (only the searchAutoFocus programmatic focus is asserted at line 415).",
+      "status": "advisory",
+      "raisedRound": 3,
+      "repeats": 0
+    },
+    {
+      "id": "QA-4",
+      "source": "qa",
+      "cites": "R3",
+      "severity": "advisory",
+      "description": "One R3 edge case (the note says search is otherwise unchanged) is present in the document but not covered by any test assertion.",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 796,
+      "evidence": "The R3 test asserts the version, the migration snippet, the already-passing-false sentence and the no-export sentence, but no assertion covers the note\u0027s opening claim \u0022Search itself is otherwise unchanged\u0022 (docs/breaking-changes.md:73), which R3\u0027s edge case requires the note to state.",
+      "status": "advisory",
+      "raisedRound": 3,
+      "repeats": 1
+    },
+    {
+      "id": "QA-5",
+      "source": "qa",
+      "cites": "R4",
+      "severity": "advisory",
+      "description": "R4\u0027s page-by-page guarantees are only partially asserted; the docs are currently correct but the tests would not notice several regressions.",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 826,
+      "evidence": "The prev/next links are asserted only for docs/api.md and docs/configuration.md (lines 831-832 and 841-842); features.md, examples.md, breaking-changes.md and README still have their links but a dropped link would not fail. The docs scan checks six files and only two phrasings, so a contradiction in docs/best-practices.md or docs/development.md, or one worded differently, would not be caught. The README feature-list wording (\u0022Search is off by default\u0022) is also not asserted, only that searchEnabled={true} appears somewhere in README.",
+      "status": "advisory",
+      "raisedRound": 3,
+      "repeats": 0
+    },
+    {
+      "id": "QA-6",
+      "source": "qa",
+      "cites": "R5",
+      "severity": "advisory",
+      "description": "R5\u0027s \u0022npm test passes\u0022 is literally unmet because of the pre-existing, unrelated CRLF failures; the search-specific part of R5 is satisfied.",
+      "file": "Styles/SidekickMenu.theme.test.ts",
+      "line": 180,
+      "evidence": "npx jest gives 214 passed / 2 failed. Both failures (lines 180 and 219) are the pre-existing Windows CRLF regex mismatches in the untouched Styles/SidekickMenu.theme.test.ts; every search test passes and none is deleted or skipped.",
+      "status": "advisory",
+      "raisedRound": 3,
+      "repeats": 0
+    },
+    {
+      "id": "QA-7",
+      "source": "qa",
+      "cites": "LIB-003",
+      "severity": "advisory",
+      "description": "The packed-library install/import half of LIB-003 is not exercised by this project; this is pre-existing project state, not introduced by the change.",
+      "file": "package.json",
+      "line": 39,
+      "evidence": "There is no scripts/consumer-smoke.mjs and no other install/import check, so the packed library was not installed into a scratch project or imported under CommonJS and ES modules. npm pack --dry-run shows files:[\u0022dist\u0022] only (62 files, 600.8 kB, including dist/**/*.test.d.ts).",
+      "status": "advisory",
+      "raisedRound": 3,
+      "repeats": 0
+    },
+    {
+      "id": "CHK-lib-tests",
+      "source": "check:lib-tests",
+      "cites": "CHK-lib-tests",
+      "severity": "advisory",
+      "description": "Check \u0027Tests, with coverage\u0027 is failing.",
+      "file": "",
+      "evidence": "\u2026\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 794 |\u001B[39m     fs\u001B[33m.\u001B[39mreadFileSync(path\u001B[33m.\u001B[39mjoin(__dirname\u001B[33m,\u001B[39m relativePath)\u001B[33m,\u001B[39m \u001B[32m\u0027utf8\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m        \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 795 |\u001B[39m\r\n     \u001B[90m 796 |\u001B[39m   it(\u001B[32m\u0027R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\r\n     \u001B[90m 797 |\u001B[39m     expect(\u001B[33mJSON\u001B[39m\u001B[33m.\u001B[39mparse(read(\u001B[32m\u0027../../package.json\u0027\u001B[39m))\u001B[33m.\u001B[39mversion)\u001B[33m.\u001B[39mtoBe(\u001B[32m\u00272.0.0\u0027\u001B[39m)\u001B[33m;\u001B[39m\u001B[0m\r\n\r\n      at read (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:794:8)\r\n      at Object.\u003Canonymous\u003E (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:809:7)\r\n\r\n  \u25CF SidekickMenu v2.0.0 release metadata \u203A R4: the API reference row shows searchEnabled default false and opt-in semantics\r\n\r\n    ENOENT: no such file or directory, open \u0027D:\\work\\nyingi\\code\\systems\\Sidekick\\.devteam\\runs\\20261029-174225\\scratch\\arbiter\\perfcheck\\docs\\api.md\u0027\r\n\r\n    \u001B[0m \u001B[90m 792 |\u001B[39m   \u001B[36mconst\u001B[39m path \u001B[33m=\u001B[39m require(\u001B[32m\u0027path\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m 793 |\u001B[39m   \u001B[36mconst\u001B[39m read \u001B[33m=\u001B[39m (relativePath\u001B[33m:\u001B[39m string) \u001B[33m=\u003E\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 794 |\u001B[39m     fs\u001B[33m.\u001B[39mreadFileSync(path\u001B[33m.\u001B[39mjoin(__dirname\u001B[33m,\u001B[39m relativePath)\u001B[33m,\u001B[39m \u001B[32m\u0027utf8\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m        \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 795 |\u001B[39m\r\n     \u001B[90m 796 |\u001B[39m   it(\u001B[32m\u0027R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\r\n     \u001B[90m 797 |\u001B[39m     expect(\u001B[33mJSON\u001B[39m\u001B[33m.\u001B[39mparse(read(\u001B[32m\u0027../../package.json\u0027\u001B[39m))\u001B[33m.\u001B[39mversion)\u001B[33m.\u001B[39mtoBe(\u001B[32m\u00272.0.0\u0027\u001B[39m)\u001B[33m;\u001B[39m\u001B[0m\r\n\r\n      at read (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:794:8)\r\n      at Object.\u003Canonymous\u003E (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:827:17)\r\n\r\n  \u25CF SidekickMenu v2.0.0 release metadata \u203A R4: the configuration guide defaults and search section show search off unless enabled\r\n\r\n    ENOENT: no such file or directory, open \u0027D:\\work\\nyingi\\code\\systems\\Sidekick\\.devteam\\runs\\20261029-174225\\scratch\\arbiter\\perfcheck\\docs\\configuration.md\u0027\r\n\r\n    \u001B[0m \u001B[90m 792 |\u001B[39m   \u001B[36mconst\u001B[39m path \u001B[33m=\u001B[39m require(\u001B[32m\u0027path\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m 793 |\u001B[39m   \u001B[36mconst\u001B[39m read \u001B[33m=\u001B[39m (relativePath\u001B[33m:\u001B[39m string) \u001B[33m=\u003E\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 794 |\u001B[39m     fs\u001B[33m.\u001B[39mreadFileSync(path\u001B[33m.\u001B[39mjoin(__dirname\u001B[33m,\u001B[39m relativePath)\u001B[33m,\u001B[39m \u001B[32m\u0027utf8\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m        \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 795 |\u001B[39m\r\n     \u001B[90m 796 |\u001B[39m   it(\u001B[32m\u0027R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\r\n     \u001B[90m 797 |\u001B[39m     expect(\u001B[33mJSON\u001B[39m\u001B[33m.\u001B[39mparse(read(\u001B[32m\u0027../../package.json\u0027\u001B[39m))\u001B[33m.\u001B[39mversion)\u001B[33m.\u001B[39mtoBe(\u001B[32m\u00272.0.0\u0027\u001B[39m)\u001B[33m;\u001B[39m\u001B[0m\r\n\r\n      at read (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:794:8)\r\n      at Object.\u003Canonymous\u003E (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:836:27)\r\n\r\n  \u25CF SidekickMenu v2.0.0 release metadata \u203A R4: the README first working example renders a menu with no search box\r\n\r\n    ENOENT: no such file or directory, open \u0027D:\\work\\nyingi\\code\\systems\\Sidekick\\.devteam\\runs\\20261029-174225\\scratch\\arbiter\\perfcheck\\README.md\u0027\r\n\r\n    \u001B[0m \u001B[90m 792 |\u001B[39m   \u001B[36mconst\u001B[39m path \u001B[33m=\u001B[39m require(\u001B[32m\u0027path\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m 793 |\u001B[39m   \u001B[36mconst\u001B[39m read \u001B[33m=\u001B[39m (relativePath\u001B[33m:\u001B[39m string) \u001B[33m=\u003E\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 794 |\u001B[39m     fs\u001B[33m.\u001B[39mreadFileSync(path\u001B[33m.\u001B[39mjoin(__dirname\u001B[33m,\u001B[39m relativePath)\u001B[33m,\u001B[39m \u001B[32m\u0027utf8\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m        \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 795 |\u001B[39m\r\n     \u001B[90m 796 |\u001B[39m   it(\u001B[32m\u0027R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\r\n     \u001B[90m 797 |\u001B[39m     expect(\u001B[33mJSON\u001B[39m\u001B[33m.\u001B[39mparse(read(\u001B[32m\u0027../../package.json\u0027\u001B[39m))\u001B[33m.\u001B[39mversion)\u001B[33m.\u001B[39mtoBe(\u001B[32m\u00272.0.0\u0027\u001B[39m)\u001B[33m;\u001B[39m\u001B[0m\r\n\r\n      at read (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:794:8)\r\n      at Object.\u003Canonymous\u003E (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:846:20)\r\n\r\n\r\nTest Suites: 9 failed, 145 passed, 154 total\r\nTests:       24 failed, 1462 passed, 1486 total\r\nSnapshots:   0 total\r\nTime:        34.861 s\r\nRan all test suites.",
+      "status": "advisory",
+      "raisedRound": 3,
+      "note": "It was already failing before this run started, so it does not block this feature.",
+      "repeats": 0
+    },
+    {
+      "id": "QA-8",
+      "source": "qa",
+      "cites": "PERF-001",
+      "severity": "advisory",
+      "description": "The bundle-size guard can pass against a stale dist, so on its own it does not prove the shipped bundle is no larger than v1.7.0\u0027s.",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 911,
+      "evidence": "The test compares fs.statSync sizes of whatever files sit in dist/ with hardcoded 122706/122244; it never runs the build and never checks that dist is newer than the source. package.json\u0027s test script is plain \u0060jest\u0060, so \u0060npm test\u0060 alone does not rebuild: a source change that grew the bundle would keep passing until someone ran \u0060npm run build\u0060.",
+      "status": "advisory",
+      "raisedRound": 4,
+      "repeats": 0
+    },
+    {
+      "id": "QA-9",
+      "source": "qa",
+      "cites": "R4",
+      "severity": "advisory",
+      "description": "R4\u0027s edge case that searching the docs for \u0027enabled by default\u0027 finds no contradiction is only partly proven; the most likely regression phrasing slips through the regex.",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 818,
+      "evidence": "The scan regex \u0060/search(?: box)? (?:is )?(?:enabled|on) by default/i\u0060 does not match \u0022The search feature is enabled by default\u0022 - the exact sentence this change removed from docs/examples.md - because an extra word sits between \u0022search\u0022 and \u0022is\u0022. A page that regressed to that phrasing would still pass the loop.",
+      "status": "advisory",
+      "raisedRound": 4,
+      "repeats": 0
+    },
+    {
+      "id": "QA-11",
+      "source": "qa",
+      "cites": "R4",
+      "severity": "advisory",
+      "description": "R4\u0027s acceptance line \u0027each edited docs page keeps its previous/next links\u0027 is proven for only two of the five edited pages.",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 831,
+      "evidence": "Prev/next links are asserted only for docs/api.md (lines 831-832) and docs/configuration.md (lines 841-842). The other edited pages\u0027 links are not asserted anywhere: features.md:299, examples.md:367, breaking-changes.md:76.",
+      "status": "advisory",
+      "raisedRound": 4,
+      "repeats": 0
+    },
+    {
+      "id": "QA-12",
+      "source": "qa",
+      "cites": "R1",
+      "severity": "advisory",
+      "description": "The keyboard half of the accessibility requirement (Tab/arrow/Escape/number traversal unchanged while search is hidden) is only indirectly covered.",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 346,
+      "evidence": "The hidden-default test only asserts no element with role textbox/placeholder and that document.activeElement is not an HTMLInputElement. No test presses Tab, Escape, ArrowDown or a numbered shortcut with default props to show keyboard traversal never lands on a hidden control.",
+      "status": "advisory",
+      "raisedRound": 4,
+      "repeats": 0
+    }
+  ],
+  "lastChecks": [
+    {
+      "id": "no-secrets",
+      "name": "No secrets in code",
+      "passed": true,
+      "seconds": 0.053812,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "SEC-001"
+      ]
+    },
+    {
+      "id": "no-debug-leftovers",
+      "name": "No debugging leftovers",
+      "passed": true,
+      "seconds": 0.0322537,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "QUAL-001"
+      ]
+    },
+    {
+      "id": "lib-typecheck",
+      "name": "Type check (library and tests)",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not run again: the files this check looks at are unchanged since it last passed.",
+      "rules": []
+    },
+    {
+      "id": "lib-build",
+      "name": "Build (CommonJS, ES modules, type definitions)",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not run again: the files this check looks at are unchanged since it last passed.",
+      "rules": []
+    },
+    {
+      "id": "lib-validate-package",
+      "name": "Package check (attw and publint)",
+      "passed": false,
+      "seconds": 0.087945,
+      "notRun": true,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not set up in this project: attw and publint are not installed, so nothing checks that the package works for everyone who installs it.",
+      "rules": [
+        "LIB-002"
+      ]
+    },
+    {
+      "id": "lib-pack",
+      "name": "What would be published",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not run again: the files this check looks at are unchanged since it last passed.",
+      "rules": []
+    },
+    {
+      "id": "lib-publish-dry-run",
+      "name": "Publish dry run (everything npm checks, nothing is uploaded)",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not run again: the files this check looks at are unchanged since it last passed.",
+      "rules": [
+        "LIB-003"
+      ]
+    },
+    {
+      "id": "lib-size",
+      "name": "Size budget",
+      "passed": false,
+      "seconds": 0.1095467,
+      "notRun": true,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not set up in this project: The project has no .size-limit.json, so this check has nothing to run.",
+      "rules": [
+        "EFF-001"
+      ]
+    },
+    {
+      "id": "lib-consumer-smoke",
+      "name": "Install and import the packed library",
+      "passed": false,
+      "seconds": 0.110382,
+      "notRun": true,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not set up in this project: Nothing installs the packed library into a scratch project and imports it  no scripts/consumer-smoke.mjs .",
+      "rules": [
+        "LIB-003",
+        "LIB-004",
+        "LIB-005"
+      ]
+    },
+    {
+      "id": "lib-docs",
+      "name": "Documentation is complete",
+      "passed": false,
+      "seconds": 0.1096904,
+      "notRun": true,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not set up in this project: The project has no scripts/check-docs.mjs, so this check has nothing to run.",
+      "rules": [
+        "DOC-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-1",
+      "name": "No third-party component libraries",
+      "passed": true,
+      "seconds": 0.039548,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-2",
+      "name": "No native buttons",
+      "passed": true,
+      "seconds": 0.05262,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern in the files this change touched.\r\nAlso found in 3 file(s) this change did not touch (not counted against it): UI/SidekickMenu/components/DrilldownMenuItem.tsx, UI/SidekickMenu/components/MenuBreadcrumb.tsx, UI/SidekickMenu/components/TabSwitcher.tsx.",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-3",
+      "name": "No native inputs",
+      "passed": true,
+      "seconds": 0.0380374,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-4",
+      "name": "No native tables",
+      "passed": true,
+      "seconds": 0.0538486,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-5",
+      "name": "No hand-rolled tab widgets",
+      "passed": true,
+      "seconds": 0.0300035,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern in the files this change touched.\r\nAlso found in 1 file(s) this change did not touch (not counted against it): UI/SidekickMenu/components/TabSwitcher.tsx.",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-6",
+      "name": "Required Zest packages are declared",
+      "passed": false,
+      "seconds": 0.2186186,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Missing required packages: jattac.libs.web.zest-responsive-layout, jattac.libs.web.zest-file-upload, jattac.libs.web.zest-tabs, jattac.libs.web.responsive-table, jattac.libs.web.zest-textbox, jattac.libs.web.zest-button, jattac.libs.web.overflow-menu, jattac-web-poller",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-002-1",
+      "name": "Mobile-first media queries only",
+      "passed": true,
+      "seconds": 0.0264921,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-002-2",
+      "name": "Font sizes scale with user settings",
+      "passed": true,
+      "seconds": 0.0283767,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-002-3",
+      "name": "Touch targets at least 44px",
+      "passed": true,
+      "seconds": 0.0286659,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-002-4",
+      "name": "No fixed numeric inline dimensions",
+      "passed": true,
+      "seconds": 0.0286284,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-002-5",
+      "name": "Tablet breakpoint exists",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not run again: the files this check looks at are unchanged since it last passed.",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-003-1",
+      "name": "No unsafe HTML injection",
+      "passed": true,
+      "seconds": 0.0346181,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-003-2",
+      "name": "No dynamic code execution",
+      "passed": true,
+      "seconds": 0.0385527,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-003-3",
+      "name": "No blocking busy-wait loops",
+      "passed": true,
+      "seconds": 0.0320643,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-003-4",
+      "name": "No JSON stringify deep-clone",
+      "passed": true,
+      "seconds": 0.0292876,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-003-5",
+      "name": "Event listeners are cleaned up",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not run again: the files this check looks at are unchanged since it last passed.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-006-1",
+      "name": "Colours come from theme tokens",
+      "passed": true,
+      "seconds": 0.035681,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-006"
+      ]
+    },
+    {
+      "id": "rule-USR-006-2",
+      "name": "No inline font families",
+      "passed": true,
+      "seconds": 0.0311675,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-006"
+      ]
+    },
+    {
+      "id": "rule-USR-006-3",
+      "name": "No positive tabIndex",
+      "passed": true,
+      "seconds": 0.0282155,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-006"
+      ]
+    },
+    {
+      "id": "rule-USR-006-4",
+      "name": "Animation honours reduced-motion",
+      "passed": true,
+      "seconds": 0,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not run again: the files this check looks at are unchanged since it last passed.",
+      "rules": [
+        "USR-006"
+      ]
+    },
+    {
+      "id": "lib-tests",
+      "name": "Tests, with coverage",
+      "passed": false,
+      "seconds": 36.853359,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "\u2026\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 794 |\u001B[39m     fs\u001B[33m.\u001B[39mreadFileSync(path\u001B[33m.\u001B[39mjoin(__dirname\u001B[33m,\u001B[39m relativePath)\u001B[33m,\u001B[39m \u001B[32m\u0027utf8\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m        \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 795 |\u001B[39m\r\n     \u001B[90m 796 |\u001B[39m   it(\u001B[32m\u0027R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\r\n     \u001B[90m 797 |\u001B[39m     expect(\u001B[33mJSON\u001B[39m\u001B[33m.\u001B[39mparse(read(\u001B[32m\u0027../../package.json\u0027\u001B[39m))\u001B[33m.\u001B[39mversion)\u001B[33m.\u001B[39mtoBe(\u001B[32m\u00272.0.0\u0027\u001B[39m)\u001B[33m;\u001B[39m\u001B[0m\r\n\r\n      at read (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:794:8)\r\n      at Object.\u003Canonymous\u003E (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:809:7)\r\n\r\n  \u25CF SidekickMenu v2.0.0 release metadata \u203A R4: the API reference row shows searchEnabled default false and opt-in semantics\r\n\r\n    ENOENT: no such file or directory, open \u0027D:\\work\\nyingi\\code\\systems\\Sidekick\\.devteam\\runs\\20261029-174225\\scratch\\arbiter\\perfcheck\\docs\\api.md\u0027\r\n\r\n    \u001B[0m \u001B[90m 792 |\u001B[39m   \u001B[36mconst\u001B[39m path \u001B[33m=\u001B[39m require(\u001B[32m\u0027path\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m 793 |\u001B[39m   \u001B[36mconst\u001B[39m read \u001B[33m=\u001B[39m (relativePath\u001B[33m:\u001B[39m string) \u001B[33m=\u003E\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 794 |\u001B[39m     fs\u001B[33m.\u001B[39mreadFileSync(path\u001B[33m.\u001B[39mjoin(__dirname\u001B[33m,\u001B[39m relativePath)\u001B[33m,\u001B[39m \u001B[32m\u0027utf8\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m        \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 795 |\u001B[39m\r\n     \u001B[90m 796 |\u001B[39m   it(\u001B[32m\u0027R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\r\n     \u001B[90m 797 |\u001B[39m     expect(\u001B[33mJSON\u001B[39m\u001B[33m.\u001B[39mparse(read(\u001B[32m\u0027../../package.json\u0027\u001B[39m))\u001B[33m.\u001B[39mversion)\u001B[33m.\u001B[39mtoBe(\u001B[32m\u00272.0.0\u0027\u001B[39m)\u001B[33m;\u001B[39m\u001B[0m\r\n\r\n      at read (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:794:8)\r\n      at Object.\u003Canonymous\u003E (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:827:17)\r\n\r\n  \u25CF SidekickMenu v2.0.0 release metadata \u203A R4: the configuration guide defaults and search section show search off unless enabled\r\n\r\n    ENOENT: no such file or directory, open \u0027D:\\work\\nyingi\\code\\systems\\Sidekick\\.devteam\\runs\\20261029-174225\\scratch\\arbiter\\perfcheck\\docs\\configuration.md\u0027\r\n\r\n    \u001B[0m \u001B[90m 792 |\u001B[39m   \u001B[36mconst\u001B[39m path \u001B[33m=\u001B[39m require(\u001B[32m\u0027path\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m 793 |\u001B[39m   \u001B[36mconst\u001B[39m read \u001B[33m=\u001B[39m (relativePath\u001B[33m:\u001B[39m string) \u001B[33m=\u003E\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 794 |\u001B[39m     fs\u001B[33m.\u001B[39mreadFileSync(path\u001B[33m.\u001B[39mjoin(__dirname\u001B[33m,\u001B[39m relativePath)\u001B[33m,\u001B[39m \u001B[32m\u0027utf8\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m        \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 795 |\u001B[39m\r\n     \u001B[90m 796 |\u001B[39m   it(\u001B[32m\u0027R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\r\n     \u001B[90m 797 |\u001B[39m     expect(\u001B[33mJSON\u001B[39m\u001B[33m.\u001B[39mparse(read(\u001B[32m\u0027../../package.json\u0027\u001B[39m))\u001B[33m.\u001B[39mversion)\u001B[33m.\u001B[39mtoBe(\u001B[32m\u00272.0.0\u0027\u001B[39m)\u001B[33m;\u001B[39m\u001B[0m\r\n\r\n      at read (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:794:8)\r\n      at Object.\u003Canonymous\u003E (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:836:27)\r\n\r\n  \u25CF SidekickMenu v2.0.0 release metadata \u203A R4: the README first working example renders a menu with no search box\r\n\r\n    ENOENT: no such file or directory, open \u0027D:\\work\\nyingi\\code\\systems\\Sidekick\\.devteam\\runs\\20261029-174225\\scratch\\arbiter\\perfcheck\\README.md\u0027\r\n\r\n    \u001B[0m \u001B[90m 792 |\u001B[39m   \u001B[36mconst\u001B[39m path \u001B[33m=\u001B[39m require(\u001B[32m\u0027path\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m 793 |\u001B[39m   \u001B[36mconst\u001B[39m read \u001B[33m=\u001B[39m (relativePath\u001B[33m:\u001B[39m string) \u001B[33m=\u003E\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 794 |\u001B[39m     fs\u001B[33m.\u001B[39mreadFileSync(path\u001B[33m.\u001B[39mjoin(__dirname\u001B[33m,\u001B[39m relativePath)\u001B[33m,\u001B[39m \u001B[32m\u0027utf8\u0027\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m        \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 795 |\u001B[39m\r\n     \u001B[90m 796 |\u001B[39m   it(\u001B[32m\u0027R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\r\n     \u001B[90m 797 |\u001B[39m     expect(\u001B[33mJSON\u001B[39m\u001B[33m.\u001B[39mparse(read(\u001B[32m\u0027../../package.json\u0027\u001B[39m))\u001B[33m.\u001B[39mversion)\u001B[33m.\u001B[39mtoBe(\u001B[32m\u00272.0.0\u0027\u001B[39m)\u001B[33m;\u001B[39m\u001B[0m\r\n\r\n      at read (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:794:8)\r\n      at Object.\u003Canonymous\u003E (.devteam/runs/20261029-174225/scratch/arbiter/perfcheck/UI/SidekickMenu/SidekickMenu.test.tsx:846:20)\r\n\r\n\r\nTest Suites: 9 failed, 145 passed, 154 total\r\nTests:       24 failed, 1462 passed, 1486 total\r\nSnapshots:   0 total\r\nTime:        34.861 s\r\nRan all test suites.",
+      "rules": []
+    }
+  ],
+  "fullGreenHash": "703B3B7BA6AC183D7CF6F7157CA7C0F9BDBB48BAA41E637CF6E2A3765DB58557",
+  "baseline": [
+    {
+      "id": "no-secrets",
+      "name": "No secrets in code",
+      "passed": true,
+      "seconds": 0.1273508,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "SEC-001"
+      ]
+    },
+    {
+      "id": "no-debug-leftovers",
+      "name": "No debugging leftovers",
+      "passed": true,
+      "seconds": 0.081973,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "QUAL-001"
+      ]
+    },
+    {
+      "id": "lib-typecheck",
+      "name": "Type check (library and tests)",
+      "passed": true,
+      "seconds": 12.5374129,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "",
+      "rules": []
+    },
+    {
+      "id": "lib-tests",
+      "name": "Tests, with coverage",
+      "passed": false,
+      "seconds": 86.7246985,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "Failed twice in a row, so this is not a one-off.\n\u2026\n     \u001B[90m 122 |\u001B[39m           \u001B[32m\u0022count). Migrate to the default \\\u0022drilldown\\\u0022 navigation style when convenient.\u0022\u001B[39m\u001B[0m\r\n\r\n      at warn (UI/SidekickMenu/SidekickMenu.tsx:119:15)\r\n      at Object.react_stack_bottom_frame (node_modules/react-dom/cjs/react-dom-client.development.js:23953:20)\r\n      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1522:13)\r\n      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom-client.development.js:11905:29)\r\n      at commitHookPassiveMountEffects (node_modules/react-dom/cjs/react-dom-client.development.js:12028:11)\r\n      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13841:13)\r\n      at recursivelyTraversePassiveMountEffects (node_modules/react-dom/cjs/react-dom-client.development.js:13815:11)\r\n      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13853:11)\r\n      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15737:9)\r\n      at node_modules/react-dom/cjs/react-dom-client.development.js:15379:15\r\n      at flushActQueue (node_modules/react/cjs/react.development.js:566:34)\r\n      at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:860:10)\r\n      at node_modules/@testing-library/react/dist/act-compat.js:46:25\r\n      at renderRoot (node_modules/@testing-library/react/dist/pure.js:189:26)\r\n      at render (node_modules/@testing-library/react/dist/pure.js:291:10)\r\n      at Object.\u003Canonymous\u003E (UI/SidekickMenu/SidekickMenu.test.tsx:313:11)\r\n\r\n\r\nSummary of all failing tests\r\nFAIL Styles/SidekickMenu.theme.test.ts (9.233 s)\r\n  \u25CF SidekickMenu.module.css \u2014 mobile-first touch targets, desktop-refined \u203A tightens the breadcrumb/tab/pin controls back down for desktop pointer precision\r\n\r\n    expect(received).toBeDefined()\r\n\r\n    Received: undefined\r\n\r\n    \u001B[0m \u001B[90m 178 |\u001B[39m       (b) \u001B[33m=\u003E\u001B[39m b\u001B[33m.\u001B[39mincludes(\u001B[32m\u0027.breadcrumbCrumb\u0027\u001B[39m) \u001B[33m||\u001B[39m b\u001B[33m.\u001B[39mincludes(\u001B[32m\u0027.tabButton\u0027\u001B[39m) \u001B[33m||\u001B[39m b\u001B[33m.\u001B[39mincludes(\u001B[32m\u0027.pinToggle\u0027\u001B[39m)\r\n     \u001B[90m 179 |\u001B[39m     )\u001B[33m;\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 180 |\u001B[39m     expect(covering)\u001B[33m.\u001B[39mtoBeDefined()\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m                      \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 181 |\u001B[39m     expect(covering)\u001B[33m.\u001B[39mtoMatch(\u001B[35m/min-height:\\s*0/\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m 182 |\u001B[39m   })\u001B[33m;\u001B[39m\r\n     \u001B[90m 183 |\u001B[39m\u001B[0m\r\n\r\n      at Object.\u003Canonymous\u003E (Styles/SidekickMenu.theme.test.ts:180:22)\r\n\r\n  \u25CF SidekickMenu.module.css \u2014 other mobile-first robustness fixes \u203A restores the panel to a fixed 300px width on desktop, independent of openOnDesktop\r\n\r\n    expect(received).toBeDefined()\r\n\r\n    Received: undefined\r\n\r\n    \u001B[0m \u001B[90m 217 |\u001B[39m       (b) \u001B[33m=\u003E\u001B[39m \u001B[35m/\\n\\s*\\.panel\\s*{[^}]*width:\\s*300px/\u001B[39m\u001B[33m.\u001B[39mtest(b)\r\n     \u001B[90m 218 |\u001B[39m     )\u001B[33m;\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 219 |\u001B[39m     expect(generalPanelWidthBlock)\u001B[33m.\u001B[39mtoBeDefined()\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m                                    \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 220 |\u001B[39m   })\u001B[33m;\u001B[39m\r\n     \u001B[90m 221 |\u001B[39m\r\n     \u001B[90m 222 |\u001B[39m   it(\u001B[32m\u0027prevents the menu list from chaining scroll into the page behind it\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\u001B[0m\r\n\r\n      at Object.\u003Canonymous\u003E (Styles/SidekickMenu.theme.test.ts:219:36)\r\n\r\n\r\nTest Suites: 1 failed, 21 passed, 22 total\r\nTests:       2 failed, 200 passed, 202 total\r\nSnapshots:   0 total\r\nTime:        16.021 s, estimated 33 s\r\nRan all test suites.",
+      "rules": []
+    },
+    {
+      "id": "lib-build",
+      "name": "Build (CommonJS, ES modules, type definitions)",
+      "passed": true,
+      "seconds": 19.4156685,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "\u003E jattac.libs.web.zest-sidekick-menu@1.7.0 build\r\n\u003E rollup -c\r\n\r\n\n\u001B[36m\r\n\u001B[1mUI/index.ts\u001B[22m \u2192 \u001B[1mdist/index.js, dist/index.esm.js\u001B[22m...\u001B[39m\r\n\u001B[1m\u001B[33m(!) Mixing named and default exports\u001B[39m\u001B[22m\r\n\u001B[90mhttps://rollupjs.org/configuration-options/#output-exports\u001B[39m\r\n\u001B[1mThe following entry modules are using named and default exports together:\u001B[22m\r\nUI/index.ts\r\n\r\nConsumers of your bundle will have to use chunk.default to access their default export, which may not be what you want. Use \u0060output.exports: \u0022named\u0022\u0060 to disable this warning.\r\n\u001B[32mcreated \u001B[1mdist/index.js, dist/index.esm.js\u001B[22m in \u001B[1m9.6s\u001B[22m\u001B[39m\r\n\u001B[36m\r\n\u001B[1mUI/index.ts\u001B[22m \u2192 \u001B[1mdist/index.d.ts\u001B[22m...\u001B[39m\r\n\u001B[32mcreated \u001B[1mdist/index.d.ts\u001B[22m in \u001B[1m2.6s\u001B[22m\u001B[39m",
+      "rules": []
+    },
+    {
+      "id": "lib-validate-package",
+      "name": "Package check (attw and publint)",
+      "passed": false,
+      "seconds": 0.1388955,
+      "notRun": true,
+      "flaky": false,
+      "tier": "full",
+      "output": "Not set up in this project: attw and publint are not installed, so nothing checks that the package works for everyone who installs it.",
+      "rules": [
+        "LIB-002"
+      ]
+    },
+    {
+      "id": "lib-pack",
+      "name": "What would be published",
+      "passed": true,
+      "seconds": 2.402269,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "\u2026\nnpm notice 11B dist/UI/hooks/useZestConfig.test.d.ts\r\nnpm notice 1.1kB dist/UI/index.d.ts\r\nnpm notice 2.6kB dist/UI/SidekickMenu.d.ts\r\nnpm notice 559B dist/UI/SidekickMenu/components/DrilldownMenuItem.d.ts\r\nnpm notice 36B dist/UI/SidekickMenu/components/DrilldownMenuItem.test.d.ts\r\nnpm notice 865B dist/UI/SidekickMenu/components/DrilldownMenuList.d.ts\r\nnpm notice 36B dist/UI/SidekickMenu/components/DrilldownMenuList.test.d.ts\r\nnpm notice 466B dist/UI/SidekickMenu/components/FavouritesList.d.ts\r\nnpm notice 36B dist/UI/SidekickMenu/components/FavouritesList.test.d.ts\r\nnpm notice 270B dist/UI/SidekickMenu/components/icons.d.ts\r\nnpm notice 443B dist/UI/SidekickMenu/components/MenuBreadcrumb.d.ts\r\nnpm notice 36B dist/UI/SidekickMenu/components/MenuBreadcrumb.test.d.ts\r\nnpm notice 304B dist/UI/SidekickMenu/components/MenuItem.d.ts\r\nnpm notice 180B dist/UI/SidekickMenu/components/MenuItemSkeleton.d.ts\r\nnpm notice 328B dist/UI/SidekickMenu/components/MenuList.d.ts\r\nnpm notice 228B dist/UI/SidekickMenu/components/TabSwitcher.d.ts\r\nnpm notice 36B dist/UI/SidekickMenu/components/TabSwitcher.test.d.ts\r\nnpm notice 2.0kB dist/UI/SidekickMenu/context/MenuContext.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/context/MenuContext.test.d.ts\r\nnpm notice 580B dist/UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.d.ts\r\nnpm notice 631B dist/UI/SidekickMenu/hooks/useFavourites.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/hooks/useFavourites.test.d.ts\r\nnpm notice 101B dist/UI/SidekickMenu/hooks/useFocusTrap.d.ts\r\nnpm notice 282B dist/UI/SidekickMenu/hooks/useItemVisibility.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/hooks/useItemVisibility.test.d.ts\r\nnpm notice 564B dist/UI/SidekickMenu/hooks/useKeyboardNavigation.d.ts\r\nnpm notice 411B dist/UI/SidekickMenu/hooks/useNumberedShortcuts.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/hooks/useNumberedShortcuts.test.d.ts\r\nnpm notice 660B dist/UI/SidekickMenu/hooks/useSwipeGesture.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/hooks/useSwipeGesture.test.d.ts\r\nnpm notice 158B dist/UI/SidekickMenu/SidekickMenu.d.ts\r\nnpm notice 36B dist/UI/SidekickMenu/SidekickMenu.test.d.ts\r\nnpm notice 2.3kB dist/UI/SidekickMenu/types.d.ts\r\nnpm notice 267B dist/UI/SidekickMenu/utils/breadcrumb.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/breadcrumb.test.d.ts\r\nnpm notice 122B dist/UI/SidekickMenu/utils/cache.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/cache.test.d.ts\r\nnpm notice 254B dist/UI/SidekickMenu/utils/description.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/description.test.d.ts\r\nnpm notice 515B dist/UI/SidekickMenu/utils/favouritesStorage.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/favouritesStorage.test.d.ts\r\nnpm notice 2.6kB dist/UI/SidekickMenu/utils/lastPosition.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/lastPosition.test.d.ts\r\nnpm notice 377B dist/UI/SidekickMenu/utils/namespace.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/namespace.test.d.ts\r\nnpm notice 211B dist/UI/SidekickMenu/utils/search.d.ts\r\nnpm notice 203B dist/UI/SidekickMenu/utils/validation.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/validation.test.d.ts\r\nnpm notice 487B dist/utils/reactNodeUtils.d.ts\r\nnpm notice 1.3kB package.json\r\nnpm notice Tarball Details\r\nnpm notice name: jattac.libs.web.zest-sidekick-menu\r\nnpm notice version: 1.7.0\r\nnpm notice filename: jattac.libs.web.zest-sidekick-menu-1.7.0.tgz\r\nnpm notice package size: 129.7 kB\r\nnpm notice unpacked size: 597.2 kB\r\nnpm notice shasum: 5e43fb395d5689e900e02038699b0d0a40b33cf6\r\nnpm notice integrity: sha512-OWdCjpVkVCzEq[...]lLQN\u002BwbfMb0Gw==\r\nnpm notice total files: 62\r\nnpm notice",
+      "rules": []
+    },
+    {
+      "id": "lib-publish-dry-run",
+      "name": "Publish dry run (everything npm checks, nothing is uploaded)",
+      "passed": true,
+      "seconds": 11.686789,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "\u2026\nnpm notice 1.1kB dist/UI/index.d.ts\r\nnpm notice 2.6kB dist/UI/SidekickMenu.d.ts\r\nnpm notice 559B dist/UI/SidekickMenu/components/DrilldownMenuItem.d.ts\r\nnpm notice 36B dist/UI/SidekickMenu/components/DrilldownMenuItem.test.d.ts\r\nnpm notice 865B dist/UI/SidekickMenu/components/DrilldownMenuList.d.ts\r\nnpm notice 36B dist/UI/SidekickMenu/components/DrilldownMenuList.test.d.ts\r\nnpm notice 466B dist/UI/SidekickMenu/components/FavouritesList.d.ts\r\nnpm notice 36B dist/UI/SidekickMenu/components/FavouritesList.test.d.ts\r\nnpm notice 270B dist/UI/SidekickMenu/components/icons.d.ts\r\nnpm notice 443B dist/UI/SidekickMenu/components/MenuBreadcrumb.d.ts\r\nnpm notice 36B dist/UI/SidekickMenu/components/MenuBreadcrumb.test.d.ts\r\nnpm notice 304B dist/UI/SidekickMenu/components/MenuItem.d.ts\r\nnpm notice 180B dist/UI/SidekickMenu/components/MenuItemSkeleton.d.ts\r\nnpm notice 328B dist/UI/SidekickMenu/components/MenuList.d.ts\r\nnpm notice 228B dist/UI/SidekickMenu/components/TabSwitcher.d.ts\r\nnpm notice 36B dist/UI/SidekickMenu/components/TabSwitcher.test.d.ts\r\nnpm notice 2.0kB dist/UI/SidekickMenu/context/MenuContext.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/context/MenuContext.test.d.ts\r\nnpm notice 580B dist/UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.d.ts\r\nnpm notice 631B dist/UI/SidekickMenu/hooks/useFavourites.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/hooks/useFavourites.test.d.ts\r\nnpm notice 101B dist/UI/SidekickMenu/hooks/useFocusTrap.d.ts\r\nnpm notice 282B dist/UI/SidekickMenu/hooks/useItemVisibility.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/hooks/useItemVisibility.test.d.ts\r\nnpm notice 564B dist/UI/SidekickMenu/hooks/useKeyboardNavigation.d.ts\r\nnpm notice 411B dist/UI/SidekickMenu/hooks/useNumberedShortcuts.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/hooks/useNumberedShortcuts.test.d.ts\r\nnpm notice 660B dist/UI/SidekickMenu/hooks/useSwipeGesture.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/hooks/useSwipeGesture.test.d.ts\r\nnpm notice 158B dist/UI/SidekickMenu/SidekickMenu.d.ts\r\nnpm notice 36B dist/UI/SidekickMenu/SidekickMenu.test.d.ts\r\nnpm notice 2.3kB dist/UI/SidekickMenu/types.d.ts\r\nnpm notice 267B dist/UI/SidekickMenu/utils/breadcrumb.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/breadcrumb.test.d.ts\r\nnpm notice 122B dist/UI/SidekickMenu/utils/cache.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/cache.test.d.ts\r\nnpm notice 254B dist/UI/SidekickMenu/utils/description.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/description.test.d.ts\r\nnpm notice 515B dist/UI/SidekickMenu/utils/favouritesStorage.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/favouritesStorage.test.d.ts\r\nnpm notice 2.6kB dist/UI/SidekickMenu/utils/lastPosition.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/lastPosition.test.d.ts\r\nnpm notice 377B dist/UI/SidekickMenu/utils/namespace.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/namespace.test.d.ts\r\nnpm notice 211B dist/UI/SidekickMenu/utils/search.d.ts\r\nnpm notice 203B dist/UI/SidekickMenu/utils/validation.d.ts\r\nnpm notice 11B dist/UI/SidekickMenu/utils/validation.test.d.ts\r\nnpm notice 487B dist/utils/reactNodeUtils.d.ts\r\nnpm notice 1.3kB package.json\r\nnpm notice Tarball Details\r\nnpm notice name: jattac.libs.web.zest-sidekick-menu\r\nnpm notice version: 1.7.0\r\nnpm notice filename: jattac.libs.web.zest-sidekick-menu-1.7.0.tgz\r\nnpm notice package size: 129.7 kB\r\nnpm notice unpacked size: 597.2 kB\r\nnpm notice shasum: 5e43fb395d5689e900e02038699b0d0a40b33cf6\r\nnpm notice integrity: sha512-OWdCjpVkVCzEq[...]lLQN\u002BwbfMb0Gw==\r\nnpm notice total files: 62\r\nnpm notice\r\nnpm notice Publishing to https://registry.npmjs.org/ with tag latest and default access (dry-run)",
+      "rules": [
+        "LIB-003"
+      ]
+    },
+    {
+      "id": "lib-size",
+      "name": "Size budget",
+      "passed": false,
+      "seconds": 0.170778,
+      "notRun": true,
+      "flaky": false,
+      "tier": "full",
+      "output": "Not set up in this project: The project has no .size-limit.json, so this check has nothing to run.",
+      "rules": [
+        "EFF-001"
+      ]
+    },
+    {
+      "id": "lib-consumer-smoke",
+      "name": "Install and import the packed library",
+      "passed": false,
+      "seconds": 0.1317335,
+      "notRun": true,
+      "flaky": false,
+      "tier": "full",
+      "output": "Not set up in this project: Nothing installs the packed library into a scratch project and imports it  no scripts/consumer-smoke.mjs .",
+      "rules": [
+        "LIB-003",
+        "LIB-004",
+        "LIB-005"
+      ]
+    },
+    {
+      "id": "lib-docs",
+      "name": "Documentation is complete",
+      "passed": false,
+      "seconds": 0.1635561,
+      "notRun": true,
+      "flaky": false,
+      "tier": "fast",
+      "output": "Not set up in this project: The project has no scripts/check-docs.mjs, so this check has nothing to run.",
+      "rules": [
+        "DOC-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-1",
+      "name": "No third-party component libraries",
+      "passed": true,
+      "seconds": 0.0921049,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-2",
+      "name": "No native buttons",
+      "passed": true,
+      "seconds": 0.1028382,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern in the files this change touched.\r\nAlso found in 4 file(s) this change did not touch (not counted against it): UI/SidekickMenu/SidekickMenu.tsx, UI/SidekickMenu/components/DrilldownMenuItem.tsx, UI/SidekickMenu/components/MenuBreadcrumb.tsx, UI/SidekickMenu/components/TabSwitcher.tsx.",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-3",
+      "name": "No native inputs",
+      "passed": true,
+      "seconds": 0.0757851,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern in the files this change touched.\r\nAlso found in 1 file(s) this change did not touch (not counted against it): UI/SidekickMenu/SidekickMenu.tsx.",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-4",
+      "name": "No native tables",
+      "passed": true,
+      "seconds": 0.0814671,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-5",
+      "name": "No hand-rolled tab widgets",
+      "passed": true,
+      "seconds": 0.0837233,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern in the files this change touched.\r\nAlso found in 1 file(s) this change did not touch (not counted against it): UI/SidekickMenu/components/TabSwitcher.tsx.",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-001-6",
+      "name": "Required Zest packages are declared",
+      "passed": false,
+      "seconds": 0.4279693,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "Failed twice in a row, so this is not a one-off.\nMissing required packages: jattac.libs.web.zest-responsive-layout, jattac.libs.web.zest-file-upload, jattac.libs.web.zest-tabs, jattac.libs.web.responsive-table, jattac.libs.web.zest-textbox, jattac.libs.web.zest-button, jattac.libs.web.overflow-menu, jattac-web-poller",
+      "rules": [
+        "USR-001"
+      ]
+    },
+    {
+      "id": "rule-USR-002-1",
+      "name": "Mobile-first media queries only",
+      "passed": true,
+      "seconds": 0.0825037,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-002-2",
+      "name": "Font sizes scale with user settings",
+      "passed": true,
+      "seconds": 0.1794165,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-002-3",
+      "name": "Touch targets at least 44px",
+      "passed": true,
+      "seconds": 0.0825603,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-002-4",
+      "name": "No fixed numeric inline dimensions",
+      "passed": true,
+      "seconds": 0.0792482,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-002-5",
+      "name": "Tablet breakpoint exists",
+      "passed": true,
+      "seconds": 0.2380294,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "Tablet breakpoint present",
+      "rules": [
+        "USR-002"
+      ]
+    },
+    {
+      "id": "rule-USR-003-1",
+      "name": "No unsafe HTML injection",
+      "passed": true,
+      "seconds": 0.1053644,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-003-2",
+      "name": "No dynamic code execution",
+      "passed": true,
+      "seconds": 0.1668381,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-003-3",
+      "name": "No blocking busy-wait loops",
+      "passed": true,
+      "seconds": 0.0846438,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-003-4",
+      "name": "No JSON stringify deep-clone",
+      "passed": true,
+      "seconds": 0.0785902,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-003-5",
+      "name": "Event listeners are cleaned up",
+      "passed": true,
+      "seconds": 0.2554237,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "Event listeners are paired with cleanup.",
+      "rules": [
+        "USR-003"
+      ]
+    },
+    {
+      "id": "rule-USR-006-1",
+      "name": "Colours come from theme tokens",
+      "passed": true,
+      "seconds": 0.1011316,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-006"
+      ]
+    },
+    {
+      "id": "rule-USR-006-2",
+      "name": "No inline font families",
+      "passed": true,
+      "seconds": 0.1723753,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-006"
+      ]
+    },
+    {
+      "id": "rule-USR-006-3",
+      "name": "No positive tabIndex",
+      "passed": true,
+      "seconds": 0.0769494,
+      "notRun": false,
+      "flaky": false,
+      "tier": "fast",
+      "output": "No forbidden pattern found.",
+      "rules": [
+        "USR-006"
+      ]
+    },
+    {
+      "id": "rule-USR-006-4",
+      "name": "Animation honours reduced-motion",
+      "passed": true,
+      "seconds": 0.2170315,
+      "notRun": false,
+      "flaky": false,
+      "tier": "full",
+      "output": "Motion respects prefers-reduced-motion",
+      "rules": [
+        "USR-006"
+      ]
+    }
+  ],
+  "checkPassedOn": {
+    "lib-typecheck": "E65243E203A19AF8F5ADE3035D098C163CD802182950CDE78042A12EA94A329B",
+    "lib-build": "BC75383E6F5A2CA5BDBD91AC628A099545E6E77941FB1B9F9C3F38BB992ADA40",
+    "lib-pack": "5A94C718B37E656EFFDF08AF14E5C1A9F7B3BAC46AB35E7D6AEC852FB7CEC9E3",
+    "lib-publish-dry-run": "CCE74040A828CA46BC71C153810B02AC119B23BD37C4F11D13BD8A15DECE51F5",
+    "rule-USR-002-5": "2E4F6CC96268C83B953866CA4CD0A3F1EEC6A642690E6FCE659C9857DF1C9C1F",
+    "rule-USR-003-5": "763DBEA84315DC340966B0DE91F4CB92DA387A060E47D2398C7ED6AEE38C47F3",
+    "rule-USR-006-4": "D864303D5219543CE18D6606489B4AEA5ED0DD0FA7B4FB8546FB5E331520A923"
+  },
+  "checkFailedOn": {
+    "lib-tests": "EDBE0253A505C1C26E62A29459294A0D072C4B7E7E41A3E6CDE0F4CF20F4464A",
+    "rule-USR-001-6": "FFC82055FE7AEE7230BA1C1F25B7D5DBE7F7B4E9F8ABC9C6601511564EA5DC00"
+  },
+  "generatedByChecks": [],
+  "ignoredPaths": [],
+  "acceptedGaps": [],
+  "scopeExtensions": [],
+  "rulings": [
+    {
+      "key": "PERF-001|the performance non functional requirement is unmet and unproven both bundles are measurably larger than v1 7 0 s and the menubutton helper added at lines 42 43",
+      "findingId": "REV-1",
+      "codeHash": "D0542575005DC37D",
+      "reason": "PERF-001 only requires that the built bundle not grow: I rebuilt the current tree in a scratch copy with the project\u0027s own rollup config and measured dist/index.js 122639 and dist/index.esm.js 122171 bytes, both below v1.7.0\u0027s 122706/122244, and the PERF-001 test at SidekickMenu.test.tsx:911 already enforces exactly that ceiling. The finding\u0027s premise is stale: SidekickMenu.tsx:42 is \u0060const h = React.createElement;\u0060 and no MenuButton helper exists (bundle risk also removed), so both its size claim and its \u0027unproven\u0027 claim are contradicted by the code and the measurement."
+    }
+  ],
+  "shortcuts": 1,
+  "routeHistory": [
+    "challenge|REV-1|D0542575005DC37D"
+  ],
+  "amendments": [],
+  "scopeSeen": {},
+  "scopeRequestsMade": 0,
+  "preflightAnswered": false,
+  "analystQuestions": 0,
+  "analysisClosed": false,
+  "youDecided": 0,
+  "requirementsApproved": true,
+  "signOffRounds": 1,
+  "changedFiles": [
+    "docs/api.md",
+    "docs/breaking-changes.md",
+    "docs/configuration.md",
+    "docs/examples.md",
+    "docs/features.md",
+    "package.json",
+    "README.md",
+    "UI/SidekickMenu/SidekickMenu.test.tsx",
+    "UI/SidekickMenu/SidekickMenu.tsx",
+    "UI/SidekickMenu/types.ts"
+  ]
+}

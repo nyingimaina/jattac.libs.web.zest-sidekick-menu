@@ -1,0 +1,26 @@
+{
+  "summary": "Finished the documentation slice of the search opt-in change. docs/api.md now lists searchEnabled with default false and describes it as opt-in (pass true to render the input). docs/configuration.md now shows searchEnabled: false in its defaults snippet and its search section says search is off unless enabled, with a searchEnabled={true} example; both pages keep their previous/next links. Extended the R4 tests in SidekickMenu.test.tsx to cover api.md and configuration.md (default false, opt-in wording, defaults snippet, prev/next navigation) and to assert the README's first working example contains no searchEnabled. Build and targeted tests pass; the full suite has only the two pre-existing Windows CRLF failures in the untouched Styles/SidekickMenu.theme.test.ts.",
+  "tests": [
+    {
+      "name": "SidekickMenu v2.0.0 release metadata > R4: the docs in this slice present search as opt-in, not on by default",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "SidekickMenu v2.0.0 release metadata > R4: the API reference row shows searchEnabled default false and opt-in semantics",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "SidekickMenu v2.0.0 release metadata > R4: the configuration guide defaults and search section show search off unless enabled",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "SidekickMenu v2.0.0 release metadata > R4: the README first working example renders a menu with no search box",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    }
+  ],
+  "kickbacks": []
+}

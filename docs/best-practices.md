@@ -1,8 +1,22 @@
+---
+title: Best Practices & Developer Insights
+covers: UI/SidekickMenu/, UI/context/, Styles/SidekickMenu.module.css
+covers-hash: 11fedf2a256714bb3832
+---
+
 # 💡 Best Practices & Developer Insights
 
 **[< Previous: Contributor's Guide](development.md) | [Next: Breaking Changes & Migration >](breaking-changes.md)**
 
 A collection of practical guidance and gotchas for getting the most out of `SidekickMenu`, gathered as the component has grown.
+
+---
+
+## Turn search on per menu, and give items `searchTerms`
+
+Since 2.0.0 the search box is opt-in (`searchEnabled` defaults to `false`). That makes it a per-menu decision: enable it for the large navigation menus where finding an item by name is hard, and leave it off for short menus where the box is just another thing to scan. Existing apps get the hidden default on upgrade, so nothing needs to change unless a menu loses a search box it relied on.
+
+When you do enable it, remember that the box only hides items that have a non-empty `searchTerms` value unless you also pass `alwaysShowUnsearchableItems={false}`. If typing seems to do nothing, the items are the reason, not the component. See [Search (opt-in)](search.md) for the matching rules and the full list of edge cases.
 
 ---
 
@@ -61,6 +75,12 @@ Auto-ranked Favourites reorder over time as usage shifts, so binding a `1`–`9`
 ## The translucent panel surface has a real contrast cost
 
 `zest.visualOptions.surface: 'translucent'` looks good over predictable backgrounds, but `backdrop-filter` blur can reduce text contrast unpredictably against arbitrary page content, and has a real (if usually small) rendering cost. It's off by default for these reasons — test it against your actual page content before shipping it, and keep the click-outside scrim enabled (it dims the page behind the panel, which helps contrast when translucent).
+
+## See also
+
+- [Search (opt-in)](search.md) — enabling the box and its edge cases.
+- [Configuration Guide](configuration.md) — defaults, theming and navigation.
+- [Breaking Changes & Migration](breaking-changes.md) — upgrades that change behaviour.
 
 ---
 **[< Previous: Contributor's Guide](development.md) | [Next: Breaking Changes & Migration >](breaking-changes.md)**

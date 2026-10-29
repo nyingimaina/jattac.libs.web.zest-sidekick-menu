@@ -1,0 +1,170 @@
+{
+  "summary": "Turn the SidekickMenu search box from on-by-default to opt-in: a consumer who renders <SidekickMenu items={items} /> sees no search input, and search appears only when the consumer passes searchEnabled={true}. Existing installations get the hidden default just by upgrading, because the default is resolved in code, not stored anywhere. Enabling search keeps every 1.7.0 search behaviour; no new prop is added. Because the default changes, the release must be a major version with a migration note and the reference docs updated.",
+  "roles": [
+    "Library consumer (developer): installs jattac.libs.web.zest-sidekick-menu and chooses whether the search box appears by passing the existing searchEnabled prop.",
+    "End user of a consumer app: sees no search box unless the developer turned it on; gets today's search when it is on."
+  ],
+  "requirements": [
+    {
+      "id": "R1",
+      "text": "With no searchEnabled prop, <SidekickMenu items={items} /> renders no search input; the search box exists only when the consumer passes searchEnabled={true}.",
+      "rationale": "Most menus are small and do not need search, yet the box currently takes the top slot and grabs focus on open. Making it opt-in keeps the default menu clean and matches the request that existing installations get the hidden behaviour without code changes.",
+      "acceptance": [
+        "Rendering <SidekickMenu items={items} /> produces no element with the placeholder 'Search menu...', and the rest of the menu renders as it does today.",
+        "Rendering <SidekickMenu items={items} searchEnabled={true} /> produces the search input; searchEnabled={false} and searchEnabled={undefined} produce none.",
+        "Opening a menu without search does not focus a search field and leaves no empty gap where the box used to be."
+      ],
+      "edgeCases": [
+        "An app that upgrades without changing its code shows no search box, because the default comes from the component and no browser storage holds a preference.",
+        "If search was enabled and a term was typed, then the prop changes to false, the box disappears and the menu is no longer filtered: no invisible search term may keep filtering the list.",
+        "A consumer who already passes searchEnabled={false} sees no change from before."
+      ],
+      "pitfalls": [
+        "Do not keep a hidden input mounted: a hidden search box must not be reachable by Tab or a screen reader.",
+        "Do not gate non-search features (favourites, breadcrumbs, shortcuts, gestures, rail) on searchEnabled."
+      ],
+      "rules": ["LIB-001", "UI-001", "PERF-001"],
+      "facts": [
+        { "subject": "searchEnabled", "attribute": "default", "op": "equals", "value": "false" },
+        { "subject": "search box", "attribute": "rendered", "op": "must-not", "value": "when searchEnabled is absent, false or undefined" }
+      ]
+    },
+    {
+      "id": "R2",
+      "text": "Passing searchEnabled={true} gives the consumer the full 1.7.0 search experience: the box shows, typing filters, clearing restores the previous section, searchPlaceholder, searchIcon and searchAutoFocus still apply, and arrow keys and numbered shortcuts act on the filtered list.",
+      "rationale": "Only the default state should change. Consumers who opt in must not get a reworked search they did not ask for, so the existing behaviour is the specification.",
+      "acceptance": [
+        "<SidekickMenu items={items} searchEnabled searchPlaceholder=\"Find pages...\" /> shows an input with that placeholder, and typing 'about' filters the list to matching items.",
+        "Clearing the term restores the section the user was in before searching, as today.",
+        "With searchEnabled={true} and searchAutoFocus={true} the input receives focus when the menu opens; with searchAutoFocus={false} it does not."
+      ],
+      "edgeCases": [
+        "With railCollapsible and a collapsed rail, the search box stays hidden even when searchEnabled={true}, and appears again when the rail expands (today's rule, unchanged).",
+        "A term with no matches shows the existing empty state; enabling search must not introduce a new one.",
+        "The search term is never persisted: a reopened menu starts with an empty term regardless of what was typed before."
+      ],
+      "pitfalls": [
+        "Do not change matching fields, matching rules or result ordering while flipping the default.",
+        "Do not make enabled search depend on a new global config flag or another prop."
+      ],
+      "rules": ["UI-001", "USR-004", "PERF-001"],
+      "facts": []
+    },
+    {
+      "id": "R3",
+      "text": "The changed default ships as a major version 2.0.0 with an entry in docs/breaking-changes.md that names searchEnabled, states the new default and shows searchEnabled={true} as the migration.",
+      "rationale": "Apps install this package by version range and render whatever the default gives them. A silent change of a default UI behaviour would remove their search box on upgrade without warning; the house rule requires a breaking change to be noted and the version bumped to match.",
+      "acceptance": [
+        "package.json version is 2.0.0 at publish time and the release is tagged v2.0.0.",
+        "docs/breaking-changes.md has a v2.0.0 entry naming the searchEnabled default change with the migration snippet <SidekickMenu items={items} searchEnabled={true} />.",
+        "The v2.0.0 entry states that no export, prop name or type is removed or renamed by this change."
+      ],
+      "edgeCases": [
+        "A consumer who already passes searchEnabled={false} needs no change, and the note says so.",
+        "The note says search is otherwise unchanged, so consumers do not expect other surprises in the same release."
+      ],
+      "pitfalls": [
+        "Do not ship the default flip in a 1.x release: the version and the note must match the change.",
+        "Do not bump the version without the breaking-changes entry, or the two disagree."
+      ],
+      "rules": ["LIB-001", "DOC-001"],
+      "facts": [
+        { "subject": "package version", "attribute": "release", "op": "equals", "value": "2.0.0" }
+      ]
+    },
+    {
+      "id": "R4",
+      "text": "Every doc page that presents search as on by default is updated to present it as opt-in: README.md, docs/features.md, docs/examples.md, docs/api.md and docs/configuration.md.",
+      "rationale": "Documentation is what consumers read before they upgrade. If the reference pages still say the default is true, the breaking-change note is contradicted by the pages people trust most.",
+      "acceptance": [
+        "docs/api.md shows searchEnabled with default false and describes it as needing true to show the box.",
+        "docs/configuration.md shows searchEnabled: false in its defaults snippet, and its section says search is off unless enabled.",
+        "docs/examples.md no longer says 'The search feature is enabled by default'; its search recipe passes searchEnabled={true}.",
+        "README.md's basic example still works (now without a search box), and its feature list says search must be enabled, with a one-line example.",
+        "docs/features.md keeps a working searchEnabled={true} example.",
+        "Each edited docs page keeps its previous/next links."
+      ],
+      "edgeCases": [
+        "Searching the docs for 'enabled by default', 'searchEnabled' and 'Search menu...' finds no statement that contradicts the new default.",
+        "The README's first working example renders a menu with no search box, matching the new default."
+      ],
+      "pitfalls": [
+        "Do not document the new default only in breaking-changes.md while api.md or configuration.md still say true.",
+        "Do not break the docs' previous/next navigation when adding the v2.0.0 entry."
+      ],
+      "rules": ["DOC-001", "LIB-001"],
+      "facts": []
+    },
+    {
+      "id": "R5",
+      "text": "Tests prove the new default and keep proving the old search behaviour: a test asserts no input is rendered when the prop is omitted, and every existing search test opts in with searchEnabled={true} instead of relying on the old default.",
+      "rationale": "This edits code already released, so its already-deployed behaviour must stay proven while the default changes. Without a test on the default itself, it can silently flip back in a later refactor.",
+      "acceptance": [
+        "A test renders <SidekickMenu items={items} /> and asserts the search input is absent; another renders it with searchEnabled={true} and asserts it is present.",
+        "The existing search tests in SidekickMenu.test.tsx pass searchEnabled and still pass with their assertions intact.",
+        "npm test passes with no search test deleted or skipped."
+      ],
+      "edgeCases": [
+        "A test that needs search but forgets searchEnabled fails loudly instead of silently testing nothing; assert the input exists before typing into it.",
+        "Tests for autofocus or numbered shortcuts on filtered results enable search, or they no longer exercise the behaviour they name."
+      ],
+      "pitfalls": [
+        "Do not delete or skip search tests to make the suite green after the default flips.",
+        "Do not 'fix' a failing query by asserting a hidden input: the requirement is that the input is not rendered at all."
+      ],
+      "rules": ["USR-004"],
+      "facts": []
+    }
+  ],
+  "outOfScope": [
+    "A visible toggle, button or '/' shortcut that reveals search at runtime; only the prop turns it on.",
+    "A global searchEnabled option on ZestSidekickConfigProvider.",
+    "Changing search matching (searchTerms, label matching) or result ordering.",
+    "Storing a per-user or per-app preference for search in localStorage or sessionStorage.",
+    "Changing the search input's markup, accessible name or styling beyond hiding it by default."
+  ],
+  "nonFunctional": [
+    {
+      "area": "accessibility",
+      "statement": "Hiding the search box must not disturb keyboard use: with default props no invisible control is focusable and opening the menu does not move focus, while with search enabled the input stays keyboard-reachable and behaves as today.",
+      "acceptance": "With default props, Tab and the menu's arrow, Escape and numbered-shortcut keys traverse exactly the controls that existed before the search box and never land on an invisible element; with searchEnabled={true} the input can be focused and typed into by keyboard."
+    },
+    {
+      "area": "performance",
+      "statement": "Hiding search adds no work and removes what the box cost: with default props the menu mounts no input, does no non-empty search filtering, and the built bundle does not grow.",
+      "acceptance": "With default props the rendered DOM contains no search input and filtering only ever runs with an empty term; npm run build output for dist/index.js and dist/index.esm.js is no larger than v1.7.0's (measure both before and after)."
+    }
+  ],
+  "risks": [
+    "Existing consumers lose the search box on upgrade with no code change; that is the request, but it must be a major release with a clear note or it will look like a bug.",
+    "Several docs pages currently claim search is enabled by default, so one missed page leaves the docs contradicting each other.",
+    "Existing tests query the search input by placeholder without enabling search, so the suite will go red until they are updated deliberately.",
+    "searchAutoFocus still defaults to true; when the input is absent the focus effect must do nothing rather than error or move focus elsewhere.",
+    "The README feature list still advertises built-in search, which reads as on-by-default to a new consumer."
+  ],
+  "tensions": [],
+  "glossary": [
+    "Consumer: a developer whose app installs the published package.",
+    "searchEnabled: the existing SidekickMenuProps boolean that renders the search input; no new prop is introduced.",
+    "Opt-in: search appears only when the consumer explicitly passes searchEnabled={true}.",
+    "Breaking change: an upgrade that changes what existing apps render without the app changing its code."
+  ],
+  "questions": [],
+  "coverage": [
+    { "topic": "users", "status": "assumed", "note": "Library consumers turn search on per menu instance with the existing prop; end users of their apps are the ones who see it." },
+    { "topic": "data", "status": "not-applicable", "note": "No records or fields: the change touches one boolean prop default and stores nothing." },
+    { "topic": "permissions", "status": "not-applicable", "note": "No records, ownership or sharing: nothing is protected by this change." },
+    { "topic": "validation", "status": "not-applicable", "note": "No user-entered data; searchEnabled is a boolean and any value other than true behaves as off." },
+    { "topic": "states", "status": "assumed", "note": "Hidden is the default with no input and no empty-search state; enabled is today's search. Dropping an active term when search is hidden is my chosen default." },
+    { "topic": "duplicates", "status": "not-applicable", "note": "Nothing is created or submitted, so double submits and concurrent edits do not apply." },
+    { "topic": "volume", "status": "not-applicable", "note": "Menu size and search cost are unchanged; hiding the box only removes work when it is off." },
+    { "topic": "deletion", "status": "not-applicable", "note": "Nothing is deleted and nothing new is stored when the box is hidden." },
+    { "topic": "privacy", "status": "not-applicable", "note": "No personal data is collected, stored or displayed by this change." },
+    { "topic": "quality", "status": "assumed", "note": "No focus or keyboard regression when hidden, search behaviour unchanged when enabled, and no bundle growth; covered by the two non-functional requirements." }
+  ],
+  "assumptions": [
+    "Search stays controlled only by the existing per-instance searchEnabled prop: no global config-provider switch, no runtime button and no keyboard shortcut to reveal it.",
+    "When search is off, any active search term is dropped so the menu is never left filtered by a term the user can no longer see, and no empty-results state is shown while search is hidden.",
+    "Enabling search keeps 1.7.0's look and behaviour exactly: default placeholder 'Search menu...', autofocus default true, custom icon, filtering, and numbered shortcuts over the filtered list."
+  ]
+}

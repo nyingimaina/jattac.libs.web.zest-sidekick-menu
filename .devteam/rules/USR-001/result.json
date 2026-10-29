@@ -1,0 +1,44 @@
+{
+  "checks": [
+    {
+      "name": "No third-party component libraries",
+      "kind": "pattern",
+      "files": ["UI/**/*.ts", "UI/**/*.tsx"],
+      "forbid": "from\\s+['\"](@mui|@material-ui|antd|react-bootstrap|bootstrap|@chakra-ui|@mantine|@fluentui|@headlessui|@radix-ui|primereact|@blueprintjs|semantic-ui-react|grommet|evergreen-ui|rsuite|@carbon|@geist-ui|@nextui-org|@heroui|reactstrap|react-aria|@react-aria)['\"/]"
+    },
+    {
+      "name": "No native buttons",
+      "kind": "pattern",
+      "files": ["UI/**/*.tsx"],
+      "forbid": "<button\\b"
+    },
+    {
+      "name": "No native inputs",
+      "kind": "pattern",
+      "files": ["UI/**/*.tsx"],
+      "forbid": "<input\\b(?!.*data-testid)"
+    },
+    {
+      "name": "No native tables",
+      "kind": "pattern",
+      "files": ["UI/**/*.tsx"],
+      "forbid": "<(?:table|thead|tbody|tfoot|tr)\\b"
+    },
+    {
+      "name": "No hand-rolled tab widgets",
+      "kind": "pattern",
+      "files": ["UI/**/*.tsx"],
+      "forbid": "role=[\"'](?:tab|tablist|tabpanel)[\"']"
+    },
+    {
+      "name": "Required Zest packages are declared",
+      "kind": "command",
+      "workingDir": ".",
+      "command": "node -e \"const p=require('./package.json');const all=Object.assign({},p.dependencies,p.devDependencies,p.peerDependencies,p.optionalDependencies);const need=['jattac.libs.web.zest-responsive-layout','jattac.libs.web.zest-file-upload','jattac.libs.web.zest-tabs','jattac.libs.web.responsive-table','jattac.libs.web.zest-textbox','jattac.libs.web.zest-sidekick-menu','jattac.libs.web.zest-button','jattac.libs.web.overflow-menu','jattac-web-poller'].filter(n=>n!==p.name);const missing=need.filter(n=>!all[n]);if(missing.length){console.error('Missing required packages: '+missing.join(', '));process.exit(1)}console.log('All required packages are declared.')\""
+    }
+  ],
+  "good": "import React from \"react\";\nimport { ZestButton } from \"jattac.libs.web.zest-button\";\nimport { ZestTabs } from \"jattac.libs.web.zest-tabs\";\n\nexport const Toolbar = () => (\n  <ZestTabs defaultValue=\"all\">\n    <ZestButton variant=\"primary\">Open</ZestButton>\n  </ZestTabs>\n);",
+  "bad": "import Button from \"@mui/material/Button\";\n\nexport const Toolbar = () => (\n  <div role=\"tablist\">\n    <button type=\"button\" role=\"tab\">Open</button>\n    <input type=\"file\" />\n  </div>\n);",
+  "cannotTest": "A bespoke component that merely repeats a listed package's function (a custom dropdown instead of jattac.libs.web.overflow-menu, a setInterval poller instead of jattac-web-poller) cannot be recognised by a regular expression and needs review, as does any third-party UI library not named in the import check. Package presence is checked only as a declaration in package.json; jattac.libs.web.zest-sidekick-menu is exempt because this repository is that package, and node_modules installation is not inspected. Native elements spread over several lines or shown in docs/README examples are out of scope.",
+  "facts": []
+}

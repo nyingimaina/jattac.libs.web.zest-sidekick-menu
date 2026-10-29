@@ -118,7 +118,14 @@ describe('SidekickMenu Infinite Nesting (legacy accordion mode)', () => {
   });
 
   it('should correctly search and filter items across deep nesting levels', () => {
-    render(<SidekickMenu items={deeplyNestedItems} alwaysShowUnsearchableItems={false} navigationStyle="accordion" />);
+    render(
+      <SidekickMenu
+        items={deeplyNestedItems}
+        searchEnabled
+        alwaysShowUnsearchableItems={false}
+        navigationStyle="accordion"
+      />
+    );
     
     // Open menu
     fireEvent.click(screen.getByRole('button'));
@@ -262,9 +269,12 @@ describe('SidekickMenu drilldown navigation (new default)', () => {
       { id: 'banana', label: 'Banana', icon: '', searchTerms: '', path: '/banana' },
       { id: 'apricot', label: 'Apricot', icon: '', searchTerms: '', path: '/apricot' },
     ];
-    const { container } = render(<SidekickMenu items={items} alwaysShowUnsearchableItems={false} />);
+    const { container } = render(
+      <SidekickMenu items={items} searchEnabled alwaysShowUnsearchableItems={false} />
+    );
     fireEvent.click(screen.getByRole('button'));
 
+    expect(screen.getByPlaceholderText('Search menu...')).toBeInTheDocument();
     fireEvent.change(screen.getByPlaceholderText('Search menu...'), { target: { value: 'ap' } });
     // "Banana" is filtered out; only Apple and Apricot remain.
     expect(screen.queryByText('Banana')).not.toBeInTheDocument();
@@ -287,8 +297,9 @@ describe('SidekickMenu drilldown navigation (new default)', () => {
       { id: 'banana', label: 'Banana', icon: '', searchTerms: '', onClick: jest.fn() },
       { id: 'apricot', label: 'Apricot', icon: '', searchTerms: '', onClick: onApricot },
     ];
-    render(<SidekickMenu items={items} alwaysShowUnsearchableItems={false} />);
+    render(<SidekickMenu items={items} searchEnabled alwaysShowUnsearchableItems={false} />);
     fireEvent.click(screen.getByRole('button'));
+    expect(screen.getByPlaceholderText('Search menu...')).toBeInTheDocument();
     fireEvent.change(screen.getByPlaceholderText('Search menu...'), { target: { value: 'ap' } });
 
     fireEvent.keyDown(screen.getByPlaceholderText('Search menu...'), { code: 'Digit2' });
@@ -317,6 +328,139 @@ describe('SidekickMenu drilldown navigation (new default)', () => {
     expect(screen.queryByRole('navigation', { name: /breadcrumb/i })).not.toBeInTheDocument();
     // Accordion mode keeps siblings visible alongside the expanded branch.
     expect(screen.getByText('About')).toBeInTheDocument();
+  });
+});
+
+describe('SidekickMenu search is opt-in (v2.0.0)', () => {
+  const searchItems: ISidekickMenuItem[] = [
+    { id: 'apple', label: 'Apple', icon: '', searchTerms: '', path: '/apple' },
+    { id: 'banana', label: 'Banana', icon: '', searchTerms: '', path: '/banana' },
+    { id: 'apricot', label: 'Apricot', icon: '', searchTerms: '', path: '/apricot' },
+  ];
+
+  afterEach(() => {
+    localStorage.removeItem('sidekickMenuRailState');
+    Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1024 });
+  });
+
+  it('R1: renders no search input and no invisible focusable control when searchEnabled is omitted', () => {
+    render(<SidekickMenu items={searchItems} />);
+    fireEvent.click(getHamburger());
+
+    expect(screen.queryByPlaceholderText('Search menu...')).not.toBeInTheDocument();
+    expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
+    expect(document.activeElement).not.toBeInstanceOf(HTMLInputElement);
+    // The rest of the menu still renders, unfiltered.
+    expect(screen.getByText('Apple')).toBeInTheDocument();
+    expect(screen.getByText('Banana')).toBeInTheDocument();
+    expect(screen.getByText('Apricot')).toBeInTheDocument();
+  });
+
+  it('R1: renders no search input when searchEnabled is false or undefined', () => {
+    const { rerender } = render(<SidekickMenu items={searchItems} searchEnabled={false} />);
+    fireEvent.click(getHamburger());
+    expect(screen.queryByPlaceholderText('Search menu...')).not.toBeInTheDocument();
+
+    rerender(<SidekickMenu items={searchItems} searchEnabled={undefined} />);
+    expect(screen.queryByPlaceholderText('Search menu...')).not.toBeInTheDocument();
+    expect(screen.getByText('Apple')).toBeInTheDocument();
+  });
+
+  it('R1: renders the search input only when searchEnabled is true', () => {
+    render(<SidekickMenu items={searchItems} searchEnabled />);
+    fireEvent.click(getHamburger());
+
+    expect(screen.getByPlaceholderText('Search menu...')).toBeInTheDocument();
+  });
+
+  it('R1: turning search off drops an active term so the list is no longer filtered', () => {
+    const { rerender } = render(
+      <SidekickMenu items={searchItems} searchEnabled alwaysShowUnsearchableItems={false} />
+    );
+    fireEvent.click(getHamburger());
+    const input = screen.getByPlaceholderText('Search menu...');
+    fireEvent.change(input, { target: { value: 'ap' } });
+    expect(screen.queryByText('Banana')).not.toBeInTheDocument();
+
+    rerender(<SidekickMenu items={searchItems} searchEnabled={false} alwaysShowUnsearchableItems={false} />);
+
+    expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
+    expect(screen.getByText('Apple')).toBeInTheDocument();
+    expect(screen.getByText('Banana')).toBeInTheDocument();
+    expect(screen.getByText('Apricot')).toBeInTheDocument();
+  });
+
+  it('R2: opt-in search keeps the placeholder, filtering and clearing behaviour of 1.7.0', () => {
+    const { container } = render(
+      <SidekickMenu
+        items={searchItems}
+        searchEnabled
+        searchPlaceholder="Find pages..."
+        alwaysShowUnsearchableItems={false}
+      />
+    );
+    fireEvent.click(getHamburger());
+
+    const renderedLabels = () =>
+      Array.from(container.querySelectorAll('li')).map((li) => li.textContent?.trim());
+
+    const input = screen.getByPlaceholderText('Find pages...');
+    fireEvent.change(input, { target: { value: 'ap' } });
+    expect(renderedLabels()).toEqual(['Apple', 'Apricot']);
+
+    fireEvent.change(input, { target: { value: '' } });
+    expect(renderedLabels()).toEqual(['Apple', 'Banana', 'Apricot']);
+  });
+
+  it('R2: searchAutoFocus focuses the opt-in input on open, and false does not', () => {
+    const { unmount } = render(<SidekickMenu items={searchItems} searchEnabled searchAutoFocus />);
+    fireEvent.click(getHamburger());
+    expect(screen.getByPlaceholderText('Search menu...')).toHaveFocus();
+    unmount();
+
+    render(<SidekickMenu items={searchItems} searchEnabled searchAutoFocus={false} />);
+    fireEvent.click(getHamburger());
+    expect(screen.getByPlaceholderText('Search menu...')).not.toHaveFocus();
+  });
+
+  it('R2: a collapsed rail hides opt-in search and expanding the rail brings it back', () => {
+    Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1024 });
+    render(<SidekickMenu items={searchItems} searchEnabled railCollapsible openOnDesktop />);
+
+    expect(screen.getByPlaceholderText('Search menu...')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Collapse menu' }));
+    expect(screen.queryByPlaceholderText('Search menu...')).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Expand menu' }));
+    expect(screen.getByPlaceholderText('Search menu...')).toBeInTheDocument();
+  });
+
+  it('R2: a term with no matches keeps the existing empty list, with no new empty state', () => {
+    const { container } = render(
+      <SidekickMenu items={searchItems} searchEnabled alwaysShowUnsearchableItems={false} />
+    );
+    fireEvent.click(getHamburger());
+
+    fireEvent.change(screen.getByPlaceholderText('Search menu...'), { target: { value: 'zzz' } });
+
+    expect(screen.queryByText('Apple')).not.toBeInTheDocument();
+    expect(screen.queryByText('Banana')).not.toBeInTheDocument();
+    expect(screen.queryByText('Apricot')).not.toBeInTheDocument();
+    expect(container.querySelector('ul')).toBeEmptyDOMElement();
+  });
+
+  it('R2: the search term is never persisted, so a reopened menu starts empty', () => {
+    const { unmount } = render(<SidekickMenu items={searchItems} searchEnabled />);
+    fireEvent.click(getHamburger());
+    fireEvent.change(screen.getByPlaceholderText('Search menu...'), { target: { value: 'ap' } });
+
+    fireEvent.click(getHamburger()); // close
+    fireEvent.click(getHamburger()); // reopen
+    expect(screen.getByPlaceholderText('Search menu...')).toHaveValue('');
+
+    unmount();
+    render(<SidekickMenu items={searchItems} searchEnabled />);
+    expect(screen.getByPlaceholderText('Search menu...')).toHaveValue('');
   });
 });
 
@@ -608,10 +752,11 @@ describe('SidekickMenu remembered position', () => {
   });
 
   it('searches the whole menu from inside a section, and returns to the section when cleared', () => {
-    render(<SidekickMenu items={makeItems()} />);
+    render(<SidekickMenu items={makeItems()} searchEnabled />);
     openAndClick('Billing');
     fireEvent.click(getHamburger());
 
+    expect(screen.getByPlaceholderText('Search menu...')).toBeInTheDocument();
     const search = screen.getByPlaceholderText('Search menu...');
     fireEvent.change(search, { target: { value: 'about' } });
     expect(screen.getByText('About')).toBeInTheDocument();
@@ -639,6 +784,70 @@ describe('SidekickMenu remembered position', () => {
     fireEvent.click(getHamburger());
     fireEvent.click(screen.getByRole('tab', { name: 'All' }));
     expect(screen.getByText('Profile')).toBeInTheDocument();
+  });
+});
+
+describe('SidekickMenu v2.0.0 release metadata', () => {
+  const fs = require('fs');
+  const path = require('path');
+  const read = (relativePath: string) =>
+    fs.readFileSync(path.join(__dirname, relativePath), 'utf8');
+
+  it('R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration', () => {
+    expect(JSON.parse(read('../../package.json')).version).toBe('2.0.0');
+
+    const breaking = read('../../docs/breaking-changes.md');
+    expect(breaking).toContain('v2.0.0');
+    expect(breaking).toContain('searchEnabled');
+    expect(breaking).toContain('<SidekickMenu items={items} searchEnabled={true} />');
+    expect(breaking).toContain('already pass `searchEnabled={false}`');
+    expect(breaking).toContain('No export, prop name or type is removed or renamed');
+  });
+
+  it('R4: the docs in this slice present search as opt-in, not on by default', () => {
+    const pages = [
+      read('../../README.md'),
+      read('../../docs/features.md'),
+      read('../../docs/examples.md'),
+      read('../../docs/breaking-changes.md'),
+      read('../../docs/api.md'),
+      read('../../docs/configuration.md'),
+    ];
+
+    for (const page of pages) {
+      expect(page).not.toMatch(/search(?: box)? (?:is )?(?:enabled|on) by default/i);
+      expect(page).not.toMatch(/`searchEnabled`[^\n]*\|\s*`true`\s*\|/);
+    }
+    expect(pages[0]).toContain('searchEnabled={true}');
+    expect(pages[1]).toContain('searchEnabled={true}');
+    expect(pages[2]).toContain('pass `searchEnabled={true}`');
+  });
+
+  it('R4: the API reference row shows searchEnabled default false and opt-in semantics', () => {
+    const api = read('../../docs/api.md');
+    expect(api).toMatch(/`searchEnabled`\s*\|\s*`boolean`\s*\|\s*`false`\s*\|/);
+    expect(api).toMatch(/`searchEnabled`[^\n]*Opt-in/);
+    expect(api).toMatch(/`searchEnabled`[^\n]*Pass `true` to render the search input/);
+    expect(api).toContain('[< Previous: Features Showcase](features.md)');
+    expect(api).toContain('[Next: Configuration Guide >](configuration.md)');
+  });
+
+  it('R4: the configuration guide defaults and search section show search off unless enabled', () => {
+    const configuration = read('../../docs/configuration.md');
+    expect(configuration).toContain('searchEnabled: false,');
+    expect(configuration).not.toContain('searchEnabled: true,');
+    expect(configuration).toMatch(/search is off unless enabled/i);
+    expect(configuration).toContain('searchEnabled={true}');
+    expect(configuration).toContain('[< Previous: API Reference](api.md)');
+    expect(configuration).toContain('[Next: Contributor\'s Guide >](development.md)');
+  });
+
+  it('R4: the README first working example renders a menu with no search box', () => {
+    const readme = read('../../README.md');
+    const basicUsage = readme.split('## Basic Usage')[1].split('## Next Steps')[0];
+    const example = basicUsage.split('```jsx')[1].split('```')[0];
+    expect(example).toContain('<SidekickMenu items={menuItems} />');
+    expect(example).not.toContain('searchEnabled');
   });
 });
 
@@ -692,5 +901,23 @@ describe('SidekickMenu opens at the current URL', () => {
     render(<SidekickMenu items={items} rememberPosition={false} />);
     fireEvent.click(getHamburger());
     expect(screen.getByText('About')).toBeInTheDocument();
+  });
+});
+
+describe('SidekickMenu search-off bundle size', () => {
+  const fs = require('fs');
+  const path = require('path');
+
+  it('PERF-001: hiding search does not grow the built bundles past v1.7.0', () => {
+    const v170Sizes: { [file: string]: number } = {
+      'dist/index.js': 122706,
+      'dist/index.esm.js': 122244,
+    };
+
+    for (const file of Object.keys(v170Sizes)) {
+      const bundle = path.join(__dirname, '../..', file);
+      expect(fs.existsSync(bundle)).toBe(true);
+      expect(fs.statSync(bundle).size).toBeLessThanOrEqual(v170Sizes[file]);
+    }
   });
 });

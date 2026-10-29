@@ -1,3 +1,9 @@
+---
+title: Breaking Changes & Migration
+covers: package.json, UI/SidekickMenu/SidekickMenu.tsx, UI/SidekickMenu/types.ts
+covers-hash: 222100d4072c81fa684a
+---
+
 # Breaking Changes & Migration
 
 **[< Previous: Best Practices](best-practices.md) | [Next: README.md >](../README.md)**
@@ -9,6 +15,7 @@ This document outlines any breaking changes introduced in new versions of the Re
 1.  [v1.0.5](#v105)
 2.  [v1.0.10](#v1010)
 3.  [v1.4.0 — Deprecation notice: `navigationStyle="accordion"`](#v140--deprecation-notice-navigationstyleaccordion)
+4.  [v2.0.0 — Search is now opt-in (`searchEnabled` defaults to `false`)](#v200--search-is-now-opt-in-searchenabled-defaults-to-false)
 
 ---
 
@@ -55,6 +62,29 @@ This document outlines any breaking changes introduced in new versions of the Re
 *   **Breaking Changes:** None yet. This is a forward-looking deprecation notice, not a removal. Existing consumers who don't touch `navigationStyle` get the new drilldown default (a behavior change, not an API break — see [Look & Feel / Interaction Update](features.md#9-drilldown-navigation--favourites-v140)); existing consumers who explicitly set `navigationStyle="accordion"` see no change in behavior at all, only the new dev-mode warning.
 *   **Deprecation tracking:** `navigationStyle="accordion"` is scheduled for full removal after **25 published releases** from this one (any patch/minor/major bump counts as one release toward the count). Current count: **1 / 25** (this release). This count will be updated in each subsequent release's entry (or a running note added here) until removal.
 *   **Migration Instructions:** None required now. When the code path is eventually removed (at release 25 of the count above), this entry will be updated with concrete migration guidance — but since `navigationStyle="drilldown"` has been the default since this release, most consumers will already be unaffected by the time that happens. If you are deliberately using `navigationStyle="accordion"`, plan to migrate to the default drilldown navigation before the count is exhausted.
+
+---
+
+### v2.0.0 — Search is now opt-in (`searchEnabled` defaults to `false`)
+
+*   **Release Date:** (this release)
+*   **Summary:** The `SidekickMenu` search box is now opt-in. The `searchEnabled` prop defaults to `false` instead of `true`, so a menu rendered with `<SidekickMenu items={items} />` shows no search input. This is a **breaking change** because an app that upgrades without changing its code will no longer show the search box. No browser storage holds a search preference: the default comes from the component, so every existing installation gets the hidden default on upgrade.
+*   **Breaking Changes:** The default value of `searchEnabled` changed from `true` to `false`. No export, prop name or type is removed or renamed — `SidekickMenuProps.searchEnabled` is still an optional boolean; only its documented default changed.
+*   **Migration Instructions:** Pass `searchEnabled={true}` to every `<SidekickMenu>` that should show search:
+
+    ```jsx
+    <SidekickMenu items={items} searchEnabled={true} />
+    ```
+
+    Consumers who already pass `searchEnabled={false}` need no change: their menu keeps rendering exactly as before. Search itself is otherwise unchanged — the placeholder, autofocus, custom icon, matching rules, result ordering, numbered shortcuts and empty state are the same as in 1.7.0, so no other surprises should be expected in this release.
+
+    The [Search (opt-in)](search.md) guide covers what the enabled box does, including why items without `searchTerms` can stay visible while a term is active.
+
+## See also
+
+- [Search (opt-in)](search.md) — restoring the search box after upgrading.
+- [Features Showcase](features.md) — the feature the v2.0.0 entry changes.
+- [The Cookbook: Practical Examples](examples.md) — updated search recipe.
 
 ---
 **[< Previous: Best Practices](best-practices.md) | [Next: README.md >](../README.md)**

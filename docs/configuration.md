@@ -1,3 +1,9 @@
+---
+title: Configuration Guide
+covers: UI/SidekickMenu/SidekickMenu.tsx, UI/SidekickMenu/types.ts, UI/context/, UI/SidekickMenu/hooks/useFavourites.ts, UI/SidekickMenu/components/TabSwitcher.tsx, Styles/SidekickMenu.module.css
+covers-hash: 62abdcddffeb851f736f
+---
+
 # Configuration Guide
 
 **[< Previous: API Reference](api.md) | [Next: Contributor's Guide >](development.md)**
@@ -26,15 +32,18 @@ The `SidekickMenu` component comes with a set of sensible default values for man
 
 Here are the default values for the configurable props:
 
+These are the defaults resolved inside the component itself (in `UI/SidekickMenu/SidekickMenu.tsx`); you do not need to declare the object shown here. Any prop you pass replaces the matching default.
+
 ```typescript
-static defaultProps = {
-  searchEnabled: true,
+// Defaults applied when the prop is omitted
+{
+  searchEnabled: false,
   searchAutoFocus: true,
   searchPlaceholder: "Search menu...",
   alwaysShowUnsearchableItems: true,
   openOnDesktop: false,
   cacheLifetime: 24, // hours
-};
+}
 ```
 
 ---
@@ -49,7 +58,7 @@ Utilize the `cacheLifetime` prop (specified in hours) on the `<SidekickMenu>` co
 
 ```jsx
 import React from 'react';
-import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu from 'jattac.libs.web.zest-sidekick-menu';
 
 const App = () => {
   const menuItems = [
@@ -78,7 +87,7 @@ Set the `openOnDesktop` prop to `true`.
 
 ```jsx
 import React from 'react';
-import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu from 'jattac.libs.web.zest-sidekick-menu';
 
 const App = () => {
   const menuItems = [
@@ -99,13 +108,13 @@ The menu will automatically detect screen width and apply this behavior. On smal
 
 ### 4. Fine-tuning Search Behavior
 
-The menu's integrated search functionality can be configured to best suit the requirements of your application.
+The menu's integrated search functionality can be configured to best suit the requirements of your application. For the full walkthrough — including why non-matching items can stay visible and what happens when you turn search off mid-session — see [Search (opt-in)](search.md).
 
 #### `searchEnabled: boolean`
-Controls whether the search input field is rendered.
+Opt-in: search is off unless enabled. The default is `false`, so a menu rendered without this prop shows no search box. Pass `true` to render the search input; its behaviour when enabled is unchanged.
 
 ```jsx
-<SidekickMenu items={/* ... */} searchEnabled={false} /> // Hide the search bar
+<SidekickMenu items={/* ... */} searchEnabled={true} /> // Show the search bar (opt-in)
 ```
 
 #### `searchAutoFocus: boolean`
@@ -138,7 +147,7 @@ This prop influences how items without `searchTerms` are managed when a search i
 While the component employs CSS Modules internally, global styling rules within your application might indirectly influence its appearance. The component's class names are designed to be specific to minimize potential conflicts.
 
 Ensure the `viewport` meta tag is correctly configured for mobile safe areas if unexpected layout issues are observed on mobile devices.
-Refer to the [API Reference](api.md#styling) for further details on styling.
+Refer to the [API Reference](api.md#4-styling) for further details on styling.
 
 ---
 
@@ -179,7 +188,7 @@ Setting the same `zest` prop on every `<SidekickMenu>` instance in your app is r
 Wrap your application (or a section of it) in `ZestSidekickConfigProvider` to set defaults once:
 
 ```jsx
-import { ZestSidekickConfigProvider } from 'jattac.libs.web.react-sidekick-menu';
+import { ZestSidekickConfigProvider } from 'jattac.libs.web.zest-sidekick-menu';
 
 const App = () => (
   <ZestSidekickConfigProvider config={{ defaultProps: { theme: 'dark' } }}>
@@ -200,7 +209,7 @@ Your application has its own light/dark mode (a theme context, a manual toggle, 
 Read your app's current theme wherever you already track it, and pass it into `ZestSidekickConfigProvider`'s `config` — mount the provider high enough in the tree that it re-renders whenever your app's theme changes:
 
 ```jsx
-import { ZestSidekickConfigProvider } from 'jattac.libs.web.react-sidekick-menu';
+import { ZestSidekickConfigProvider } from 'jattac.libs.web.zest-sidekick-menu';
 import { useMyAppTheme } from './theme'; // however your app tracks light/dark
 
 const App = () => {
@@ -309,6 +318,13 @@ A few opt-in features for teams that want to go further:
 - **`numberedShortcutsEnabled`** (default `true`) — lets users press `1`–`9` to jump straight to an item while the menu panel has focus. Only root-level items and *pinned* Favourites get a number (an auto-ranked favourite's position can shift, so it's never numbered). Number badges only appear once the session has seen real keyboard use, so touch-only users never see them.
 - **`zest.visualOptions.surface: 'translucent'`** — an optional frosted-glass panel background (extends the existing hamburger blur treatment). Off by default: `backdrop-filter` has a real performance cost and can reduce contrast against unpredictable page content behind the panel.
 - **Pinning** — once `favouritesEnabled` is on, every leaf item gets a pin toggle, both in the Favourites tab and in the normal browsing view (see [Favourites](#9-favourites)). Pinned items always appear first (in the order pinned), ahead of auto-ranked ones, giving you a manual override alongside the automatic ranking.
+
+## See also
+
+- [Search (opt-in)](search.md) — enabling the box, matching rules and edge cases.
+- [API Reference](api.md) — every prop and the item type.
+- [The Cookbook: Practical Examples](examples.md) — complete example apps.
+- [Breaking Changes & Migration](breaking-changes.md) — the v2.0.0 search default change.
 
 ---
 **[< Previous: API Reference](api.md) | [Next: Contributor's Guide >](development.md)**

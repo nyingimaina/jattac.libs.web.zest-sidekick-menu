@@ -1,0 +1,38 @@
+{
+  "checks": [
+    {
+      "name": "No unsafe HTML injection",
+      "kind": "pattern",
+      "files": ["UI/**/*.ts", "UI/**/*.tsx", "utils/**/*.ts", "utils/**/*.tsx"],
+      "forbid": "dangerouslySetInnerHTML|\\binnerHTML\\s*="
+    },
+    {
+      "name": "No dynamic code execution",
+      "kind": "pattern",
+      "files": ["UI/**/*.ts", "UI/**/*.tsx", "utils/**/*.ts", "utils/**/*.tsx"],
+      "forbid": "\\beval\\s*\\(|\\bnew\\s+Function\\s*\\(|\\bdocument\\.write\\s*\\("
+    },
+    {
+      "name": "No blocking busy-wait loops",
+      "kind": "pattern",
+      "files": ["UI/**/*.ts", "UI/**/*.tsx", "utils/**/*.ts", "utils/**/*.tsx"],
+      "forbid": "while\\s*\\(\\s*(?:true|1)\\s*\\)|for\\s*\\(\\s*;\\s*;\\s*\\)"
+    },
+    {
+      "name": "No JSON stringify deep-clone",
+      "kind": "pattern",
+      "files": ["UI/**/*.ts", "UI/**/*.tsx", "utils/**/*.ts", "utils/**/*.tsx"],
+      "forbid": "JSON\\.parse\\s*\\(\\s*JSON\\.stringify\\s*\\("
+    },
+    {
+      "name": "Event listeners are cleaned up",
+      "kind": "command",
+      "workingDir": ".",
+      "command": "node -e \"const fs=require('fs'),path=require('path');const exts=['.ts','.tsx'];const bad=[];function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);if(e.isDirectory())walk(p);else if(exts.includes(path.extname(p))&&!p.includes('.test.')){const s=fs.readFileSync(p,'utf8');const adds=(s.match(/addEventListener\\s*\\(/g)||[]).length;const rems=(s.match(/removeEventListener\\s*\\(/g)||[]).length;if(adds>rems)bad.push(p)}}}for(const d of ['UI','utils'])if(fs.existsSync(d))walk(d);if(bad.length){console.error('Event listeners added without matching removeEventListener: '+bad.join(', '));process.exit(1)}console.log('Event listeners are paired with cleanup.')\""
+    }
+  ],
+  "good": "import React, { useCallback, useEffect, useMemo, useRef } from \"react\";\n\nexport const useWindowWidth = () => {\n  const widthRef = useRef(window.innerWidth);\n  useEffect(() => {\n    const onResize = () => { widthRef.current = window.innerWidth; };\n    window.addEventListener(\"resize\", onResize);\n    return () => window.removeEventListener(\"resize\", onResize);\n  }, []);\n  return widthRef;\n};\n\nexport const MenuSummary = React.memo(({ items }) => {\n  const visibleItems = useMemo(() => items.filter((item) => item.visible), [items]);\n  const handleSelect = useCallback((id: string) => console.info(\"selected\", id), []);\n  return (\n    <ul aria-label=\"Menu summary\">\n      {visibleItems.map((item) => (\n        <li key={item.id} onClick={() => handleSelect(item.id)}>{item.label}</li>\n      ))}\n    </ul>\n  );\n});",
+  "bad": "import React, { useEffect } from \"react\";\n\nexport const DangerPanel = ({ html, payload, items }) => {\n  useEffect(() => {\n    document.addEventListener(\"mousedown\", onOutsideClick);\n  }, []);\n\n  const cloned = JSON.parse(JSON.stringify(items));\n  const total = eval(payload.expression);\n\n  while (true) {\n    if (total > 0) break;\n  }\n\n  return <section dangerouslySetInnerHTML={{ __html: html }} />;\n};",
+  "cannotTest": "Code duplication, general technical debt, algorithmic efficiency, render/memoisation quality, and whether resource usage is actually minimal on a low-spec device cannot be decided by regexes or a shell command and need reviewer judgement. The listener check only compares addEventListener and removeEventListener counts within a single non-test file; it cannot prove cleanup is correct, nor detect leaks from timers, subscriptions, observers, module-level caches or closures, and a deliberate add here/remove there split across files would be flagged. Busy-wait, dynamic-execution and unsafe-HTML checks only cover the literal forms matched by their regexes (aliases, wrappers and multi-line constructions are out of scope), and the JSON deep-clone check flags a shortcut pattern rather than measuring performance.",
+  "facts": []
+}
