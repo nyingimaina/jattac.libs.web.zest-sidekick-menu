@@ -1,0 +1,222 @@
+{
+  "checks": [
+    {
+      "id": "no-secrets",
+      "name": "No secrets in code",
+      "status": "passed",
+      "seconds": 0.1478616,
+      "output": ""
+    },
+    {
+      "id": "no-debug-leftovers",
+      "name": "No debugging leftovers",
+      "status": "passed",
+      "seconds": 0.1184623,
+      "output": ""
+    },
+    {
+      "id": "lib-typecheck",
+      "name": "Type check (library and tests)",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    },
+    {
+      "id": "lib-tests",
+      "name": "Tests, with coverage",
+      "status": "failed",
+      "seconds": 39.3777415,
+      "output": "Failed twice in a row, so this is not a one-off.\n\u2026\n     \u001B[90m 124 |\u001B[39m           \u001B[32m\u0022count). Migrate to the default \\\u0022drilldown\\\u0022 navigation style when convenient.\u0022\u001B[39m\u001B[0m\r\n\r\n      at warn (UI/SidekickMenu/SidekickMenu.tsx:121:15)\r\n      at Object.react_stack_bottom_frame (node_modules/react-dom/cjs/react-dom-client.development.js:23953:20)\r\n      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1522:13)\r\n      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom-client.development.js:11905:29)\r\n      at commitHookPassiveMountEffects (node_modules/react-dom/cjs/react-dom-client.development.js:12028:11)\r\n      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13841:13)\r\n      at recursivelyTraversePassiveMountEffects (node_modules/react-dom/cjs/react-dom-client.development.js:13815:11)\r\n      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13853:11)\r\n      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15737:9)\r\n      at node_modules/react-dom/cjs/react-dom-client.development.js:15379:15\r\n      at flushActQueue (node_modules/react/cjs/react.development.js:566:34)\r\n      at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:860:10)\r\n      at node_modules/@testing-library/react/dist/act-compat.js:46:25\r\n      at renderRoot (node_modules/@testing-library/react/dist/pure.js:189:26)\r\n      at render (node_modules/@testing-library/react/dist/pure.js:291:10)\r\n      at Object.\u003Canonymous\u003E (UI/SidekickMenu/SidekickMenu.test.tsx:324:11)\r\n\r\n\r\nSummary of all failing tests\r\nFAIL Styles/SidekickMenu.theme.test.ts (8.358 s)\r\n  \u25CF SidekickMenu.module.css \u2014 mobile-first touch targets, desktop-refined \u203A tightens the breadcrumb/tab/pin controls back down for desktop pointer precision\r\n\r\n    expect(received).toBeDefined()\r\n\r\n    Received: undefined\r\n\r\n    \u001B[0m \u001B[90m 178 |\u001B[39m       (b) \u001B[33m=\u003E\u001B[39m b\u001B[33m.\u001B[39mincludes(\u001B[32m\u0027.breadcrumbCrumb\u0027\u001B[39m) \u001B[33m||\u001B[39m b\u001B[33m.\u001B[39mincludes(\u001B[32m\u0027.tabButton\u0027\u001B[39m) \u001B[33m||\u001B[39m b\u001B[33m.\u001B[39mincludes(\u001B[32m\u0027.pinToggle\u0027\u001B[39m)\r\n     \u001B[90m 179 |\u001B[39m     )\u001B[33m;\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 180 |\u001B[39m     expect(covering)\u001B[33m.\u001B[39mtoBeDefined()\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m                      \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 181 |\u001B[39m     expect(covering)\u001B[33m.\u001B[39mtoMatch(\u001B[35m/min-height:\\s*0/\u001B[39m)\u001B[33m;\u001B[39m\r\n     \u001B[90m 182 |\u001B[39m   })\u001B[33m;\u001B[39m\r\n     \u001B[90m 183 |\u001B[39m\u001B[0m\r\n\r\n      at Object.\u003Canonymous\u003E (Styles/SidekickMenu.theme.test.ts:180:22)\r\n\r\n  \u25CF SidekickMenu.module.css \u2014 other mobile-first robustness fixes \u203A restores the panel to a fixed 300px width on desktop, independent of openOnDesktop\r\n\r\n    expect(received).toBeDefined()\r\n\r\n    Received: undefined\r\n\r\n    \u001B[0m \u001B[90m 217 |\u001B[39m       (b) \u001B[33m=\u003E\u001B[39m \u001B[35m/\\n\\s*\\.panel\\s*{[^}]*width:\\s*300px/\u001B[39m\u001B[33m.\u001B[39mtest(b)\r\n     \u001B[90m 218 |\u001B[39m     )\u001B[33m;\u001B[39m\r\n    \u001B[31m\u001B[1m\u003E\u001B[22m\u001B[39m\u001B[90m 219 |\u001B[39m     expect(generalPanelWidthBlock)\u001B[33m.\u001B[39mtoBeDefined()\u001B[33m;\u001B[39m\r\n     \u001B[90m     |\u001B[39m                                    \u001B[31m\u001B[1m^\u001B[22m\u001B[39m\r\n     \u001B[90m 220 |\u001B[39m   })\u001B[33m;\u001B[39m\r\n     \u001B[90m 221 |\u001B[39m\r\n     \u001B[90m 222 |\u001B[39m   it(\u001B[32m\u0027prevents the menu list from chaining scroll into the page behind it\u0027\u001B[39m\u001B[33m,\u001B[39m () \u001B[33m=\u003E\u001B[39m {\u001B[0m\r\n\r\n      at Object.\u003Canonymous\u003E (Styles/SidekickMenu.theme.test.ts:219:36)\r\n\r\n\r\nTest Suites: 1 failed, 21 passed, 22 total\r\nTests:       2 failed, 215 passed, 217 total\r\nSnapshots:   0 total\r\nTime:        14.025 s, estimated 18 s\r\nRan all test suites."
+    },
+    {
+      "id": "lib-build",
+      "name": "Build (CommonJS, ES modules, type definitions)",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    },
+    {
+      "id": "lib-validate-package",
+      "name": "Package check (attw and publint)",
+      "status": "notrun",
+      "seconds": 0.1600305,
+      "output": "Not set up in this project: attw and publint are not installed, so nothing checks that the package works for everyone who installs it."
+    },
+    {
+      "id": "lib-pack",
+      "name": "What would be published",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    },
+    {
+      "id": "lib-publish-dry-run",
+      "name": "Publish dry run (everything npm checks, nothing is uploaded)",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    },
+    {
+      "id": "lib-size",
+      "name": "Size budget",
+      "status": "notrun",
+      "seconds": 0.1656758,
+      "output": "Not set up in this project: The project has no .size-limit.json, so this check has nothing to run."
+    },
+    {
+      "id": "lib-consumer-smoke",
+      "name": "Install and import the packed library",
+      "status": "notrun",
+      "seconds": 0.1624257,
+      "output": "Not set up in this project: Nothing installs the packed library into a scratch project and imports it  no scripts/consumer-smoke.mjs ."
+    },
+    {
+      "id": "lib-docs",
+      "name": "Documentation is complete",
+      "status": "notrun",
+      "seconds": 0.1596887,
+      "output": "Not set up in this project: The project has no scripts/check-docs.mjs, so this check has nothing to run."
+    },
+    {
+      "id": "rule-USR-001-1",
+      "name": "No third-party component libraries",
+      "status": "passed",
+      "seconds": 0.1265651,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-001-2",
+      "name": "No native buttons",
+      "status": "failed",
+      "seconds": 0.1175632,
+      "output": "6 match(es):\nUI/SidekickMenu/components/DrilldownMenuItem.tsx:64: \u003Cbutton\r\nUI/SidekickMenu/components/MenuBreadcrumb.tsx:22: \u003Cbutton type=\u0022button\u0022 className={styles.breadcrumbBack} onClick={onBack} aria-label=\u0022Back\u0022\u003E\r\nUI/SidekickMenu/components/MenuBreadcrumb.tsx:25: \u003Cbutton\r\nUI/SidekickMenu/components/MenuBreadcrumb.tsx:46: \u003Cbutton type=\u0022button\u0022 className={styles.breadcrumbCrumb} onClick={() =\u003E onNavigate(index)}\u003E\r\nUI/SidekickMenu/components/TabSwitcher.tsx:33: \u003Cbutton\r\nUI/SidekickMenu/components/TabSwitcher.tsx:43: \u003Cbutton"
+    },
+    {
+      "id": "rule-USR-001-3",
+      "name": "No native inputs",
+      "status": "passed",
+      "seconds": 0.1312814,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-001-4",
+      "name": "No native tables",
+      "status": "passed",
+      "seconds": 0.1170447,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-001-5",
+      "name": "No hand-rolled tab widgets",
+      "status": "failed",
+      "seconds": 0.113522,
+      "output": "3 match(es):\nUI/SidekickMenu/components/TabSwitcher.tsx:27: role=\u0022tablist\u0022\r\nUI/SidekickMenu/components/TabSwitcher.tsx:35: role=\u0022tab\u0022\r\nUI/SidekickMenu/components/TabSwitcher.tsx:45: role=\u0022tab\u0022"
+    },
+    {
+      "id": "rule-USR-001-6",
+      "name": "Required Zest packages are declared",
+      "status": "failed",
+      "seconds": 0.5411321,
+      "output": "Failed twice in a row, so this is not a one-off.\nMissing required packages: jattac.libs.web.zest-responsive-layout, jattac.libs.web.zest-file-upload, jattac.libs.web.zest-tabs, jattac.libs.web.responsive-table, jattac.libs.web.zest-textbox, jattac.libs.web.zest-button, jattac.libs.web.overflow-menu, jattac-web-poller"
+    },
+    {
+      "id": "rule-USR-002-1",
+      "name": "Mobile-first media queries only",
+      "status": "passed",
+      "seconds": 0.1254749,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-002-2",
+      "name": "Font sizes scale with user settings",
+      "status": "passed",
+      "seconds": 0.3068142,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-002-3",
+      "name": "Touch targets at least 44px",
+      "status": "passed",
+      "seconds": 0.1147301,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-002-4",
+      "name": "No fixed numeric inline dimensions",
+      "status": "passed",
+      "seconds": 0.1198007,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-002-5",
+      "name": "Tablet breakpoint exists",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-003-1",
+      "name": "No unsafe HTML injection",
+      "status": "passed",
+      "seconds": 0.2378794,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-003-2",
+      "name": "No dynamic code execution",
+      "status": "passed",
+      "seconds": 0.3112831,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-003-3",
+      "name": "No blocking busy-wait loops",
+      "status": "passed",
+      "seconds": 0.2316917,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-003-4",
+      "name": "No JSON stringify deep-clone",
+      "status": "passed",
+      "seconds": 0.2047502,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-003-5",
+      "name": "Event listeners are cleaned up",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-006-1",
+      "name": "Colours come from theme tokens",
+      "status": "passed",
+      "seconds": 0.2413263,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-006-2",
+      "name": "No inline font families",
+      "status": "passed",
+      "seconds": 0.3575956,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-006-3",
+      "name": "No positive tabIndex",
+      "status": "passed",
+      "seconds": 0.3261009,
+      "output": ""
+    },
+    {
+      "id": "rule-USR-006-4",
+      "name": "Animation honours reduced-motion",
+      "status": "passed",
+      "seconds": 0,
+      "output": ""
+    }
+  ],
+  "tests": []
+}

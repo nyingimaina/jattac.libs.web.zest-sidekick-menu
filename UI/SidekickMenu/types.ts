@@ -46,6 +46,8 @@ export interface ZestSidekickCustomProps {
 
 export interface SidekickMenuProps {
   items: ISidekickMenuItem[];
+  /** Opt-in. When `true`, the search input is rendered and search works as in 1.x.
+   *  Defaults to `false`, so no search box is shown unless you enable it. */
   searchEnabled?: boolean;
   searchAutoFocus?: boolean;
   searchPlaceholder?: string;

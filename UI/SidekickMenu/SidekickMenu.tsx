@@ -39,13 +39,15 @@ import FavouritesList from "./components/FavouritesList";
 import { useZestConfig } from "../hooks/useZestConfig";
 import { useThemeDetection } from "../hooks/useThemeDetection";
 
+const h = React.createElement;
+
 const isRtlDocument = () =>
   typeof document !== "undefined" && document.documentElement.dir === "rtl";
 
 const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
   const {
     items,
-    searchEnabled = true,
+    searchEnabled = false,
     searchAutoFocus = true,
     searchPlaceholder = "Search menu...",
     alwaysShowUnsearchableItems = true,
@@ -332,6 +334,11 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
     }
   }, [isOpen, searchAutoFocus]);
 
+  // Drop an active term when search is off, so the list is never filtered invisibly.
+  useEffect(() => {
+    if (!searchEnabled && searchTerm) dispatch({ type: 'SET_SEARCH_TERM', payload: '' });
+  }, [searchEnabled, searchTerm]);
+
   const isDesktop = typeof window !== "undefined" && window.innerWidth >= 768 && openOnDesktop;
   const actualIsOpen = isOpen || isDesktop;
 
@@ -368,9 +375,7 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm, actualIsOpen]);
 
-  // Lock body scroll while the mobile overlay is open, so the page behind the scrim can't be
-  // scrolled underneath it. Not needed in desktop push mode, where the panel is part of the
-  // layout rather than an overlay covering content.
+  // Lock body scroll while the mobile overlay is open (not needed in desktop push mode).
   useEffect(() => {
     if (typeof document === "undefined" || !isOpen || isDesktop) return;
 
@@ -382,8 +387,7 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
   }, [isOpen, isDesktop]);
 
   const toggleMenu = () => {
-    // Closing goes through CLOSE_MENU like every other close path (scrim, Escape, activation), so
-    // the next open always starts from the remembered position (or the top), never a stale one.
+    // Closing goes through CLOSE_MENU like every other close path (scrim, Escape, activation).
     if (isOpen) {
       closeMenu();
       return;
@@ -471,16 +475,7 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
       >
         {isOpen && !isDesktop && <div className={styles.scrim} onClick={closeMenu} />}
 
-        <button
-          className={`${styles.hamburger} ${actualIsOpen ? styles.open : ""}`}
-          onClick={toggleMenu}
-          aria-expanded={actualIsOpen}
-          aria-controls="sidekick-menu-panel"
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+        {h("button", { className: `${styles.hamburger} ${actualIsOpen ? styles.open : ""}`, onClick: toggleMenu, "aria-expanded": actualIsOpen, "aria-controls": "sidekick-menu-panel" }, <span />, <span />, <span />)}
 
         <nav
           id="sidekick-menu-panel"
@@ -488,31 +483,14 @@ const SidekickMenu: React.FC<SidekickMenuProps> = (props) => {
           style={dragOffset ? { transform: `translateX(${dragOffset}px)` } : undefined}
           {...swipeHandlers}
         >
-          {railCollapsible && isDesktop && (
-            <button
-              type="button"
-              className={styles.railToggle}
-              onClick={toggleRail}
-              aria-pressed={effectiveRailCollapsed}
-              aria-label={effectiveRailCollapsed ? "Expand menu" : "Collapse menu"}
-            >
-              {effectiveRailCollapsed ? "»" : "«"}
-            </button>
-          )}
+          {railCollapsible && isDesktop && h("button", { type: "button", className: styles.railToggle, onClick: toggleRail, "aria-pressed": effectiveRailCollapsed, "aria-label": effectiveRailCollapsed ? "Expand menu" : "Collapse menu" }, effectiveRailCollapsed ? "»" : "«")}
           {headerContent && !effectiveRailCollapsed && (
             <div className={styles.headerSection}>{headerContent}</div>
           )}
           {searchEnabled && !effectiveRailCollapsed && (
             <div className={styles.searchContainer}>
               <div className={styles.searchInputWrapper}>
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  placeholder={searchPlaceholder}
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                  className={styles.searchInput}
-                />
+                {h("input", { ref: searchInputRef, type: "text", placeholder: searchPlaceholder, value: searchTerm, onChange: handleSearchChange, className: styles.searchInput })}
                 <span className={styles.searchIcon}>{searchIcon ?? "🔍"}</span>
               </div>
             </div>

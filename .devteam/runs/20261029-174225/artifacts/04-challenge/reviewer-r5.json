@@ -1,0 +1,10 @@
+{
+  "findings": [],
+  "verifications": [
+    {
+      "id": "REV-1",
+      "status": "open",
+      "evidence": "The claim is about built bundle bytes versus v1.7.0; the code shown contains no build output or size measurement, so it cannot settle it. The off-state reset effect the finding names is still present: `// Drop an active term when search is off, so the list is never filtered invisibly.` followed by `useEffect(() => { if (!searchEnabled && searchTerm) dispatch({ type: 'SET_SEARCH_TERM', payload: '' }); }, [searchEnabled, searchTerm]);` (lines 337-340). Whether MenuButton (lines 42-43) and its call sites still exist, and whether dist/index.js and dist/index.esm.js are now <= 122706 / 122244 bytes, is not visible in the supplied lines."
+    }
+  ]
+}

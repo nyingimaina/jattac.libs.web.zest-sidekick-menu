@@ -1,3 +1,9 @@
+---
+title: API Reference
+covers: UI/index.ts, UI/SidekickMenu/types.ts, UI/SidekickMenu/SidekickMenu.tsx, UI/SidekickMenu/utils/cache.ts, UI/SidekickMenu/utils/favouritesStorage.ts
+covers-hash: 4c04095ff4b2ce47357a
+---
+
 # API Reference
 
 **[< Previous: Features Showcase](features.md) | [Next: Configuration Guide >](configuration.md)**
@@ -24,7 +30,7 @@ The `SidekickMenu` component accepts the following props:
 | :------------------------ | :-------------------------------------- | :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `items`                   | `ISidekickMenuItem[]`                   | `[]`                        | An array of menu item objects to display in the menu. This defines the structure and content of your menu.                                               |
 | `cacheLifetime`           | `number`                                | `24`                        | The lifetime of the visibility cache in hours for items with `visibilityControl.isCachable: true`. After this duration, cached visibility is re-evaluated. |
-| `searchEnabled`           | `boolean`                               | `true`                      | If `false`, the search input will not be rendered.                                                                                                       |
+| `searchEnabled`           | `boolean`                               | `false`                     | Opt-in. Pass `true` to render the search input; the default `false` renders no search box. Search behaviour when enabled is unchanged. See [Search (opt-in)](search.md). |
 | `searchAutoFocus`         | `boolean`                               | `true`                      | If `true`, the search input will automatically receive focus when the menu is opened.                                                                    |
 | `searchPlaceholder`       | `string`                                | `"Search menu..."`          | The placeholder text displayed in the search input field.                                                                                              |
 | `alwaysShowUnsearchableItems` | `boolean`                           | `true`                      | If `true`, menu items without `searchTerms` defined will always be visible, even when a search term is active. If `false`, only searchable items or matching children will appear. |
@@ -133,7 +139,7 @@ A menu item must be one of three mutually exclusive types:
 This function allows you to manually clear the entire visibility cache stored in `localStorage` by the `SidekickMenu` component. It is useful in scenarios where user permissions change, or a user logs out, and a forced re-evaluation of all cached menu item visibilities on the next render is required.
 
 ```javascript
-import { clearSidekickMenuCache } from 'jattac.libs.web.react-sidekick-menu';
+import { clearSidekickMenuCache } from 'jattac.libs.web.zest-sidekick-menu';
 
 // Call this function when a user logs out or permissions change
 clearSidekickMenuCache();
@@ -148,7 +154,7 @@ Pass a `storageNamespace` if you set one on the corresponding `<SidekickMenu>` i
 Clears the Favourites usage-history and pin data stored in `localStorage`. Useful alongside `clearSidekickMenuCache` when a user logs out, so the next user doesn't see the previous user's favourites.
 
 ```javascript
-import { clearSidekickMenuUsageStats } from 'jattac.libs.web.react-sidekick-menu';
+import { clearSidekickMenuUsageStats } from 'jattac.libs.web.zest-sidekick-menu';
 
 clearSidekickMenuUsageStats();
 ```
@@ -168,6 +174,13 @@ The menu is engineered to respect safe areas on mobile devices. For accurate ren
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 ```
+
+## See also
+
+- [Search (opt-in)](search.md) — how to turn the search box on and what it does.
+- [Configuration Guide](configuration.md) — defaults, theming, navigation and favourites.
+- [The Cookbook: Practical Examples](examples.md) — copy-paste recipes for common setups.
+- [Breaking Changes & Migration](breaking-changes.md) — the v2.0.0 search default change.
 
 ---
 **[< Previous: Features Showcase](features.md) | [Next: Configuration Guide >](configuration.md)**

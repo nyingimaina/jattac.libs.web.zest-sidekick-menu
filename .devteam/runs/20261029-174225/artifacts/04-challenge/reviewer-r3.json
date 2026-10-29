@@ -1,0 +1,29 @@
+{
+  "findings": [
+    {
+      "cites": "PERF-001",
+      "severity": "blocking",
+      "file": "UI/SidekickMenu/SidekickMenu.tsx",
+      "line": 340,
+      "evidence": "I rebuilt both revisions in scratch copies with the project's own rollup.config.js and a junction to the same node_modules. v1.7.0 (git archive HEAD): dist/index.js = 122706 bytes, dist/index.esm.js = 122244. Working tree: 123360 and 122892 (+654 and +648 bytes). A third build with only the MenuButton helper (lines 42-43) and its three call sites reverted still measured 123075 and 122607 (+369 and +363), so the growth comes from the new off-state reset effect (lines 338-344) plus the MenuButton indirection. Nothing measures it: no .size-limit.json and no test reads dist sizes. Requirement (performance): 'npm run build output for dist/index.js and dist/index.esm.js is no larger than v1.7.0's (measure both before and after)'.",
+      "description": "The performance non-functional requirement is unmet and unproven: both bundles are measurably larger than v1.7.0's, and the MenuButton helper added at lines 42-43 (used by the hamburger and rail toggle, unrelated to this feature) is pure avoidable payload. The developer's report claims 'no bundle growth', which the measurement contradicts."
+    },
+    {
+      "cites": "UI-001",
+      "severity": "advisory",
+      "file": "UI/SidekickMenu/SidekickMenu.tsx",
+      "line": 342,
+      "evidence": "The new effect dispatches only SET_SEARCH_TERM. handleSearchChange (lines 283-287) always follows a term change with SET_HIGHLIGHTED_INDEX -1. Scenario: searchEnabled flips true->false while a term is active and an item was arrow-highlighted; the term is dropped but highlightedIndex (e.g. 1) is kept, so after the list unfilters a different item (Banana) is highlighted and Enter activates it, not the item the user had highlighted.",
+      "description": "Turning search off clears the query but leaves the stale highlight, so the keyboard highlight silently moves to a different item than the one the user had selected. Dispatch SET_HIGHLIGHTED_INDEX -1 with the term reset so the off-state matches every other term-clearing path."
+    },
+    {
+      "cites": "R5",
+      "severity": "advisory",
+      "file": "Styles/SidekickMenu.theme.test.ts",
+      "line": 180,
+      "evidence": "npx jest: 214 passed, 2 failed. Both failures are the existing CRLF-vs-LF regexes at lines 180 and 219 of the untouched Styles/SidekickMenu.theme.test.ts, so they also fail on HEAD in this Windows checkout. Every search test passes and none is deleted or skipped (no .skip/.only/xit in the suite).",
+      "description": "R5's acceptance 'npm test passes' is literally unmet because of two pre-existing, unrelated environment failures; the search-specific part of R5 is satisfied."
+    }
+  ],
+  "verifications": []
+}

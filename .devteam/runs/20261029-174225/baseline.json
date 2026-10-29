@@ -1,0 +1,501 @@
+{
+  "stamps": {
+    ".gitignore": [
+      22,
+      639070003683280200
+    ],
+    ".npmignore": [
+      76,
+      638945675603352310
+    ],
+    "declarations.d.ts": [
+      104,
+      638945676656039055
+    ],
+    "jest.config.js": [
+      397,
+      639127914140180669
+    ],
+    "jest.setup.ts": [
+      834,
+      639264766500442068
+    ],
+    "package-lock.json": [
+      311303,
+      639127914308734673
+    ],
+    "package.json": [
+      1327,
+      639264766500452164
+    ],
+    "README.md": [
+      2755,
+      639070186963756571
+    ],
+    "rollup.config.js": [
+      1091,
+      638945703957651144
+    ],
+    "tsconfig.json": [
+      455,
+      638945703146059146
+    ],
+    ".llm-directives/how-to-document.md": [
+      10499,
+      639069004263272594
+    ],
+    ".llm-directives/index.md": [
+      389,
+      638884314004044699
+    ],
+    ".llm-directives/project_memos.md": [
+      199,
+      638884314004056377
+    ],
+    ".llm-directives/release_git_steps.md": [
+      2904,
+      638937199720482722
+    ],
+    "conductor/index.md": [
+      328,
+      639127908229444696
+    ],
+    "conductor/product-guidelines.md": [
+      1621,
+      639127907150726500
+    ],
+    "conductor/product.md": [
+      1763,
+      639127905946947241
+    ],
+    "conductor/tech-stack.md": [
+      1172,
+      639127907443059008
+    ],
+    "conductor/tracks.md": [
+      292,
+      639127958874053413
+    ],
+    "conductor/workflow.md": [
+      14139,
+      639088400000000000
+    ],
+    "docs/api.md": [
+      14350,
+      639264766500421880
+    ],
+    "docs/best-practices.md": [
+      5957,
+      639248218081438265
+    ],
+    "docs/breaking-changes.md": [
+      4745,
+      639248197504494728
+    ],
+    "docs/configuration.md": [
+      18406,
+      639264766500436942
+    ],
+    "docs/development.md": [
+      5803,
+      639248001955809431
+    ],
+    "docs/examples.md": [
+      11897,
+      639248197942155021
+    ],
+    "docs/features.md": [
+      10987,
+      639248197282360682
+    ],
+    "Styles/SidekickMenu.module.css": [
+      27523,
+      639264766500302626
+    ],
+    "Styles/SidekickMenu.theme.test.ts": [
+      10032,
+      639248403858194178
+    ],
+    "UI/index.ts": [
+      1107,
+      639248196493408186
+    ],
+    "utils/reactNodeUtils.d.ts": [
+      487,
+      638945700171237610
+    ],
+    "utils/reactNodeUtils.tsx": [
+      2914,
+      638917203576754140
+    ],
+    ".llm-directives/inferences/1.md": [
+      4923,
+      638947378449051431
+    ],
+    ".llm-directives/inferences/2.md": [
+      2205,
+      638947379432116260
+    ],
+    ".llm-directives/inferences/3.md": [
+      1348,
+      638947379758654501
+    ],
+    ".llm-directives/inferences/4.md": [
+      1473,
+      638947380073574832
+    ],
+    ".llm-directives/inferences/5.md": [
+      1277,
+      638947380346137444
+    ],
+    ".llm-directives/inferences/6.md": [
+      1305,
+      638947381296490622
+    ],
+    ".llm-directives/inferences/7.md": [
+      583,
+      638947381427839187
+    ],
+    ".llm-directives/inferences/8.md": [
+      1784,
+      638947399896001963
+    ],
+    "conductor/code_styleguides/html-css.md": [
+      2747,
+      639088400000000000
+    ],
+    "conductor/code_styleguides/javascript.md": [
+      2737,
+      639088400000000000
+    ],
+    "conductor/code_styleguides/typescript.md": [
+      3051,
+      639088400000000000
+    ],
+    "UI/context/ZestSidekickConfigContext.test.tsx": [
+      893,
+      639247997479619611
+    ],
+    "UI/context/ZestSidekickConfigContext.ts": [
+      544,
+      639247997617205768
+    ],
+    "UI/context/ZestSidekickConfigProvider.tsx": [
+      506,
+      639247997659541210
+    ],
+    "UI/hooks/useThemeDetection.test.ts": [
+      2028,
+      639247997235796860
+    ],
+    "UI/hooks/useThemeDetection.ts": [
+      655,
+      639247997283937108
+    ],
+    "UI/hooks/useZestConfig.test.tsx": [
+      2234,
+      639247997889408728
+    ],
+    "UI/hooks/useZestConfig.ts": [
+      1068,
+      639247997949248649
+    ],
+    "UI/SidekickMenu/SidekickMenu.test.tsx": [
+      29175,
+      639264766500312769
+    ],
+    "UI/SidekickMenu/SidekickMenu.tsx": [
+      21803,
+      639264766500327896
+    ],
+    "UI/SidekickMenu/types.ts": [
+      2255,
+      639264766500378951
+    ],
+    "conductor/tracks/infinite_nesting_20260426/index.md": [
+      142,
+      639127908956958594
+    ],
+    "conductor/tracks/infinite_nesting_20260426/metadata.json": [
+      238,
+      639127908956958594
+    ],
+    "conductor/tracks/infinite_nesting_20260426/plan.md": [
+      2182,
+      639127919963551604
+    ],
+    "conductor/tracks/infinite_nesting_20260426/spec.md": [
+      1849,
+      639127908956958594
+    ],
+    "UI/SidekickMenu/components/DrilldownMenuItem.test.tsx": [
+      3906,
+      639248187434698043
+    ],
+    "UI/SidekickMenu/components/DrilldownMenuItem.tsx": [
+      2540,
+      639264469666159146
+    ],
+    "UI/SidekickMenu/components/DrilldownMenuList.test.tsx": [
+      4632,
+      639248414210030467
+    ],
+    "UI/SidekickMenu/components/DrilldownMenuList.tsx": [
+      3008,
+      639248414554810541
+    ],
+    "UI/SidekickMenu/components/FavouritesList.test.tsx": [
+      3459,
+      639248199798571719
+    ],
+    "UI/SidekickMenu/components/FavouritesList.tsx": [
+      2338,
+      639248200074031724
+    ],
+    "UI/SidekickMenu/components/icons.tsx": [
+      1859,
+      639264766500358935
+    ],
+    "UI/SidekickMenu/components/MenuBreadcrumb.test.tsx": [
+      2077,
+      639264766500337993
+    ],
+    "UI/SidekickMenu/components/MenuBreadcrumb.tsx": [
+      2048,
+      639264766500347994
+    ],
+    "UI/SidekickMenu/components/MenuItem.tsx": [
+      2203,
+      639247999111752197
+    ],
+    "UI/SidekickMenu/components/MenuItemSkeleton.tsx": [
+      565,
+      639070021047865955
+    ],
+    "UI/SidekickMenu/components/MenuList.tsx": [
+      3610,
+      639247999007491779
+    ],
+    "UI/SidekickMenu/components/TabSwitcher.test.tsx": [
+      2171,
+      639264469666159146
+    ],
+    "UI/SidekickMenu/components/TabSwitcher.tsx": [
+      1750,
+      639264469666169158
+    ],
+    "UI/SidekickMenu/context/MenuContext.test.ts": [
+      2488,
+      639248024517026497
+    ],
+    "UI/SidekickMenu/context/MenuContext.ts": [
+      3831,
+      639264766500368931
+    ],
+    "UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.ts": [
+      3216,
+      639264766500378951
+    ],
+    "UI/SidekickMenu/hooks/useFavourites.test.ts": [
+      4831,
+      639248023402146318
+    ],
+    "UI/SidekickMenu/hooks/useFavourites.ts": [
+      3148,
+      639248023524659260
+    ],
+    "UI/SidekickMenu/hooks/useFocusTrap.ts": [
+      1406,
+      639070011476630698
+    ],
+    "UI/SidekickMenu/hooks/useItemVisibility.test.ts": [
+      1932,
+      639248021878133723
+    ],
+    "UI/SidekickMenu/hooks/useItemVisibility.ts": [
+      3602,
+      639248022305945948
+    ],
+    "UI/SidekickMenu/hooks/useKeyboardNavigation.ts": [
+      2957,
+      639127924399399444
+    ],
+    "UI/SidekickMenu/hooks/useNumberedShortcuts.test.tsx": [
+      3421,
+      639248190983015831
+    ],
+    "UI/SidekickMenu/hooks/useNumberedShortcuts.ts": [
+      1499,
+      639248191057211261
+    ],
+    "UI/SidekickMenu/hooks/useSwipeGesture.test.ts": [
+      3287,
+      639248190665512796
+    ],
+    "UI/SidekickMenu/hooks/useSwipeGesture.ts": [
+      2027,
+      639248190060339246
+    ],
+    "UI/SidekickMenu/utils/breadcrumb.test.ts": [
+      1596,
+      639248020674836164
+    ],
+    "UI/SidekickMenu/utils/breadcrumb.ts": [
+      897,
+      639248020732099317
+    ],
+    "UI/SidekickMenu/utils/cache.test.ts": [
+      1196,
+      639248021376739297
+    ],
+    "UI/SidekickMenu/utils/cache.ts": [
+      423,
+      639248021726102281
+    ],
+    "UI/SidekickMenu/utils/description.test.ts": [
+      2026,
+      639248023783236954
+    ],
+    "UI/SidekickMenu/utils/description.ts": [
+      760,
+      639248023840405461
+    ],
+    "UI/SidekickMenu/utils/favouritesStorage.test.ts": [
+      2988,
+      639248196158713735
+    ],
+    "UI/SidekickMenu/utils/favouritesStorage.ts": [
+      2036,
+      639264766500388890
+    ],
+    "UI/SidekickMenu/utils/lastPosition.test.ts": [
+      3787,
+      639264766500398921
+    ],
+    "UI/SidekickMenu/utils/lastPosition.ts": [
+      5887,
+      639264766500411843
+    ],
+    "UI/SidekickMenu/utils/namespace.test.ts": [
+      3317,
+      639248021032834341
+    ],
+    "UI/SidekickMenu/utils/namespace.ts": [
+      1756,
+      639264766500411843
+    ],
+    "UI/SidekickMenu/utils/search.ts": [
+      1778,
+      639127923520824450
+    ],
+    "UI/SidekickMenu/utils/validation.test.ts": [
+      1396,
+      639248024102485731
+    ],
+    "UI/SidekickMenu/utils/validation.ts": [
+      1490,
+      639248024210739888
+    ]
+  },
+  "hashes": {
+    ".gitignore": "2D1E04B9A1F5E85ABA15C30A0A6349998543FFF5BDF8E20FEAB8134312EF9A5F",
+    ".npmignore": "9543483E60C7E9A1E5A7BEF917A4F433CBFC892C0E74A5017CFA1A6C921DF56B",
+    "declarations.d.ts": "1D9FAF540CC286F2DDF8E62708C78D968500ACC12BE31048184BED5D56BE3DA0",
+    "jest.config.js": "9296F458E620255264750B6BDB2EF7AD54F2E8DAA37F172F693547B3FEDFDAD2",
+    "jest.setup.ts": "3EB08C955CCCA90ED57AEA15B1F34803161C506E5559850D03F896A5DDEABBC7",
+    "package-lock.json": "B3B6EF796824826C4DA9D393C2089FDFA67A3A8E9EA325A9B4E3D1CDD5E6DF85",
+    "package.json": "0EB74DF447A1502FC8B3B571919993B9B1275F556F2FFBCCE0EFA794B1CBB6F4",
+    "README.md": "6DEAA63BAFD2695CF2F11D8BD334FB61A6AB319A15B8D96A4D2BB6C3AD1C0481",
+    "rollup.config.js": "D73B44B357372D45C5CBFAC276D0610887144CB6CACD33450F482E4390B3C9E7",
+    "tsconfig.json": "C4466AC103D2B2EE6EAD47212D23088C6D2F35710DED13A95D6BBD8A01DD513E",
+    ".llm-directives/how-to-document.md": "9FC35E4387CEC8AD0DDC1D6773A25F09FB4A24EEBC39E84262EA4C43110DF763",
+    ".llm-directives/index.md": "45CF2470CB56BAD8803E4F7186A3649DED58AD898E118D9500D6DF087AACEB46",
+    ".llm-directives/project_memos.md": "C4A96EEDF8E2FFA0929B238B100E58596471D877090A72C216BEC4AF26968C34",
+    ".llm-directives/release_git_steps.md": "93FDE30F508DC9419A42AE9D7F315F84618D17C44CC4F8CF983F3ED6321230B3",
+    "conductor/index.md": "E4002C3CB7093AFA9C6BDABCC216FC8961E572F4FB3672D0B4B947385E5DAC78",
+    "conductor/product-guidelines.md": "A9910B0108EC222623DD462B4E313619B7B65562E705EB810B598F94E06B9F1B",
+    "conductor/product.md": "818DB8FC315D84437CD983D530D36971D6F4CA8EF2DFA8C076E2E8C4A5BAC810",
+    "conductor/tech-stack.md": "0880133D9BD264116CCBCF3F9783B94853C1067610D1196E56E4621830163C92",
+    "conductor/tracks.md": "85171F77EEBAED7AD0C49A5287A59063AE76750E50450FC5B96441CB0E14F931",
+    "conductor/workflow.md": "B7F63070440383BD710009408ADD548CC5D06CD218DE1D8238F709E4DDAB7EB9",
+    "docs/api.md": "097E9DC2F41025412F52034715A6D78B4848B423351209CC5C6014D2F364D7E1",
+    "docs/best-practices.md": "DACA6FF6E1568D713E09551F148CD3F16EC76BC8D2C9D367BCF4ED5CD371AE6E",
+    "docs/breaking-changes.md": "7E4C5BA8204AF0C964139B954A3F04311436DA02D738124E54A6D01F668BAB8E",
+    "docs/configuration.md": "C9129D565455D549583DBB0B17E0CFE4321ADECF7A461DF7CD06D3572AC5F610",
+    "docs/development.md": "7B572195EA916E82665ADD4CDEFE8161B3BEA4A0C89A0B14829111D42AA8CAFC",
+    "docs/examples.md": "620353E71B216BA21467FD310BD8E7093D10A085207007CEA15E5C4184116EEA",
+    "docs/features.md": "07094CE674E0A14D76D5DC5647CDED1FDE7038ABF31AB80CB198D7AFED4ECF68",
+    "Styles/SidekickMenu.module.css": "7A907B173F53757EF69ED842C08727642F9E7E31E64AF37A42433C965FD3D5ED",
+    "Styles/SidekickMenu.theme.test.ts": "70F45669C7DFC9C2B662C83A8D72B87309A232DB11D18DA0B1B173C3FFF4E0CD",
+    "UI/index.ts": "1F95C5420452C44BE2EBEE0F5AF68FA6707AC4C683969A490E0AE7B10F1B1C8A",
+    "utils/reactNodeUtils.d.ts": "F6280F5A5C65EFC3A878961323F3E32DB4D8D4364107097A26C1BE9B141207DC",
+    "utils/reactNodeUtils.tsx": "C34B4F6A43FE2A0202B9FC13AFCEA6ED06521EE119C4B91853EF26ECEC3AFB42",
+    ".llm-directives/inferences/1.md": "5DBA121004D9AFF3591141B7E13534CCCAAFC04249BE3D8D42A9DBA3A198280F",
+    ".llm-directives/inferences/2.md": "7E3288DFEFB891717EB9FFEAF79FF290EC0CC51A76D2903CE9DC979FFA11AFE2",
+    ".llm-directives/inferences/3.md": "FCAEECBE5BA29A31014E693A08856E0690DF3541070F83C7F810A043BE6838AA",
+    ".llm-directives/inferences/4.md": "8F6CED1ADFBAE8EA4AEDA9F7522AA1819D8E3CAA72677B9F93C7E068682D049A",
+    ".llm-directives/inferences/5.md": "38EC15C18BC233A90F0F964515B75D7F8CA1823FB4F5298A99040141A0EFBF1C",
+    ".llm-directives/inferences/6.md": "8DBE036D2A5341107F189D6D9B1CD41A04DA63A9E87583EEBF1005B273C88844",
+    ".llm-directives/inferences/7.md": "28B1D5FDD26F40E6D1F8D1F483BB3CB9CC6B1BD18DC41E9D0C38C1B72BB6A491",
+    ".llm-directives/inferences/8.md": "C7B7E6CC435ED08A61F468690CF8F34EF051DF2DBC1C2E76E200DD1627DB8A0F",
+    "conductor/code_styleguides/html-css.md": "9E53A37CD573247D3221A0EF4A3587F36C09D2ADE91C38D15CE36E9CE39BE96D",
+    "conductor/code_styleguides/javascript.md": "DB83DC5851013E0DBDB187827157D4F7CAAE4F3540F4FE64DBF348D239B9F9C9",
+    "conductor/code_styleguides/typescript.md": "6E4A4069E64995D9A690C3EEDB545127F2751CB07D700F52D97464E2FCA7C90D",
+    "UI/context/ZestSidekickConfigContext.test.tsx": "AEE7C7BDD466751BC21CE11CAE350BE312544DB445A345728FACD23B4DF33EC9",
+    "UI/context/ZestSidekickConfigContext.ts": "D6C275AF2874419304C09E7D36934CE59E5817C0A6C138DE8ECA7B7D33A70322",
+    "UI/context/ZestSidekickConfigProvider.tsx": "946F1D51EE3724247551A8F73E9F20C8221D5C8A6F75F8184FBAA08138340AA8",
+    "UI/hooks/useThemeDetection.test.ts": "34714884B5A1F93837E68B95B288F14218DC46EECB853EA399520D00C6A1C454",
+    "UI/hooks/useThemeDetection.ts": "604A650299A80D1127515A5EC5FCE0CD318BC5BB7786B92186C9D83A754C8D47",
+    "UI/hooks/useZestConfig.test.tsx": "69A7C207A7556350B700CEDA6B2DFF316517B6FC9B41CF4066DA453BAA4680EA",
+    "UI/hooks/useZestConfig.ts": "CC1CA4ACFC6368894191C007AB854BA19B98C7885F0B8576DE13AD1E3D78D4AE",
+    "UI/SidekickMenu/SidekickMenu.test.tsx": "9EF02D4BBA60FBD30A90B3B74D10BC434CC6615A6DDDA398088F0CC11254B744",
+    "UI/SidekickMenu/SidekickMenu.tsx": "49703A84C85E327714670A11F9B37B8F61838C773424C7DA4F4E7E4E1E6FF098",
+    "UI/SidekickMenu/types.ts": "1FAC5F53985FA04A29B80E5B2A9C13E5C8AF4951A6801B080CCC438E3DB9A524",
+    "conductor/tracks/infinite_nesting_20260426/index.md": "EE51837BCF0D6E016A3B4AA823121783A482B256E319CD2D470432186912470E",
+    "conductor/tracks/infinite_nesting_20260426/metadata.json": "9F8637A052DF10E11CE52E9DE6DBAE203BE8B9E4C38C551DA8520C5B37CC707F",
+    "conductor/tracks/infinite_nesting_20260426/plan.md": "7A124DC0EE9919BB769D621D74FF295C9CAB09F419F7BDBE6387A8A116F5B264",
+    "conductor/tracks/infinite_nesting_20260426/spec.md": "6C558A44E56F30F135FCA329C99313E59249C5DCB7D6D4C7FBBE4047B46977AB",
+    "UI/SidekickMenu/components/DrilldownMenuItem.test.tsx": "E1F65292D9C5F9337E98595A393D74BFDE01EBEBE6009F4C2F0E83C73BE2D6F3",
+    "UI/SidekickMenu/components/DrilldownMenuItem.tsx": "D10E4E9A858FB9C515142E625E3915A05AAF0DB7B6BA85E83DF3E38B55F36239",
+    "UI/SidekickMenu/components/DrilldownMenuList.test.tsx": "AA8AD776703BA38C9E9C4034078861BBCFBC6CAD30167B36AB500B229990AE3C",
+    "UI/SidekickMenu/components/DrilldownMenuList.tsx": "24EA717C0A18A04879FADD2D27523DCC2924C0BC2FA287C894751D03F8105CE8",
+    "UI/SidekickMenu/components/FavouritesList.test.tsx": "57C33CB6913DB9EA1CBF36CB023FD2DB84D41F3DC75CD32FDD0D2E70D7564CE0",
+    "UI/SidekickMenu/components/FavouritesList.tsx": "FF640462B8DCCA11DEDBEFE95BFA39A7DF04F60CBCAB1B73D36CB2245036810C",
+    "UI/SidekickMenu/components/icons.tsx": "F0DE37BAC0FC2418209A8300EA0FA5378511BDC5C58EEA65B17ADA478AE87856",
+    "UI/SidekickMenu/components/MenuBreadcrumb.test.tsx": "23A058B215F067918ED1D6A0B9AF5D15CD0C4F7DC2AB2C45FB7F67452CB8EE9E",
+    "UI/SidekickMenu/components/MenuBreadcrumb.tsx": "FE99167CE7A8FA4A23D99FF66CE67BB932D7359D5F08DB1C124F08135C20FED1",
+    "UI/SidekickMenu/components/MenuItem.tsx": "123962B9993B70A481F9AC73196AFEE03A55F20F5F80BB6880C81326CDD7BC24",
+    "UI/SidekickMenu/components/MenuItemSkeleton.tsx": "22BACCADDBAFB185E989E10B5044FD962CB523AC48C6E36E2FDAD97D31D7BF26",
+    "UI/SidekickMenu/components/MenuList.tsx": "F29EE3F8E0021002BAE23ED91FB427B5237433B8BA44E57F12FBA46956FDEAAD",
+    "UI/SidekickMenu/components/TabSwitcher.test.tsx": "2889B20576B0D4B79F63DFB4C012D1E94E9F3808D813B1B0150D7B56EA678CA2",
+    "UI/SidekickMenu/components/TabSwitcher.tsx": "65A72226D599623068122F54FBDF7AE9EFBC333E1974C4779C1268F9FBA5393E",
+    "UI/SidekickMenu/context/MenuContext.test.ts": "0F03C55F7AF28000F66FBDC666A03DAED645952D6F1384C10D328986577C8499",
+    "UI/SidekickMenu/context/MenuContext.ts": "28DFE8C1E76437AD8974F41E9062D1408ED6CB4FB54148DF5137C7540C16F59F",
+    "UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.ts": "C32E0AD88E12970F7DB94198D75000E3A5C8E97A88EF958D44A15CF7BD95F2A9",
+    "UI/SidekickMenu/hooks/useFavourites.test.ts": "E8B9D9DF089546DF735C79EDA1163E95D7BFBF89960B2D7EF5A4967F7E827861",
+    "UI/SidekickMenu/hooks/useFavourites.ts": "00D8DE6AAEB4968A4353BB624850A7481D13C6B07A495ECF41894D8CC63A2B02",
+    "UI/SidekickMenu/hooks/useFocusTrap.ts": "4AA621C156F33B84C4A5F26EEDEE50943320FDCA858A5721989B9E9768241F28",
+    "UI/SidekickMenu/hooks/useItemVisibility.test.ts": "963559CB4BD32323E6A8C2C8997B7B94F8121DE5081BF2607DE0AD8308C51131",
+    "UI/SidekickMenu/hooks/useItemVisibility.ts": "26A161C63E1298EC53B1B71F4AE0A585817C3A216C3285097CA07AC83BC5555E",
+    "UI/SidekickMenu/hooks/useKeyboardNavigation.ts": "F0EC705A64C4B0F43101F295CE6498520B326957681256F23D254B26D2581226",
+    "UI/SidekickMenu/hooks/useNumberedShortcuts.test.tsx": "2E9EC2AD905C62CCB523614D2FADF2B19A8C09291CC9BCF2A88EEC9F504DF0DE",
+    "UI/SidekickMenu/hooks/useNumberedShortcuts.ts": "46E6EB95348113FDE1B2D19E965766972510E533B1F3772EF7FB83DF9417B871",
+    "UI/SidekickMenu/hooks/useSwipeGesture.test.ts": "E8C0CA8FB7C31F2ABD6BC34E152C83E33041D2E7A2338702EC4C467C6389C659",
+    "UI/SidekickMenu/hooks/useSwipeGesture.ts": "A8E9BF8946B1B53B3BA36EBC0EB62F2C68913CE6E2932E06454E7D8179598E65",
+    "UI/SidekickMenu/utils/breadcrumb.test.ts": "82AB4A60E4ED9E656E2EC7D651C5700DEC123770A830014720E7599A6C96A3C3",
+    "UI/SidekickMenu/utils/breadcrumb.ts": "E8C5D816E6B4CF90265A4A5BCE24AD07417A7BEEF261555DA0CA793072FAC62A",
+    "UI/SidekickMenu/utils/cache.test.ts": "E4BAB5610A241CE64055CF64985299881643870C40C0B63780E966A79DBFAD4D",
+    "UI/SidekickMenu/utils/cache.ts": "9AAF5ED4E56FEF9E66761D4D448F1D8DD69A81E590831878D02707E16B5828ED",
+    "UI/SidekickMenu/utils/description.test.ts": "BFC02EEEF50CD759C1635618191678EE84749EE269A2FFB12244E1221D1F0C60",
+    "UI/SidekickMenu/utils/description.ts": "120C3382F3BAFA292892E66D058465469DAF099B6C97B1DD37EDA5689076C0AB",
+    "UI/SidekickMenu/utils/favouritesStorage.test.ts": "863BD2880CB098AD3FA004F3E39D866C625E4E0C368E56A448F353E115452EE7",
+    "UI/SidekickMenu/utils/favouritesStorage.ts": "9E096C4DBC2D584B0794B3391592822955E109A1A3A470EA2299F026A4F62C85",
+    "UI/SidekickMenu/utils/lastPosition.test.ts": "896A1572F3CAA4A1AE0FBA121DA35F4BC98F26CB47058A972613B0BE85A6B0AC",
+    "UI/SidekickMenu/utils/lastPosition.ts": "F7D2E8C5ECDBAB828509F1D8CD1E04710867F5F80598794D8ECD1E42FE2CF1FA",
+    "UI/SidekickMenu/utils/namespace.test.ts": "5788DE9C4C239DE0F4F7663E2E565A072057D22FE6DDD0729E4D96391881EADC",
+    "UI/SidekickMenu/utils/namespace.ts": "C29D309EA2C10114AFBCFE7002C29B9AE302D3ECACE02C72BC0D3F012AFF18EE",
+    "UI/SidekickMenu/utils/search.ts": "296C99155BE087DF2442338A276B8766503A4AEB1925B261DBFF83F0ADAD58C6",
+    "UI/SidekickMenu/utils/validation.test.ts": "D4F66683A6F1CC10203BAA8FA6916782BF04F706329BB85284D41A86C9B08AB8",
+    "UI/SidekickMenu/utils/validation.ts": "721845F64BF74D3CB9A34B7110BC28B9993F84FC7E5EF33B70C2EF9A014C88F8"
+  }
+}

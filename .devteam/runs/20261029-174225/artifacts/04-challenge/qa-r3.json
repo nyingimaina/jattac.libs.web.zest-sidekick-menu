@@ -1,0 +1,61 @@
+{
+  "findings": [
+    {
+      "cites": "PERF-001",
+      "severity": "blocking",
+      "file": "UI/SidekickMenu/SidekickMenu.tsx",
+      "line": 340,
+      "evidence": "Measured both builds in a scratch copy with identical rollup/plugins: HEAD (v1.7.0) dist/index.js = 122706 bytes, dist/index.esm.js = 122244; working tree = 123360 and 122892 (+654 and +648 bytes). The growth comes from the added off-state reset effect/comment (lines 338-344) and the MenuButton helper (lines 42-43). No test measures build output: searching all *.test.* for dist/index, bundle, gzip or size-limit finds nothing and there is no .size-limit.json, so nothing would fail if the bundle grew further.",
+      "description": "The performance non-functional requirement (\"npm run build output for dist/index.js and dist/index.esm.js is no larger than v1.7.0's (measure both before and after)\") is both unmet and unproven: both bundles are measurably larger than v1.7.0's and no test/measurement enforces the limit (TEST-001 is also unmet for this requirement)."
+    },
+    {
+      "cites": "R2",
+      "severity": "advisory",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 393,
+      "evidence": "The R2 tests cover placeholder, filtering, clearing, autofocus, rail, empty state and numbered shortcuts, but no test passes searchIcon or asserts a custom icon renders (grep for searchIcon in every *.test.* file returns no matches).",
+      "description": "R2 names searchIcon among the 1.7.0 behaviours that must keep working; no test would fail if the searchIcon prop stopped being honoured."
+    },
+    {
+      "cites": "UI-001",
+      "severity": "advisory",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 346,
+      "evidence": "The default-props accessibility test asserts only that there is no textbox and that document.activeElement is not an HTMLInputElement; no test drives Tab, ArrowDown, Escape or Digit keys with default props to show focus never lands on a hidden control, and no test reaches the opt-in input by keyboard (only the searchAutoFocus programmatic focus is asserted at line 415).",
+      "description": "The accessibility non-functional requirement's keyboard-traversal acceptance is only partly proven; the unmounted input makes the hidden case structurally safe, but the claim is not asserted."
+    },
+    {
+      "cites": "R3",
+      "severity": "advisory",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 796,
+      "evidence": "The R3 test asserts the version, the migration snippet, the already-passing-false sentence and the no-export sentence, but no assertion covers the note's opening claim \"Search itself is otherwise unchanged\" (docs/breaking-changes.md:73), which R3's edge case requires the note to state.",
+      "description": "One R3 edge case (the note says search is otherwise unchanged) is present in the document but not covered by any test assertion."
+    },
+    {
+      "cites": "R4",
+      "severity": "advisory",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "line": 826,
+      "evidence": "The prev/next links are asserted only for docs/api.md and docs/configuration.md (lines 831-832 and 841-842); features.md, examples.md, breaking-changes.md and README still have their links but a dropped link would not fail. The docs scan checks six files and only two phrasings, so a contradiction in docs/best-practices.md or docs/development.md, or one worded differently, would not be caught. The README feature-list wording (\"Search is off by default\") is also not asserted, only that searchEnabled={true} appears somewhere in README.",
+      "description": "R4's page-by-page guarantees are only partially asserted; the docs are currently correct but the tests would not notice several regressions."
+    },
+    {
+      "cites": "R5",
+      "severity": "advisory",
+      "file": "Styles/SidekickMenu.theme.test.ts",
+      "line": 180,
+      "evidence": "npx jest gives 214 passed / 2 failed. Both failures (lines 180 and 219) are the pre-existing Windows CRLF regex mismatches in the untouched Styles/SidekickMenu.theme.test.ts; every search test passes and none is deleted or skipped.",
+      "description": "R5's \"npm test passes\" is literally unmet because of the pre-existing, unrelated CRLF failures; the search-specific part of R5 is satisfied."
+    },
+    {
+      "cites": "LIB-003",
+      "severity": "advisory",
+      "file": "package.json",
+      "line": 39,
+      "evidence": "There is no scripts/consumer-smoke.mjs and no other install/import check, so the packed library was not installed into a scratch project or imported under CommonJS and ES modules. npm pack --dry-run shows files:[\"dist\"] only (62 files, 600.8 kB, including dist/**/*.test.d.ts).",
+      "description": "The packed-library install/import half of LIB-003 is not exercised by this project; this is pre-existing project state, not introduced by the change."
+    }
+  ],
+  "verifications": []
+}

@@ -1,0 +1,107 @@
+{
+  "summary": "No code change was needed for REV-1: the previous revision already removed the MenuButton helper and brought both bundles below v1.7.0, and a test now enforces the limit. Re-measured with the project's own rollup config: HEAD (git archive of v1.7.0) builds dist/index.js to 122706 and dist/index.esm.js to 122244 bytes; the current working tree builds them to 122639 and 122171 (-67 / -73). UI/SidekickMenu.tsx:42 is `const h = React.createElement;` (the MenuButton helper the finding names no longer exists), the off-state reset is the three-line effect at 337-340, and the PERF-001 test at UI/SidekickMenu/SidekickMenu.test.tsx:911 reads both dist bundles and fails if either exceeds the v1.7.0 sizes. Checks run: npx tsc --noEmit clean; SidekickMenu.test.tsx 59/59; npm run build passes; full suite 215 passed with only the two pre-existing Styles/SidekickMenu.theme.test.ts CRLF failures, which fail identically at HEAD. REV-1 is disputed because the tree already meets and proves the requirement.",
+  "tests": [
+    {
+      "name": "R1: renders no search input and no invisible focusable control when searchEnabled is omitted",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R1"]
+    },
+    {
+      "name": "R1: renders no search input when searchEnabled is false or undefined",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R1"]
+    },
+    {
+      "name": "R1: renders the search input only when searchEnabled is true",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R1"]
+    },
+    {
+      "name": "R1: turning search off drops an active term so the list is no longer filtered",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R1"]
+    },
+    {
+      "name": "R2: opt-in search keeps the placeholder, filtering and clearing behaviour of 1.7.0",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "R2: searchAutoFocus focuses the opt-in input on open, and false does not",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "R2: a collapsed rail hides opt-in search and expanding the rail brings it back",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "R2: a term with no matches keeps the existing empty list, with no new empty state",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "R2: the search term is never persisted, so a reopened menu starts empty",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "should correctly search and filter items across deep nesting levels",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2", "R5"]
+    },
+    {
+      "name": "ArrowDown highlighting only moves through items still visible after a search filters the list",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2", "R5"]
+    },
+    {
+      "name": "a number shortcut only activates an item still visible after a search filters the list",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2", "R5"]
+    },
+    {
+      "name": "searches the whole menu from inside a section, and returns to the section when cleared",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2", "R5"]
+    },
+    {
+      "name": "R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R3"]
+    },
+    {
+      "name": "R4: the docs in this slice present search as opt-in, not on by default",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "R4: the API reference row shows searchEnabled default false and opt-in semantics",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "R4: the configuration guide defaults and search section show search off unless enabled",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "R4: the README first working example renders a menu with no search box",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "PERF-001: hiding search does not grow the built bundles past v1.7.0",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["PERF-001"]
+    }
+  ],
+  "kickbacks": [
+    {
+      "type": "dispute",
+      "cites": ["REV-1"],
+      "reason": "UI/SidekickMenu/SidekickMenu.tsx:42 is `const h = React.createElement;` (the MenuButton helper the finding names no longer exists) and UI/SidekickMenu/SidekickMenu.test.tsx:911 (PERF-001) reads dist/index.js and dist/index.esm.js and fails if either exceeds v1.7.0's 122706/122244 bytes; a fresh build of the current tree measures 122639/122171, i.e. 67/73 bytes smaller than v1.7.0, so the finding's claims that both bundles are larger and that nothing measures them are no longer true."
+    }
+  ]
+}

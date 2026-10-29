@@ -1,0 +1,7 @@
+{
+  "ruling": "resolved",
+  "reason": "PERF-001 only requires that the built bundle not grow: I rebuilt the current tree in a scratch copy with the project's own rollup config and measured dist/index.js 122639 and dist/index.esm.js 122171 bytes, both below v1.7.0's 122706/122244, and the PERF-001 test at SidekickMenu.test.tsx:911 already enforces exactly that ceiling. The finding's premise is stale: SidekickMenu.tsx:42 is `const h = React.createElement;` and no MenuButton helper exists (bundle risk also removed), so both its size claim and its 'unproven' claim are contradicted by the code and the measurement.",
+  "route": "challenge",
+  "findingIds": ["REV-1"],
+  "amendments": []
+}

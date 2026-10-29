@@ -1,0 +1,101 @@
+{
+  "summary": "Fixed QA-1 only. (1) The built bundles are now smaller than v1.7.0's, measured with rollup -c on both trees (HEAD via git archive in scratch, working tree): dist/index.js 122706 -> 122639 bytes and dist/index.esm.js 122244 -> 122171 bytes. To get there I removed the MenuButton wrapper component and render the hamburger, the rail toggle and the search input through one module-scope `const h = React.createElement` alias, one line per call (this also drops an extra component invocation per render); I compacted the off-state term-reset effect to a single-line dispatch; and I condensed three verbose comments in the same file to one line each (the reset-effect comment plus two unrelated ones) because Rollup keeps source comments and line breaks in the bundle - comments only, no behaviour or markup change anywhere. (2) The limit is now enforced: a new test reads dist/index.js and dist/index.esm.js and fails if either exceeds the v1.7.0 sizes, so a future growth is caught. Nothing else changed this round: search stays opt-in with searchEnabled default false, the off-state term reset, types, package version 2.0.0, the breaking-changes entry and the docs are untouched. Checks run: npx tsc --noEmit clean; SidekickMenu.test.tsx 59/59; npm run build passes; full suite 215 passed with only the two pre-existing Styles/SidekickMenu.theme.test.ts CRLF failures, which fail identically on a pristine HEAD checkout.",
+  "tests": [
+    {
+      "name": "R1: renders no search input and no invisible focusable control when searchEnabled is omitted",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R1"]
+    },
+    {
+      "name": "R1: renders no search input when searchEnabled is false or undefined",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R1"]
+    },
+    {
+      "name": "R1: renders the search input only when searchEnabled is true",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R1"]
+    },
+    {
+      "name": "R1: turning search off drops an active term so the list is no longer filtered",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R1"]
+    },
+    {
+      "name": "R2: opt-in search keeps the placeholder, filtering and clearing behaviour of 1.7.0",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "R2: searchAutoFocus focuses the opt-in input on open, and false does not",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "R2: a collapsed rail hides opt-in search and expanding the rail brings it back",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "R2: a term with no matches keeps the existing empty list, with no new empty state",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "R2: the search term is never persisted, so a reopened menu starts empty",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2"]
+    },
+    {
+      "name": "should correctly search and filter items across deep nesting levels",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2", "R5"]
+    },
+    {
+      "name": "ArrowDown highlighting only moves through items still visible after a search filters the list",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2", "R5"]
+    },
+    {
+      "name": "a number shortcut only activates an item still visible after a search filters the list",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2", "R5"]
+    },
+    {
+      "name": "searches the whole menu from inside a section, and returns to the section when cleared",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R2", "R5"]
+    },
+    {
+      "name": "R3: package version is 2.0.0 and the breaking-changes note names searchEnabled with the migration",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R3"]
+    },
+    {
+      "name": "R4: the docs in this slice present search as opt-in, not on by default",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "R4: the API reference row shows searchEnabled default false and opt-in semantics",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "R4: the configuration guide defaults and search section show search off unless enabled",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "R4: the README first working example renders a menu with no search box",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["R4"]
+    },
+    {
+      "name": "PERF-001: hiding search does not grow the built bundles past v1.7.0",
+      "file": "UI/SidekickMenu/SidekickMenu.test.tsx",
+      "requirements": ["PERF-001"]
+    }
+  ],
+  "kickbacks": []
+}

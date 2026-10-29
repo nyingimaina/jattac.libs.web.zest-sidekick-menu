@@ -1,0 +1,10 @@
+{
+  "summary": "Verified and kept the existing opt-in search wiki current: docs/search.md covers the searchEnabled default of false, the search-off term reset, rail behaviour, matching rules and the 2.0.0 upgrade, and the reference pages already state the opt-in default. Fixed the two broken README links in docs/examples.md so its previous/next navigation reaches the repository README at ../README.md.",
+  "pages": [
+    "docs/examples.md"
+  ],
+  "notes": [
+    "UI/SidekickMenu/types.ts declares ISidekickMenuItem.searchTerms as a required string, while docs/api.md and docs/search.md describe it as optional; the runtime treats a missing or empty string as unsearchable. This mismatch is pre-existing and unrelated to the search default change, so the API reference was left alone.",
+    "Could not confirm the PERF-001 bundle sizes or run the component in a browser; the documentation makes no claims that depend on either."
+  ]
+}

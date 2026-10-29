@@ -1,3 +1,9 @@
+---
+title: Features Showcase
+covers: UI/SidekickMenu/, Styles/
+covers-hash: 7eb879bb437b3666e49e
+---
+
 # Features Showcase
 
 **[< Previous: The Cookbook: Practical Examples](examples.md) | [Next: API Reference >](api.md)**
@@ -29,7 +35,7 @@ The `SidekickMenu` component offers an intuitive prop-based API, enabling rapid 
 
 ```jsx
 import React from 'react';
-import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu from 'jattac.libs.web.zest-sidekick-menu';
 
 const simpleItems = [
   { id: '1', label: 'Dashboard', path: '/dashboard' },
@@ -49,11 +55,11 @@ const App = () => <SidekickMenu items={simpleItems} />;
 As your application scales, navigating an extensive menu can become inefficient. Users require the ability to quickly locate specific sections.
 
 #### Solution:
-The menu incorporates an integrated, customizable search bar that filters menu items in real-time.
+The menu incorporates an integrated, customizable search bar that filters menu items in real-time. Search is opt-in: pass `searchEnabled={true}` to show it (hidden by default since v2.0.0).
 
 ```jsx
 import React from 'react';
-import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu from 'jattac.libs.web.zest-sidekick-menu';
 
 const App = () => (
   <SidekickMenu
@@ -64,7 +70,7 @@ const App = () => (
 );
 ```
 
-[See search customization examples in the Cookbook](examples.md#3-enabling-and-customizing-search)
+[Read the Search guide](search.md) for the opt-in rule, matching and edge cases, or [see search customization examples in the Cookbook](examples.md#3-enabling-and-customizing-search).
 
 ---
 
@@ -78,7 +84,7 @@ Multi-level nested menus can be defined easily using the `children` property wit
 
 ```jsx
 import React from 'react';
-import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu from 'jattac.libs.web.zest-sidekick-menu';
 
 const App = () => (
   <SidekickMenu
@@ -119,7 +125,7 @@ Ideal for checking permissions against an API or any other async operation.
 
 ```jsx
 import React from 'react';
-import SidekickMenu, { ISidekickMenuItem } from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu, { ISidekickMenuItem } from 'jattac.libs.web.zest-sidekick-menu';
 
 const checkAdmin = async () => {
   // Replace with your actual async logic, e.g., an API call
@@ -197,7 +203,7 @@ Any `React.ReactNode` can be provided for header, footer, and icon props, offeri
 
 ```jsx
 import React from 'react';
-import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu from 'jattac.libs.web.zest-sidekick-menu';
 import { FaUser } from 'react-icons/fa';
 
 const CustomHeader = () => <div>My Brand</div>;
@@ -226,7 +232,7 @@ The `SidekickMenu` is developed with accessibility best practices, incorporating
 ```jsx
 // No specific code snippet needed; this is an inherent feature.
 // Simply use the component, and accessibility is handled.
-import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu from 'jattac.libs.web.zest-sidekick-menu';
 
 const App = () => (
   <SidekickMenu items={/* ... */ } />
@@ -248,14 +254,14 @@ The component employs CSS Modules, and all necessary styles are bundled directly
 ```jsx
 // No code changes needed in your app.
 // The component manages its own styles internally.
-import SidekickMenu from 'jattac.libs.web.react-sidekick-menu';
+import SidekickMenu from 'jattac.libs.web.zest-sidekick-menu';
 
 const App = () => (
   <SidekickMenu items={/* ... */ } />
 );
 ```
 
-[For more details on styling considerations, refer to the Styling section in the API Reference.](api.md#styling)
+[For more details on styling considerations, refer to the Styling section in the API Reference.](api.md#4-styling)
 
 ---
 
@@ -294,6 +300,13 @@ See [Navigation Style](configuration.md#8-navigation-style) and [Favourites](con
 ### 10. Power-user & Premium Polish (v1.5.0)
 
 As of `1.5.0`: manual pin/unpin for Favourites, a desktop icon-only rail-collapse mode, edge-swipe gestures on touch, an optional translucent panel surface, and focus-scoped `1`–`9` keyboard shortcuts. All are either opt-in or self-gating — see [Power-user & Premium Polish](configuration.md#10-power-user--premium-polish) for details.
+
+## See also
+
+- [Search (opt-in)](search.md) — enable the box and understand the matching rules.
+- [The Cookbook: Practical Examples](examples.md) — runnable recipes for each feature.
+- [API Reference](api.md) — exact prop names, types and defaults.
+- [Breaking Changes & Migration](breaking-changes.md) — what changed in v2.0.0.
 
 ---
 **[< Previous: The Cookbook: Practical Examples](examples.md) | [Next: API Reference >](api.md)**

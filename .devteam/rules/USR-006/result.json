@@ -1,0 +1,47 @@
+{
+  "checks": [
+    {
+      "name": "Colours come from theme tokens",
+      "kind": "pattern",
+      "files": ["UI/**/*.ts", "UI/**/*.tsx"],
+      "forbid": "#[0-9a-fA-F]{3,8}\\b|\\b(?:rgba?|hsla?)\\s*\\("
+    },
+    {
+      "name": "No inline font families",
+      "kind": "pattern",
+      "files": ["UI/**/*.ts", "UI/**/*.tsx"],
+      "forbid": "fontFamily\\s*:"
+    },
+    {
+      "name": "No positive tabIndex",
+      "kind": "pattern",
+      "files": ["UI/**/*.tsx"],
+      "forbid": "tabIndex=\\{?['\"]?[1-9]"
+    },
+    {
+      "name": "Animation honours reduced-motion",
+      "kind": "command",
+      "workingDir": ".",
+      "command": "node -e \"const fs=require('fs'),path=require('path');let css='';for(const d of ['Styles','UI']){if(!fs.existsSync(d))continue;for(const f of fs.readdirSync(d,{recursive:true})){if(f.endsWith('.css'))css+=fs.readFileSync(path.join(d,f),'utf8')}}const animates=/(^|[;{\\s])(animation|transition)\\s*:/.test(css);const guarded=/@media\\s*\\(prefers-reduced-motion:\\s*reduce\\)/.test(css);if(animates&&!guarded){console.error('CSS animates but has no prefers-reduced-motion guard');process.exit(1)}console.log('Motion respects prefers-reduced-motion')\""
+    }
+  ],
+  "good": "import React from \"react\";\nimport { ZestButton } from \"jattac.libs.web.zest-button\";\nimport styles from \"../../../Styles/SidekickMenu.module.css\";\n\nexport const MenuRow = ({ label, description, onSelect }: MenuRowProps) => (\n  <li className={styles.menuItem}>\n    <ZestButton\n      variant=\"ghost\"\n      className={styles.itemButton}\n      aria-describedby=\"menu-row-hint\"\n      tabIndex={0}\n      onClick={onSelect}\n    >\n      {label}\n    </ZestButton>\n    <span id=\"menu-row-hint\" className={styles.itemSecondaryText}>\n      {description}\n    </span>\n  </li>\n);",
+  "bad": "import React from \"react\";\n\nexport const MenuRow = ({ label, onSelect }: MenuRowProps) => (\n  <div\n    tabIndex={2}\n    onClick={onSelect}\n    style={{\n      fontFamily: \"Comic Sans MS\",\n      color: \"#ff00ff\",\n      background: \"rgb(0, 0, 0)\"\n    }}\n  >\n    {label}\n  </div>\n);",
+  "cannotTest": "Most of this rule is judged, not matched. Not decidable by regex or command: whether forms order fields logically, focus the right control, validate inline, mark required fields, show useful placeholders/tooltips, auto-populate reliably, and stay usable by keyboard, pointer and touch; whether tooltips are reachable by Tab/Enter on touch and by assistive technology; whether the prediction kernel/adapter split is respected, adapter resolution is predictable, confidence is genuinely calibrated, learning updates correctly ignore invalid entries, and suggestions never overwrite explicit values or interfere with typing or submission; whether the 80%/50% thresholds are applied consistently in real prediction code (no prediction engine exists in this repository, so the shared-kernel logic is unexercised); whether the theme is cohesive and centrally applied beyond colour and font-family placement; and whether the interface is modern, friendly, warm, polished, non-patronising and free of manipulative engagement or gratuitous motion. The reduced-motion command only proves that some prefers-reduced-motion block exists when CSS animates; it cannot verify that every animation and transition is actually covered. Positive tabIndex is treated as the detectable symptom of unpredictable focus order, but focus behaviour itself is not simulated.",
+  "facts": [
+    {
+      "subject": "prediction auto-population confidence",
+      "attribute": "confidence",
+      "op": "at-least",
+      "value": "80",
+      "unit": "percent"
+    },
+    {
+      "subject": "prediction suggestion confidence",
+      "attribute": "confidence",
+      "op": "between",
+      "value": "50-80",
+      "unit": "percent"
+    }
+  ]
+}

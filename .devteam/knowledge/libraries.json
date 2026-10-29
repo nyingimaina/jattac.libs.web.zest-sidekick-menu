@@ -1,0 +1,198 @@
+{
+  "at": "2026-10-29T20:24:11.8339485+00:00",
+  "entries": [
+    {
+      "kind": "npm",
+      "name": "@rollup/plugin-commonjs",
+      "version": "25.0.8",
+      "key": "8281dffa3b8473695e2f21c9",
+      "own": false,
+      "source": "npm:@rollup/plugin-commonjs@25.0.8",
+      "size": 2321,
+      "ticks": 638945676190331588
+    },
+    {
+      "kind": "npm",
+      "name": "@rollup/plugin-node-resolve",
+      "version": "15.3.1",
+      "key": "ed3e1dab8cf241d6ff046203",
+      "own": false,
+      "source": "npm:@rollup/plugin-node-resolve@15.3.1",
+      "size": 2337,
+      "ticks": 638945676190064792
+    },
+    {
+      "kind": "npm",
+      "name": "@testing-library/jest-dom",
+      "version": "6.9.1",
+      "key": "0ed3e43d21b123f833fe61cf",
+      "own": false,
+      "source": "npm:@testing-library/jest-dom@6.9.1",
+      "size": 3906,
+      "ticks": 639127911533469167
+    },
+    {
+      "kind": "npm",
+      "name": "@testing-library/react",
+      "version": "16.3.2",
+      "key": "34271d7fc14245fd291f0871",
+      "own": false,
+      "source": "npm:@testing-library/react@16.3.2",
+      "size": 3387,
+      "ticks": 639127911531129657
+    },
+    {
+      "kind": "npm",
+      "name": "@types/jest",
+      "version": "30.0.0",
+      "key": "16da06dba7c026be907f63e6",
+      "own": false,
+      "source": "npm:@types/jest@30.0.0",
+      "size": 4473,
+      "ticks": 639127913568236202
+    },
+    {
+      "kind": "npm",
+      "name": "@types/node",
+      "version": "24.5.2",
+      "key": "4aa8590c5a3763a7440bc7f6",
+      "own": false,
+      "source": "npm:@types/node@24.5.2",
+      "size": 4509,
+      "ticks": 638947408648122041
+    },
+    {
+      "kind": "npm",
+      "name": "@types/react",
+      "version": "19.1.14",
+      "key": "09b58a769c433d69dfc3dfb8",
+      "own": false,
+      "source": "npm:@types/react@19.1.14",
+      "size": 6109,
+      "ticks": 638945676190361583
+    },
+    {
+      "kind": "npm",
+      "name": "identity-obj-proxy",
+      "version": "3.0.0",
+      "key": "c0c16f4088115bf751f3b7cb",
+      "own": false,
+      "source": "npm:identity-obj-proxy@3.0.0",
+      "size": 1401,
+      "ticks": 639127914300086788
+    },
+    {
+      "kind": "npm",
+      "name": "jest",
+      "version": "30.3.0",
+      "key": "f165a504e563ace33ac93e2e",
+      "own": false,
+      "source": "npm:jest@30.3.0",
+      "size": 1467,
+      "ticks": 639127913568371813
+    },
+    {
+      "kind": "npm",
+      "name": "jest-environment-jsdom",
+      "version": "30.3.0",
+      "key": "2365016fb9f7b3be3c47380c",
+      "own": false,
+      "source": "npm:jest-environment-jsdom@30.3.0",
+      "size": 1018,
+      "ticks": 639127913567346248
+    },
+    {
+      "kind": "npm",
+      "name": "jsdom",
+      "version": "27.0.1",
+      "key": "161fd7e3fc5e1d399a6b7c44",
+      "own": false,
+      "source": "npm:jsdom@27.0.1",
+      "size": 3157,
+      "ticks": 639127911553501627
+    },
+    {
+      "kind": "npm",
+      "name": "rollup",
+      "version": "4.52.3",
+      "key": "7eaa10540a2c8b1d306b0f89",
+      "own": false,
+      "source": "npm:rollup@4.52.3",
+      "size": 11698,
+      "ticks": 638945676193524141
+    },
+    {
+      "kind": "npm",
+      "name": "rollup-plugin-dts",
+      "version": "6.2.3",
+      "key": "3bb491d386ef08b58571e67c",
+      "own": false,
+      "source": "npm:rollup-plugin-dts@6.2.3",
+      "size": 1901,
+      "ticks": 638945701740032021
+    },
+    {
+      "kind": "npm",
+      "name": "rollup-plugin-peer-deps-external",
+      "version": "2.2.4",
+      "key": "a87175763a2b37823040aaa0",
+      "own": false,
+      "source": "npm:rollup-plugin-peer-deps-external@2.2.4",
+      "size": 1608,
+      "ticks": 638945676189965188
+    },
+    {
+      "kind": "npm",
+      "name": "rollup-plugin-postcss",
+      "version": "4.0.2",
+      "key": "38f1b20910b81e29fd63b396",
+      "own": false,
+      "source": "npm:rollup-plugin-postcss@4.0.2",
+      "size": 2387,
+      "ticks": 638945676187263834
+    },
+    {
+      "kind": "npm",
+      "name": "rollup-plugin-typescript2",
+      "version": "0.36.0",
+      "key": "8ec71c7e51283a6f461c3f28",
+      "own": false,
+      "source": "npm:rollup-plugin-typescript2@0.36.0",
+      "size": 2272,
+      "ticks": 638945676191940695
+    },
+    {
+      "kind": "npm",
+      "name": "ts-jest",
+      "version": "29.4.9",
+      "key": "fca86616d71d38e3c8d82ef0",
+      "own": false,
+      "source": "npm:ts-jest@29.4.9",
+      "size": 4484,
+      "ticks": 639127913573273379
+    },
+    {
+      "kind": "npm",
+      "name": "ts-node",
+      "version": "10.9.2",
+      "key": "cea08cd0de10c185cb309de0",
+      "own": false,
+      "source": "npm:ts-node@10.9.2",
+      "size": 6077,
+      "ticks": 639127913572571457
+    },
+    {
+      "kind": "npm",
+      "name": "typescript",
+      "version": "5.9.2",
+      "key": "5a0bb7f286c4b3f1413a42c0",
+      "own": false,
+      "source": "npm:typescript@5.9.2",
+      "size": 3620,
+      "ticks": 638945676197641416
+    }
+  ],
+  "missing": [],
+  "incomplete": false,
+  "newlyRead": 0
+}
