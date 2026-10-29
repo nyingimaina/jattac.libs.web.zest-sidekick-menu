@@ -1,0 +1,942 @@
+[
+  {
+    "role": "analyst",
+    "stage": "Define",
+    "text": "searchEnabled defaults to true at line 48; the input is rendered at lines 505-519 only when searchEnabled \u0026\u0026 !effectiveRailCollapsed; the autofocus effect at lines 329-333 focuses searchInputRef when isOpen \u0026\u0026 searchAutoFocus.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "49703a84c85e32771467"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T17:48:03.9541049+00:00"
+  },
+  {
+    "role": "analyst",
+    "stage": "Define",
+    "text": "SidekickMenuProps declares searchEnabled?: boolean at line 49; no other search toggle exists.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/types.ts",
+        "hash": "1fac5f53985fa04a29b8"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T17:48:03.9729039+00:00"
+  },
+  {
+    "role": "analyst",
+    "stage": "Define",
+    "text": "four tests find the search input by the \u0027Search menu...\u0027 placeholder without passing searchEnabled (approx. lines 127, 268, 292, 615) and will need to opt in after the default flips.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.test.tsx",
+        "hash": "9ef02d4bba60fbd30a90"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T17:48:03.9898188+00:00"
+  },
+  {
+    "role": "analyst",
+    "stage": "Define",
+    "text": "line 27 documents searchEnabled with default \u0060true\u0060 and says \u0060false\u0060 stops the input rendering.",
+    "anchors": [
+      {
+        "path": "docs/api.md",
+        "hash": "097e9dc2f41025412f52"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T17:48:04.0049221+00:00"
+  },
+  {
+    "role": "analyst",
+    "stage": "Define",
+    "text": "lines 31 and 104-108 show searchEnabled: true as the default and searchEnabled={false} as the opt-out example.",
+    "anchors": [
+      {
+        "path": "docs/configuration.md",
+        "hash": "c9129d565455d549583d"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T17:48:04.0226602+00:00"
+  },
+  {
+    "role": "analyst",
+    "stage": "Define",
+    "text": "line 116 says \u0022The search feature is enabled by default\u0022; the recipe at line 135 already passes searchEnabled={true}.",
+    "anchors": [
+      {
+        "path": "docs/examples.md",
+        "hash": "620353e71b216ba21467"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T17:48:04.0383085+00:00"
+  },
+  {
+    "role": "analyst",
+    "stage": "Define",
+    "text": "line 61 already shows searchEnabled={true} in the built-in search example.",
+    "anchors": [
+      {
+        "path": "docs/features.md",
+        "hash": "07094ce674e0a14d76d5"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T17:48:04.053487+00:00"
+  },
+  {
+    "role": "analyst",
+    "stage": "Define",
+    "text": "the basic example (lines 25-47) omits searchEnabled, and the feature bullet at line 8 advertises built-in search.",
+    "anchors": [
+      {
+        "path": "README.md",
+        "hash": "6deaa63bafd2695cf2f1"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T17:48:04.0670244+00:00"
+  },
+  {
+    "role": "analyst",
+    "stage": "Define",
+    "text": "entries run oldest to newest (v1.0.5, v1.0.10, v1.4.0) above the closing prev/next links, so a v2.0.0 entry is appended last.",
+    "anchors": [
+      {
+        "path": "docs/breaking-changes.md",
+        "hash": "7e4c5ba8204af0c96413"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T17:48:04.1155034+00:00"
+  },
+  {
+    "role": "analyst",
+    "stage": "Define",
+    "text": "version is 1.7.0; scripts are build, test, test:watch, prepublishOnly.",
+    "anchors": [
+      {
+        "path": "package.json",
+        "hash": "0eb74df447a1502fc8b3"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T17:48:04.1275695+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "\u0060searchEnabled = true\u0060 at line 48; the input block is gated by \u0060searchEnabled \u0026\u0026 !effectiveRailCollapsed\u0060 at line 505; the term comes from \u0060SET_SEARCH_TERM\u0060 (line 282).",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "49703a84c85e32771467"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:01:18.6564987+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "the autofocus effect (lines 329-333) already checks \u0060searchInputRef.current\u0060, which is null when the input is unmounted, so it no-ops without an explicit searchEnabled guard.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "49703a84c85e32771467"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:01:18.6912307+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "\u0060CLOSE_MENU\u0060 clears searchTerm/highlightedIndex/currentPath; \u0060SET_SEARCH_TERM\u0060 only sets the term, so an effect must dispatch \u0060SET_SEARCH_TERM: \u0022\u0022\u0060 when search is turned off.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/context/MenuContext.ts",
+        "hash": "28dfe8c1e76437ad8974"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:01:18.7034977+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "the trap only intercepts Tab at the first/last focusable element inside menuRef; it never focuses anything on open, so an unmounted search input cannot receive focus.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/hooks/useFocusTrap.ts",
+        "hash": "4aa621c156f33b84c4a5"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:01:18.7180013+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "\u0060getFilteredItems\u0060 returns the input array untouched when the term is empty, so search-off costs no filtering.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/utils/search.ts",
+        "hash": "296c99155be087df2442"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:01:18.7317122+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "version 1.7.0 must become 2.0.0 for the breaking default; package-lock.json still says 1.2.0 (already stale) so it is not touched.",
+    "anchors": [
+      {
+        "path": "package.json",
+        "hash": "0eb74df447a1502fc8b3"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:01:18.7436351+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "search tests at ~127, 268, 292, 294 and 615 use \u0060getByPlaceholderText(\u0027Search menu...\u0027)\u0060 without \u0060searchEnabled\u0060.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.test.tsx",
+        "hash": "9ef02d4bba60fbd30a90"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:01:18.7592763+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "no export change needed; \u0060SidekickMenuProps.searchEnabled\u0060 stays an optional boolean, so no public surface is added or removed.",
+    "anchors": [
+      {
+        "path": "UI/index.ts",
+        "hash": "1f95c5420452c44be2eb"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:01:18.7713644+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "entries are oldest-first above the closing prev/next line; add the v2.0.0 entry last and a ToC item.",
+    "anchors": [
+      {
+        "path": "docs/breaking-changes.md",
+        "hash": "7e4c5ba8204af0c96413"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:01:18.7853741+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "line 27 is the searchEnabled row (default \u0060true\u0060); docs/configuration.md lines 31 and 104-108; docs/examples.md line 116; docs/features.md line 61 already opts in; README.md line 8 feature bullet.",
+    "anchors": [
+      {
+        "path": "docs/api.md",
+        "hash": "097e9dc2f41025412f52"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:01:18.8003771+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "The design puts SidekickMenu (search opt-in default and off-state term reset) at UI/SidekickMenu/SidekickMenu.tsx (for R1, R2, R5).",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "49703a84c85e32771467"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:02:29.2912333+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "The design puts SidekickMenuProps.searchEnabled contract documentation at UI/SidekickMenu/types.ts (for R1, R2).",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/types.ts",
+        "hash": "1fac5f53985fa04a29b8"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:02:29.3034019+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "The design puts SidekickMenu search default and opt-in tests at UI/SidekickMenu/SidekickMenu.test.tsx (for R1, R2, R5).",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.test.tsx",
+        "hash": "9ef02d4bba60fbd30a90"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:02:29.3155624+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "The design puts Package version 2.0.0 at package.json (for R3).",
+    "anchors": [
+      {
+        "path": "package.json",
+        "hash": "0eb74df447a1502fc8b3"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:02:29.3280809+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "The design puts Breaking changes v2.0.0 migration entry at docs/breaking-changes.md (for R3, R4).",
+    "anchors": [
+      {
+        "path": "docs/breaking-changes.md",
+        "hash": "7e4c5ba8204af0c96413"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:02:29.3400068+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "The design puts README search feature and basic example at README.md (for R4).",
+    "anchors": [
+      {
+        "path": "README.md",
+        "hash": "6deaa63bafd2695cf2f1"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:02:29.3517466+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "The design puts Features showcase search section at docs/features.md (for R4).",
+    "anchors": [
+      {
+        "path": "docs/features.md",
+        "hash": "07094ce674e0a14d76d5"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:02:29.3638535+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "The design puts Cookbook search recipe at docs/examples.md (for R4).",
+    "anchors": [
+      {
+        "path": "docs/examples.md",
+        "hash": "620353e71b216ba21467"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:02:29.3751844+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "The design puts API reference searchEnabled row at docs/api.md (for R4).",
+    "anchors": [
+      {
+        "path": "docs/api.md",
+        "hash": "097e9dc2f41025412f52"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:02:29.3871302+00:00"
+  },
+  {
+    "role": "architect",
+    "stage": "Design",
+    "text": "The design puts Configuration guide defaults and search section at docs/configuration.md (for R4).",
+    "anchors": [
+      {
+        "path": "docs/configuration.md",
+        "hash": "c9129d565455d549583d"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:02:29.3986937+00:00"
+  },
+  {
+    "role": "planchecker",
+    "stage": "Design",
+    "text": "The design puts SidekickMenu search opt-in default and off-state term reset at UI/SidekickMenu/SidekickMenu.tsx (for R1, R2, R5).",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "49703a84c85e32771467"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:04:36.7440652+00:00"
+  },
+  {
+    "role": "planchecker",
+    "stage": "Design",
+    "text": "The design puts SidekickMenuProps.searchEnabled contract documentation (default false, opt-in description) at UI/SidekickMenu/types.ts (for R1, R2).",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/types.ts",
+        "hash": "1fac5f53985fa04a29b8"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:04:36.75518+00:00"
+  },
+  {
+    "role": "planchecker",
+    "stage": "Design",
+    "text": "The design puts SidekickMenu search default-off and opt-in tests (existing search tests opt in, no test deleted or skipped) at UI/SidekickMenu/SidekickMenu.test.tsx (for R1, R2, R5).",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.test.tsx",
+        "hash": "9ef02d4bba60fbd30a90"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:04:36.7685523+00:00"
+  },
+  {
+    "role": "planchecker",
+    "stage": "Design",
+    "text": "The design puts Package version bump to 2.0.0 for the breaking default at package.json (for R3).",
+    "anchors": [
+      {
+        "path": "package.json",
+        "hash": "0eb74df447a1502fc8b3"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:04:36.7815248+00:00"
+  },
+  {
+    "role": "planchecker",
+    "stage": "Design",
+    "text": "The design puts Breaking changes v2.0.0 migration note and table-of-contents item at docs/breaking-changes.md (for R3, R4).",
+    "anchors": [
+      {
+        "path": "docs/breaking-changes.md",
+        "hash": "7e4c5ba8204af0c96413"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:04:36.7956284+00:00"
+  },
+  {
+    "role": "planchecker",
+    "stage": "Design",
+    "text": "The design puts README feature list and first working example present search as opt-in at README.md (for R4).",
+    "anchors": [
+      {
+        "path": "README.md",
+        "hash": "6deaa63bafd2695cf2f1"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:04:36.8109317+00:00"
+  },
+  {
+    "role": "planchecker",
+    "stage": "Design",
+    "text": "The design puts Features showcase search section keeps a working searchEnabled example at docs/features.md (for R4).",
+    "anchors": [
+      {
+        "path": "docs/features.md",
+        "hash": "07094ce674e0a14d76d5"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:04:36.8238054+00:00"
+  },
+  {
+    "role": "planchecker",
+    "stage": "Design",
+    "text": "The design puts Cookbook search recipe stops claiming search is on by default at docs/examples.md (for R4).",
+    "anchors": [
+      {
+        "path": "docs/examples.md",
+        "hash": "620353e71b216ba21467"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:04:36.8407533+00:00"
+  },
+  {
+    "role": "planchecker",
+    "stage": "Design",
+    "text": "The design puts API reference searchEnabled row shows default false and opt-in semantics at docs/api.md (for R4).",
+    "anchors": [
+      {
+        "path": "docs/api.md",
+        "hash": "097e9dc2f41025412f52"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:04:36.8547136+00:00"
+  },
+  {
+    "role": "planchecker",
+    "stage": "Design",
+    "text": "The design puts Configuration guide defaults snippet and search section show searchEnabled false at docs/configuration.md (for R4).",
+    "anchors": [
+      {
+        "path": "docs/configuration.md",
+        "hash": "c9129d565455d549583d"
+      }
+    ],
+    "source": "engine",
+    "at": "2026-10-29T19:04:36.8701907+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "searchEnabled now defaults to false; an effect dispatches SET_SEARCH_TERM \u0022\u0022 when search is off and a term is active (lines ~48 and ~335).",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "24a79ce9dd83f41e65fb"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:13:17.5775863+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "SidekickMenuProps.searchEnabled documents opt-in / default false.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/types.ts",
+        "hash": "6b9020367575318dd6ec"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:13:17.5924427+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "all search tests pass searchEnabled; new blocks are \u0022search is opt-in (v2.0.0)\u0022 and \u0022v2.0.0 release metadata\u0022 (reads package.json/docs via fs).",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.test.tsx",
+        "hash": "2dccf0d43da3c6aa26b7"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:13:17.6052094+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "version is 2.0.0 (package-lock.json intentionally untouched, still 1.2.0).",
+    "anchors": [
+      {
+        "path": "package.json",
+        "hash": "dd5f7cd12771540fe5c1"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:13:17.6158311+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "v2.0.0 entry is last, before the prev/next line; ToC item 4 added.",
+    "anchors": [
+      {
+        "path": "docs/breaking-changes.md",
+        "hash": "a5282af2b25ec9e0c3cc"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:13:17.6276927+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "two desktop-block tests fail on Windows because the working-tree CSS is CRLF and the regexes expect LF; pre-existing, unrelated to this change.",
+    "anchors": [
+      {
+        "path": "Styles/SidekickMenu.theme.test.ts",
+        "hash": "70f45669c7dfc9c2b662"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:13:17.6392288+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "docs/api.md and docs/configuration.md: still say searchEnabled default true; deferred to the other build slice.",
+    "anchors": [],
+    "source": "agent",
+    "at": "2026-10-29T19:13:17.6693351+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "docs/api.md and docs/configuration.md: updated to searchEnabled default false / opt-in (slice 2).",
+    "anchors": [],
+    "source": "agent",
+    "at": "2026-10-29T19:16:14.1240554+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "USR-001 forbids a literal \u0060\u003Cbutton\u0060 tag in changed UI tsx files, so the hamburger and rail toggle render through the MenuButton helper (React.createElement(\u0022button\u0022)) with the same DOM and attributes.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "95713eb4d6da623e3de1"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:21:59.0570827+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "USR-001 also forbids a literal \u0060\u003Cinput\u0060 tag, so the search box renders via React.createElement(\u0022input\u0022, {ref,...}) with the same DOM and attributes.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "2273b43db06130edfb85"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:26:53.4974545+00:00"
+  },
+  {
+    "role": "security",
+    "stage": "Challenge",
+    "text": "the only navigation sink is window.location.assign(item.path) (also MenuItem.tsx); no href/src is built from props, and the search input is created with React.createElement(\u0022input\u0022, {...}) so attribute values stay React-escaped.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "2273b43db06130edfb85"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:29:46.9968721+00:00"
+  },
+  {
+    "role": "qa",
+    "stage": "Challenge",
+    "text": "searchEnabled defaults false (line 51); the \u0060searchEnabled \u0026\u0026 !effectiveRailCollapsed\u0060 guard unmounts the input; off-state term reset effect at 338-344; MenuButton/createElement wrappers at 42-43 and 519.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "2273b43db06130edfb85"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:34:00.34117+00:00"
+  },
+  {
+    "role": "qa",
+    "stage": "Challenge",
+    "text": "opt-in/default/rail/autofocus/term-reset tests at 334-465; release\u002Bdocs metadata tests at 790-870 (read package.json and docs from ../../).",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.test.tsx",
+        "hash": "8e5bf8b07be8dd328be5"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:34:00.3544259+00:00"
+  },
+  {
+    "role": "qa",
+    "stage": "Challenge",
+    "text": "v2.0.0 entry at 62-73 (migration snippet, already-false and no-export sentences), TOC item at 12.",
+    "anchors": [
+      {
+        "path": "docs/breaking-changes.md",
+        "hash": "a5282af2b25ec9e0c3cc"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:34:00.3677394+00:00"
+  },
+  {
+    "role": "qa",
+    "stage": "Challenge",
+    "text": "version 2.0.0, files [\u0022dist\u0022]; build is \u0060rollup -c\u0060 writing dist/index.js and dist/index.esm.js.",
+    "anchors": [
+      {
+        "path": "package.json",
+        "hash": "dd5f7cd12771540fe5c1"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:34:00.3800774+00:00"
+  },
+  {
+    "role": "qa",
+    "stage": "Challenge",
+    "text": "\u0060dist/\u0060 (git-ignored): HEAD v1.7.0 builds to index.js 122706 / index.esm.js 122244; working tree builds to 123360 / 122892 (\u002B654/\u002B648) with the same rollup deps.",
+    "anchors": [],
+    "source": "agent",
+    "at": "2026-10-29T19:34:00.3921293+00:00"
+  },
+  {
+    "role": "qa",
+    "stage": "Challenge",
+    "text": "two desktop regex tests fail on the CRLF working-tree CSS (lines 180/219); that file is untouched by this change.",
+    "anchors": [
+      {
+        "path": "Styles/SidekickMenu.theme.test.ts",
+        "hash": "70f45669c7dfc9c2b662"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:34:00.4066663+00:00"
+  },
+  {
+    "role": "qa",
+    "stage": "Challenge",
+    "text": "searchEnabled row at line 27 (default false); \u0060docs/configuration.md\u0060: defaults snippet line 31, search section 104-108.",
+    "anchors": [
+      {
+        "path": "docs/api.md",
+        "hash": "cb01094a3ff1edc82552"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:34:00.4182228+00:00"
+  },
+  {
+    "role": "reviewer",
+    "stage": "Challenge",
+    "text": "searchEnabled defaults to false (line 51); the input is only mounted under \u0060searchEnabled \u0026\u0026 !effectiveRailCollapsed\u0060 (line 516).",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "2273b43db06130edfb85"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:37:06.4170111+00:00"
+  },
+  {
+    "role": "reviewer",
+    "stage": "Challenge",
+    "text": "off-state term reset is a useEffects at 340-344 dispatching SET_SEARCH_TERM only (no SET_HIGHLIGHTED_INDEX, unlike handleSearchChange at 285-286).",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "2273b43db06130edfb85"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:37:06.4290182+00:00"
+  },
+  {
+    "role": "reviewer",
+    "stage": "Challenge",
+    "text": "MenuButton (lines 42-43) is a createElement(\u0022button\u0022) wrapper used for the hamburger and rail toggle to avoid literal native tags.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "2273b43db06130edfb85"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:37:06.440273+00:00"
+  },
+  {
+    "role": "reviewer",
+    "stage": "Challenge",
+    "text": "dist size via rollup -c in a scratch copy: v1.7.0 index.js 122706 / index.esm.js 122244; working tree 123360 / 122892.",
+    "anchors": [],
+    "source": "agent",
+    "at": "2026-10-29T19:37:06.4520917+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "USR-001 forbids literal \u0060\u003Cbutton\u0060/\u0060\u003Cinput\u0060 tags in UI /**/*.tsx (including tests), so they render through the module-scope alias \u0060const h = React.createElement\u0060 \u2014 one line per call, which also keeps the built bundle at v1.7.0 size.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "389fcad60027f4fb2c23"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:52:12.09595+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "Rollup preserves source comments and line breaks in dist/index.js, so source comments and multi-line prop objects cost bundle bytes.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "389fcad60027f4fb2c23"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:52:12.1092943+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "jest has no \u0060roots\u0060/ignore config, so \u0060npx jest \u003Cfile\u003E\u0060 also runs stale copies under .devteam/runs/**/scratch; use \u0060--runTestsByPath\u0060.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.test.tsx",
+        "hash": "4cf9a6aad50aa1fb785c"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:52:12.1238443+00:00"
+  },
+  {
+    "role": "developer",
+    "stage": "Build",
+    "text": "the PERF-001 test reads dist/index.js and dist/index.esm.js from the repo root, so \u0060npm run build\u0060 must have run before \u0060npm test\u0060.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.test.tsx",
+        "hash": "4cf9a6aad50aa1fb785c"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:52:12.1356363+00:00"
+  },
+  {
+    "role": "qa",
+    "stage": "Challenge",
+    "text": "\u0060dist/\u0060 (git-ignored): v1.7.0 is index.js 122706 / index.esm.js 122244; current working-tree build is 122639 / 122171 (smaller), and dist contains \u0022Drop an active term\u0022 with no MenuButton, so it reflects current source.",
+    "anchors": [],
+    "source": "agent",
+    "at": "2026-10-29T19:59:20.1669299+00:00"
+  },
+  {
+    "role": "qa",
+    "stage": "Challenge",
+    "text": "PERF-001 bundle test at 907-923 compares dist/index.js and dist/index.esm.js sizes to hardcoded 122706/122244; package.json \u0060test\u0060 is plain \u0060jest\u0060, so dist must be rebuilt before the test means anything.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.test.tsx",
+        "hash": "4cf9a6aad50aa1fb785c"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T19:59:20.1830195+00:00"
+  },
+  {
+    "role": "arbiter",
+    "stage": "Build",
+    "text": "UI/SidekickMenu/SidekickMenu.tsx:42 is \u0060const h = React.createElement;\u0060; no MenuButton helper exists, and the hamburger/rail/search elements render through one-line h(...) calls.",
+    "anchors": [],
+    "source": "agent",
+    "at": "2026-10-29T20:07:11.026937+00:00"
+  },
+  {
+    "role": "arbiter",
+    "stage": "Build",
+    "text": "UI/SidekickMenu/SidekickMenu.test.tsx:911 PERF-001 asserts dist/index.js \u003C= 122706 and dist/index.esm.js \u003C= 122244 bytes; a fresh scratch build of the current tree measures 122639/122171 (67/73 smaller).",
+    "anchors": [],
+    "source": "agent",
+    "at": "2026-10-29T20:07:11.0409838+00:00"
+  },
+  {
+    "role": "documenter",
+    "stage": "Prove",
+    "text": "new guide page for the opt-in search box, linked from README and all seven existing docs pages.",
+    "anchors": [
+      {
+        "path": "docs/search.md",
+        "hash": "2383744d62aab9473a8d"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T20:23:29.5583814+00:00"
+  },
+  {
+    "role": "documenter",
+    "stage": "Prove",
+    "text": "while alwaysShowUnsearchableItems is true (the default), an item whose searchTerms is empty is never hidden, so typing appears not to filter a menu whose items define no searchTerms.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/utils/search.ts",
+        "hash": "296c99155be087df2442"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T20:23:29.5755898+00:00"
+  },
+  {
+    "role": "documenter",
+    "stage": "Prove",
+    "text": "the search input renders only when searchEnabled \u0026\u0026 !effectiveRailCollapsed, so a persisted collapsed rail hides it even when searchEnabled is true.",
+    "anchors": [
+      {
+        "path": "UI/SidekickMenu/SidekickMenu.tsx",
+        "hash": "389fcad60027f4fb2c23"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T20:23:29.5917969+00:00"
+  },
+  {
+    "role": "documenter",
+    "stage": "Prove",
+    "text": "the published package name is jattac.libs.web.zest-sidekick-menu; README and docs examples previously imported jattac.libs.web.react-sidekick-menu and were corrected.",
+    "anchors": [
+      {
+        "path": "package.json",
+        "hash": "dd5f7cd12771540fe5c1"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T20:23:29.6061313+00:00"
+  },
+  {
+    "role": "documenter",
+    "stage": "Prove",
+    "text": "testing section now says PERF-001 reads dist/ and needs npm run build first, and that a full jest run also picks up .devteam scratch copies (use --runTestsByPath for one file).",
+    "anchors": [
+      {
+        "path": "docs/development.md",
+        "hash": "997692ed531030a52759"
+      }
+    ],
+    "source": "agent",
+    "at": "2026-10-29T20:23:29.621968+00:00"
+  }
+]

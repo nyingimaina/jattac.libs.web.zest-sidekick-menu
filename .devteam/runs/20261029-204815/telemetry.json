@@ -1,0 +1,413 @@
+{
+  "schema": 1,
+  "devteamVersion": "0.56.254",
+  "generatedAt": "2026-10-29T20:49:34.2657306+00:00",
+  "environment": {
+    "os": "Microsoft Windows 10.0.26200",
+    "arch": "X64",
+    "runtime": ".NET 8.0.33",
+    "cpus": 16,
+    "machineId": "fc233b44ccfd"
+  },
+  "run": {
+    "id": "20261029-204815",
+    "status": "Completed",
+    "stopReason": null,
+    "startedAt": "2026-10-29T20:48:15.6792433+00:00",
+    "endedAt": "2026-10-29T20:49:33.4656726+00:00",
+    "wallSeconds": 77.8,
+    "waitingSeconds": 0,
+    "workingSeconds": 77.8,
+    "costUsd": 0,
+    "budgetUsd": 0,
+    "agentCalls": 0,
+    "revisionsUsed": 0,
+    "extraRounds": 0,
+    "pack": "react-component-library",
+    "verification": true,
+    "browser": "none",
+    "feature": {
+      "chars": 47,
+      "words": 8,
+      "sha256": "eecccaf2b13687a791dda11fc33075e36dd624becace6303cae4fde4c431acd3"
+    },
+    "models": {},
+    "request": null
+  },
+  "stages": [],
+  "calls": [],
+  "checks": [
+    {
+      "id": "lib-build",
+      "name": "Build (CommonJS, ES modules, type definitions)",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 8.4,
+      "maxSeconds": 8.4
+    },
+    {
+      "id": "lib-consumer-smoke",
+      "name": "Install and import the packed library",
+      "runs": 1,
+      "passed": 0,
+      "failed": 0,
+      "notRun": 1,
+      "totalSeconds": 0.2,
+      "maxSeconds": 0.2
+    },
+    {
+      "id": "lib-docs",
+      "name": "Documentation is complete",
+      "runs": 1,
+      "passed": 0,
+      "failed": 0,
+      "notRun": 1,
+      "totalSeconds": 0.2,
+      "maxSeconds": 0.2
+    },
+    {
+      "id": "lib-pack",
+      "name": "What would be published",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 1.9,
+      "maxSeconds": 1.9
+    },
+    {
+      "id": "lib-publish-dry-run",
+      "name": "Publish dry run (everything npm checks, nothing is uploaded)",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 9.7,
+      "maxSeconds": 9.7
+    },
+    {
+      "id": "lib-size",
+      "name": "Size budget",
+      "runs": 1,
+      "passed": 0,
+      "failed": 0,
+      "notRun": 1,
+      "totalSeconds": 0.2,
+      "maxSeconds": 0.2
+    },
+    {
+      "id": "lib-tests",
+      "name": "Tests, with coverage",
+      "runs": 2,
+      "passed": 0,
+      "failed": 2,
+      "notRun": 0,
+      "totalSeconds": 39.2,
+      "maxSeconds": 22.5
+    },
+    {
+      "id": "lib-typecheck",
+      "name": "Type check (library and tests)",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 9.1,
+      "maxSeconds": 9.1
+    },
+    {
+      "id": "lib-validate-package",
+      "name": "Package check (attw and publint)",
+      "runs": 1,
+      "passed": 0,
+      "failed": 0,
+      "notRun": 1,
+      "totalSeconds": 0.2,
+      "maxSeconds": 0.2
+    },
+    {
+      "id": "no-debug-leftovers",
+      "name": "No debugging leftovers",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "no-secrets",
+      "name": "No secrets in code",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.3,
+      "maxSeconds": 0.3
+    },
+    {
+      "id": "rule-USR-001-1",
+      "name": "No third-party component libraries",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "rule-USR-001-2",
+      "name": "No native buttons",
+      "runs": 1,
+      "passed": 0,
+      "failed": 1,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "rule-USR-001-3",
+      "name": "No native inputs",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "rule-USR-001-4",
+      "name": "No native tables",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "rule-USR-001-5",
+      "name": "No hand-rolled tab widgets",
+      "runs": 1,
+      "passed": 0,
+      "failed": 1,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "rule-USR-001-6",
+      "name": "Required Zest packages are declared",
+      "runs": 2,
+      "passed": 0,
+      "failed": 2,
+      "notRun": 0,
+      "totalSeconds": 0.6,
+      "maxSeconds": 0.3
+    },
+    {
+      "id": "rule-USR-002-1",
+      "name": "Mobile-first media queries only",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "rule-USR-002-2",
+      "name": "Font sizes scale with user settings",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.2,
+      "maxSeconds": 0.2
+    },
+    {
+      "id": "rule-USR-002-3",
+      "name": "Touch targets at least 44px",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "rule-USR-002-4",
+      "name": "No fixed numeric inline dimensions",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "rule-USR-002-5",
+      "name": "Tablet breakpoint exists",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.3,
+      "maxSeconds": 0.3
+    },
+    {
+      "id": "rule-USR-003-1",
+      "name": "No unsafe HTML injection",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "rule-USR-003-2",
+      "name": "No dynamic code execution",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.2,
+      "maxSeconds": 0.2
+    },
+    {
+      "id": "rule-USR-003-3",
+      "name": "No blocking busy-wait loops",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "rule-USR-003-4",
+      "name": "No JSON stringify deep-clone",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "rule-USR-003-5",
+      "name": "Event listeners are cleaned up",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.3,
+      "maxSeconds": 0.3
+    },
+    {
+      "id": "rule-USR-006-1",
+      "name": "Colours come from theme tokens",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "rule-USR-006-2",
+      "name": "No inline font families",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.2,
+      "maxSeconds": 0.2
+    },
+    {
+      "id": "rule-USR-006-3",
+      "name": "No positive tabIndex",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.1,
+      "maxSeconds": 0.1
+    },
+    {
+      "id": "rule-USR-006-4",
+      "name": "Animation honours reduced-motion",
+      "runs": 1,
+      "passed": 1,
+      "failed": 0,
+      "notRun": 0,
+      "totalSeconds": 0.2,
+      "maxSeconds": 0.2
+    }
+  ],
+  "findings": {
+    "raised": 0,
+    "open": 0,
+    "fixed": 0,
+    "advisory": 0,
+    "flipFlops": 0,
+    "bySource": {},
+    "byRule": {}
+  },
+  "decisions": [],
+  "errors": [
+    {
+      "fingerprint": "1c0b17938d",
+      "kind": "check",
+      "where": "rule-USR-001-6",
+      "count": 2,
+      "example": "rule-USR-001-6: Missing required packages: jattac.libs.web.zest-responsive-layout, jattac.libs.web.zest-file-upload, jattac.libs.web.zest-tabs, jattac.libs.web.responsive-table, jattac.libs.web.zest-t\u2026"
+    },
+    {
+      "fingerprint": "2cec8494c1",
+      "kind": "check",
+      "where": "rule-USR-001-2",
+      "count": 1,
+      "example": "rule-USR-001-2: UI/SidekickMenu/components/MenuBreadcrumb.tsx:25: \u003Cbutton | UI/SidekickMenu/components/MenuBreadcrumb.tsx:46: \u003Cbutton type=\u0022button\u0022 className={styles.breadcrumbCrumb} onClick={() =\u003E on\u2026"
+    },
+    {
+      "fingerprint": "8c5debe159",
+      "kind": "check",
+      "where": "lib-tests",
+      "count": 1,
+      "example": "lib-tests: Tests: 2 failed, 215 passed, 217 total | Snapshots: 0 total | Time: 20.554 s | Ran all test suites."
+    },
+    {
+      "fingerprint": "bacf482341",
+      "kind": "check",
+      "where": "lib-tests",
+      "count": 1,
+      "example": "lib-tests: Tests: 2 failed, 215 passed, 217 total | Snapshots: 0 total | Time: 14.585 s, estimated 17 s | Ran all test suites."
+    },
+    {
+      "fingerprint": "fae9bbb1a6",
+      "kind": "check",
+      "where": "rule-USR-001-5",
+      "count": 1,
+      "example": "rule-USR-001-5: 3 match(es): | UI/SidekickMenu/components/TabSwitcher.tsx:27: role=\u0022tablist\u0022 | UI/SidekickMenu/components/TabSwitcher.tsx:35: role=\u0022tab\u0022 | UI/SidekickMenu/components/TabSwitcher.tsx:45\u2026"
+    }
+  ],
+  "signals": [],
+  "parts": null,
+  "eventCounts": {
+    "browser.skipped": 1,
+    "check.failed": 6,
+    "check.notrun": 4,
+    "check.passed": 23,
+    "check.retry": 2,
+    "check.started": 33,
+    "facts.written": 1,
+    "run.completed": 1,
+    "run.started": 1,
+    "verify.plan": 1
+  },
+  "coverage": []
+}

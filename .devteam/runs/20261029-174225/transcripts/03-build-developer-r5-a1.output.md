@@ -1,0 +1,3 @@
+Wrote the report to `.devteam/runs/20261029-174225/artifacts/03-build/developer-r5.json`.
+
+REV-1 is disputed rather than "fixed": the tree already satisfies it. Fresh builds with the project's rollup config give HEAD v1.7.0 = 122706/122244 bytes vs current = 122639/122171 (-67/-73), `SidekickMenu.tsx:42` no longer has a MenuButton helper, and `SidekickMenu.test.tsx:911` enforces the v1.7.0 ceiling. Typecheck clean, target tests 59/59, full suite 215 passed (2 pre-existing CRLF failures).

@@ -1,0 +1,310 @@
+2026-10-29 23:48:12.215  ==== merge started: feature '20261029-174225', AI helper opencode
+2026-10-29 23:48:12.806  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/20261029-204225-hide-the-searchbox-by-default-have-it
+2026-10-29 23:48:12.872  git rev-parse --short HEAD -> exit 0 out: 98b7edb
+2026-10-29 23:48:12.936  git rev-parse --verify --quiet MERGE_HEAD -> exit 1
+2026-10-29 23:48:13.083  git branch --list --format=%(refname:short)@%(objectname:short) -> exit 0 out: devteam/20261029-204225-hide-the-searchbox-by-default-have-it@98b7edb | master@16d1cce
+2026-10-29 23:48:13.084  [before anything] branch=devteam/20261029-204225-hide-the-searchbox-by-default-have-it head=98b7edb merge-in-progress=False
+2026-10-29 23:48:13.084      changed: (none)
+2026-10-29 23:48:13.084      ignored (first 40): 40: dist/UI/SidekickMenu.d.ts, dist/UI/SidekickMenu/SidekickMenu.d.ts, dist/UI/SidekickMenu/SidekickMenu.test.d.ts, dist/UI/SidekickMenu/components/DrilldownMenuItem.d.ts, dist/UI/SidekickMenu/components/DrilldownMenuItem.test.d.ts, dist/UI/SidekickMenu/components/DrilldownMenuList.d.ts, dist/UI/SidekickMenu/components/DrilldownMenuList.test.d.ts, dist/UI/SidekickMenu/components/FavouritesList.d.ts, dist/UI/SidekickMenu/components/FavouritesList.test.d.ts, dist/UI/SidekickMenu/components/MenuBreadcrumb.d.ts, dist/UI/SidekickMenu/components/MenuBreadcrumb.test.d.ts, dist/UI/SidekickMenu/components/MenuItem.d.ts, dist/UI/SidekickMenu/components/MenuItemSkeleton.d.ts, dist/UI/SidekickMenu/components/MenuList.d.ts, dist/UI/SidekickMenu/components/TabSwitcher.d.ts, dist/UI/SidekickMenu/components/TabSwitcher.test.d.ts, dist/UI/SidekickMenu/components/icons.d.ts, dist/UI/SidekickMenu/context/MenuContext.d.ts, dist/UI/SidekickMenu/context/MenuContext.test.d.ts, dist/UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.d.ts, dist/UI/SidekickMenu/hooks/useFavourites.d.ts, dist/UI/SidekickMenu/hooks/useFavourites.test.d.ts, dist/UI/SidekickMenu/hooks/useFocusTrap.d.ts, dist/UI/SidekickMenu/hooks/useItemVisibility.d.ts, dist/UI/SidekickMenu/hooks/useItemVisibility.test.d.ts, dist/UI/SidekickMenu/hooks/useKeyboardNavigation.d.ts, dist/UI/SidekickMenu/hooks/useNumberedShortcuts.d.ts, dist/UI/SidekickMenu/hooks/useNumberedShortcuts.test.d.ts, dist/UI/SidekickMenu/hooks/useSwipeGesture.d.ts, dist/UI/SidekickMenu/hooks/useSwipeGesture.test.d.ts, dist/UI/SidekickMenu/types.d.ts, dist/UI/SidekickMenu/utils/breadcrumb.d.ts, dist/UI/SidekickMenu/utils/breadcrumb.test.d.ts, dist/UI/SidekickMenu/utils/cache.d.ts, dist/UI/SidekickMenu/utils/cache.test.d.ts, dist/UI/SidekickMenu/utils/description.d.ts, dist/UI/SidekickMenu/utils/description.test.d.ts, dist/UI/SidekickMenu/utils/favouritesStorage.d.ts, dist/UI/SidekickMenu/utils/favouritesStorage.test.d.ts, dist/UI/SidekickMenu/utils/lastPosition.d.ts
+2026-10-29 23:48:13.084      branches: devteam/20261029-204225-hide-the-searchbox-by-default-have-it@98b7edb  master@16d1cce
+2026-10-29 23:48:13.251  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/20261029-204225-hide-the-searchbox-by-default-have-it
+2026-10-29 23:48:13.325  git status --porcelain -uall -- . :(exclude).devteam -> exit 0
+2026-10-29 23:48:13.393  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/20261029-204225-hide-the-searchbox-by-default-have-it
+2026-10-29 23:48:13.455  git rev-parse --is-inside-work-tree -> exit 0 out: true
+2026-10-29 23:48:13.519  git rev-parse --verify --quiet HEAD -> exit 0 out: 98b7edbcdef3ca2c15da36b3c393e9318bf18410
+2026-10-29 23:48:13.581  git rev-parse --verify --quiet MERGE_HEAD -> exit 1
+2026-10-29 23:48:13.643  git rev-parse --is-inside-work-tree -> exit 0 out: true
+2026-10-29 23:48:13.704  git rev-parse --verify --quiet HEAD -> exit 0 out: 98b7edbcdef3ca2c15da36b3c393e9318bf18410
+2026-10-29 23:48:13.767  git rev-parse --verify --quiet MERGE_HEAD -> exit 1
+2026-10-29 23:48:13.840  git ls-files -ci --exclude-standard -- .devteam -> exit 0
+2026-10-29 23:48:13.906  git diff --cached --quiet -- .devteam -> exit 0
+2026-10-29 23:48:13.977  git status --porcelain -uall -- .devteam -> exit 0
+2026-10-29 23:48:14.053  git status --porcelain -uall -- . :(exclude).devteam -> exit 0
+2026-10-29 23:48:14.120  git rev-parse --verify --quiet refs/heads/master -> exit 0 out: 16d1cce110bff04d8341c6acec704e02ca8ab5a2
+2026-10-29 23:48:14.181  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/20261029-204225-hide-the-searchbox-by-default-have-it
+2026-10-29 23:48:14.251  git rev-parse master -> exit 0 out: 16d1cce110bff04d8341c6acec704e02ca8ab5a2
+2026-10-29 23:48:14.321  git rev-parse --verify --quiet refs/heads/devteam/merge-20261029-174225 -> exit 1
+2026-10-29 23:48:14.604  git checkout -q -b devteam/merge-20261029-174225 master -> exit 0
+2026-10-29 23:48:14.666  git config user.email -> exit 0 out: nyingimaina@gmail.com
+2026-10-29 23:48:14.730  git config user.name -> exit 0 out: Nyingi Maina
+2026-10-29 23:48:15.105  git merge --no-ff --no-commit devteam/20261029-204225-hide-the-searchbox-by-default-have-it -> exit 0 err: Automatic merge went well; stopped before committing as requested
+2026-10-29 23:48:15.224  git diff --name-only --diff-filter=U -> exit 0
+2026-10-29 23:48:15.286  git config user.email -> exit 0 out: nyingimaina@gmail.com
+2026-10-29 23:48:15.346  git config user.name -> exit 0 out: Nyingi Maina
+2026-10-29 23:48:15.538  git commit -q -m "Merge "hide the searchbox by default, have it possible to enable by prop. Even …" into master (DevTeam) |  | Feature branch: devteam/20261029-204225-hide-the-searchbox-by-default-have-it (run 20261029-174225) | " -> exit 0
+2026-10-29 23:48:15.607  git rev-parse HEAD -> exit 0 out: 9c017f3d27d9855a396353300e9443506cf5a0d6
+2026-10-29 23:48:15.634  earlier proof offered to the check: 7 pass(es) from 1 run(s)
+2026-10-29 23:48:16.120  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:17.867  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:21.367  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:21.502  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:21.601  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:21.707  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:21.824  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:21.978  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:22.091  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:22.196  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:22.303  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:22.409  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:22.526  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:22.632  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:22.738  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:22.843  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:22.950  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:23.051  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:23.206  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:23.307  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:23.409  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:23.517  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:23.631  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:23.750  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:23.860  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:23.965  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:24.071  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:24.183  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:24.311  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:24.431  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:24.555  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:24.671  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:24.794  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:24.903  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:25.027  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:25.133  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:25.249  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:25.357  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:25.474  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:25.613  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:25.723  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:25.832  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:25.971  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:26.078  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:26.205  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:26.324  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:26.568  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:30.968  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:31.088  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:53.576  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:48:53.699  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:02.083  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:02.192  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:02.365  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:02.499  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:04.381  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:04.509  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:14.250  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:14.361  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:14.528  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:14.668  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:14.829  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:14.951  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:15.144  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:15.777  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:15.887  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:16.227  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:16.366  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:16.632  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:32.898  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:33.419  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:33.976  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:34.114  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:34.220  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/merge-20261029-174225
+2026-10-29 23:49:34.271  asking the person: Merge "hide the searchbox by default, have it possible to enable by prop. Even …" into master? This also finishes the feature. The checks on the merged result are failing.
+2026-10-29 23:49:40.927  the person answered yes
+2026-10-29 23:49:40.987  git rev-parse master -> exit 0 out: 16d1cce110bff04d8341c6acec704e02ca8ab5a2
+2026-10-29 23:49:41.145  git checkout -q master -> exit 1 err: error: Your local changes to the following files would be overwritten by checkout: | 	.devteam/runs-index.json | 	coverage/clover.xml | 	coverage/coverage-final.json | 	coverage/lcov-report/UI/SidekickMenu/SidekickMenu.tsx.html | 	coverage/lcov-report/UI/SidekickMenu/components/DrilldownMenuItem.tsx...
+2026-10-29 23:49:41.264  git checkout -q devteam/20261029-204225-hide-the-searchbox-by-default-have-it -> exit 0
+2026-10-29 23:49:41.334  git rev-parse --verify --quiet refs/heads/devteam/merge-20261029-174225 -> exit 0 out: 9c017f3d27d9855a396353300e9443506cf5a0d6
+2026-10-29 23:49:41.437  git update-ref -d refs/heads/devteam/merge-20261029-174225 -> exit 0
+2026-10-29 23:49:41.438  merge answered ok=False: DevTeam could not move master forward: error: Your local changes to the following files would be overwritten by checkout:
+2026-10-29 23:49:41.438      	.devteam/runs-index.json
+2026-10-29 23:49:41.438      	coverage/clover.xml
+2026-10-29 23:49:41.438      	coverage/coverage-final.json
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/SidekickMenu.tsx.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/components/DrilldownMenuItem.tsx.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/components/DrilldownMenuList.tsx.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/components/FavouritesList.tsx.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/components/MenuBreadcrumb.tsx.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/components/MenuItem.tsx.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/components/MenuItemSkeleton.tsx.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/components/MenuList.tsx.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/components/TabSwitcher.tsx.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/components/icons.tsx.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/components/index.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/context/MenuContext.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/context/index.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/hooks/index.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/hooks/useFavourites.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/hooks/useFocusTrap.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/hooks/useItemVisibility.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/hooks/useKeyboardNavigation.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/hooks/useNumberedShortcuts.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/hooks/useSwipeGesture.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/index.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/utils/breadcrumb.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/utils/cache.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/utils/description.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/utils/favouritesStorage.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/utils/index.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/utils/lastPosition.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/utils/namespace.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/utils/search.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/SidekickMenu/utils/validation.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/context/ZestSidekickConfigContext.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/context/ZestSidekickConfigProvider.tsx.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/context/index.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/hooks/index.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/hooks/useThemeDetection.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/UI/hooks/useZestConfig.ts.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/base.css
+2026-10-29 23:49:41.438      	coverage/lcov-report/block-navigation.js
+2026-10-29 23:49:41.438      	coverage/lcov-report/index.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/prettify.css
+2026-10-29 23:49:41.438      	coverage/lcov-report/prettify.js
+2026-10-29 23:49:41.438      	coverage/lcov-report/sorter.js
+2026-10-29 23:49:41.438      	coverage/lcov-report/utils/index.html
+2026-10-29 23:49:41.438      	coverage/lcov-report/utils/reactNodeUtils.tsx.html
+2026-10-29 23:49:41.438      	coverage/lcov.info
+2026-10-29 23:49:41.438      Please commit your changes or stash them before you switch branches.
+2026-10-29 23:49:41.438      Aborting. Nothing was changed.
+2026-10-29 23:49:41.809  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/20261029-204225-hide-the-searchbox-by-default-have-it
+2026-10-29 23:49:41.872  git rev-parse --short HEAD -> exit 0 out: 98b7edb
+2026-10-29 23:49:41.936  git rev-parse --verify --quiet MERGE_HEAD -> exit 1
+2026-10-29 23:49:42.077  git branch --list --format=%(refname:short)@%(objectname:short) -> exit 0 out: devteam/20261029-204225-hide-the-searchbox-by-default-have-it@98b7edb | master@16d1cce
+2026-10-29 23:49:42.077  [after the merge stopped] branch=devteam/20261029-204225-hide-the-searchbox-by-default-have-it head=98b7edb merge-in-progress=False
+2026-10-29 23:49:42.077      changed: 48: coverage/clover.xml, coverage/coverage-final.json, coverage/lcov-report/UI/SidekickMenu/SidekickMenu.tsx.html, coverage/lcov-report/UI/SidekickMenu/components/DrilldownMenuItem.tsx.html, coverage/lcov-report/UI/SidekickMenu/components/DrilldownMenuList.tsx.html, coverage/lcov-report/UI/SidekickMenu/components/FavouritesList.tsx.html, coverage/lcov-report/UI/SidekickMenu/components/MenuBreadcrumb.tsx.html, coverage/lcov-report/UI/SidekickMenu/components/MenuItem.tsx.html, coverage/lcov-report/UI/SidekickMenu/components/MenuItemSkeleton.tsx.html, coverage/lcov-report/UI/SidekickMenu/components/MenuList.tsx.html, coverage/lcov-report/UI/SidekickMenu/components/TabSwitcher.tsx.html, coverage/lcov-report/UI/SidekickMenu/components/icons.tsx.html, coverage/lcov-report/UI/SidekickMenu/components/index.html, coverage/lcov-report/UI/SidekickMenu/context/MenuContext.ts.html, coverage/lcov-report/UI/SidekickMenu/context/index.html, coverage/lcov-report/UI/SidekickMenu/hooks/index.html, coverage/lcov-report/UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.ts.html, coverage/lcov-report/UI/SidekickMenu/hooks/useFavourites.ts.html, coverage/lcov-report/UI/SidekickMenu/hooks/useFocusTrap.ts.html, coverage/lcov-report/UI/SidekickMenu/hooks/useItemVisibility.ts.html, coverage/lcov-report/UI/SidekickMenu/hooks/useKeyboardNavigation.ts.html, coverage/lcov-report/UI/SidekickMenu/hooks/useNumberedShortcuts.ts.html, coverage/lcov-report/UI/SidekickMenu/hooks/useSwipeGesture.ts.html, coverage/lcov-report/UI/SidekickMenu/index.html, coverage/lcov-report/UI/SidekickMenu/utils/breadcrumb.ts.html, coverage/lcov-report/UI/SidekickMenu/utils/cache.ts.html, coverage/lcov-report/UI/SidekickMenu/utils/description.ts.html, coverage/lcov-report/UI/SidekickMenu/utils/favouritesStorage.ts.html, coverage/lcov-report/UI/SidekickMenu/utils/index.html, coverage/lcov-report/UI/SidekickMenu/utils/lastPosition.ts.html, coverage/lcov-report/UI/SidekickMenu/utils/namespace.ts.html, coverage/lcov-report/UI/SidekickMenu/utils/search.ts.html, coverage/lcov-report/UI/SidekickMenu/utils/validation.ts.html, coverage/lcov-report/UI/context/ZestSidekickConfigContext.ts.html, coverage/lcov-report/UI/context/ZestSidekickConfigProvider.tsx.html, coverage/lcov-report/UI/context/index.html, coverage/lcov-report/UI/hooks/index.html, coverage/lcov-report/UI/hooks/useThemeDetection.ts.html, coverage/lcov-report/UI/hooks/useZestConfig.ts.html, coverage/lcov-report/base.css, ...
+2026-10-29 23:49:42.077      ignored (first 40): 40: dist/UI/SidekickMenu.d.ts, dist/UI/SidekickMenu/SidekickMenu.d.ts, dist/UI/SidekickMenu/SidekickMenu.test.d.ts, dist/UI/SidekickMenu/components/DrilldownMenuItem.d.ts, dist/UI/SidekickMenu/components/DrilldownMenuItem.test.d.ts, dist/UI/SidekickMenu/components/DrilldownMenuList.d.ts, dist/UI/SidekickMenu/components/DrilldownMenuList.test.d.ts, dist/UI/SidekickMenu/components/FavouritesList.d.ts, dist/UI/SidekickMenu/components/FavouritesList.test.d.ts, dist/UI/SidekickMenu/components/MenuBreadcrumb.d.ts, dist/UI/SidekickMenu/components/MenuBreadcrumb.test.d.ts, dist/UI/SidekickMenu/components/MenuItem.d.ts, dist/UI/SidekickMenu/components/MenuItemSkeleton.d.ts, dist/UI/SidekickMenu/components/MenuList.d.ts, dist/UI/SidekickMenu/components/TabSwitcher.d.ts, dist/UI/SidekickMenu/components/TabSwitcher.test.d.ts, dist/UI/SidekickMenu/components/icons.d.ts, dist/UI/SidekickMenu/context/MenuContext.d.ts, dist/UI/SidekickMenu/context/MenuContext.test.d.ts, dist/UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.d.ts, dist/UI/SidekickMenu/hooks/useFavourites.d.ts, dist/UI/SidekickMenu/hooks/useFavourites.test.d.ts, dist/UI/SidekickMenu/hooks/useFocusTrap.d.ts, dist/UI/SidekickMenu/hooks/useItemVisibility.d.ts, dist/UI/SidekickMenu/hooks/useItemVisibility.test.d.ts, dist/UI/SidekickMenu/hooks/useKeyboardNavigation.d.ts, dist/UI/SidekickMenu/hooks/useNumberedShortcuts.d.ts, dist/UI/SidekickMenu/hooks/useNumberedShortcuts.test.d.ts, dist/UI/SidekickMenu/hooks/useSwipeGesture.d.ts, dist/UI/SidekickMenu/hooks/useSwipeGesture.test.d.ts, dist/UI/SidekickMenu/types.d.ts, dist/UI/SidekickMenu/utils/breadcrumb.d.ts, dist/UI/SidekickMenu/utils/breadcrumb.test.d.ts, dist/UI/SidekickMenu/utils/cache.d.ts, dist/UI/SidekickMenu/utils/cache.test.d.ts, dist/UI/SidekickMenu/utils/description.d.ts, dist/UI/SidekickMenu/utils/description.test.d.ts, dist/UI/SidekickMenu/utils/favouritesStorage.d.ts, dist/UI/SidekickMenu/utils/favouritesStorage.test.d.ts, dist/UI/SidekickMenu/utils/lastPosition.d.ts
+2026-10-29 23:49:42.077      branches: devteam/20261029-204225-hide-the-searchbox-by-default-have-it@98b7edb  master@16d1cce
+2026-10-29 23:49:42.287  git ls-files --error-unmatch -- coverage/clover.xml -> exit 0 out: coverage/clover.xml
+2026-10-29 23:49:42.365  git checkout -q -- coverage/clover.xml -> exit 0
+2026-10-29 23:49:42.434  git ls-files --error-unmatch -- coverage/coverage-final.json -> exit 0 out: coverage/coverage-final.json
+2026-10-29 23:49:42.547  git checkout -q -- coverage/coverage-final.json -> exit 0
+2026-10-29 23:49:42.614  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/SidekickMenu.tsx.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/SidekickMenu.tsx.html
+2026-10-29 23:49:42.711  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/SidekickMenu.tsx.html -> exit 0
+2026-10-29 23:49:42.776  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/components/DrilldownMenuItem.tsx.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/components/DrilldownMenuItem.tsx.html
+2026-10-29 23:49:42.868  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/components/DrilldownMenuItem.tsx.html -> exit 0
+2026-10-29 23:49:42.937  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/components/DrilldownMenuList.tsx.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/components/DrilldownMenuList.tsx.html
+2026-10-29 23:49:43.030  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/components/DrilldownMenuList.tsx.html -> exit 0
+2026-10-29 23:49:43.129  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/components/FavouritesList.tsx.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/components/FavouritesList.tsx.html
+2026-10-29 23:49:43.200  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/components/FavouritesList.tsx.html -> exit 0
+2026-10-29 23:49:43.266  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/components/MenuBreadcrumb.tsx.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/components/MenuBreadcrumb.tsx.html
+2026-10-29 23:49:43.338  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/components/MenuBreadcrumb.tsx.html -> exit 0
+2026-10-29 23:49:43.407  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/components/MenuItem.tsx.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/components/MenuItem.tsx.html
+2026-10-29 23:49:43.486  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/components/MenuItem.tsx.html -> exit 0
+2026-10-29 23:49:43.550  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/components/MenuItemSkeleton.tsx.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/components/MenuItemSkeleton.tsx.html
+2026-10-29 23:49:43.625  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/components/MenuItemSkeleton.tsx.html -> exit 0
+2026-10-29 23:49:43.691  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/components/MenuList.tsx.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/components/MenuList.tsx.html
+2026-10-29 23:49:43.787  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/components/MenuList.tsx.html -> exit 0
+2026-10-29 23:49:43.854  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/components/TabSwitcher.tsx.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/components/TabSwitcher.tsx.html
+2026-10-29 23:49:43.936  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/components/TabSwitcher.tsx.html -> exit 0
+2026-10-29 23:49:44.006  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/components/icons.tsx.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/components/icons.tsx.html
+2026-10-29 23:49:44.082  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/components/icons.tsx.html -> exit 0
+2026-10-29 23:49:44.155  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/components/index.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/components/index.html
+2026-10-29 23:49:44.232  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/components/index.html -> exit 0
+2026-10-29 23:49:44.303  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/context/MenuContext.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/context/MenuContext.ts.html
+2026-10-29 23:49:44.377  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/context/MenuContext.ts.html -> exit 0
+2026-10-29 23:49:44.443  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/context/index.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/context/index.html
+2026-10-29 23:49:44.517  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/context/index.html -> exit 0
+2026-10-29 23:49:44.586  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/hooks/index.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/hooks/index.html
+2026-10-29 23:49:44.672  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/hooks/index.html -> exit 0
+2026-10-29 23:49:44.778  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.ts.html
+2026-10-29 23:49:44.853  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.ts.html -> exit 0
+2026-10-29 23:49:44.925  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/hooks/useFavourites.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/hooks/useFavourites.ts.html
+2026-10-29 23:49:45.021  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/hooks/useFavourites.ts.html -> exit 0
+2026-10-29 23:49:45.099  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/hooks/useFocusTrap.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/hooks/useFocusTrap.ts.html
+2026-10-29 23:49:45.174  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/hooks/useFocusTrap.ts.html -> exit 0
+2026-10-29 23:49:45.276  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/hooks/useItemVisibility.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/hooks/useItemVisibility.ts.html
+2026-10-29 23:49:45.353  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/hooks/useItemVisibility.ts.html -> exit 0
+2026-10-29 23:49:45.422  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/hooks/useKeyboardNavigation.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/hooks/useKeyboardNavigation.ts.html
+2026-10-29 23:49:45.494  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/hooks/useKeyboardNavigation.ts.html -> exit 0
+2026-10-29 23:49:45.556  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/hooks/useNumberedShortcuts.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/hooks/useNumberedShortcuts.ts.html
+2026-10-29 23:49:45.625  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/hooks/useNumberedShortcuts.ts.html -> exit 0
+2026-10-29 23:49:45.690  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/hooks/useSwipeGesture.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/hooks/useSwipeGesture.ts.html
+2026-10-29 23:49:45.797  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/hooks/useSwipeGesture.ts.html -> exit 0
+2026-10-29 23:49:45.864  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/index.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/index.html
+2026-10-29 23:49:45.953  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/index.html -> exit 0
+2026-10-29 23:49:46.027  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/utils/breadcrumb.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/utils/breadcrumb.ts.html
+2026-10-29 23:49:46.101  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/utils/breadcrumb.ts.html -> exit 0
+2026-10-29 23:49:46.168  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/utils/cache.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/utils/cache.ts.html
+2026-10-29 23:49:46.270  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/utils/cache.ts.html -> exit 0
+2026-10-29 23:49:46.337  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/utils/description.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/utils/description.ts.html
+2026-10-29 23:49:46.436  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/utils/description.ts.html -> exit 0
+2026-10-29 23:49:46.502  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/utils/favouritesStorage.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/utils/favouritesStorage.ts.html
+2026-10-29 23:49:46.584  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/utils/favouritesStorage.ts.html -> exit 0
+2026-10-29 23:49:46.654  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/utils/index.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/utils/index.html
+2026-10-29 23:49:46.729  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/utils/index.html -> exit 0
+2026-10-29 23:49:46.799  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/utils/lastPosition.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/utils/lastPosition.ts.html
+2026-10-29 23:49:46.874  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/utils/lastPosition.ts.html -> exit 0
+2026-10-29 23:49:46.938  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/utils/namespace.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/utils/namespace.ts.html
+2026-10-29 23:49:47.014  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/utils/namespace.ts.html -> exit 0
+2026-10-29 23:49:47.112  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/utils/search.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/utils/search.ts.html
+2026-10-29 23:49:47.185  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/utils/search.ts.html -> exit 0
+2026-10-29 23:49:47.251  git ls-files --error-unmatch -- coverage/lcov-report/UI/SidekickMenu/utils/validation.ts.html -> exit 0 out: coverage/lcov-report/UI/SidekickMenu/utils/validation.ts.html
+2026-10-29 23:49:47.325  git checkout -q -- coverage/lcov-report/UI/SidekickMenu/utils/validation.ts.html -> exit 0
+2026-10-29 23:49:47.394  git ls-files --error-unmatch -- coverage/lcov-report/UI/context/ZestSidekickConfigContext.ts.html -> exit 0 out: coverage/lcov-report/UI/context/ZestSidekickConfigContext.ts.html
+2026-10-29 23:49:47.468  git checkout -q -- coverage/lcov-report/UI/context/ZestSidekickConfigContext.ts.html -> exit 0
+2026-10-29 23:49:47.534  git ls-files --error-unmatch -- coverage/lcov-report/UI/context/ZestSidekickConfigProvider.tsx.html -> exit 0 out: coverage/lcov-report/UI/context/ZestSidekickConfigProvider.tsx.html
+2026-10-29 23:49:47.609  git checkout -q -- coverage/lcov-report/UI/context/ZestSidekickConfigProvider.tsx.html -> exit 0
+2026-10-29 23:49:47.677  git ls-files --error-unmatch -- coverage/lcov-report/UI/context/index.html -> exit 0 out: coverage/lcov-report/UI/context/index.html
+2026-10-29 23:49:47.787  git checkout -q -- coverage/lcov-report/UI/context/index.html -> exit 0
+2026-10-29 23:49:47.858  git ls-files --error-unmatch -- coverage/lcov-report/UI/hooks/index.html -> exit 0 out: coverage/lcov-report/UI/hooks/index.html
+2026-10-29 23:49:47.970  git checkout -q -- coverage/lcov-report/UI/hooks/index.html -> exit 0
+2026-10-29 23:49:48.037  git ls-files --error-unmatch -- coverage/lcov-report/UI/hooks/useThemeDetection.ts.html -> exit 0 out: coverage/lcov-report/UI/hooks/useThemeDetection.ts.html
+2026-10-29 23:49:48.109  git checkout -q -- coverage/lcov-report/UI/hooks/useThemeDetection.ts.html -> exit 0
+2026-10-29 23:49:48.207  git ls-files --error-unmatch -- coverage/lcov-report/UI/hooks/useZestConfig.ts.html -> exit 0 out: coverage/lcov-report/UI/hooks/useZestConfig.ts.html
+2026-10-29 23:49:48.277  git checkout -q -- coverage/lcov-report/UI/hooks/useZestConfig.ts.html -> exit 0
+2026-10-29 23:49:48.571  git ls-files --error-unmatch -- coverage/lcov-report/base.css -> exit 0 out: coverage/lcov-report/base.css
+2026-10-29 23:49:48.721  git checkout -q -- coverage/lcov-report/base.css -> exit 0
+2026-10-29 23:49:48.797  git ls-files --error-unmatch -- coverage/lcov-report/block-navigation.js -> exit 0 out: coverage/lcov-report/block-navigation.js
+2026-10-29 23:49:48.879  git checkout -q -- coverage/lcov-report/block-navigation.js -> exit 0
+2026-10-29 23:49:48.949  git ls-files --error-unmatch -- coverage/lcov-report/index.html -> exit 0 out: coverage/lcov-report/index.html
+2026-10-29 23:49:49.030  git checkout -q -- coverage/lcov-report/index.html -> exit 0
+2026-10-29 23:49:49.102  git ls-files --error-unmatch -- coverage/lcov-report/prettify.css -> exit 0 out: coverage/lcov-report/prettify.css
+2026-10-29 23:49:49.173  git checkout -q -- coverage/lcov-report/prettify.css -> exit 0
+2026-10-29 23:49:49.271  git ls-files --error-unmatch -- coverage/lcov-report/prettify.js -> exit 0 out: coverage/lcov-report/prettify.js
+2026-10-29 23:49:49.344  git checkout -q -- coverage/lcov-report/prettify.js -> exit 0
+2026-10-29 23:49:49.407  git ls-files --error-unmatch -- coverage/lcov-report/sorter.js -> exit 0 out: coverage/lcov-report/sorter.js
+2026-10-29 23:49:49.480  git checkout -q -- coverage/lcov-report/sorter.js -> exit 0
+2026-10-29 23:49:49.545  git ls-files --error-unmatch -- coverage/lcov-report/utils/index.html -> exit 0 out: coverage/lcov-report/utils/index.html
+2026-10-29 23:49:49.618  git checkout -q -- coverage/lcov-report/utils/index.html -> exit 0
+2026-10-29 23:49:49.681  git ls-files --error-unmatch -- coverage/lcov-report/utils/reactNodeUtils.tsx.html -> exit 0 out: coverage/lcov-report/utils/reactNodeUtils.tsx.html
+2026-10-29 23:49:49.753  git checkout -q -- coverage/lcov-report/utils/reactNodeUtils.tsx.html -> exit 0
+2026-10-29 23:49:49.818  git ls-files --error-unmatch -- coverage/lcov.info -> exit 0 out: coverage/lcov.info
+2026-10-29 23:49:49.896  git checkout -q -- coverage/lcov.info -> exit 0
+2026-10-29 23:49:49.896  cleared before asking the AI helper: restored coverage/clover.xml; restored coverage/coverage-final.json; restored coverage/lcov-report/UI/SidekickMenu/SidekickMenu.tsx.html; restored coverage/lcov-report/UI/SidekickMenu/components/DrilldownMenuItem.tsx.html; restored coverage/lcov-report/UI/SidekickMenu/components/DrilldownMenuList.tsx.html; restored coverage/lcov-report/UI/SidekickMenu/components/FavouritesList.tsx.html; restored coverage/lcov-report/UI/SidekickMenu/components/MenuBreadcrumb.tsx.html; restored coverage/lcov-report/UI/SidekickMenu/components/MenuItem.tsx.html; restored coverage/lcov-report/UI/SidekickMenu/components/MenuItemSkeleton.tsx.html; restored coverage/lcov-report/UI/SidekickMenu/components/MenuList.tsx.html; restored coverage/lcov-report/UI/SidekickMenu/components/TabSwitcher.tsx.html; restored coverage/lcov-report/UI/SidekickMenu/components/icons.tsx.html; restored coverage/lcov-report/UI/SidekickMenu/components/index.html; restored coverage/lcov-report/UI/SidekickMenu/context/MenuContext.ts.html; restored coverage/lcov-report/UI/SidekickMenu/context/index.html; restored coverage/lcov-report/UI/SidekickMenu/hooks/index.html; restored coverage/lcov-report/UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.ts.html; restored coverage/lcov-report/UI/SidekickMenu/hooks/useFavourites.ts.html; restored coverage/lcov-report/UI/SidekickMenu/hooks/useFocusTrap.ts.html; restored coverage/lcov-report/UI/SidekickMenu/hooks/useItemVisibility.ts.html; restored coverage/lcov-report/UI/SidekickMenu/hooks/useKeyboardNavigation.ts.html; restored coverage/lcov-report/UI/SidekickMenu/hooks/useNumberedShortcuts.ts.html; restored coverage/lcov-report/UI/SidekickMenu/hooks/useSwipeGesture.ts.html; restored coverage/lcov-report/UI/SidekickMenu/index.html; restored coverage/lcov-report/UI/SidekickMenu/utils/breadcrumb.ts.html; restored coverage/lcov-report/UI/SidekickMenu/utils/cache.ts.html; restored coverage/lcov-report/UI/SidekickMenu/utils/description.ts.html; restored coverage/lcov-report/UI/SidekickMenu/utils/favouritesStorage.ts.html; restored coverage/lcov-report/UI/SidekickMenu/utils/index.html; restored coverage/lcov-report/UI/SidekickMenu/utils/lastPosition.ts.html; restored coverage/lcov-report/UI/SidekickMenu/utils/namespace.ts.html; restored coverage/lcov-report/UI/SidekickMenu/utils/search.ts.html; restored coverage/lcov-report/UI/SidekickMenu/utils/validation.ts.html; restored coverage/lcov-report/UI/context/ZestSidekickConfigContext.ts.html; restored coverage/lcov-report/UI/context/ZestSidekickConfigProvider.tsx.html; restored coverage/lcov-report/UI/context/index.html; restored coverage/lcov-report/UI/hooks/index.html; restored coverage/lcov-report/UI/hooks/useThemeDetection.ts.html; restored coverage/lcov-report/UI/hooks/useZestConfig.ts.html; restored coverage/lcov-report/base.css; restored coverage/lcov-report/block-navigation.js; restored coverage/lcov-report/index.html; restored coverage/lcov-report/prettify.css; restored coverage/lcov-report/prettify.js; restored coverage/lcov-report/sorter.js; restored coverage/lcov-report/utils/index.html; restored coverage/lcov-report/utils/reactNodeUtils.tsx.html; restored coverage/lcov.info
+2026-10-29 23:49:50.393  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/20261029-204225-hide-the-searchbox-by-default-have-it
+2026-10-29 23:49:50.461  git branch --list -> exit 0 out: * devteam/20261029-204225-hide-the-searchbox-by-default-have-it |   master
+2026-10-29 23:49:50.540  git log --oneline -5 --all -> exit 0 out: 98b7edb DevTeam: saved its own records | d9fe121 hide the searchbox by default, have it possible to enable by prop. Even … (DevTeam run 20261029-174225) | 16d1cce Merge remote-tracking branch 'origin/claude/optimistic-tesla-l0jmn4' | 3c97211 Open the menu at the section matching the current URL (v1....
+2026-10-29 23:49:50.540  asking the AI helper to clear the way (prompt saved at D:\work\nyingi\code\systems\Sidekick\.devteam\merge\unstick\prompt.md)
+2026-10-29 23:51:14.965  the AI helper finished: success=True. 
+2026-10-29 23:51:15.034  git diff --name-only -> exit 0 out: .devteam/runs-index.json
+2026-10-29 23:51:15.103  git checkout -q -- .devteam/runs-index.json -> exit 0
+2026-10-29 23:51:15.178  the AI helper went beyond what it was allowed; put back: .devteam/runs-index.json
+2026-10-29 23:51:15.178  the AI helper did not clear the way: DevTeam's AI helper tried to change files it was not allowed to (.devteam/runs-index.json), so those were put back and the merge was not made.
+2026-10-29 23:51:15.325  git rev-parse --is-inside-work-tree -> exit 0 out: true
+2026-10-29 23:51:15.384  git rev-parse --verify --quiet HEAD -> exit 0 out: 98b7edbcdef3ca2c15da36b3c393e9318bf18410
+2026-10-29 23:51:15.447  git rev-parse --verify --quiet MERGE_HEAD -> exit 1
+2026-10-29 23:51:15.510  git rev-parse --is-inside-work-tree -> exit 0 out: true
+2026-10-29 23:51:15.570  git rev-parse --verify --quiet HEAD -> exit 0 out: 98b7edbcdef3ca2c15da36b3c393e9318bf18410
+2026-10-29 23:51:15.628  git rev-parse --verify --quiet MERGE_HEAD -> exit 1
+2026-10-29 23:51:15.694  git ls-files -ci --exclude-standard -- .devteam -> exit 0
+2026-10-29 23:51:15.759  git diff --cached --quiet -- .devteam -> exit 0
+2026-10-29 23:51:15.827  git status --porcelain -uall -- .devteam -> exit 0 out: ?? .devteam/runs/20261029-204815/baseline.json | ?? .devteam/runs/20261029-204815/dashboard-data.js | ?? .devteam/runs/20261029-204815/events.jsonl | ?? .devteam/runs/20261029-204815/evidence.json | ?? .devteam/runs/20261029-204815/metrics.json | ?? .devteam/runs/20261029-204815/proof-report.md | ??...
+2026-10-29 23:51:15.925  git add -A -- .devteam -> exit 0 err: warning: in the working copy of '.devteam/runs/20261029-204815/proof-report.md', LF will be replaced by CRLF the next time Git touches it
+2026-10-29 23:51:15.993  git diff --cached --quiet -- .devteam -> exit 1
+2026-10-29 23:51:16.059  git diff --cached --name-only -> exit 0 out: .devteam/runs/20261029-204815/baseline.json | .devteam/runs/20261029-204815/dashboard-data.js | .devteam/runs/20261029-204815/events.jsonl | .devteam/runs/20261029-204815/evidence.json | .devteam/runs/20261029-204815/metrics.json | .devteam/runs/20261029-204815/proof-report.md | .devteam/runs/202610...
+2026-10-29 23:51:16.120  git config user.email -> exit 0 out: nyingimaina@gmail.com
+2026-10-29 23:51:16.180  git config user.name -> exit 0 out: Nyingi Maina
+2026-10-29 23:51:16.301  git commit -q -m "DevTeam: saved its own records" -> exit 0
+2026-10-29 23:51:16.302  DevTeam's own records at the end: DevTeam saved its own records (8 file(s)) so they do not get in the way.
+2026-10-29 23:51:16.778  git rev-parse --abbrev-ref HEAD -> exit 0 out: devteam/20261029-204225-hide-the-searchbox-by-default-have-it
+2026-10-29 23:51:16.843  git rev-parse --short HEAD -> exit 0 out: bf22202
+2026-10-29 23:51:16.902  git rev-parse --verify --quiet MERGE_HEAD -> exit 1
+2026-10-29 23:51:17.031  git branch --list --format=%(refname:short)@%(objectname:short) -> exit 0 out: devteam/20261029-204225-hide-the-searchbox-by-default-have-it@bf22202 | master@16d1cce
+2026-10-29 23:51:17.031  [at the end] branch=devteam/20261029-204225-hide-the-searchbox-by-default-have-it head=bf22202 merge-in-progress=False
+2026-10-29 23:51:17.031      changed: (none)
+2026-10-29 23:51:17.031      ignored (first 40): 40: dist/UI/SidekickMenu.d.ts, dist/UI/SidekickMenu/SidekickMenu.d.ts, dist/UI/SidekickMenu/SidekickMenu.test.d.ts, dist/UI/SidekickMenu/components/DrilldownMenuItem.d.ts, dist/UI/SidekickMenu/components/DrilldownMenuItem.test.d.ts, dist/UI/SidekickMenu/components/DrilldownMenuList.d.ts, dist/UI/SidekickMenu/components/DrilldownMenuList.test.d.ts, dist/UI/SidekickMenu/components/FavouritesList.d.ts, dist/UI/SidekickMenu/components/FavouritesList.test.d.ts, dist/UI/SidekickMenu/components/MenuBreadcrumb.d.ts, dist/UI/SidekickMenu/components/MenuBreadcrumb.test.d.ts, dist/UI/SidekickMenu/components/MenuItem.d.ts, dist/UI/SidekickMenu/components/MenuItemSkeleton.d.ts, dist/UI/SidekickMenu/components/MenuList.d.ts, dist/UI/SidekickMenu/components/TabSwitcher.d.ts, dist/UI/SidekickMenu/components/TabSwitcher.test.d.ts, dist/UI/SidekickMenu/components/icons.d.ts, dist/UI/SidekickMenu/context/MenuContext.d.ts, dist/UI/SidekickMenu/context/MenuContext.test.d.ts, dist/UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.d.ts, dist/UI/SidekickMenu/hooks/useFavourites.d.ts, dist/UI/SidekickMenu/hooks/useFavourites.test.d.ts, dist/UI/SidekickMenu/hooks/useFocusTrap.d.ts, dist/UI/SidekickMenu/hooks/useItemVisibility.d.ts, dist/UI/SidekickMenu/hooks/useItemVisibility.test.d.ts, dist/UI/SidekickMenu/hooks/useKeyboardNavigation.d.ts, dist/UI/SidekickMenu/hooks/useNumberedShortcuts.d.ts, dist/UI/SidekickMenu/hooks/useNumberedShortcuts.test.d.ts, dist/UI/SidekickMenu/hooks/useSwipeGesture.d.ts, dist/UI/SidekickMenu/hooks/useSwipeGesture.test.d.ts, dist/UI/SidekickMenu/types.d.ts, dist/UI/SidekickMenu/utils/breadcrumb.d.ts, dist/UI/SidekickMenu/utils/breadcrumb.test.d.ts, dist/UI/SidekickMenu/utils/cache.d.ts, dist/UI/SidekickMenu/utils/cache.test.d.ts, dist/UI/SidekickMenu/utils/description.d.ts, dist/UI/SidekickMenu/utils/description.test.d.ts, dist/UI/SidekickMenu/utils/favouritesStorage.d.ts, dist/UI/SidekickMenu/utils/favouritesStorage.test.d.ts, dist/UI/SidekickMenu/utils/lastPosition.d.ts
+2026-10-29 23:51:17.031      branches: devteam/20261029-204225-hide-the-searchbox-by-default-have-it@bf22202  master@16d1cce
+2026-10-29 23:51:17.031  ==== merge finished
+2026-10-29 23:51:18.356  notified desktop: The merge did not finish
+2026-10-29 23:51:19.403  notified telegram: The merge did not finish

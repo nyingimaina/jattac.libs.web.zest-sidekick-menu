@@ -1,0 +1,1 @@
+Wrote `reviewer-r5.json`: no new findings (the supplied snippet shows nothing that violates a cited rule), and `REV-1` marked **open** — bundle size vs v1.7.0 cannot be settled from the shown code, and the off-state reset effect it names is still there.

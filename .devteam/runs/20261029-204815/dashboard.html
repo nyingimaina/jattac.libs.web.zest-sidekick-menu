@@ -1,0 +1,545 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAfZSURBVFhHlZZpUBRXAsfzMd/WFW+jiAgohltkRIFRAUEEEQgih2jMRhPXaDTqqvFE5T6H+xouETlVVNSYqv2wVZsq3bV0N+supnZlo+WVDcd0T7/3utv/Vk/PDMyAJf6rfh+mp+r9/u919+v3wQfviNi8VGtFb6bGbZSKMejMFDprBTP2470zaHefJf/5YJ/8xy8ev7mzHW9ub4N8axvkm+mQ+9Ih30iHdD0dUu9WlStpEC+nQexJhdidCrErFWJnKsT2FJW2ZNCO7QO0Z/f3fJajxt5nkzf3c8+Jd9IN8ndbId/eCvlWGuSbaZBvpKpcS4HUmwLpagqkKymQepIhKnRtgdi5BWJHElh7EtilJLC2JLDWzSotiWDNiSBNiZT2Hq6095oi3zuTLX+XAvl2MuRbyZD7kiHfSIZ8fQvka1sg9yZBupoE6fJmSD2bIXUnQuxKhNhh5tInYG2fgF1MAGtNAGuJV2mKB2uMB2uIA9XHgdZtAuve02gjx0WvBezWFir1bYaJ64mQriUC3Asr4uUEiN0JELsSIHbGg3XEg12KA2uLA7u4CbR1E2iLmaZYkMZYkIaNIPqNIHUxKjXRINXREKqiwZ8cczvkOztuyn0JkG8kQL4Wr3I1DvKVOJsSUmcspI5YiO2xENs2Qry4EWJrDNiFGLDmaLCmaLDGDaANG0DrzdRGgdZEgVavB61aD1IRCVIeCaE67q61gHg9/pl8PRZybyzkq7GQL29U6Y6B1BVjuxJtGyC2Rqm0RIE1R4E1rlfRR4LWR4LWRYDWRoBWrwOpWgdSGQ5SEQ5SFg5SGg5BFwa+JJSoy6/3miL3RkO+sgHSlQ3qTLujIHWaaV9vW+BCBMSWCIhN68Aa14E1hIPpw8HqwkFrw0FrwkCrw0ArQ0EqQkHK14KUrYWgWwOhZA2E4tUQilZDKNCCOzrH2/Sey5cjIfVEQuqKGF3u9nWQ2sJt5KYCTWEQG0PBGkLB6teC1a0Fq1kDqlC1GrRyNWi5FqRMC1IaAqILgVAcAqEoBMaCYJW8IBhzg2A4PFdrKiB1h0PqDIPUETZOaI+o14LVa8FqQ8BqQsCqQ0CrQkArgkHLg0FLg0B0QSAlq0CKV0EoXAmhYCWMeYEqOSvAZ68An6mB4YClQPtqmGjTQryoHSe1h1WvUqlcCVqxErQsELQ0ELRkBYhCkQakUAMhXwMhTwNjTgCM2QEwZi0Hn7kc/Dl/8Gf9zQX0S7VSWzCk1iCIF4IgtqyC2LxqnNQeVq4BLdOA6gJASwJAi5aDKBT4g+T7Q8hdBiFnGYxZfjBm+sF43hf8OV/wGT7gz/iAP+U9WkBsCQRrDgRrXAHWsAJMrwGt14DWBoDWBIBWLR9XQIEU+4EU+YEU+ELI94WQ6wMhxwfGbG8Ys7zBn/cGf84bfIYXuDNe4E55gjvpCe6EBwzHPWDYqxSocdOypuVgDf5gen+wumWgtctAq/1Aq/xAK/xAyv1AynzHFVAQ8rxAW9Ig3m2G/OwBLJFfPIJ47xLIhZ3gTi0Fd8Id3HF3cMeWwHB0CQxHFo8WEPW+EOt9Idb6gNX4gFV5g1V6g5V7gZZ5geo8QUs8QYs87Aq8BBhnlb4t4l+7YczwB3/UFdwRV3CHXcAdcoFh90xzgTpviDVeYNVeYJWeYBWeYGUeoKUeoCUfgxZ/DFq4FKRgKUie+6hcYvaut0b+9WdwZzUwHFwIwzcLYdjvZC6gfMer3MEq3cHKl4CVLQHTLQYtWQxa5AZa6Aaa7wqS5wqS4wKS7QKSuQhvyIi9451hD2/C8PV8GPbOw8hX80YLsHI3sFJXMJ0rWLELaJELaMEi0PxFoLnOIDnOIFkLQTIXgpxzMn3VJpuB+gw8OpYI48A/Tb9Jyz6M/H42Rr6cBcNOS4H3kAtnnUD+0m7vmTCPM3+HPwV/aOKn/D2ma3Tgbyb5yBeWAjo37fvIhTMLQJ/+3UYkGoZsfitRZm6RK7y6o5Z+wwhGvnLEyM6ZGLQWeA85yfa0ET3YFWwS/Ft30HrtWbvORm6ZvSVcxloMfz4TgzuUAoXO2snKhdMLwBestA5Enj+xESlLrsx07LV/nU6zkSsZPBuJ4c9mqAWUk+tk5caTjuCOO4K+/q91MGV2Y4Vj+fFgDGQq2MiVvP5yEYZ3zMBguoO5wCTlxhOO4L+dj5H7N2wGnKjE/U8DJnw2hKf9GPp0Boa3T7cUcFvwPnL+2Hy8rN1lP67NQ3cv0W1CuZJXPYUm+dC26RhOn6qeC0m28+Bk5fyReXj59VwMP/zefmz8+sMt/NySC/q/F/Z/maLMfiBttkk+tHUaBtN/M0UtkOXUN1k594d54A59hCffeEDiJ57lRJEZwU8HgqzyodRpj6yHUuG8c8T7yLmDH2Fk/1z0Hw4E9/iuvWtclJn3HwrFL4pYIW0ahpIddlkLmFYhw6lisnLuwFwY9s/F8N456N82Hc9az4C+GrD3gg2+xPOuQvy4eaaNfDjZoc9GrgQnHT80nl6gn6zcsG8ODHvnwLBnNp5+NgOPkh3wYJsT+k9Eo/94NB5ud8U/En6LJ0lTR5fdLLfe+4nCHXOM4L6d95/Jyi0fFmVvV7bXX3bMwOvt003vueVpV++5w/PBlKn77H1vzeBJxynKsdnEgTHsNbN75ig7VZS9XdndTKQ7WOHSp8+yH9+S/wNmccqsgAkBgQAAAABJRU5ErkJggg=="><title>DevTeam · Verification: the app as it is, nothing changed</title><style>:root{--bg:#fafaf9;--card:#fff;--ink:#1c1917;--quiet:#78716c;--line:#e7e5e4;--accent:#2563eb;--good:#15803d;--warn:#b45309;--bad:#b91c1c}
+@media (prefers-color-scheme:dark){:root{--bg:#1c1917;--card:#292524;--ink:#f5f5f4;--quiet:#a8a29e;--line:#44403c;--accent:#60a5fa;--good:#4ade80;--warn:#fbbf24;--bad:#f87171}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:24px 16px;overflow-anchor:none}h1{font-size:20px;margin:0 0 4px}h2{font-size:15px;margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:16px}.grid .card{margin:0}
+.quiet{color:var(--quiet)}.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid currentColor}
+.running{color:var(--accent)}.awaitingDecision{color:var(--warn)}.completed{color:var(--good)}.stopped{color:var(--bad)}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:12px 0}.bar>div{height:100%;background:var(--accent)}
+.stats{display:flex;flex-wrap:wrap;gap:16px;font-size:13px}.stage{display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}.stage:last-child{border:0}
+.icon{width:20px;text-align:center;font-weight:700}.done{color:var(--good)}.blocked{color:var(--warn)}.pending{color:var(--quiet)}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.scroll{overflow-x:auto}.decision{border:2px solid var(--warn)}code,pre{font-family:ui-monospace,Consolas,monospace;font-size:12px}
+pre{white-space:pre-wrap;background:var(--bg);padding:8px;border-radius:6px;max-height:300px;overflow:auto}
+.open{color:var(--bad);font-weight:600}.fixed{color:var(--good)}.advisory{color:var(--quiet)}a{color:var(--accent)}
+ul{margin:0;padding-left:20px}
+.play{display:none;fill:currentColor;margin-right:6px;vertical-align:-1px}.tab.live .play{display:inline-block}.tab.live{color:var(--accent)}
+.follow{margin-left:auto;align-self:center;font-size:12px;color:var(--quiet);cursor:pointer;white-space:nowrap}.follow input{vertical-align:-2px;margin-right:4px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:16px;position:sticky;top:0;background:var(--bg);padding-top:4px;z-index:2}
+.tab{background:none;border:0;border-bottom:2px solid transparent;color:var(--quiet);font:inherit;padding:8px 14px;cursor:pointer}
+.tab:hover{color:var(--ink)}.tab[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+.subtabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:0 0 8px}
+.subtab{background:none;border:0;border-bottom:2px solid transparent;color:var(--quiet);font:inherit;padding:6px 12px;cursor:pointer}
+.subtab:hover{color:var(--ink)}.subtab[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+.sgtiles{display:flex;gap:12px;margin:4px 0 8px}.sgtile{border:1px solid var(--line);border-radius:8px;padding:8px 16px;min-width:96px}
+.sgtile b{display:block;font-size:26px;line-height:1.1}.sgtile span{color:var(--quiet);font-size:12px}
+.sgbars{margin:10px 0}.sgrow{display:flex;align-items:center;gap:10px;padding:3px 0;font-size:13px}.sglabel{flex:0 0 38%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:ui-monospace,Consolas,monospace;font-size:12px}
+.sgtrack{flex:1;height:8px}.sgbar{display:block;height:8px;background:var(--accent);border-radius:0 4px 4px 0}.sgcount{flex:0 0 28px;text-align:right;color:var(--quiet)}
+.sglist{margin-top:8px}.sglist details{margin:4px 0 4px 16px}.sglist summary{cursor:pointer}.sgnone{margin:4px 0}
+.livestrip{margin:-6px 0 14px;padding:0 4px;font-size:13px}.livestrip .lv{padding:4px 0 4px 12px;border-left:3px solid var(--accent);margin-bottom:6px}
+.lvhead .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:8px;animation:pulse 1.8s ease-in-out infinite}
+.lvnote{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.lvrecent{margin-top:2px}.lvrecent summary{cursor:pointer;color:var(--quiet);font-size:12px}
+.lvrecent div{font-size:12px;padding-left:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.beat{margin:0 0 14px;padding:10px 14px;border:2px solid var(--bad);border-radius:8px;font-weight:600}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}@media (prefers-reduced-motion:reduce){.lvhead .dot{animation:none}}.banner{display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:10px;border:2px solid currentColor;margin-bottom:16px;font-weight:600}
+.banner .big{font-size:26px;line-height:1}
+.status-ready{color:var(--good)}.status-attention{color:var(--warn)}.status-not-proven{color:var(--quiet)}.status-blocked{color:var(--bad)}
+.checklist{list-style:none;margin:0;padding:0}.checklist li{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.checklist li:last-child{border:0}
+.checklist .icon{width:22px;text-align:center;font-weight:700}.checklist b{color:var(--ink)}.checklist .word{font-size:12px;font-weight:600;margin-left:6px}
+.trends{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.trend{border:1px solid var(--line);border-radius:10px;padding:12px}
+.trend h3{font-size:13px;margin:0 0 6px;color:var(--quiet);font-weight:600}.trend .now{font-size:22px;font-weight:700}.trend .delta{font-size:12px;color:var(--quiet)}
+.spark{display:block;margin-top:6px;color:var(--accent);max-width:100%}.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:center}
+.tile b{display:block;font-size:22px;color:var(--ink)}.tile span{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--quiet)}
+.tile.bad b{color:var(--bad)}.tile.good b{color:var(--good)}
+details.more{border-top:1px solid var(--line);margin-top:8px;padding-top:6px}details.more summary{cursor:pointer;font-size:13px;color:var(--quiet)}
+details.more pre{background:#1e293b;color:#e2e8f0;padding:10px 12px;border-radius:6px;overflow:auto;max-height:320px;font-size:12px;white-space:pre-wrap;word-break:break-word}
+.suite{border:1px solid var(--line);border-radius:8px;margin-bottom:8px}.suite summary{padding:8px 12px;cursor:pointer;font-weight:600;font-size:13px}
+.suite .tests{width:100%;border-collapse:collapse}.suite .tests td{padding:4px 12px;border-top:1px solid var(--line);font-size:12px;word-break:break-word}
+.suite .tests td.t{width:5em;text-align:right;color:var(--quiet);white-space:nowrap}.suite .tests tr.failed td{background:rgba(220,38,38,.08)}
+.cov{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:12px}.cov .l{width:5.5em;color:var(--quiet)}.cov .track{flex:1;height:7px;background:var(--line);border-radius:4px;overflow:hidden}
+.cov .fill{height:100%;border-radius:4px}.cov .v{width:3.2em;text-align:right;font-weight:600;font-variant-numeric:tabular-nums}.map h3{margin:18px 0 6px}.map details{border:1px solid var(--line);border-radius:8px;margin:8px 0;padding:6px 10px}.map summary{cursor:pointer;font-weight:600}
+.map .note{font-size:12px;color:var(--quiet);margin:2px 0 0}.map .badge{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:99px;padding:0 6px;margin-left:6px;color:var(--quiet)}
+.map .old{opacity:.65;text-decoration:line-through}.map .num{text-align:right;white-space:nowrap}.map .flow{width:100%;height:auto;max-width:960px}
+.map .flow rect{fill:var(--card);stroke:var(--line)}.map .flow text{fill:currentColor;font-size:11px}.map .flow path{fill:none;stroke:var(--accent);opacity:.45}
+.map .bars div{height:8px;background:var(--accent);border-radius:99px;margin:3px 0}.map .method{font-family:ui-monospace,Consolas,monospace;font-size:11px;border:1px solid var(--line);border-radius:4px;padding:0 4px}.wf .tiles{display:flex;gap:12px;margin:4px 0 10px;flex-wrap:wrap}.wf .tile{border:1px solid var(--line);border-radius:8px;padding:8px 16px;min-width:104px}
+.wf .tile b{display:block;font-size:26px;line-height:1.1}.wf .tile span{color:var(--quiet);font-size:12px}
+.wf .row{display:flex;align-items:center;gap:10px;padding:3px 0;font-size:13px}.wf .name{flex:0 0 90px}.wf .track{flex:1;height:8px}
+.wf .bar{display:block;height:8px;background:var(--accent);border-radius:0 4px 4px 0}.wf .val{flex:0 0 150px;text-align:right;color:var(--quiet)}
+.wf .state{font-weight:600}.wf .state.waiting,.wf .state.changed{color:var(--warn)}.wf .state.inuse{color:var(--good)}.wf .state.suspected,.wf .state.ready{color:var(--quiet)}.card.focus{border:2px solid var(--accent);padding:18px 22px}.card.focus .focuslabel{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--quiet)}
+.card.focus .focushead{font-size:24px;margin:4px 0 6px}.card.focus .focusdetail{margin:0 0 8px;font-size:15px}.card.focus .focuscmd{padding:4px 8px;background:var(--bg);border-radius:6px}
+.card.focus-decision,.card.focus-stopped,.card.focus-paused,.card.focus-cap{border-color:var(--warn)}.card.focus-done{border-color:var(--good)}
+details.card.ov{padding:0;margin:8px 0}details.card.ov>summary{cursor:pointer;display:flex;gap:12px;align-items:baseline;padding:10px 16px;list-style:none}
+details.card.ov>summary::-webkit-details-marker{display:none}details.card.ov>summary::before{content:"▸";color:var(--quiet)}details.card.ov[open]>summary::before{content:"▾"}
+details.card.ov>summary h2{margin:0;font-size:15px}.ovsum{color:var(--quiet);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ovbody{padding:4px 16px 14px}.ovbody>.card{border:0;box-shadow:none;padding:0;margin:0}
+.ovmonth{margin:4px 0}.ovmonth>summary{cursor:pointer;padding:4px 0}.ovrun{display:flex;gap:12px;padding:3px 0 3px 18px;font-size:13px;align-items:baseline}
+.ovrun .when{flex:0 0 118px;color:var(--quiet)}.ovrun .state{flex:0 0 84px}.ovrun .what{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ovrun .cost{flex:0 0 56px;text-align:right;color:var(--quiet)}
+.sp .tiles{display:flex;gap:12px;flex-wrap:wrap;margin:4px 0 10px}.sp .tile{border:1px solid var(--line);border-radius:8px;padding:8px 16px;min-width:104px}
+.sp .tile b{display:block;font-size:22px;line-height:1.1}.sp .tile span{color:var(--quiet);font-size:12px}
+.sp svg{width:100%;height:auto;max-height:240px}.sp .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--quiet);margin:6px 0}
+.sp .legend i{display:inline-block;width:18px;height:0;border-top:3px solid var(--accent);margin-right:6px;vertical-align:middle}
+.sp .legend i.dash{border-top:3px dashed var(--good)}.sp .legend i.bar{height:10px;border:0;background:var(--accent);opacity:.35;border-radius:2px}</style></head><body><main data-active=""><div id="sec-banner"></div><div id="sec-header"><div class="card"><h1>Verification: the app as it is, nothing changed</h1>
+<span class="pill completed">Completed</span>
+<span class="quiet"> Done. Proof report written.</span>
+<div class="bar"><div style="width:100%"></div></div>
+<div class="stats"><span><b>100%</b> complete</span><span id="elapsed" data-running="0">Elapsed 1m 17s</span>
+<span>0 agent session(s)</span><span>$0.00</span>
+<span>Revisions 0</span><span class="quiet">Run 20261029-204815</span><span class="branch" title="The git branch this run is on">branch <b>devteam/merge-20261029-174225</b></span><span class="chip">Parts: counted once the design is made.</span></div></div></div><div id="beat" class="beat" role="alert" hidden></div><div id="live" class="livestrip" hidden></div><p class="quiet metrics"><a href="telemetry.json" download>Download metrics</a> · timings, tool use, checks and errors of this run, with no source code</p><div class="tabs" role="tablist"><button class="tab" role="tab" data-tab="overview" aria-selected="true">Overview</button><button class="tab" role="tab" data-tab="ready" aria-selected="false">Ready to ship?</button><button class="tab" role="tab" data-tab="map" aria-selected="false">Project map</button><button class="tab" role="tab" data-tab="define" aria-selected="false"><svg class="play" aria-hidden="true" viewBox="0 0 10 10" width="10" height="10"><path d="M2 1l7 4-7 4z"/></svg>Define</button><button class="tab" role="tab" data-tab="design" aria-selected="false"><svg class="play" aria-hidden="true" viewBox="0 0 10 10" width="10" height="10"><path d="M2 1l7 4-7 4z"/></svg>Design</button><button class="tab" role="tab" data-tab="plan" aria-selected="false"><svg class="play" aria-hidden="true" viewBox="0 0 10 10" width="10" height="10"><path d="M2 1l7 4-7 4z"/></svg>Plan</button><button class="tab" role="tab" data-tab="build" aria-selected="false"><svg class="play" aria-hidden="true" viewBox="0 0 10 10" width="10" height="10"><path d="M2 1l7 4-7 4z"/></svg>Build</button><button class="tab" role="tab" data-tab="challenge" aria-selected="false"><svg class="play" aria-hidden="true" viewBox="0 0 10 10" width="10" height="10"><path d="M2 1l7 4-7 4z"/></svg>Challenge</button><button class="tab" role="tab" data-tab="prove" aria-selected="false"><svg class="play" aria-hidden="true" viewBox="0 0 10 10" width="10" height="10"><path d="M2 1l7 4-7 4z"/></svg>Prove</button><label class="follow"><input type="checkbox" id="follow" checked> Follow the active stage</label></div><div class="panel" id="sec-overview"><div class="card focus focus-done"><span class="focuslabel">Focus on this</span><h1 class="focushead">Done: is it ready to ship?</h1><p class="focusdetail">Read the verdict on the Ready to ship tab and the proof report.</p></div><details class="card ov" data-key="stand"><summary><h2>Where things stand</h2><span class="ovsum">0 of 7 stages done &#183; 0 open findings</span></summary><div class="ovbody"><h3>Stages</h3><div class="stage"><span class="icon pending">○</span><div><b>Define</b> <span class="quiet"></span><br><span class="quiet">Analyst writes numbered, testable requirements</span></div></div><div class="stage"><span class="icon pending">○</span><div><b>Design</b> <span class="quiet"></span><br><span class="quiet">Architect designs the change, declares scope and reuse</span></div></div><div class="stage"><span class="icon pending">○</span><div><b>Plan check</b> <span class="quiet">not checked yet</span><br><span class="quiet">The plan is checked against itself before anything is built</span></div></div><div class="stage"><span class="icon pending">○</span><div><b>Build</b> <span class="quiet"></span><br><span class="quiet">Developer implements the design with tests</span></div></div><div class="stage"><span class="icon pending">○</span><div><b>Challenge</b> <span class="quiet">checks 23/31 &#183; open findings 0</span><br><span class="quiet">Automated checks, then reviewer, QA and security</span></div></div><div class="stage"><span class="icon pending">○</span><div><b>Documentation</b> <span class="quiet">not asked for</span><br><span class="quiet">Documenter writes the wiki in docs/ (only when asked for at sign-off)</span></div></div><div class="stage"><span class="icon pending">○</span><div><b>Prove</b> <span class="quiet"></span><br><span class="quiet">Engine assembles the proof report</span></div></div><h3>Work remaining</h3><p>Nothing. All done.</p></div></details><details class="card ov" data-key="activity"><summary><h2>Latest activity</h2><span class="ovsum">Verification finished: Not ready: something is still broken.</span></summary><div class="ovbody"><div class="scroll"><table><tr><td class="quiet">23:49:34</td><td></td><td></td><td>Verification finished: Not ready: something is still broken.</td></tr><tr><td class="quiet">23:49:33</td><td></td><td></td><td>Metrics and readiness saved: Not ready: something is still broken.</td></tr><tr><td class="quiet">23:49:33</td><td>Prove</td><td></td><td>Browser journeys not run: you chose not to run them for this run</td></tr><tr><td class="quiet">23:49:32</td><td>Challenge</td><td></td><td>Check &#39;Tests, with coverage&#39; FAILED in 16.7s</td></tr><tr><td class="quiet">23:49:16</td><td>Challenge</td><td></td><td>Check &#39;Required Zest packages are declared&#39; FAILED in 0.3s</td></tr><tr><td class="quiet">23:49:16</td><td>Challenge</td><td></td><td>Check &#39;Required Zest packages are declared&#39; running</td></tr><tr><td class="quiet">23:49:16</td><td>Challenge</td><td></td><td>Check &#39;Tests, with coverage&#39; running</td></tr><tr><td class="quiet">23:49:15</td><td>Challenge</td><td></td><td>Check &#39;Required Zest packages are declared&#39; failed; running it once more to see if it is flaky</td></tr></table></div></div></details><details class="card ov" data-key="runs"><summary><h2>Runs</h2><span class="ovsum">2 runs in 1 month</span></summary><div class="ovbody"><details class="ovmonth" data-key="month-2026-10"><summary><b>October 2026</b> <span class="quiet">2 runs</span></summary><div class="ovrun"><span class="when">2026-10-29 23:48</span><span class="state">Completed</span><a class="what" href="../20261029-204815/dashboard.html" title="Open this run's dashboard">Verification: the app as it is, nothing changed</a><span class="cost">$0.00</span></div><div class="ovrun"><span class="when">2026-10-29 20:42</span><span class="state">Completed</span><a class="what" href="../20261029-174225/dashboard.html" title="Open this run's dashboard">hide the searchbox by default, have it possible to enable by prop. Even existing installat…</a><span class="cost">$0.39</span></div></details></div></details><details class="card ov" data-key="space"><summary><h2>Space used by DevTeam</h2><span class="ovsum">2.1 MB now &#183; 0 B given back</span></summary><div class="ovbody"><div class="sp"><div class="tiles"><div class="tile"><b>2.1 MB</b><span>DevTeam's folder in this app</span></div><div class="tile"><b>0 B</b><span>given back by cleaning up</span></div><div class="tile"><b>0 B</b><span>kept in the archive</span></div><div class="tile"><b>42.7 MB</b><span>on this computer, outside any app</span></div></div><svg viewBox="0 0 640 220" role="img" aria-label="DevTeam's footprint over the runs, what was cleaned up, and the size of each run"><line x1="62" x2="628" y1="194" y2="194" stroke="var(--line)" stroke-width="1"/><text x="56" y="198" text-anchor="end" font-size="11" fill="var(--quiet)">0 B</text><line x1="62" x2="628" y1="133.3" y2="133.3" stroke="var(--line)" stroke-width="1"/><text x="56" y="137.3" text-anchor="end" font-size="11" fill="var(--quiet)">767.5 KB</text><line x1="62" x2="628" y1="72.7" y2="72.7" stroke="var(--line)" stroke-width="1"/><text x="56" y="76.7" text-anchor="end" font-size="11" fill="var(--quiet)">1.5 MB</text><line x1="62" x2="628" y1="12" y2="12" stroke="var(--line)" stroke-width="1"/><text x="56" y="16" text-anchor="end" font-size="11" fill="var(--quiet)">2.3 MB</text><rect x="45" y="57.8" width="34" height="136.2" rx="3" fill="var(--accent)" opacity=".35"><title>20261029-174225: this run took 1.7 MB</title></rect><rect x="328" y="192.2" width="34" height="1.8" rx="3" fill="var(--accent)" opacity=".35"><title>20261029-204815: this run took 23 KB</title></rect><polyline fill="none" stroke="var(--accent)" stroke-width="2" points="62,57.8 345,55.9 628,28.5"/><polyline fill="none" stroke="var(--good)" stroke-width="2" stroke-dasharray="6 4" points="62,194 345,194 628,194"/><circle cx="62" cy="57.8" r="4" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"><title>20261029-174225: footprint 1.7 MB, reclaimed 0 B</title></circle><circle cx="345" cy="55.9" r="4" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"><title>20261029-204815: footprint 1.7 MB, reclaimed 0 B</title></circle><circle cx="628" cy="28.5" r="4" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"><title>now: footprint 2.1 MB, reclaimed 0 B</title></circle><text x="62" y="212" font-size="11" fill="var(--quiet)">Oct 29</text><text x="628" y="212" text-anchor="end" font-size="11" fill="var(--quiet)">now</text></svg><div class="legend"><span><i class="bar"></i>Each run (its own size)</span><span><i></i>Footprint (what all runs came to, less what was cleaned up)</span><span><i class="dash"></i>Reclaimed (cleaned up so far)</span></div><p class="quiet">Session knowledge, scratch and transcripts across the runs, as an estimate (the split is worked out from file names): <b>Session knowledge</b> 30.6 KB (the facts file and the notes the roles leave), <b>scratch</b> 0 B, <b>transcripts</b> 750.5 KB.</p><details><summary>Show the numbers</summary><div class="scroll"><table><tr><th>Run</th><th>Its own size</th><th>Footprint then</th><th>Reclaimed by then</th><th>Session knowledge</th><th>Scratch</th><th>Transcripts</th></tr><tr><td>20261029-174225</td><td>1.7 MB</td><td>1.7 MB</td><td>0 B</td><td>30.6 KB</td><td>0 B</td><td>750.5 KB</td></tr><tr><td>20261029-204815</td><td>23 KB</td><td>1.7 MB</td><td>0 B</td><td>0 B</td><td>0 B</td><td>0 B</td></tr><tr><td>now</td><td>0 B</td><td>2.1 MB</td><td>0 B</td><td>–</td><td>–</td><td>–</td></tr></table></div></details></div></div></details><details class="card ov" data-key="time"><summary><h2>Where the time went</h2><span class="ovsum">by stage</span></summary><div class="ovbody"><div class="card" id="time-card"><h2>Where the time went</h2><table><tr><td>AI working</td><td style="width:55%"><div class="bar"><div style="width:0%;background:var(--accent)"></div></div></td><td>0 min <span class="quiet">(0%)</span></td></tr><tr><td>Checks running</td><td style="width:55%"><div class="bar"><div style="width:100%;background:var(--good)"></div></div></td><td>1 min <span class="quiet">(100%)</span></td></tr><tr><td>Waiting for you</td><td style="width:55%"><div class="bar"><div style="width:0%;background:var(--warn)"></div></div></td><td>0 min <span class="quiet">(0%)</span></td></tr><tr><td>Between steps</td><td style="width:55%"><div class="bar"><div style="width:0%;background:var(--quiet)"></div></div></td><td>0 min <span class="quiet">(0%)</span></td></tr></table><p class="quiet">Total 1 min · 0 fix rounds</p></div></div></details></div><div class="panel" id="sec-ready" hidden><div class="banner status-blocked"><span class="big">✗</span><span>Not ready: something is still broken.</span></div><div class="tiles"><div class="tile "><b>not read</b><span>test results</span></div><div class="tile bad"><b>23 of 31</b><span>checks passed</span></div><div class="tile "><b>1m 17s</b><span>time taken</span></div></div><div class="card"><h2>How much of the code the tests run</h2><h3>Library</h3><div class="cov"><span class="l">Lines</span><div class="track"><div class="fill" style="width:87.2%;background:hsl(105,65%,45%)"></div></div><span class="v">87%</span></div><div class="cov"><span class="l">Branches</span><div class="track"><div class="fill" style="width:78.2%;background:hsl(94,65%,45%)"></div></div><span class="v">78%</span></div><div class="cov"><span class="l">Functions</span><div class="track"><div class="fill" style="width:93.5%;background:hsl(112,65%,45%)"></div></div><span class="v">94%</span></div><p class="quiet">Branches are the if/else paths; functions are the named pieces of code. A bar is evidence, not a guarantee.</p></div><div class="card"><h2>How it has moved over the last 2 build(s)</h2><div class="trends"><div class="trend"><h3>Library: how much of the code the tests run</h3><div class="now">87%</div><div class="delta">up 0.1 points since the build before</div><svg class="spark" viewBox="0 0 160 40" width="160" height="40" role="img" aria-label="Library coverage: 87.1 to 87.2 over 2 builds"><polyline points="5,8.9 155,8.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="155" cy="8.8" r="3.5" fill="currentColor"/></svg></div><div class="trend"><h3>Tests reported</h3><div class="now">0</div><div class="delta">down 19 tests since the build before</div><svg class="spark" viewBox="0 0 160 40" width="160" height="40" role="img" aria-label="Tests reported: 19 to 0 over 2 builds"><polyline points="5,5 155,35" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="155" cy="35" r="3.5" fill="currentColor"/></svg></div></div><p class="quiet">Coverage is how much of the code the tests run. It is evidence, not a guarantee: tests can run code without checking much. The checklist above is what decides.</p></div><div class="card"><h2>What was looked at</h2><ul class="checklist"><li class="status-not-proven"><span class="icon">?</span><div><b>The packed library installs and imports</b><span class="word">Not proven</span><br><span class="quiet">The installed-library check could not run here (it is not set up in this project yet, or there is no internet connection to install into a scratch project), so the library has not been proven to work for the people who install it.</span></div></li><li class="status-blocked"><span class="icon">✗</span><div><b>Automated tests and checks pass</b><span class="word">Blocked</span><br><span class="quiet">These failed: lib-tests; rule-USR-001-2 (6 matches, first at UI/SidekickMenu/components/DrilldownMenuItem.tsx:64); rule-USR-001-5 (3 matches, first at UI/SidekickMenu/components/TabSwitcher.tsx:27); rule-USR-001-6.</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>The tests run the code (Library)</b><span class="word">Ready</span><br><span class="quiet">87% of lines run by the tests; up 0.1 points since the last build.</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>Nothing was skipped</b><span class="word">Ready</span><br><span class="quiet">Every check that applies was run.</span></div></li></ul></div><div class="card"><h2>Also worth knowing</h2><p class="quiet">These do not change the verdict above.</p><ul class="checklist"><li class="status-not-proven"><span class="icon">?</span><div><b>Real browser journeys</b><span class="word">Not proven</span><br><span class="quiet">Not run: you chose not to run them for this run. Not counted for or against the verdict.</span></div></li></ul></div><div class="card"><h2>Every check</h2><ul class="checklist"><li class="status-ready"><span class="icon">✓</span><div><b>No secrets in code</b><span class="word">Passed</span> <span class="quiet">0.3s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>No debugging leftovers</b><span class="word">Passed</span> <span class="quiet">0.1s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>Type check (library and tests)</b><span class="word">Passed</span> <span class="quiet">9.1s</span></div></li><li class="status-blocked"><span class="icon">✗</span><div><b>Tests, with coverage</b><span class="word">Failed</span> <span class="quiet">39.2s</span><details class="more"><summary>What it printed</summary><pre>Failed twice in a row, so this is not a one-off.
+…
+     [90m 124 |[39m           [32m&quot;count). Migrate to the default \&quot;drilldown\&quot; navigation style when convenient.&quot;[39m[0m
+
+      at warn (UI/SidekickMenu/SidekickMenu.tsx:121:15)
+      at Object.react_stack_bottom_frame (node_modules/react-dom/cjs/react-dom-client.development.js:23953:20)
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1522:13)
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom-client.development.js:11905:29)
+      at commitHookPassiveMountEffects (node_modules/react-dom/cjs/react-dom-client.development.js:12028:11)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13841:13)
+      at recursivelyTraversePassiveMountEffects (node_modules/react-dom/cjs/react-dom-client.development.js:13815:11)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13853:11)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15737:9)
+      at node_modules/react-dom/cjs/react-dom-client.development.js:15379:15
+      at flushActQueue (node_modules/react/cjs/react.development.js:566:34)
+      at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:860:10)
+      at node_modules/@testing-library/react/dist/act-compat.js:46:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:189:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:291:10)
+      at Object.&lt;anonymous&gt; (UI/SidekickMenu/SidekickMenu.test.tsx:324:11)
+
+
+Summary of all failing tests
+FAIL Styles/SidekickMenu.theme.test.ts (8.034 s)
+  ● SidekickMenu.module.css — mobile-first touch targets, desktop-refined › tightens the breadcrumb/tab/pin controls back down for desktop pointer precision
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+    [0m [90m 178 |[39m       (b) [33m=&gt;[39m b[33m.[39mincludes([32m&#39;.breadcrumbCrumb&#39;[39m) [33m||[39m b[33m.[39mincludes([32m&#39;.tabButton&#39;[39m) [33m||[39m b[33m.[39mincludes([32m&#39;.pinToggle&#39;[39m)
+     [90m 179 |[39m     )[33m;[39m
+    [31m[1m&gt;[22m[39m[90m 180 |[39m     expect(covering)[33m.[39mtoBeDefined()[33m;[39m
+     [90m     |[39m                      [31m[1m^[22m[39m
+     [90m 181 |[39m     expect(covering)[33m.[39mtoMatch([35m/min-height:\s*0/[39m)[33m;[39m
+     [90m 182 |[39m   })[33m;[39m
+     [90m 183 |[39m[0m
+
+      at Object.&lt;anonymous&gt; (Styles/SidekickMenu.theme.test.ts:180:22)
+
+  ● SidekickMenu.module.css — other mobile-first robustness fixes › restores the panel to a fixed 300px width on desktop, independent of openOnDesktop
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+    [0m [90m 217 |[39m       (b) [33m=&gt;[39m [35m/\n\s*\.panel\s*{[^}]*width:\s*300px/[39m[33m.[39mtest(b)
+     [90m 218 |[39m     )[33m;[39m
+    [31m[1m&gt;[22m[39m[90m 219 |[39m     expect(generalPanelWidthBlock)[33m.[39mtoBeDefined()[33m;[39m
+     [90m     |[39m                                    [31m[1m^[22m[39m
+     [90m 220 |[39m   })[33m;[39m
+     [90m 221 |[39m
+     [90m 222 |[39m   it([32m&#39;prevents the menu list from chaining scroll into the page behind it&#39;[39m[33m,[39m () [33m=&gt;[39m {[0m
+
+      at Object.&lt;anonymous&gt; (Styles/SidekickMenu.theme.test.ts:219:36)
+
+
+Test Suites: 1 failed, 21 passed, 22 total
+Tests:       2 failed, 215 passed, 217 total
+Snapshots:   0 total
+Time:        14.585 s, estimated 17 s
+Ran all test suites.</pre></details></div></li><li class="status-ready"><span class="icon">✓</span><div><b>Build (CommonJS, ES modules, type definitions)</b><span class="word">Passed</span> <span class="quiet">8.4s</span></div></li><li class="status-not-proven"><span class="icon">?</span><div><b>Package check (attw and publint)</b><span class="word">Not run</span> <span class="quiet">0.2s</span><details class="more"><summary>What it printed</summary><pre>Not set up in this project: attw and publint are not installed, so nothing checks that the package works for everyone who installs it.</pre></details></div></li><li class="status-ready"><span class="icon">✓</span><div><b>What would be published</b><span class="word">Passed</span> <span class="quiet">1.9s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>Publish dry run (everything npm checks, nothing is uploaded)</b><span class="word">Passed</span> <span class="quiet">9.7s</span></div></li><li class="status-not-proven"><span class="icon">?</span><div><b>Size budget</b><span class="word">Not run</span> <span class="quiet">0.2s</span><details class="more"><summary>What it printed</summary><pre>Not set up in this project: The project has no .size-limit.json, so this check has nothing to run.</pre></details></div></li><li class="status-not-proven"><span class="icon">?</span><div><b>Install and import the packed library</b><span class="word">Not run</span> <span class="quiet">0.2s</span><details class="more"><summary>What it printed</summary><pre>Not set up in this project: Nothing installs the packed library into a scratch project and imports it  no scripts/consumer-smoke.mjs .</pre></details></div></li><li class="status-not-proven"><span class="icon">?</span><div><b>Documentation is complete</b><span class="word">Not run</span> <span class="quiet">0.2s</span><details class="more"><summary>What it printed</summary><pre>Not set up in this project: The project has no scripts/check-docs.mjs, so this check has nothing to run.</pre></details></div></li><li class="status-ready"><span class="icon">✓</span><div><b>No third-party component libraries</b><span class="word">Passed</span> <span class="quiet">0.1s</span></div></li><li class="status-blocked"><span class="icon">✗</span><div><b>No native buttons</b><span class="word">Failed</span> <span class="quiet">0.1s</span><details class="more"><summary>What it printed</summary><pre>6 match(es):
+UI/SidekickMenu/components/DrilldownMenuItem.tsx:64: &lt;button
+UI/SidekickMenu/components/MenuBreadcrumb.tsx:22: &lt;button type=&quot;button&quot; className={styles.breadcrumbBack} onClick={onBack} aria-label=&quot;Back&quot;&gt;
+UI/SidekickMenu/components/MenuBreadcrumb.tsx:25: &lt;button
+UI/SidekickMenu/components/MenuBreadcrumb.tsx:46: &lt;button type=&quot;button&quot; className={styles.breadcrumbCrumb} onClick={() =&gt; onNavigate(index)}&gt;
+UI/SidekickMenu/components/TabSwitcher.tsx:33: &lt;button
+UI/SidekickMenu/components/TabSwitcher.tsx:43: &lt;button</pre></details></div></li><li class="status-ready"><span class="icon">✓</span><div><b>No native inputs</b><span class="word">Passed</span> <span class="quiet">0.1s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>No native tables</b><span class="word">Passed</span> <span class="quiet">0.1s</span></div></li><li class="status-blocked"><span class="icon">✗</span><div><b>No hand-rolled tab widgets</b><span class="word">Failed</span> <span class="quiet">0.1s</span><details class="more"><summary>What it printed</summary><pre>3 match(es):
+UI/SidekickMenu/components/TabSwitcher.tsx:27: role=&quot;tablist&quot;
+UI/SidekickMenu/components/TabSwitcher.tsx:35: role=&quot;tab&quot;
+UI/SidekickMenu/components/TabSwitcher.tsx:45: role=&quot;tab&quot;</pre></details></div></li><li class="status-blocked"><span class="icon">✗</span><div><b>Required Zest packages are declared</b><span class="word">Failed</span> <span class="quiet">0.5s</span><details class="more"><summary>What it printed</summary><pre>Failed twice in a row, so this is not a one-off.
+Missing required packages: jattac.libs.web.zest-responsive-layout, jattac.libs.web.zest-file-upload, jattac.libs.web.zest-tabs, jattac.libs.web.responsive-table, jattac.libs.web.zest-textbox, jattac.libs.web.zest-button, jattac.libs.web.overflow-menu, jattac-web-poller</pre></details></div></li><li class="status-ready"><span class="icon">✓</span><div><b>Mobile-first media queries only</b><span class="word">Passed</span> <span class="quiet">0.1s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>Font sizes scale with user settings</b><span class="word">Passed</span> <span class="quiet">0.2s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>Touch targets at least 44px</b><span class="word">Passed</span> <span class="quiet">0.1s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>No fixed numeric inline dimensions</b><span class="word">Passed</span> <span class="quiet">0.1s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>Tablet breakpoint exists</b><span class="word">Passed</span> <span class="quiet">0.3s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>No unsafe HTML injection</b><span class="word">Passed</span> <span class="quiet">0.1s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>No dynamic code execution</b><span class="word">Passed</span> <span class="quiet">0.2s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>No blocking busy-wait loops</b><span class="word">Passed</span> <span class="quiet">0.1s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>No JSON stringify deep-clone</b><span class="word">Passed</span> <span class="quiet">0.1s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>Event listeners are cleaned up</b><span class="word">Passed</span> <span class="quiet">0.3s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>Colours come from theme tokens</b><span class="word">Passed</span> <span class="quiet">0.1s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>No inline font families</b><span class="word">Passed</span> <span class="quiet">0.2s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>No positive tabIndex</b><span class="word">Passed</span> <span class="quiet">0.1s</span></div></li><li class="status-ready"><span class="icon">✓</span><div><b>Animation honours reduced-motion</b><span class="word">Passed</span> <span class="quiet">0.2s</span></div></li></ul></div><p class="quiet">DevTeam 0.56.254</p><div class="card wf"><h2>Repeated work: where the agents' time goes</h2><p class="quiet">From 1 run on this computer. Reading and searching take <b>17%</b> of the time the agents spend on tools (88.8 min in all).</p><div class="tiles"><div class="tile"><b>0</b><span>ready-made scripts built</span></div><div class="tile"><b>0</b><span>in use by agents</span></div><div class="tile"><b>0</b><span>waiting for you</span></div><div class="tile"><b>12</b><span>suspected, no script yet</span></div></div><div role="img" aria-label="Time the agents spent after each kind of tool use"><div class="row" title="Reading: 13.2 min"><span class="name">Reading</span><span class="track"><span class="bar" style="width:22%"></span></span><span class="val">15% · 13.2 min</span></div><div class="row" title="Searching: 2.1 min"><span class="name">Searching</span><span class="track"><span class="bar" style="width:3%"></span></span><span class="val">2% · 2.1 min</span></div><div class="row" title="Editing: 13.8 min"><span class="name">Editing</span><span class="track"><span class="bar" style="width:23%"></span></span><span class="val">16% · 13.8 min</span></div><div class="row" title="Running commands: 59.7 min"><span class="name">Running commands</span><span class="track"><span class="bar" style="width:100%"></span></span><span class="val">67% · 59.7 min</span></div></div><table><tr><th>Command agents repeat</th><th>Used</th><th>Runs</th><th>Time</th><th>State</th><th>What happens next</th></tr><tr><td><code>npx jest UI/SidekickMenu/SidekickMenu.test.tsx</code></td><td>12</td><td>1</td><td>1.9 min</td><td class="state suspected">Suspected</td><td class="quiet">Repeated, but not yet worth a script: needs 1 more run(s).</td></tr><tr><td><code>npm run build</code></td><td>11</td><td>1</td><td>1.8 min</td><td class="state suspected">Suspected</td><td class="quiet">Repeated, but not yet worth a script: needs 1 more run(s).</td></tr><tr><td><code>git diff -- UI/SidekickMenu/SidekickMenu.tsx</code></td><td>10</td><td>1</td><td>1.7 min</td><td class="state suspected">Suspected</td><td class="quiet">Repeated, but not yet worth a script: needs 1 more run(s).</td></tr><tr><td><code>Get-Content -Raw .devteam/runs/20261029-174225/artifacts/03-build/developer-r4.json</code></td><td>3</td><td>1</td><td>84 s</td><td class="state suspected">Suspected</td><td class="quiet">Repeated, but not yet worth a script: needs 2 more use(s), 1 more run(s).</td></tr><tr><td><code>Select-String -Path UI/SidekickMenu/SidekickMenu.test.tsx -Pattern &quot;^\s*(it</code></td><td>10</td><td>1</td><td>74 s</td><td class="state suspected">Suspected</td><td class="quiet">Repeated, but not yet worth a script: needs 1 more run(s).</td></tr><tr><td><code>git status --porcelain</code></td><td>10</td><td>1</td><td>72 s</td><td class="state suspected">Suspected</td><td class="quiet">Repeated, but not yet worth a script: needs 1 more run(s).</td></tr><tr><td><code>npm test</code></td><td>5</td><td>1</td><td>71 s</td><td class="state suspected">Suspected</td><td class="quiet">Repeated, but not yet worth a script: needs 1 more run(s).</td></tr><tr><td><code>npx tsc --noEmit</code></td><td>4</td><td>1</td><td>71 s</td><td class="state suspected">Suspected</td><td class="quiet">Repeated, but not yet worth a script: needs 1 more use(s), 1 more run(s).</td></tr><tr><td><code>npx jest --runTestsByPath &quot;UI/SidekickMenu/SidekickMenu.test.tsx&quot;</code></td><td>6</td><td>1</td><td>70 s</td><td class="state suspected">Suspected</td><td class="quiet">Repeated, but not yet worth a script: needs 1 more run(s).</td></tr><tr><td><code>git -C &quot;D:\work\nyingi\code\systems\Sidekick&quot; diff -- UI/SidekickMenu/SidekickMenu.tsx</code></td><td>6</td><td>1</td><td>50 s</td><td class="state suspected">Suspected</td><td class="quiet">Repeated, but not yet worth a script: needs 1 more run(s), 10 more second(s) spent.</td></tr><tr><td><code>node -e &quot;const j=require(&#39;./.devteam/runs/20261029-174225/artifacts/03-build/developer-r1.json&#39;)</code></td><td>4</td><td>1</td><td>42 s</td><td class="state suspected">Suspected</td><td class="quiet">Repeated, but not yet worth a script: needs 1 more use(s), 1 more run(s), 18 more second(s) spent.</td></tr><tr><td><code>Get-Content -LiteralPath &quot;D:\work\nyingi\code\systems\Sidekick\.devteam\runs\20261029-174225\artifacts\04-challenge\security-r3.json&quot;</code></td><td>7</td><td>1</td><td>39 s</td><td class="state suspected">Suspected</td><td class="quiet">Repeated, but not yet worth a script: needs 1 more run(s), 21 more second(s) spent.</td></tr></table></div></div><div class="panel" id="sec-map" hidden><div class="map"><div class="card"><h2>Project map</h2><p class="quiet">Read from the code, not written by hand: 60 files, 70 named things, at 16d1cce110, indexed 2026-10-29 22:54. It says where to look; the code is the truth.</p><table><tr><th>Language</th><th class="num">Files</th><th class="num">Lines</th><th class="num">Named things</th><th style="width:35%"></th></tr><tr><td>TypeScript</td><td class="num">58</td><td class="num">5,219</td><td class="num">70</td><td class="bars"><div style="width:98%"></div></td></tr><tr><td>JavaScript</td><td class="num">2</td><td class="num">59</td><td class="num">0</td><td class="bars"><div style="width:2%"></div></td></tr></table></div><div class="card"><h2>Areas, by language</h2><p class="quiet">An area is a project's first two folders. The notes in grey are written by an AI and not checked; one that is struck through is out of date because a file in the area changed.</p><details open><summary>TypeScript <span class="badge">6 areas</span></summary><div class="scroll"><table><tr><th>Area</th><th class="num">Files</th><th class="num">Lines</th><th class="num">Tests</th><th>Starts with</th><th>Uses</th></tr><tr><td><b>UI/SidekickMenu</b></td><td class="num">45</td><td class="num">4,583</td><td class="num">18</td><td>SidekickMenu, LastPosition, MenuList, MenuState, MenuContextProps</td><td>utils, UI/hooks</td></tr><tr><td><b>UI/hooks</b></td><td class="num">4</td><td class="num">172</td><td class="num">2</td><td></td><td>UI/SidekickMenu, UI/context</td></tr><tr><td><b>utils</b></td><td class="num">2</td><td class="num">114</td><td class="num">0</td><td></td><td></td></tr><tr><td><b>UI/context</b></td><td class="num">3</td><td class="num">59</td><td class="num">1</td><td>ZestSidekickConfigProvider, ZestSidekickGlobalConfig</td><td>UI/SidekickMenu</td></tr><tr><td><b>UI</b></td><td class="num">1</td><td class="num">35</td><td class="num">0</td><td></td><td>UI/SidekickMenu, UI/context</td></tr><tr><td><b>Styles</b><span class="badge">tests</span></td><td class="num">1</td><td class="num">227</td><td class="num">1</td><td></td><td></td></tr></table></div></details><details><summary>JavaScript <span class="badge">1 area</span></summary><div class="scroll"><table><tr><th>Area</th><th class="num">Files</th><th class="num">Lines</th><th class="num">Tests</th><th>Starts with</th><th>Uses</th></tr><tr><td><b>(project root)</b></td><td class="num">4</td><td class="num">88</td><td class="num">0</td><td></td><td></td></tr></table></div></details></div><div class="card"><h2>Libraries</h2><p class="quiet">What the project's packages and compiled code offer, read from their metadata and type declarations (nothing was run). Kept once per version for every project on this computer.</p><details><summary>npm packages · 19</summary><div class="scroll"><table><tr><th>Library</th><th>Version</th><th>Offers</th></tr><tr><td><code>@rollup/plugin-commonjs</code></td><td>25.0.8</td><td>1 types · commonjs</td></tr><tr><td><code>@rollup/plugin-node-resolve</code></td><td>15.3.1</td><td>3 types · DEFAULTS, RollupNodeResolveOptions, nodeResolve</td></tr><tr><td><code>@testing-library/jest-dom</code></td><td>6.9.1</td><td>0 types</td></tr><tr><td><code>@testing-library/react</code></td><td>16.3.2</td><td>18 types · BaseRenderHookOptions, BaseRenderOptions, ClientRenderHookOptions, ClientRenderOptions, Config</td></tr><tr><td><code>@types/jest</code></td><td>30.0.0</td><td>0 types</td></tr><tr><td><code>@types/node</code></td><td>24.5.2</td><td>0 types</td></tr><tr><td><code>@types/react</code></td><td>19.1.14</td><td>17 types · CSSProperties, FragmentProps, ModifierKey, TransitionFunction, TransitionStartFunction</td></tr><tr><td><code>identity-obj-proxy</code></td><td>3.0.0</td><td>0 types</td></tr><tr><td><code>jest</code></td><td>30.3.0</td><td>9 types · Config, SearchSource, buildArgv, createTestScheduler, defineConfig</td></tr><tr><td><code>jest-environment-jsdom</code></td><td>30.3.0</td><td>1 types · TestEnvironment</td></tr><tr><td><code>jsdom</code></td><td>27.0.1</td><td>0 types</td></tr><tr><td><code>rollup</code></td><td>4.52.3</td><td>139 types · AddonHook, AddonHookFunction, AddonHooks, AmdOptions, AstNode</td></tr><tr><td><code>rollup-plugin-dts</code></td><td>6.2.3</td><td>3 types · Options, default, dts</td></tr><tr><td><code>rollup-plugin-peer-deps-external</code></td><td>2.2.4</td><td>0 types</td></tr><tr><td><code>rollup-plugin-postcss</code></td><td>4.0.2</td><td>1 types · PostCSSPluginConf</td></tr><tr><td><code>rollup-plugin-typescript2</code></td><td>0.36.0</td><td>1 types · RPT2Options</td></tr><tr><td><code>ts-jest</code></td><td>29.4.9</td><td>77 types · AstTransformer, AstTransformerDesc, BabelConfig, CompiledOutput, CompilerInstance</td></tr><tr><td><code>ts-node</code></td><td>10.9.2</td><td>48 types · CreateOptions, CreateReplOptions, CreateReplOptions, CreateTranspilerOptions, CreateTranspilerOptions</td></tr><tr><td><code>typescript</code></td><td>5.9.2</td><td>0 types</td></tr></table></div></details></div><div class="card"><h2>Documentation</h2><p class="quiet">8 pages in <code>docs/</code>. All are up to date and every link works. A page is out of date when a file it describes has changed.</p><div class="scroll"><table><tr><th></th><th>Page</th><th>File</th></tr><tr><td>✓</td><td>API Reference</td><td><code>docs/api.md</code></td></tr><tr><td>✓</td><td>Best Practices &amp; Developer Insights</td><td><code>docs/best-practices.md</code></td></tr><tr><td>✓</td><td>Breaking Changes &amp; Migration</td><td><code>docs/breaking-changes.md</code></td></tr><tr><td>✓</td><td>Configuration Guide</td><td><code>docs/configuration.md</code></td></tr><tr><td>✓</td><td>Contributor&#39;s Guide</td><td><code>docs/development.md</code></td></tr><tr><td>✓</td><td>The Cookbook: Practical Examples</td><td><code>docs/examples.md</code></td></tr><tr><td>✓</td><td>Features Showcase</td><td><code>docs/features.md</code></td></tr><tr><td>✓</td><td>Search (opt-in)</td><td><code>docs/search.md</code></td></tr></table></div></div></div></div><div class="panel" id="sec-define" hidden><div class="card"><h2>History</h2><p class="quiet">Nothing has happened here yet.</p></div></div><div class="panel" id="sec-design" hidden><div class="card"><h2>History</h2><p class="quiet">Nothing has happened here yet.</p></div></div><div class="panel" id="sec-plan" hidden><div class="card"><h2>Plan check</h2><p>The plan has not been checked yet. It is checked once the design is accepted, before anything is built.</p></div></div><div class="panel" id="sec-build" hidden><div class="card"><h2>History</h2><p class="quiet">Nothing has happened here yet.</p></div></div><div class="panel" id="sec-challenge" hidden><div class="card"><h2>Automated checks (latest)</h2><details><summary><span class="fixed">✓</span> No secrets in code <span class="quiet">0.3s · SEC-001</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> No debugging leftovers <span class="quiet">0.1s · QUAL-001</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> Type check (library and tests) <span class="quiet">9.1s · </span></summary><pre></pre></details><details><summary><span class="open">✗</span> Tests, with coverage <span class="quiet">39.2s · </span></summary><pre>Failed twice in a row, so this is not a one-off.
+…
+     [90m 124 |[39m           [32m&quot;count). Migrate to the default \&quot;drilldown\&quot; navigation style when convenient.&quot;[39m[0m
+
+      at warn (UI/SidekickMenu/SidekickMenu.tsx:121:15)
+      at Object.react_stack_bottom_frame (node_modules/react-dom/cjs/react-dom-client.development.js:23953:20)
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1522:13)
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom-client.development.js:11905:29)
+      at commitHookPassiveMountEffects (node_modules/react-dom/cjs/react-dom-client.development.js:12028:11)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13841:13)
+      at recursivelyTraversePassiveMountEffects (node_modules/react-dom/cjs/react-dom-client.development.js:13815:11)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13853:11)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15737:9)
+      at node_modules/react-dom/cjs/react-dom-client.development.js:15379:15
+      at flushActQueue (node_modules/react/cjs/react.development.js:566:34)
+      at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:860:10)
+      at node_modules/@testing-library/react/dist/act-compat.js:46:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:189:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:291:10)
+      at Object.&lt;anonymous&gt; (UI/SidekickMenu/SidekickMenu.test.tsx:324:11)
+
+
+Summary of all failing tests
+FAIL Styles/SidekickMenu.theme.test.ts (8.034 s)
+  ● SidekickMenu.module.css — mobile-first touch targets, desktop-refined › tightens the breadcrumb/tab/pin controls back down for desktop pointer precision
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+    [0m [90m 178 |[39m       (b) [33m=&gt;[39m b[33m.[39mincludes([32m&#39;.breadcrumbCrumb&#39;[39m) [33m||[39m b[33m.[39mincludes([32m&#39;.tabButton&#39;[39m) [33m||[39m b[33m.[39mincludes([32m&#39;.pinToggle&#39;[39m)
+     [90m 179 |[39m     )[33m;[39m
+    [31m[1m&gt;[22m[39m[90m 180 |[39m     expect(covering)[33m.[39mtoBeDefined()[33m;[39m
+     [90m     |[39m                      [31m[1m^[22m[39m
+     [90m 181 |[39m     expect(covering)[33m.[39mtoMatch([35m/min-height:\s*0/[39m)[33m;[39m
+     [90m 182 |[39m   })[33m;[39m
+     [90m 183 |[39m[0m
+
+      at Object.&lt;anonymous&gt; (Styles/SidekickMenu.theme.test.ts:180:22)
+
+  ● SidekickMenu.module.css — other mobile-first robustness fixes › restores the panel to a fixed 300px width on desktop, independent of openOnDesktop
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+    [0m [90m 217 |[39m       (b) [33m=&gt;[39m [35m/\n\s*\.panel\s*{[^}]*width:\s*300px/[39m[33m.[39mtest(b)
+     [90m 218 |[39m     )[33m;[39m
+    [31m[1m&gt;[22m[39m[90m 219 |[39m     expect(generalPanelWidthBlock)[33m.[39mtoBeDefined()[33m;[39m
+     [90m     |[39m                                    [31m[1m^[22m[39m
+     [90m 220 |[39m   })[33m;[39m
+     [90m 221 |[39m
+     [90m 222 |[39m   it([32m&#39;prevents the menu list from chaining scroll into the page behind it&#39;[39m[33m,[39m () [33m=&gt;[39m {[0m
+
+      at Object.&lt;anonymous&gt; (Styles/SidekickMenu.theme.test.ts:219:36)
+
+
+Test Suites: 1 failed, 21 passed, 22 total
+Tests:       2 failed, 215 passed, 217 total
+Snapshots:   0 total
+Time:        14.585 s, estimated 17 s
+Ran all test suites.</pre></details><details><summary><span class="fixed">✓</span> Build (CommonJS, ES modules, type definitions) <span class="quiet">8.4s · </span></summary><pre>&gt; jattac.libs.web.zest-sidekick-menu@2.0.0 build
+&gt; rollup -c
+
+
+[36m
+[1mUI/index.ts[22m → [1mdist/index.js, dist/index.esm.js[22m...[39m
+[1m[33m(!) Mixing named and default exports[39m[22m
+[90mhttps://rollupjs.org/configuration-options/#output-exports[39m
+[1mThe following entry modules are using named and default exports together:[22m
+UI/index.ts
+
+Consumers of your bundle will have to use chunk.default to access their default export, which may not be what you want. Use `output.exports: &quot;named&quot;` to disable this warning.
+[32mcreated [1mdist/index.js, dist/index.esm.js[22m in [1m4.8s[22m[39m
+[36m
+[1mUI/index.ts[22m → [1mdist/index.d.ts[22m...[39m
+[32mcreated [1mdist/index.d.ts[22m in [1m1.7s[22m[39m</pre></details><details><summary><span class="open">✗</span> Package check (attw and publint) <span class="quiet">0.2s · LIB-002</span></summary><pre>Not set up in this project: attw and publint are not installed, so nothing checks that the package works for everyone who installs it.</pre></details><details><summary><span class="fixed">✓</span> What would be published <span class="quiet">1.9s · </span></summary><pre>…
+npm notice 11B dist/UI/hooks/useZestConfig.test.d.ts
+npm notice 1.1kB dist/UI/index.d.ts
+npm notice 2.6kB dist/UI/SidekickMenu.d.ts
+npm notice 559B dist/UI/SidekickMenu/components/DrilldownMenuItem.d.ts
+npm notice 36B dist/UI/SidekickMenu/components/DrilldownMenuItem.test.d.ts
+npm notice 865B dist/UI/SidekickMenu/components/DrilldownMenuList.d.ts
+npm notice 36B dist/UI/SidekickMenu/components/DrilldownMenuList.test.d.ts
+npm notice 466B dist/UI/SidekickMenu/components/FavouritesList.d.ts
+npm notice 36B dist/UI/SidekickMenu/components/FavouritesList.test.d.ts
+npm notice 270B dist/UI/SidekickMenu/components/icons.d.ts
+npm notice 443B dist/UI/SidekickMenu/components/MenuBreadcrumb.d.ts
+npm notice 36B dist/UI/SidekickMenu/components/MenuBreadcrumb.test.d.ts
+npm notice 304B dist/UI/SidekickMenu/components/MenuItem.d.ts
+npm notice 180B dist/UI/SidekickMenu/components/MenuItemSkeleton.d.ts
+npm notice 328B dist/UI/SidekickMenu/components/MenuList.d.ts
+npm notice 228B dist/UI/SidekickMenu/components/TabSwitcher.d.ts
+npm notice 36B dist/UI/SidekickMenu/components/TabSwitcher.test.d.ts
+npm notice 2.0kB dist/UI/SidekickMenu/context/MenuContext.d.ts
+npm notice 11B dist/UI/SidekickMenu/context/MenuContext.test.d.ts
+npm notice 580B dist/UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.d.ts
+npm notice 631B dist/UI/SidekickMenu/hooks/useFavourites.d.ts
+npm notice 11B dist/UI/SidekickMenu/hooks/useFavourites.test.d.ts
+npm notice 101B dist/UI/SidekickMenu/hooks/useFocusTrap.d.ts
+npm notice 282B dist/UI/SidekickMenu/hooks/useItemVisibility.d.ts
+npm notice 11B dist/UI/SidekickMenu/hooks/useItemVisibility.test.d.ts
+npm notice 564B dist/UI/SidekickMenu/hooks/useKeyboardNavigation.d.ts
+npm notice 411B dist/UI/SidekickMenu/hooks/useNumberedShortcuts.d.ts
+npm notice 11B dist/UI/SidekickMenu/hooks/useNumberedShortcuts.test.d.ts
+npm notice 660B dist/UI/SidekickMenu/hooks/useSwipeGesture.d.ts
+npm notice 11B dist/UI/SidekickMenu/hooks/useSwipeGesture.test.d.ts
+npm notice 158B dist/UI/SidekickMenu/SidekickMenu.d.ts
+npm notice 36B dist/UI/SidekickMenu/SidekickMenu.test.d.ts
+npm notice 2.5kB dist/UI/SidekickMenu/types.d.ts
+npm notice 267B dist/UI/SidekickMenu/utils/breadcrumb.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/breadcrumb.test.d.ts
+npm notice 122B dist/UI/SidekickMenu/utils/cache.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/cache.test.d.ts
+npm notice 254B dist/UI/SidekickMenu/utils/description.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/description.test.d.ts
+npm notice 515B dist/UI/SidekickMenu/utils/favouritesStorage.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/favouritesStorage.test.d.ts
+npm notice 2.6kB dist/UI/SidekickMenu/utils/lastPosition.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/lastPosition.test.d.ts
+npm notice 377B dist/UI/SidekickMenu/utils/namespace.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/namespace.test.d.ts
+npm notice 211B dist/UI/SidekickMenu/utils/search.d.ts
+npm notice 203B dist/UI/SidekickMenu/utils/validation.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/validation.test.d.ts
+npm notice 487B dist/utils/reactNodeUtils.d.ts
+npm notice 1.3kB package.json
+npm notice Tarball Details
+npm notice name: jattac.libs.web.zest-sidekick-menu
+npm notice version: 2.0.0
+npm notice filename: jattac.libs.web.zest-sidekick-menu-2.0.0.tgz
+npm notice package size: 129.8 kB
+npm notice unpacked size: 597.3 kB
+npm notice shasum: 1529682e5e9af541848f6209009c03b322eeaf2a
+npm notice integrity: sha512-TL514Y3o92aD8[...]TeuUf1FMQgVjw==
+npm notice total files: 62
+npm notice</pre></details><details><summary><span class="fixed">✓</span> Publish dry run (everything npm checks, nothing is uploaded) <span class="quiet">9.7s · LIB-003</span></summary><pre>…
+npm notice 1.1kB dist/UI/index.d.ts
+npm notice 2.6kB dist/UI/SidekickMenu.d.ts
+npm notice 559B dist/UI/SidekickMenu/components/DrilldownMenuItem.d.ts
+npm notice 36B dist/UI/SidekickMenu/components/DrilldownMenuItem.test.d.ts
+npm notice 865B dist/UI/SidekickMenu/components/DrilldownMenuList.d.ts
+npm notice 36B dist/UI/SidekickMenu/components/DrilldownMenuList.test.d.ts
+npm notice 466B dist/UI/SidekickMenu/components/FavouritesList.d.ts
+npm notice 36B dist/UI/SidekickMenu/components/FavouritesList.test.d.ts
+npm notice 270B dist/UI/SidekickMenu/components/icons.d.ts
+npm notice 443B dist/UI/SidekickMenu/components/MenuBreadcrumb.d.ts
+npm notice 36B dist/UI/SidekickMenu/components/MenuBreadcrumb.test.d.ts
+npm notice 304B dist/UI/SidekickMenu/components/MenuItem.d.ts
+npm notice 180B dist/UI/SidekickMenu/components/MenuItemSkeleton.d.ts
+npm notice 328B dist/UI/SidekickMenu/components/MenuList.d.ts
+npm notice 228B dist/UI/SidekickMenu/components/TabSwitcher.d.ts
+npm notice 36B dist/UI/SidekickMenu/components/TabSwitcher.test.d.ts
+npm notice 2.0kB dist/UI/SidekickMenu/context/MenuContext.d.ts
+npm notice 11B dist/UI/SidekickMenu/context/MenuContext.test.d.ts
+npm notice 580B dist/UI/SidekickMenu/hooks/useDrilldownKeyboardNavigation.d.ts
+npm notice 631B dist/UI/SidekickMenu/hooks/useFavourites.d.ts
+npm notice 11B dist/UI/SidekickMenu/hooks/useFavourites.test.d.ts
+npm notice 101B dist/UI/SidekickMenu/hooks/useFocusTrap.d.ts
+npm notice 282B dist/UI/SidekickMenu/hooks/useItemVisibility.d.ts
+npm notice 11B dist/UI/SidekickMenu/hooks/useItemVisibility.test.d.ts
+npm notice 564B dist/UI/SidekickMenu/hooks/useKeyboardNavigation.d.ts
+npm notice 411B dist/UI/SidekickMenu/hooks/useNumberedShortcuts.d.ts
+npm notice 11B dist/UI/SidekickMenu/hooks/useNumberedShortcuts.test.d.ts
+npm notice 660B dist/UI/SidekickMenu/hooks/useSwipeGesture.d.ts
+npm notice 11B dist/UI/SidekickMenu/hooks/useSwipeGesture.test.d.ts
+npm notice 158B dist/UI/SidekickMenu/SidekickMenu.d.ts
+npm notice 36B dist/UI/SidekickMenu/SidekickMenu.test.d.ts
+npm notice 2.5kB dist/UI/SidekickMenu/types.d.ts
+npm notice 267B dist/UI/SidekickMenu/utils/breadcrumb.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/breadcrumb.test.d.ts
+npm notice 122B dist/UI/SidekickMenu/utils/cache.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/cache.test.d.ts
+npm notice 254B dist/UI/SidekickMenu/utils/description.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/description.test.d.ts
+npm notice 515B dist/UI/SidekickMenu/utils/favouritesStorage.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/favouritesStorage.test.d.ts
+npm notice 2.6kB dist/UI/SidekickMenu/utils/lastPosition.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/lastPosition.test.d.ts
+npm notice 377B dist/UI/SidekickMenu/utils/namespace.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/namespace.test.d.ts
+npm notice 211B dist/UI/SidekickMenu/utils/search.d.ts
+npm notice 203B dist/UI/SidekickMenu/utils/validation.d.ts
+npm notice 11B dist/UI/SidekickMenu/utils/validation.test.d.ts
+npm notice 487B dist/utils/reactNodeUtils.d.ts
+npm notice 1.3kB package.json
+npm notice Tarball Details
+npm notice name: jattac.libs.web.zest-sidekick-menu
+npm notice version: 2.0.0
+npm notice filename: jattac.libs.web.zest-sidekick-menu-2.0.0.tgz
+npm notice package size: 129.8 kB
+npm notice unpacked size: 597.3 kB
+npm notice shasum: 1529682e5e9af541848f6209009c03b322eeaf2a
+npm notice integrity: sha512-TL514Y3o92aD8[...]TeuUf1FMQgVjw==
+npm notice total files: 62
+npm notice
+npm notice Publishing to https://registry.npmjs.org/ with tag latest and default access (dry-run)</pre></details><details><summary><span class="open">✗</span> Size budget <span class="quiet">0.2s · EFF-001</span></summary><pre>Not set up in this project: The project has no .size-limit.json, so this check has nothing to run.</pre></details><details><summary><span class="open">✗</span> Install and import the packed library <span class="quiet">0.2s · LIB-003, LIB-004, LIB-005</span></summary><pre>Not set up in this project: Nothing installs the packed library into a scratch project and imports it  no scripts/consumer-smoke.mjs .</pre></details><details><summary><span class="open">✗</span> Documentation is complete <span class="quiet">0.2s · DOC-001</span></summary><pre>Not set up in this project: The project has no scripts/check-docs.mjs, so this check has nothing to run.</pre></details><details><summary><span class="fixed">✓</span> No third-party component libraries <span class="quiet">0.1s · USR-001</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="open">✗</span> No native buttons <span class="quiet">0.1s · USR-001</span></summary><pre>6 match(es):
+UI/SidekickMenu/components/DrilldownMenuItem.tsx:64: &lt;button
+UI/SidekickMenu/components/MenuBreadcrumb.tsx:22: &lt;button type=&quot;button&quot; className={styles.breadcrumbBack} onClick={onBack} aria-label=&quot;Back&quot;&gt;
+UI/SidekickMenu/components/MenuBreadcrumb.tsx:25: &lt;button
+UI/SidekickMenu/components/MenuBreadcrumb.tsx:46: &lt;button type=&quot;button&quot; className={styles.breadcrumbCrumb} onClick={() =&gt; onNavigate(index)}&gt;
+UI/SidekickMenu/components/TabSwitcher.tsx:33: &lt;button
+UI/SidekickMenu/components/TabSwitcher.tsx:43: &lt;button</pre></details><details><summary><span class="fixed">✓</span> No native inputs <span class="quiet">0.1s · USR-001</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> No native tables <span class="quiet">0.1s · USR-001</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="open">✗</span> No hand-rolled tab widgets <span class="quiet">0.1s · USR-001</span></summary><pre>3 match(es):
+UI/SidekickMenu/components/TabSwitcher.tsx:27: role=&quot;tablist&quot;
+UI/SidekickMenu/components/TabSwitcher.tsx:35: role=&quot;tab&quot;
+UI/SidekickMenu/components/TabSwitcher.tsx:45: role=&quot;tab&quot;</pre></details><details><summary><span class="open">✗</span> Required Zest packages are declared <span class="quiet">0.5s · USR-001</span></summary><pre>Failed twice in a row, so this is not a one-off.
+Missing required packages: jattac.libs.web.zest-responsive-layout, jattac.libs.web.zest-file-upload, jattac.libs.web.zest-tabs, jattac.libs.web.responsive-table, jattac.libs.web.zest-textbox, jattac.libs.web.zest-button, jattac.libs.web.overflow-menu, jattac-web-poller</pre></details><details><summary><span class="fixed">✓</span> Mobile-first media queries only <span class="quiet">0.1s · USR-002</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> Font sizes scale with user settings <span class="quiet">0.2s · USR-002</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> Touch targets at least 44px <span class="quiet">0.1s · USR-002</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> No fixed numeric inline dimensions <span class="quiet">0.1s · USR-002</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> Tablet breakpoint exists <span class="quiet">0.3s · USR-002</span></summary><pre>Tablet breakpoint present</pre></details><details><summary><span class="fixed">✓</span> No unsafe HTML injection <span class="quiet">0.1s · USR-003</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> No dynamic code execution <span class="quiet">0.2s · USR-003</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> No blocking busy-wait loops <span class="quiet">0.1s · USR-003</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> No JSON stringify deep-clone <span class="quiet">0.1s · USR-003</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> Event listeners are cleaned up <span class="quiet">0.3s · USR-003</span></summary><pre>Event listeners are paired with cleanup.</pre></details><details><summary><span class="fixed">✓</span> Colours come from theme tokens <span class="quiet">0.1s · USR-006</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> No inline font families <span class="quiet">0.2s · USR-006</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> No positive tabIndex <span class="quiet">0.1s · USR-006</span></summary><pre>No forbidden pattern found.</pre></details><details><summary><span class="fixed">✓</span> Animation honours reduced-motion <span class="quiet">0.2s · USR-006</span></summary><pre>Motion respects prefers-reduced-motion</pre></details></div><div class="card"><h2>History</h2><div class="scroll"><table><tr><th>Time</th><th>Who</th><th>What</th></tr><tr><td class="quiet">23:49:32</td><td></td><td>Check &#39;Tests, with coverage&#39; FAILED in 16.7s</td></tr><tr><td class="quiet">23:49:16</td><td></td><td>Check &#39;Required Zest packages are declared&#39; FAILED in 0.3s</td></tr><tr><td class="quiet">23:49:16</td><td></td><td>Check &#39;Required Zest packages are declared&#39; running</td></tr><tr><td class="quiet">23:49:16</td><td></td><td>Check &#39;Tests, with coverage&#39; running</td></tr><tr><td class="quiet">23:49:15</td><td></td><td>Check &#39;Required Zest packages are declared&#39; failed; running it once more to see if it is flaky</td></tr><tr><td class="quiet">23:49:15</td><td></td><td>Check &#39;Tests, with coverage&#39; failed; running it once more to see if it is flaky</td></tr><tr><td class="quiet">23:49:15</td><td></td><td>Check &#39;Documentation is complete&#39; could not run in 0.2s (not set up in this project yet: devteam adopt doctor can set it up)</td></tr><tr><td class="quiet">23:49:14</td><td></td><td>Check &#39;Documentation is complete&#39; running</td></tr><tr><td class="quiet">23:49:14</td><td></td><td>Check &#39;Install and import the packed library&#39; could not run in 0.2s (not set up in this project yet: devteam adopt doctor can set it up)</td></tr><tr><td class="quiet">23:49:14</td><td></td><td>Check &#39;Install and import the packed library&#39; running</td></tr><tr><td class="quiet">23:49:14</td><td></td><td>Check &#39;Size budget&#39; could not run in 0.2s (not set up in this project yet: devteam adopt doctor can set it up)</td></tr><tr><td class="quiet">23:49:14</td><td></td><td>Check &#39;Size budget&#39; running</td></tr><tr><td class="quiet">23:49:14</td><td></td><td>Check &#39;Publish dry run (everything npm checks, nothing is uploaded)&#39; passed in 9.7s</td></tr><tr><td class="quiet">23:49:04</td><td></td><td>Check &#39;Publish dry run (everything npm checks, nothing is uploaded)&#39; running</td></tr><tr><td class="quiet">23:49:04</td><td></td><td>Check &#39;What would be published&#39; passed in 1.9s</td></tr><tr><td class="quiet">23:49:02</td><td></td><td>Check &#39;What would be published&#39; running</td></tr><tr><td class="quiet">23:49:02</td><td></td><td>Check &#39;Package check (attw and publint)&#39; could not run in 0.2s (not set up in this project yet: devteam adopt doctor can set it up)</td></tr><tr><td class="quiet">23:49:02</td><td></td><td>Check &#39;Package check (attw and publint)&#39; running</td></tr><tr><td class="quiet">23:49:02</td><td></td><td>Check &#39;Build (CommonJS, ES modules, type definitions)&#39; passed in 8.4s</td></tr><tr><td class="quiet">23:48:53</td><td></td><td>Check &#39;Build (CommonJS, ES modules, type definitions)&#39; running</td></tr><tr><td class="quiet">23:48:53</td><td></td><td>Check &#39;Tests, with coverage&#39; FAILED in 22.5s</td></tr><tr><td class="quiet">23:48:31</td><td></td><td>Check &#39;Tests, with coverage&#39; running</td></tr><tr><td class="quiet">23:48:30</td><td></td><td>Check &#39;Type check (library and tests)&#39; passed in 9.1s</td></tr><tr><td class="quiet">23:48:26</td><td></td><td>Check &#39;Animation honours reduced-motion&#39; passed in 0.2s</td></tr><tr><td class="quiet">23:48:26</td><td></td><td>Check &#39;Animation honours reduced-motion&#39; running</td></tr><tr><td class="quiet">23:48:26</td><td></td><td>Check &#39;No positive tabIndex&#39; passed in 0.1s</td></tr><tr><td class="quiet">23:48:25</td><td></td><td>Check &#39;No positive tabIndex&#39; running</td></tr><tr><td class="quiet">23:48:25</td><td></td><td>Check &#39;No inline font families&#39; passed in 0.2s</td></tr><tr><td class="quiet">23:48:25</td><td></td><td>Check &#39;No inline font families&#39; running</td></tr><tr><td class="quiet">23:48:25</td><td></td><td>Check &#39;Event listeners are cleaned up&#39; passed in 0.3s</td></tr><tr><td class="quiet">23:48:25</td><td></td><td>Check &#39;Colours come from theme tokens&#39; passed in 0.1s</td></tr><tr><td class="quiet">23:48:25</td><td></td><td>Check &#39;Colours come from theme tokens&#39; running</td></tr><tr><td class="quiet">23:48:25</td><td></td><td>Check &#39;Event listeners are cleaned up&#39; running</td></tr><tr><td class="quiet">23:48:25</td><td></td><td>Check &#39;No JSON stringify deep-clone&#39; passed in 0.1s</td></tr><tr><td class="quiet">23:48:25</td><td></td><td>Check &#39;No JSON stringify deep-clone&#39; running</td></tr><tr><td class="quiet">23:48:24</td><td></td><td>Check &#39;No blocking busy-wait loops&#39; passed in 0.1s</td></tr><tr><td class="quiet">23:48:24</td><td></td><td>Check &#39;No blocking busy-wait loops&#39; running</td></tr><tr><td class="quiet">23:48:24</td><td></td><td>Check &#39;No dynamic code execution&#39; passed in 0.2s</td></tr><tr><td class="quiet">23:48:24</td><td></td><td>Check &#39;No dynamic code execution&#39; running</td></tr><tr><td class="quiet">23:48:24</td><td></td><td>Check &#39;Tablet breakpoint exists&#39; passed in 0.3s</td></tr><tr><td class="quiet">23:48:24</td><td></td><td>Check &#39;No unsafe HTML injection&#39; passed in 0.1s</td></tr><tr><td class="quiet">23:48:24</td><td></td><td>Check &#39;No unsafe HTML injection&#39; running</td></tr><tr><td class="quiet">23:48:24</td><td></td><td>Check &#39;Tablet breakpoint exists&#39; running</td></tr><tr><td class="quiet">23:48:23</td><td></td><td>Check &#39;No fixed numeric inline dimensions&#39; passed in 0.1s</td></tr><tr><td class="quiet">23:48:23</td><td></td><td>Check &#39;No fixed numeric inline dimensions&#39; running</td></tr><tr><td class="quiet">23:48:23</td><td></td><td>Check &#39;Touch targets at least 44px&#39; passed in 0.1s</td></tr><tr><td class="quiet">23:48:23</td><td></td><td>Check &#39;Touch targets at least 44px&#39; running</td></tr><tr><td class="quiet">23:48:23</td><td></td><td>Check &#39;Font sizes scale with user settings&#39; passed in 0.2s</td></tr><tr><td class="quiet">23:48:23</td><td></td><td>Check &#39;Font sizes scale with user settings&#39; running</td></tr><tr><td class="quiet">23:48:23</td><td></td><td>Check &#39;Required Zest packages are declared&#39; FAILED in 0.3s</td></tr><tr><td class="quiet">23:48:23</td><td></td><td>Check &#39;Mobile-first media queries only&#39; passed in 0.1s</td></tr><tr><td class="quiet">23:48:23</td><td></td><td>Check &#39;Mobile-first media queries only&#39; running</td></tr><tr><td class="quiet">23:48:22</td><td></td><td>Check &#39;Required Zest packages are declared&#39; running</td></tr><tr><td class="quiet">23:48:22</td><td></td><td>Check &#39;No hand-rolled tab widgets&#39; FAILED in 0.1s</td></tr><tr><td class="quiet">23:48:22</td><td></td><td>Check &#39;No hand-rolled tab widgets&#39; running</td></tr><tr><td class="quiet">23:48:22</td><td></td><td>Check &#39;No native tables&#39; passed in 0.1s</td></tr><tr><td class="quiet">23:48:22</td><td></td><td>Check &#39;No native tables&#39; running</td></tr><tr><td class="quiet">23:48:22</td><td></td><td>Check &#39;No native inputs&#39; passed in 0.1s</td></tr><tr><td class="quiet">23:48:22</td><td></td><td>Check &#39;No native inputs&#39; running</td></tr><tr><td class="quiet">23:48:22</td><td></td><td>Check &#39;No native buttons&#39; FAILED in 0.1s</td></tr><tr><td class="quiet">23:48:22</td><td></td><td>Check &#39;No native buttons&#39; running</td></tr><tr><td class="quiet">23:48:22</td><td></td><td>Check &#39;No third-party component libraries&#39; passed in 0.1s</td></tr><tr><td class="quiet">23:48:21</td><td></td><td>Check &#39;No third-party component libraries&#39; running</td></tr><tr><td class="quiet">23:48:21</td><td></td><td>Check &#39;Type check (library and tests)&#39; running</td></tr><tr><td class="quiet">23:48:21</td><td></td><td>Check &#39;No debugging leftovers&#39; passed in 0.1s</td></tr><tr><td class="quiet">23:48:21</td><td></td><td>Check &#39;No debugging leftovers&#39; running</td></tr><tr><td class="quiet">23:48:21</td><td></td><td>Check &#39;No secrets in code&#39; passed in 0.3s</td></tr><tr><td class="quiet">23:48:21</td><td></td><td>Check &#39;No secrets in code&#39; running</td></tr></table></div></div></div><div class="panel" id="sec-prove" hidden><div class="card sg"><h2>Scope growth</h2><p class="sgnone"><span class="fixed">✓</span> Everything stayed inside the planned scope.</p><p class="quiet">Scope growth is advisory in this project: files outside the plan are accepted and listed here.</p></div><div class="card"><h2>Proof report</h2><p><a href="proof-report.md"><b>Open the proof report</b></a></p></div><div class="card"><h2>History</h2><div class="scroll"><table><tr><th>Time</th><th>Who</th><th>What</th></tr><tr><td class="quiet">23:49:33</td><td></td><td>Browser journeys not run: you chose not to run them for this run</td></tr></table></div></div></div><p class="quiet">Everything shown here is read from files in this folder: state.json, events.jsonl, artifacts/, transcripts/.</p></main><script>function fmt(sec) { if (!isFinite(sec)) return ''; sec = Math.max(0, Math.floor(sec)); var m = Math.floor(sec / 60), s = sec % 60; return m >= 1 ? m + 'm ' + s + 's' : s + 's'; }
+function elapsedText(base, asof, now) { return 'Elapsed ' + fmt(base + (now - asof) / 1000); }
+var KIND = { thinking: 'thinking', said: 'saying', tool: 'doing', waiting: 'waiting for the model' };
+function liveRows(sessions, now) {
+  return (sessions || []).map(function (s) {
+    var n = s.note;
+    return {
+      role: s.role, stage: s.stage, since: fmt((now - Date.parse(s.startedAt)) / 1000),
+      label: n ? (KIND[n.kind] || n.kind) : '', text: n && n.kind !== 'waiting' ? n.text : '',
+      ago: n ? fmt((now - Date.parse(n.at)) / 1000) + ' ago' : '',
+      recent: (s.recent || []).slice().reverse().map(function (r) { return (KIND[r.kind] || r.kind) + (r.kind === 'waiting' ? '' : ': ' + r.text); })
+    };
+  });
+}
+// The driver rewrites heartbeat.js every few seconds. A run that should be working whose driver has gone quiet (or left) has nobody driving it.
+function beatWords(beat, now) {
+  if (!beat || beat.state !== 'running') return '';
+  var age = (now - beat.at) / 1000;
+  if (beat.driving && age < 60) return '';
+  return 'Nobody is driving this run. Last heard from DevTeam ' + fmt(age) + ' ago. It may have been interrupted, so run "devteam resume" (or choose Continue in the app) to carry on.';
+}
+(function () {
+  // poller: delta detection by version, linear backoff while nothing changes, paused while the tab is hidden
+  var version = 4999721756183963433, active = '', base = 2000, delay = base, step = 1000, max = 15000;
+  var clock = { base: 77.8, asof: 1793306974263 }; // what devteam last said: seconds elapsed, and when it said so
+  var shown = {}, timer = null, inflight = false;
+  var follow = document.getElementById('follow');
+
+  function keyOf(d) { var s = d.querySelector(':scope > summary'); return d.dataset.key || (s ? s.textContent : ''); }
+  function openKeys(el) { var keys = {}; el.querySelectorAll('details[open]').forEach(function (d) { keys[keyOf(d)] = 1; }); return keys; }
+  function patch(id, html) {
+    var el = document.getElementById('sec-' + id);
+    if (!el || shown[id] === html) return;
+    shown[id] = html;
+    var keys = openKeys(el);
+    el.innerHTML = html;
+    el.querySelectorAll('details').forEach(function (d) { if (keys[keyOf(d)]) d.open = true; });
+  }
+  function select(name) {
+    document.querySelectorAll('.tab').forEach(function (t) { t.setAttribute('aria-selected', t.dataset.tab === name ? 'true' : 'false'); });
+    document.querySelectorAll('.panel').forEach(function (p) { p.hidden = p.id !== 'sec-' + name; });
+    try { sessionStorage.setItem('devteam-tab', name); } catch (e) { }
+  }
+  function mark(now) {
+    document.querySelector('main').dataset.active = now;
+    document.querySelectorAll('.tab').forEach(function (t) { t.classList.toggle('live', t.dataset.tab === now); });
+  }
+  function setActive(now) {
+    if (now === active) return;
+    active = now; mark(now);
+    if (now && follow && follow.checked) select(now);
+  }
+
+  window.__devteamDashboard = function (data) {
+    if (data.asOf) { clock.base = data.elapsed; clock.asof = data.asOf; } // every word from devteam replaces the page's own count
+    if (data.version === version) { delay = Math.min(delay + step, max); return; }
+    version = data.version; delay = base;
+    for (var id in data.sections) patch(id, data.sections[id]);
+    setActive(data.active || '');
+    tickElapsed(); renderLive(); // devteam's numbers replace whatever the page was counting
+  };
+
+  // the clock: between updates the page counts forward by itself; an update from devteam replaces its count
+  function tickElapsed() {
+    var e = document.getElementById('elapsed');
+    if (e && e.dataset.running === '1') e.textContent = elapsedText(clock.base, clock.asof, Date.now());
+  }
+
+  // "working now": one quiet line per AI session, from live.js (written while the model streams)
+  var liveBox = document.getElementById('live'), liveData = null, liveSig = '';
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; }
+  function renderLive() {
+    var sessions = (liveData && liveData.sessions) || [];
+    var show = !!document.querySelector('main').dataset.active && sessions.length > 0;
+    liveBox.hidden = !show;
+    if (!show) { liveSig = ''; liveBox.textContent = ''; return; }
+    var sig = JSON.stringify(sessions);
+    if (sig !== liveSig) {
+      var wasOpen = {};
+      liveBox.querySelectorAll('.lvrecent[open]').forEach(function (d) { wasOpen[d.dataset.role] = 1; });
+      liveSig = sig; liveBox.textContent = '';
+      liveRows(sessions, Date.now()).forEach(function (r) {
+        var row = el('div', 'lv'), head = el('div', 'lvhead');
+        head.appendChild(el('span', 'dot')); head.appendChild(el('b', '', r.role));
+        head.appendChild(el('span', 'quiet', ' is working in ' + r.stage + ' · '));
+        head.appendChild(el('span', 'quiet t-since'));
+        row.appendChild(head);
+        var line = el('div', 'lvnote quiet');
+        if (r.label) { line.appendChild(el('span', '', r.label + (r.text ? ': ' : ''))); if (r.text) line.appendChild(el('span', '', r.text)); line.appendChild(el('span', '', '  ·  ')); line.appendChild(el('span', 't-ago')); }
+        else line.appendChild(el('span', '', 'no output from the model yet'));
+        row.appendChild(line);
+        if (r.recent.length > 1) {
+          var d = el('details', 'lvrecent'); d.dataset.role = r.role; if (wasOpen[r.role]) d.open = true;
+          d.appendChild(el('summary', '', 'Recent activity'));
+          r.recent.forEach(function (t) { d.appendChild(el('div', 'quiet', t)); });
+          row.appendChild(d);
+        }
+        liveBox.appendChild(row);
+      });
+    }
+    tickLive();
+  }
+  function tickLive() {
+    if (liveBox.hidden || !liveData) return;
+    var rows = liveRows(liveData.sessions, Date.now()), since = liveBox.querySelectorAll('.t-since'), ago = liveBox.querySelectorAll('.t-ago'), a = 0;
+    rows.forEach(function (r, i) { if (since[i]) since[i].textContent = r.since; if (r.label && ago[a]) { ago[a].textContent = r.ago; a++; } });
+  }
+  window.__devteamLive = function (d) { liveData = d; renderLive(); };
+  function pollLive() {
+    if (document.hidden) { setTimeout(pollLive, 3000); return; }
+    var s = document.createElement('script');
+    s.src = 'live.js?' + Date.now();
+    s.onload = s.onerror = function () { s.remove(); setTimeout(pollLive, document.querySelector('main').dataset.active ? 1500 : 5000); };
+    document.head.appendChild(s);
+  }
+  // the driver's heartbeat: says plainly when nobody is driving the run, and stays hidden while someone is
+  var beatBox = document.getElementById('beat'), beatData = null;
+  function showBeat() { var words = beatWords(beatData, Date.now()); beatBox.hidden = !words; beatBox.textContent = words; }
+  window.__devteamBeat = function (d) { beatData = d; showBeat(); };
+  function pollBeat() {
+    if (document.hidden) { setTimeout(pollBeat, 3000); return; }
+    var s = document.createElement('script');
+    s.src = 'heartbeat.js?' + Date.now();
+    s.onload = s.onerror = function () { s.remove(); setTimeout(pollBeat, 5000); };
+    document.head.appendChild(s);
+  }
+  setInterval(function () { tickElapsed(); tickLive(); showBeat(); }, 1000);
+  pollLive(); pollBeat();
+  function schedule() { clearTimeout(timer); if (!document.hidden) timer = setTimeout(poll, delay); }
+  function poll() {
+    if (document.hidden || inflight) return;
+    inflight = true;
+    var s = document.createElement('script');
+    s.src = 'dashboard-data.js?' + Date.now();
+    s.onload = s.onerror = function () { s.remove(); inflight = false; schedule(); };
+    document.head.appendChild(s);
+  }
+  // nobody is looking at a hidden tab: stop asking, and catch up the moment it is shown again
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { clearTimeout(timer); } else { delay = base; clearTimeout(timer); poll(); }
+  });
+
+  document.querySelectorAll('.tab').forEach(function (t) { t.addEventListener('click', function () { select(t.dataset.tab); }); });
+  var saved = null; try { saved = sessionStorage.getItem('devteam-tab'); } catch (e) { }
+  if (saved && document.getElementById('sec-' + saved)) select(saved);
+
+  if (follow) {
+    try { follow.checked = localStorage.getItem('devteam-follow') !== '0'; } catch (e) { }
+    follow.addEventListener('change', function () {
+      try { localStorage.setItem('devteam-follow', follow.checked ? '1' : '0'); } catch (e) { }
+      if (follow.checked && active) select(active);
+    });
+    if (follow.checked && active) select(active);
+  }
+  schedule();
+})();</script><script>(function () {
+  function apply(box) {
+    var group = box.dataset.group, saved = null;
+    try { saved = sessionStorage.getItem('devteam-sub-' + group); } catch (e) { }
+    var buttons = box.querySelectorAll('.subtab'), pick = null;
+    buttons.forEach(function (b) { if (b.dataset.sub === saved) pick = saved; });
+    if (!pick) pick = box.dataset.default;
+    buttons.forEach(function (b) { b.setAttribute('aria-selected', b.dataset.sub === pick ? 'true' : 'false'); });
+    box.parentNode.querySelectorAll('.subpanel[data-group="' + group + '"]').forEach(function (p) { p.hidden = p.dataset.sub !== pick; });
+  }
+  function all() { document.querySelectorAll('.subtabs').forEach(apply); }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('.subtab') : null;
+    if (!b) return;
+    try { sessionStorage.setItem('devteam-sub-' + b.parentNode.dataset.group, b.dataset.sub); } catch (x) { }
+    apply(b.parentNode);
+  });
+  new MutationObserver(all).observe(document.body, { childList: true, subtree: true });
+  all();
+})();</script><script>(function () {
+  function copy(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text);
+    return new Promise(function (resolve, reject) {
+      var t = document.createElement('textarea'); t.value = text; t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select();
+      try { document.execCommand('copy') ? resolve() : reject(); } catch (e) { reject(e); } finally { t.remove(); }
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('.copycmd') : null;
+    if (!b) return;
+    var cmd = b.dataset.cmd, was = b.textContent;
+    copy(cmd).then(function () { b.textContent = 'Copied. Run it in a terminal.'; }, function () { b.textContent = cmd; });
+    setTimeout(function () { b.textContent = was; }, 4000);
+  });
+})();</script></body></html>

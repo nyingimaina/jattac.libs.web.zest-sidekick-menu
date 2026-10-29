@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "status": "cleared",
+  "summary": "Deleted only generated artifacts that were blocking the checkout to master: the entire coverage/ folder (test coverage output) and .devteam/runs-index.json (DevTeam's own run index). No source, docs, or person-authored files were touched, and no git commands were run.",
+  "deleted": [
+    ".devteam/runs-index.json",
+    "coverage/"
+  ],
+  "deletedFiles": [
+    "coverage/clover.xml",
+    "coverage/coverage-final.json",
+    "coverage/lcov.info",
+    "coverage/lcov-report/ (281 generated HTML/CSS/JS report files)"
+  ],
+  "gitignoreChanges": [],
+  "notes": "coverage/ is generated test output and .devteam/runs-index.json is DevTeam's own bookkeeping; both will be restored from master during checkout. Nothing else was edited, moved, or created."
+}

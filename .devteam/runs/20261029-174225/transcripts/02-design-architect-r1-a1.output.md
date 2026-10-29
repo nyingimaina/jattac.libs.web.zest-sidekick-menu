@@ -1,0 +1,1 @@
+Wrote `D:\work\nyingi\code\systems\Sidekick\.devteam\runs\20261029-174225\artifacts\02-design\architect-r1.json` — valid JSON, 10 scoped files, no app files modified. Design is a default flip (`searchEnabled = false`), an effect dropping any held term when search is off, no public-surface change, tests/docs updated and a v2.0.0 breaking-change entry.

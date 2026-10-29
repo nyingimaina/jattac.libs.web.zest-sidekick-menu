@@ -1,0 +1,1 @@
+No security findings. The change only flips a prop default, adds a term-reset effect, and creates the same elements via `React.createElement`; no new sink, dependency, install script, secret, or published file, and hiding search reduces surface. Wrote `security-r5.json` with empty findings/verifications.

@@ -1,0 +1,3 @@
+Wrote `security-r3.json` with no findings (approve).
+
+Review summary: the diff flips `searchEnabled` to `false`, adds an off-state term reset, a `React.createElement("input")`/`MenuButton` indirection, docs and a 2.0.0 bump. No secrets (SEC-001), no XSS sinks (`dangerouslySetInnerHTML`, `href`/`src` from props, `eval`/`Function`/dynamic import), no install-time scripts, no new dependencies, and `files: ["dist"]` still bounds the published surface. Only app files changed are the developer's; I touched nothing outside my output and scratch notes.

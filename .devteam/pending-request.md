@@ -1,0 +1,1 @@
+hide the searchbox by default, have it possible to enable by prop. Even existing installations should have it hidden by default

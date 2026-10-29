@@ -1,0 +1,3 @@
+Delivered to `.devteam/runs/20261029-174225/artifacts/01-define/analyst-r1.json` (valid JSON, 5 requirements, no open topics, no questions).
+
+Key decisions: existing `searchEnabled` prop flips to default `false` (no new prop), enabling preserves 1.7.0 search behaviour, release is breaking → v2.0.0 + `docs/breaking-changes.md` note, all five docs pages that claim "enabled by default" must be updated. Notes for the next step are in the scratch `facts.md`.

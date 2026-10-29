@@ -1,0 +1,1 @@
+Wrote `architect-r2.json`. Fix: each `impact.touches` entry is now a bare file path drawn verbatim from `scope` (10/10 match), so the R1 scope conflicts are gone. Design unchanged: `searchEnabled = false` default, off-state `SET_SEARCH_TERM` reset effect, no public-surface change, 2.0.0 + breaking-changes entry, all docs pages in scope. R1–R5 all covered, JSON validated.
